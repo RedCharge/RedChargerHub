@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Sign Up</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .redcharger-hero-bg {
+            background-image: url('https://freedesignfile.com/upload/2016/08/Abstract-red-background-vector-Illustration.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .redcharger-hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(220, 38, 38, 0.7);
+            z-index: 1;
+        }
+        .redcharger-hero-bg > div {
+            position: relative;
+            z-index: 2;
+        }
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #DC2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .strength-weak { background-color: #ef4444; width: 25%; }
+        .strength-fair { background-color: #f59e0b; width: 50%; }
+        .strength-good { background-color: #10b981; width: 75%; }
+        .strength-strong { background-color: #059669; width: 100%; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Signup Container -->
+    <div class="w-full max-w-5xl bg-white shadow-2xl rounded-2xl overflow-hidden md:grid md:grid-cols-2 transition-all duration-300">
+
+        <!-- Left Side: Branded / Visual Section -->
+        <div class="hidden md:flex redcharger-hero-bg items-center justify-center p-8">
+            <div class="text-center text-white">
+                <svg class="mx-auto h-16 w-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h2 class="text-4xl font-extrabold mb-2">RedCharger</h2>
+                <p class="text-xl font-medium opacity-90">Your Future, Supercharged.</p>
+                <p class="mt-4 text-sm opacity-80">Join our community and access thousands of resources tailored for success.</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Signup Form Section -->
+        <div class="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+
+            <!-- Mobile Branding -->
+            <div class="md:hidden flex items-center space-x-2 mb-8">
+                <svg class="h-8 w-8 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-2xl font-bold text-gray-800">RedCharger</h1>
+            </div>
+
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h2>
+            <p class="text-gray-500 mb-8">Start your learning journey today!</p>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="mb-4 p-3 rounded-lg {% if category == 'error' %}bg-red-100 border border-red-400 text-red-700{% else %}bg-green-100 border border-green-400 text-green-700{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Traditional Registration Form -->
+            <form method="POST" action="{{ url_for('auth.register') }}" id="signupForm">
+                <!-- Full Name Input -->
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <div class="relative">
+                        <input type="text" id="name" name="name" placeholder="John Doe" required
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out shadow-sm"
+                               aria-label="Full Name">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" placeholder="you@student.edu" required
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out shadow-sm"
+                               aria-label="Email Address">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" placeholder="Create a strong password" required
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out shadow-sm"
+                               aria-label="Password">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v3h8z"></path>
+                        </svg>
+                    </div>
+                    <!-- Password Strength Indicator -->
+                    <div class="mt-2">
+                        <div id="passwordStrength" class="password-strength strength-weak"></div>
+                        <p id="passwordFeedback" class="text-xs text-gray-500 mt-1"></p>
+                    </div>
+                </div>
+                
+                <!-- Confirm Password Input -->
+                <div class="mb-6">
+                    <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                    <div class="relative">
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Re-enter your password" required
+                               class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-150 ease-in-out shadow-sm"
+                               aria-label="Confirm Password">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v3h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="mb-6 flex items-start">
+                    <input type="checkbox" id="terms" name="terms" required
+                           class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded mt-1">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">
+                        I agree to the <a href="#" class="redcharger-text hover:underline">Terms of Service</a> and <a href="#" class="redcharger-text hover:underline">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Create Account Button -->
+                <div class="mb-4">
+                    <button type="submit" id="signupBtn"
+                            class="w-full redcharger-bg text-white py-3 px-4 rounded-lg font-semibold text-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center justify-center">
+                        <span id="signupText">Create Account</span>
+                        <div id="signupSpinner" class="loading-spinner ml-2 hidden"></div>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Divider -->
+            <div class="relative mb-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">Or sign up with</span>
+                </div>
+            </div>
+
+            <!-- Google Sign Up Button -->
+            <div class="mb-6">
+                <button type="button" id="googleSignUpBtn"
+                        class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition duration-150 ease-in-out flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Sign up with Google
+                </button>
+            </div>
+
+            <!-- Sign In Link -->
+            <div class="text-center text-sm">
+                <p class="text-gray-600">Already have an account?
+                    <a href="{{ url_for('auth.login') }}" class="redcharger-text hover:text-red-700 font-medium">
+                        Sign in here
+                    </a>
+                </p>
+            </div>
+
+            <!-- Message Box -->
+            <div id="messageBox" class="mt-4 p-3 rounded-lg text-sm hidden" role="alert"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAw4CCOFDlfsVxkAcg2YdshgEB-x3fKNLY",
+        authDomain: "redchargerhsk1.firebaseapp.com",
+        projectId: "redchargerhsk1",
+        storageBucket: "redchargerhsk1.firebasestorage.app",
+        messagingSenderId: "287577907928",
+        appId: "1:287577907928:web:ea58eaba023213696d6dad"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    console.log('🔧 Firebase initialized for registration');
+
+    // Show message function
+    function showMessage(message, type = 'info') {
+        const messageBox = document.getElementById('messageBox');
+        messageBox.textContent = message;
+        messageBox.className = `mt-4 p-3 rounded-lg text-sm ${type === 'error' ? 'bg-red-100 border border-red-400 text-red-700' : 'bg-green-100 border border-green-400 text-green-700'}`;
+        messageBox.classList.remove('hidden');
+
+        setTimeout(() => {
+            messageBox.classList.add('hidden');
+        }, 5000);
+    }
+
+    // Password strength checker
+    function checkPasswordStrength(password) {
+        const strengthBar = document.getElementById('passwordStrength');
+        const feedback = document.getElementById('passwordFeedback');
+        
+        let strength = 0;
+        let feedbackText = '';
+
+        if (password.length >= 8) strength += 1;
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1;
+        if (password.match(/([0-9])/)) strength += 1;
+        if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1;
+
+        switch(strength) {
+            case 0: case 1:
+                strengthBar.className = 'password-strength strength-weak';
+                feedbackText = 'Weak password';
+                break;
+            case 2:
+                strengthBar.className = 'password-strength strength-fair';
+                feedbackText = 'Fair password';
+                break;
+            case 3:
+                strengthBar.className = 'password-strength strength-good';
+                feedbackText = 'Good password';
+                break;
+            case 4:
+                strengthBar.className = 'password-strength strength-strong';
+                feedbackText = 'Strong password';
+                break;
+        }
+        feedback.textContent = feedbackText;
+    }
+
+    // Real-time password strength checking
+    document.getElementById('password').addEventListener('input', function() {
+        checkPasswordStrength(this.value);
+    });
+
+    // Traditional form submission
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        const signupBtn = document.getElementById('signupBtn');
+        const signupText = document.getElementById('signupText');
+        const signupSpinner = document.getElementById('signupSpinner');
+
+        // Show loading state
+        signupText.textContent = 'Creating Account...';
+        signupSpinner.classList.remove('hidden');
+        signupBtn.disabled = true;
+
+        console.log('🔄 Traditional form submission to Flask backend');
+        // Let the form submit normally - Flask will handle the registration
+    });
+
+    // Google Sign Up - FIXED VERSION
+    document.getElementById('googleSignUpBtn').addEventListener('click', function() {
+        const googleBtn = this;
+        const originalText = googleBtn.innerHTML;
+
+        // Show loading state immediately
+        googleBtn.innerHTML = '<div class="loading-spinner mr-2"></div> Signing up...';
+        googleBtn.disabled = true;
+
+        console.log('🚀 Starting Google sign-up...');
+
+        const provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('email');
+        provider.addScope('profile');
+        
+        // Use signInWithPopup with proper error handling
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                console.log('✅ Google sign-up successful');
+                const user = result.user;
+                
+                // Get ID token
+                return user.getIdToken().then((idToken) => {
+                    console.log('📡 Sending to backend for registration...');
+                    
+                    // Send to backend using the firebase-login endpoint (which handles both login and registration)
+                    return fetch('/firebase-login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id_token: idToken,
+                            email: user.email,
+                            name: user.displayName
+                        })
+                    });
+                });
+            })
+            .then(response => {
+                console.log('🔍 Backend response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(backendResult => {
+                console.log('🔍 Backend result:', backendResult);
+                
+                if (backendResult.success) {
+                    showMessage('Google registration successful! Redirecting...', 'info');
+                    console.log('✅ Registration successful, redirecting...');
+                    
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        window.location.href = backendResult.redirect || '/';
+                    }, 1500);
+                } else {
+                    throw new Error(backendResult.error || 'Backend registration failed');
+                }
+            })
+            .catch(error => {
+                console.error('❌ Google sign-up error:', error);
+                
+                let errorMessage = 'Google sign-up failed. Please try again.';
+                
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage = 'Sign up was cancelled.';
+                } else if (error.code === 'auth/popup-blocked') {
+                    errorMessage = 'Sign up popup was blocked. Please allow popups for this site.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage = 'Network error. Please check your connection.';
+                } else if (error.message.includes('backend')) {
+                    errorMessage = 'Server error. Please try again later.';
+                } else if (error.code === 'auth/account-exists-with-different-credential') {
+                    errorMessage = 'An account already exists with this email. Please sign in instead.';
+                }
+                
+                showMessage(errorMessage, 'error');
+                
+                // Reset button state
+                googleBtn.innerHTML = originalText;
+                googleBtn.disabled = false;
+            });
+    });
+
+    // Check if user is already signed in with Firebase
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            console.log('✅ Firebase user already signed in:', user.email);
+        } else {
+            console.log('🔐 No Firebase user signed in');
+        }
+    });
+
+    console.log('🔧 Registration page fully initialized');
+    </script>
+</body>
+</html>

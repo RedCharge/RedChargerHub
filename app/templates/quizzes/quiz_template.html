@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course_name }} Quiz - {{ course_code }} | RedCharger</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #DC2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Quiz specific styles */
+        .quiz-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .option-button {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-button.correct {
+            border-color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+        
+        .option-button.incorrect {
+            border-color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #DC2626, #ef4444);
+            transition: width 0.5s ease;
+        }
+
+        .score-badge {
+            background-color: #f3f4f6;
+            color: #374151;
+            border-radius: 9999px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .question-number-badge {
+            background-color: #DC2626;
+            color: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .feedback-correct {
+            background-color: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+
+        .feedback-incorrect {
+            background-color: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+        }
+
+        /* Loading state */
+        .skeleton-loader {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Message box */
+        .message-box {
+            position: fixed;
+            bottom: 4px;
+            right: 4px;
+            z-index: 20;
+            padding: 12px 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        
+        .message-box.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Quiz animations */
+        @keyframes fadeInUp {
+            '0%': { transform: 'translateY(20px)', opacity: '0' },
+            '100%': { transform: 'translateY(0)', opacity: '1' },
+        }
+        
+        @keyframes pulseCorrect {
+            '0%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.7)' },
+            '70%': { boxShadow: '0 0 0 10px rgba(34, 197, 94, 0)' },
+            '100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0)' },
+        }
+        
+        @keyframes pulseIncorrect {
+            '0%': { boxShadow: '0 0 0 0 rgba(239, 68, 68, 0.7)' },
+            '70%': { boxShadow: '0 0 0 10px rgba(239, 68, 68, 0)' },
+            '100%': { boxShadow: '0 0 0 0 rgba(239, 68, 68, 0)' },
+        }
+        
+        .fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .pulse-correct {
+            animation: pulseCorrect 1s ease;
+        }
+        
+        .pulse-incorrect {
+            animation: pulseIncorrect 1s ease;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .score-badge {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+            
+            .question-number-badge {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+            
+            .quiz-header-stats {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .option-button {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+
+    <!-- Header / Navigation Bar (Sticky) - Same as quizzes.html -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="/course" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+            <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 w-full">
+        <!-- Quiz Header - Improved mobile layout -->
+        <div class="mb-8 md:mb-10">
+            <div class="space-y-4">
+                <!-- Course Title - Mobile optimized -->
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-1">{{ course_code }}</h1>
+                    <h2 class="text-xl md:text-2xl font-semibold text-red-600 mb-3">{{ course_name }}</h2>
+                    <p class="text-gray-600 text-base md:text-lg">
+                        Test your knowledge with this interactive quiz
+                    </p>
+                </div>
+                
+                <!-- Quiz Stats - Mobile optimized layout -->
+                <div class="quiz-header-stats flex flex-wrap items-center gap-3">
+                    <div class="score-badge flex items-center">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2 flex-shrink-0"></i>
+                        <span>No Time Limit</span>
+                    </div>
+                    <div class="score-badge flex items-center">
+                        <i data-lucide="help-circle" class="w-4 h-4 mr-2 flex-shrink-0"></i>
+                        <span>{{ passing_score }}% to Pass</span>
+                    </div>
+                    <div class="score-badge flex items-center">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-2 flex-shrink-0"></i>
+                        <span>Multiple Choice</span>
+                    </div>
+                    <div class="score-badge flex items-center">
+                        <i data-lucide="bar-chart" class="w-4 h-4 mr-2 flex-shrink-0"></i>
+                        <span>Adaptive Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-card p-4 sm:p-6 md:p-8 mb-8">
+            <!-- Loading State -->
+            <div id="loading-state" class="text-center py-8 sm:py-12">
+                <div class="loading-spinner mx-auto mb-4"></div>
+                <p class="text-gray-500 text-base sm:text-lg">Loading quiz questions...</p>
+            </div>
+
+            <!-- Start Screen -->
+            <div id="start-screen" class="text-center py-6 sm:py-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">Ready to test your knowledge?</h2>
+                <p class="text-gray-600 text-base sm:text-lg mb-4 sm:mb-6">
+                    Answer {{ QUESTIONS_PER_QUIZ }} questions. You need {{ passing_score }}% to pass.
+                </p>
+                <div class="mb-4 sm:mb-6 p-4 bg-gray-50 rounded-lg">
+                    <h3 class="text-lg font-bold mb-2 text-gray-800">Quiz Instructions</h3>
+                    <ul class="text-gray-600 text-sm sm:text-base text-left space-y-2">
+                        <li class="flex items-start">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="break-words">Answer multiple-choice questions with 4 options each</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="clock" class="w-4 h-4 text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="break-words">Complete at your own pace with no time limits</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="bar-chart" class="w-4 h-4 text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="break-words">Track your progress and review results</span>
+                        </li>
+                    </ul>
+                </div>
+                <button id="start-btn" class="w-full sm:w-auto py-3 px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 shadow-md hover:shadow-lg text-base sm:text-lg">
+                    <i data-lucide="play" class="inline-block w-5 h-5 mr-2 align-middle"></i>
+                    Start Quiz
+                </button>
+            </div>
+
+            <!-- Quiz Content (Initially Hidden) -->
+            <div id="quiz-content" class="hidden">
+                <!-- Progress Bar -->
+                <div class="mb-6 md:mb-8">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-gray-700 font-medium text-sm sm:text-base">Progress</span>
+                        <span id="progress-text" class="text-gray-500 text-sm sm:text-base">0/0</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Score Display - Mobile optimized -->
+                <div class="mb-6 md:mb-8 p-4 bg-gray-50 rounded-lg">
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4">
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-gray-800" id="score">0</div>
+                            <div class="text-gray-500 text-xs sm:text-sm">Score</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-green-600" id="correct-count">0</div>
+                            <div class="text-gray-500 text-xs sm:text-sm">Correct</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl sm:text-2xl font-bold text-red-600" id="incorrect-count">0</div>
+                            <div class="text-gray-500 text-xs sm:text-sm">Incorrect</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question Container -->
+                <div class="mb-6 md:mb-8">
+                    <div class="flex items-start mb-4 sm:mb-6">
+                        <div class="question-number-badge mr-3 sm:mr-4" id="current-question-number">1</div>
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 leading-tight" id="question-text">Loading question...</h3>
+                        </div>
+                    </div>
+                    
+                    <!-- Options Container -->
+                    <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                        <!-- Options will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Feedback Message -->
+                <div id="feedback-message" class="p-3 sm:p-4 rounded-lg mb-4 sm:mb-6 hidden">
+                    <div class="flex items-start">
+                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 text-green-500 hidden mt-0.5 flex-shrink-0" id="correct-icon"></i>
+                        <i data-lucide="x-circle" class="w-5 h-5 mr-2 text-red-500 hidden mt-0.5 flex-shrink-0" id="incorrect-icon"></i>
+                        <span id="feedback-text" class="text-gray-700 text-sm sm:text-base"></span>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons - Mobile optimized -->
+                <div class="flex flex-col sm:flex-row justify-between items-center pt-4 sm:pt-6 border-t border-gray-200 gap-4 sm:gap-0">
+                    <div class="text-sm text-gray-500 text-center sm:text-left order-2 sm:order-1">
+                        Passing Score: <span class="font-bold text-red-600">{{ passing_score }}%</span>
+                    </div>
+                    <div class="flex space-x-3 w-full sm:w-auto order-1 sm:order-2">
+                        <button id="prev-btn" class="flex-1 sm:flex-none py-3 px-4 sm:px-6 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300 opacity-50 cursor-not-allowed text-sm sm:text-base" disabled>
+                            <i data-lucide="arrow-left" class="inline-block w-4 h-4 sm:w-5 sm:h-5 mr-2 align-middle"></i>
+                            <span class="hidden sm:inline">Previous</span>
+                            <span class="sm:hidden">Prev</span>
+                        </button>
+                        <button id="next-btn" class="flex-1 sm:flex-none py-3 px-4 sm:px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 shadow-md text-sm sm:text-base">
+                            <span class="hidden sm:inline">Next</span>
+                            <span class="sm:hidden">Next</span>
+                            <i data-lucide="arrow-right" class="inline-block w-4 h-4 sm:w-5 sm:h-5 ml-2 align-middle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="hidden text-center py-8 sm:py-12">
+                <i data-lucide="alert-triangle" class="w-10 h-10 sm:w-12 sm:h-12 text-red-500 mx-auto mb-3 sm:mb-4"></i>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Failed to Load Quiz</h3>
+                <p class="text-gray-600 text-base sm:text-lg mb-4 sm:mb-6" id="error-message">There was an error loading the quiz questions.</p>
+                <button id="retry-btn" class="py-3 px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 text-base sm:text-lg">
+                    <i data-lucide="refresh-cw" class="inline-block w-5 h-5 mr-2 align-middle"></i>
+                    Try Again
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="hidden mt-6 sm:mt-8 text-center">
+                <div class="mb-6 sm:mb-8">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-full bg-red-600 flex items-center justify-center">
+                        <i data-lucide="trophy" class="w-8 h-8 sm:w-10 sm:h-10 text-white"></i>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">Quiz Complete!</h2>
+                    <div class="text-4xl sm:text-5xl font-extrabold mb-2 text-red-600" id="final-score">0</div>
+                    <div class="text-gray-500 text-base sm:text-lg">Your Final Score</div>
+                </div>
+                
+                <!-- Results Stats - Mobile optimized -->
+                <div class="grid grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                        <div class="text-2xl sm:text-3xl font-bold text-green-600" id="final-correct">0</div>
+                        <div class="text-gray-500 text-xs sm:text-sm">Correct</div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                        <div class="text-2xl sm:text-3xl font-bold text-red-600" id="final-incorrect">0</div>
+                        <div class="text-gray-500 text-xs sm:text-sm">Incorrect</div>
+                    </div>
+                    <div class="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                        <div class="text-2xl sm:text-3xl font-bold text-blue-600" id="final-percentage">0%</div>
+                        <div class="text-gray-500 text-xs sm:text-sm">Accuracy</div>
+                    </div>
+                </div>
+                
+                <!-- Performance Summary -->
+                <div class="mb-6 sm:mb-8">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-800">Performance Summary</h3>
+                    <p id="performance-message" class="text-gray-600 text-sm sm:text-lg max-w-2xl mx-auto text-left sm:text-center px-2">
+                        <!-- Performance message will be inserted here -->
+                    </p>
+                </div>
+                
+                <!-- Action Buttons - Mobile optimized -->
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <button id="restart-btn" class="py-3 px-4 sm:px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 text-sm sm:text-base">
+                        <i data-lucide="refresh-cw" class="inline-block w-4 h-4 sm:w-5 sm:h-5 mr-2 align-middle"></i>
+                        Take Quiz Again
+                    </button>
+                    <a href="/quizzes/quiz-results" class="py-3 px-4 sm:px-6 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base">
+                        <i data-lucide="bar-chart" class="inline-block w-4 h-4 sm:w-5 sm:h-5 mr-2 align-middle"></i>
+                        View Results
+                    </a>
+                    <a href="/quizzes" class="py-3 px-4 sm:px-6 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300 inline-flex items-center justify-center text-sm sm:text-base">
+                        <i data-lucide="arrow-left" class="inline-block w-4 h-4 sm:w-5 sm:h-5 mr-2 align-middle"></i>
+                        Back to Quizzes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation (Bottom Bar) - Same as quizzes.html -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="/course" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Custom Message Box for Interaction Feedback -->
+    <div id="messageBox" class="fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm hidden transition duration-300 transform translate-y-full" role="alert">
+        <!-- Message content will be inserted here -->
+    </div>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="correct-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="incorrect-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="complete-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- JavaScript Section - ALL LOGIC PRESERVED -->
+     <script>
+        // Quiz state
+let currentQuestion = 0;
+let score = 0;
+let correctAnswers = 0;
+let incorrectAnswers = 0;
+let userAnswers = [];
+let quizData = [];
+let quizStarted = false;
+let startTime = null;
+
+// Adaptive learning state
+let adaptiveLearningState = {
+    userProficiency: 0.5,
+    topicMastery: {},
+    difficultyLevel: 2,
+    weakAreas: [],
+    performanceHistory: [],
+    consecutiveCorrect: 0,
+    consecutiveIncorrect: 0,
+    adjustmentThreshold: 2,
+    baseDifficulty: 2
+};
+
+let availableQuestions = [];
+let currentDifficultyQuestions = [];
+
+// Quiz configuration - IMPORTANT: These come from Flask template
+const QUIZ_SLUG = "{{ quiz_slug }}";
+const QUESTIONS_PER_QUIZ = 20;
+const PASSING_SCORE = {{ passing_score }};
+const COURSE_NAME = "{{ course_name }}";
+const COURSE_CODE = "{{ course_code }}";
+
+// DOM elements
+const loadingState = document.getElementById('loading-state');
+const startScreen = document.getElementById('start-screen');
+const quizContent = document.getElementById('quiz-content');
+const errorState = document.getElementById('error-state');
+const resultsSection = document.getElementById('results-section');
+const questionText = document.getElementById('question-text');
+const currentQuestionNumber = document.getElementById('current-question-number');
+const optionsContainer = document.getElementById('options-container');
+const feedbackMessage = document.getElementById('feedback-message');
+const feedbackText = document.getElementById('feedback-text');
+const correctIcon = document.getElementById('correct-icon');
+const incorrectIcon = document.getElementById('incorrect-icon');
+const nextButton = document.getElementById('next-btn');
+const prevButton = document.getElementById('prev-btn');
+const progressText = document.getElementById('progress-text');
+const progressFill = document.getElementById('progress-fill');
+const scoreElement = document.getElementById('score');
+const correctCountElement = document.getElementById('correct-count');
+const incorrectCountElement = document.getElementById('incorrect-count');
+const finalScoreElement = document.getElementById('final-score');
+const finalCorrectElement = document.getElementById('final-correct');
+const finalIncorrectElement = document.getElementById('final-incorrect');
+const finalPercentageElement = document.getElementById('final-percentage');
+const performanceMessageElement = document.getElementById('performance-message');
+const restartButton = document.getElementById('restart-btn');
+const retryButton = document.getElementById('retry-btn');
+const errorMessage = document.getElementById('error-message');
+const startButton = document.getElementById('start-btn');
+
+// Sound elements
+const correctSound = document.getElementById('correct-sound');
+const incorrectSound = document.getElementById('incorrect-sound');
+const completeSound = document.getElementById('complete-sound');
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Lucide icons
+    if (window.lucide) {
+        lucide.createIcons();
+    }
+    
+    // Show start screen first
+    loadingState.classList.add('hidden');
+    quizContent.classList.add('hidden');
+    errorState.classList.add('hidden');
+    resultsSection.classList.add('hidden');
+    startScreen.classList.remove('hidden');
+    
+    // Set up event listeners
+    startButton.addEventListener('click', startQuiz);
+    retryButton.addEventListener('click', startQuiz);
+    restartButton.addEventListener('click', restartQuiz);
+    
+    console.log('Quiz template initialized for:', COURSE_NAME);
+    console.log('Quiz slug:', QUIZ_SLUG);
+    console.log('Passing score:', PASSING_SCORE);
+});
+
+// ============================
+// ADAPTIVE LEARNING FUNCTIONS
+// ============================
+
+async function loadAllQuestionsForAdaptive() {
+    try {
+        console.log('Loading all questions for adaptive learning...');
+        
+        // Fetch ALL questions for adaptive filtering
+        const response = await fetch(`/quizzes/api/${QUIZ_SLUG}/questions?all=true`);
+        
+        if (!response.ok) {
+            // Fallback to regular API
+            console.log('Using standard questions endpoint for adaptive learning');
+            return await loadQuizData();
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.questions && Array.isArray(data.questions)) {
+            // Categorize questions by difficulty if available
+            availableQuestions = data.questions.map(q => {
+                let difficulty = 2; // Default medium
+                if (q.difficulty) {
+                    if (typeof q.difficulty === 'string') {
+                        const diffLower = q.difficulty.toLowerCase();
+                        if (diffLower.includes('easy')) difficulty = 1;
+                        else if (diffLower.includes('hard') || diffLower.includes('difficult')) difficulty = 3;
+                    } else if (typeof q.difficulty === 'number') {
+                        difficulty = Math.min(3, Math.max(1, q.difficulty));
+                    }
+                }
+                
+                let topic = q.category || q.topic || 'general';
+                
+                if (!adaptiveLearningState.topicMastery[topic]) {
+                    adaptiveLearningState.topicMastery[topic] = 0.5;
+                }
+                
+                return {
+                    ...q,
+                    adaptiveData: {
+                        difficulty: difficulty,
+                        topic: topic,
+                        timesShown: 0,
+                        timesCorrect: 0,
+                        timesIncorrect: 0,
+                        lastShown: null,
+                        masteryScore: 0.5
+                    }
+                };
+            });
+            
+            console.log(`Loaded ${availableQuestions.length} questions for adaptive learning`);
+            return true;
+        } else {
+            throw new Error(data.message || 'Invalid data structure received from API');
+        }
+        
+    } catch (error) {
+        console.error('Adaptive questions loading error:', error);
+        return false;
+    }
+}
+
+function selectAdaptiveQuestions() {
+    currentDifficultyQuestions = [];
+    
+    const targetDifficulty = adaptiveLearningState.difficultyLevel;
+    let filteredQuestions = availableQuestions.filter(q => {
+        return Math.abs(q.adaptiveData.difficulty - targetDifficulty) <= 1;
+    });
+    
+    if (filteredQuestions.length < QUESTIONS_PER_QUIZ) {
+        filteredQuestions = availableQuestions;
+    }
+    
+    filteredQuestions.sort((a, b) => {
+        const aTopicMastery = adaptiveLearningState.topicMastery[a.adaptiveData.topic] || 0.5;
+        const bTopicMastery = adaptiveLearningState.topicMastery[b.adaptiveData.topic] || 0.5;
+        
+        if (Math.abs(aTopicMastery - bTopicMastery) > 0.2) {
+            return aTopicMastery - bTopicMastery;
+        }
+        
+        const aLastShown = a.adaptiveData.lastShown || 0;
+        const bLastShown = b.adaptiveData.lastShown || 0;
+        
+        if (aLastShown !== bLastShown) {
+            return aLastShown - bLastShown;
+        }
+        
+        return a.adaptiveData.timesShown - b.adaptiveData.timesShown;
+    });
+    
+    currentDifficultyQuestions = filteredQuestions.slice(0, QUESTIONS_PER_QUIZ);
+    
+    const currentTime = Date.now();
+    currentDifficultyQuestions.forEach(q => {
+        q.adaptiveData.timesShown++;
+        q.adaptiveData.lastShown = currentTime;
+    });
+    
+    console.log(`Selected ${currentDifficultyQuestions.length} questions at difficulty ${targetDifficulty}`);
+    return currentDifficultyQuestions;
+}
+
+function updateAdaptiveState(isCorrect, question) {
+    if (!question || !question.adaptiveData) return;
+    
+    const topic = question.adaptiveData.topic;
+    const difficulty = question.adaptiveData.difficulty;
+    
+    if (isCorrect) {
+        question.adaptiveData.timesCorrect++;
+        adaptiveLearningState.consecutiveCorrect++;
+        adaptiveLearningState.consecutiveIncorrect = 0;
+        
+        if (adaptiveLearningState.topicMastery[topic]) {
+            adaptiveLearningState.topicMastery[topic] = Math.min(1, 
+                adaptiveLearningState.topicMastery[topic] + 0.1);
+        }
+    } else {
+        question.adaptiveData.timesIncorrect++;
+        adaptiveLearningState.consecutiveIncorrect++;
+        adaptiveLearningState.consecutiveCorrect = 0;
+        
+        if (adaptiveLearningState.topicMastery[topic]) {
+            adaptiveLearningState.topicMastery[topic] = Math.max(0, 
+                adaptiveLearningState.topicMastery[topic] - 0.15);
+        }
+        
+        if (!adaptiveLearningState.weakAreas.includes(topic)) {
+            adaptiveLearningState.weakAreas.push(topic);
+        }
+    }
+    
+    const totalAttempts = question.adaptiveData.timesCorrect + question.adaptiveData.timesIncorrect;
+    if (totalAttempts > 0) {
+        question.adaptiveData.masteryScore = question.adaptiveData.timesCorrect / totalAttempts;
+    }
+    
+    adaptiveLearningState.performanceHistory.push({
+        questionId: question.id,
+        isCorrect: isCorrect,
+        difficulty: difficulty,
+        topic: topic,
+        timestamp: Date.now()
+    });
+    
+    adjustDifficultyLevel();
+    updateProficiencyScore();
+}
+
+function adjustDifficultyLevel() {
+    const threshold = adaptiveLearningState.adjustmentThreshold;
+    
+    if (adaptiveLearningState.consecutiveCorrect >= threshold) {
+        if (adaptiveLearningState.difficultyLevel < 3) {
+            adaptiveLearningState.difficultyLevel++;
+            adaptiveLearningState.consecutiveCorrect = 0;
+            console.log(`Difficulty increased to level ${adaptiveLearningState.difficultyLevel}`);
+            showMessage('Challenge increasing!', false);
+        }
+    } else if (adaptiveLearningState.consecutiveIncorrect >= threshold) {
+        if (adaptiveLearningState.difficultyLevel > 1) {
+            adaptiveLearningState.difficultyLevel--;
+            adaptiveLearningState.consecutiveIncorrect = 0;
+            console.log(`Difficulty decreased to level ${adaptiveLearningState.difficultyLevel}`);
+            showMessage('Adjusting to reinforce concepts', false);
+        }
+    }
+}
+
+function updateProficiencyScore() {
+    const recentHistory = adaptiveLearningState.performanceHistory.slice(-10);
+    if (recentHistory.length === 0) return;
+    
+    const correctCount = recentHistory.filter(h => h.isCorrect).length;
+    adaptiveLearningState.userProficiency = correctCount / recentHistory.length;
+    
+    const avgDifficulty = recentHistory.reduce((sum, h) => sum + h.difficulty, 0) / recentHistory.length;
+    const difficultyFactor = avgDifficulty / 3;
+    
+    adaptiveLearningState.userProficiency = (adaptiveLearningState.userProficiency * 0.7) + (difficultyFactor * 0.3);
+}
+
+function getAdaptivePerformanceReport() {
+    const totalQuestions = adaptiveLearningState.performanceHistory.length;
+    const correctQuestions = adaptiveLearningState.performanceHistory.filter(h => h.isCorrect).length;
+    const accuracy = totalQuestions > 0 ? (correctQuestions / totalQuestions) * 100 : 0;
+    
+    const topicPerformance = {};
+    adaptiveLearningState.performanceHistory.forEach(record => {
+        if (!topicPerformance[record.topic]) {
+            topicPerformance[record.topic] = { total: 0, correct: 0 };
+        }
+        topicPerformance[record.topic].total++;
+        if (record.isCorrect) {
+            topicPerformance[record.topic].correct++;
+        }
+    });
+    
+    const weakAreas = [];
+    for (const [topic, stats] of Object.entries(topicPerformance)) {
+        const topicAccuracy = (stats.correct / stats.total) * 100;
+        if (topicAccuracy < 70) {
+            weakAreas.push({
+                topic: topic,
+                accuracy: topicAccuracy.toFixed(1),
+                totalQuestions: stats.total
+            });
+        }
+    }
+    
+    weakAreas.sort((a, b) => a.accuracy - b.accuracy);
+    
+    return {
+        overallAccuracy: accuracy.toFixed(1),
+        proficiencyLevel: (adaptiveLearningState.userProficiency * 100).toFixed(1),
+        finalDifficulty: adaptiveLearningState.difficultyLevel,
+        weakAreas: weakAreas.slice(0, 3),
+        topicsMastered: Object.keys(adaptiveLearningState.topicMastery).filter(
+            topic => (adaptiveLearningState.topicMastery[topic] || 0) >= 0.8
+        ).length
+    };
+}
+
+// ============================
+// QUIZ FUNCTIONS
+// ============================
+
+async function startQuiz() {
+    console.log('Starting quiz for:', QUIZ_SLUG);
+    startScreen.classList.add('hidden');
+    quizContent.classList.add('hidden');
+    resultsSection.classList.add('hidden');
+    errorState.classList.add('hidden');
+    loadingState.classList.remove('hidden');
+    
+    // Reset state
+    currentQuestion = 0;
+    score = 0;
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    userAnswers = [];
+    quizData = [];
+    startTime = new Date(); // Start timing here
+    
+    // Reset adaptive state
+    adaptiveLearningState = {
+        userProficiency: 0.5,
+        topicMastery: {},
+        difficultyLevel: 2,
+        weakAreas: [],
+        performanceHistory: [],
+        consecutiveCorrect: 0,
+        consecutiveIncorrect: 0,
+        adjustmentThreshold: 2,
+        baseDifficulty: 2
+    };
+    
+    try {
+        // Try to load all questions for adaptive learning
+        const adaptiveLoaded = await loadAllQuestionsForAdaptive();
+        
+        if (adaptiveLoaded && availableQuestions.length > 0) {
+            console.log('Using adaptive learning system');
+            selectAdaptiveQuestions();
+            quizData = currentDifficultyQuestions;
+            initQuiz();
+        } else {
+            console.log('Using regular quiz loading');
+            await loadQuizData();
+        }
+    } catch (error) {
+        console.error('Error starting quiz:', error);
+        showError(`Failed to start quiz: ${error.message}`);
+    }
+}
+
+async function loadQuizData() {
+    try {
+        console.log('Loading quiz data for', QUIZ_SLUG, '...');
+        
+        const response = await fetch(`/quizzes/api/${QUIZ_SLUG}/questions?count=${QUESTIONS_PER_QUIZ}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        if (data.success && data.questions && Array.isArray(data.questions)) {
+            quizData = data.questions;
+            
+            if (quizData.length > QUESTIONS_PER_QUIZ) {
+                quizData = quizData.slice(0, QUESTIONS_PER_QUIZ);
+            }
+            
+            console.log(`Successfully loaded ${quizData.length} questions from API`);
+            initQuiz();
+        } else {
+            throw new Error(data.message || 'Invalid data structure received from API');
+        }
+        
+    } catch (error) {
+        console.error('Quiz loading error:', error);
+        showError(`Failed to load quiz: ${error.message}`);
+    }
+}
+
+function initQuiz() {
+    if (!quizData || quizData.length === 0) {
+        showError('No quiz questions available. Please try again.');
+        return;
+    }
+    
+    userAnswers = new Array(quizData.length).fill(null);
+    
+    loadingState.classList.add('hidden');
+    quizContent.classList.remove('hidden');
+    
+    showQuestion();
+    updateProgress();
+    updateScore();
+    
+    nextButton.addEventListener('click', nextQuestion);
+    prevButton.addEventListener('click', prevQuestion);
+}
+
+function showQuestion() {
+    const question = quizData[currentQuestion];
+    
+    if (!question) {
+        console.error('No question at index', currentQuestion);
+        showError('Invalid question data. Please try restarting the quiz.');
+        return;
+    }
+    
+    currentQuestionNumber.textContent = currentQuestion + 1;
+    questionText.textContent = question.question;
+    
+    // Show difficulty indicator if available
+    if (question.adaptiveData && question.adaptiveData.difficulty) {
+        const difficultyText = ['Easy', 'Medium', 'Hard'][question.adaptiveData.difficulty - 1];
+        const difficultyColor = ['text-green-600', 'text-yellow-600', 'text-red-600'][question.adaptiveData.difficulty - 1];
+        questionText.innerHTML = `${question.question} <span class="text-sm ${difficultyColor} ml-2">(${difficultyText})</span>`;
+    }
+    
+    optionsContainer.innerHTML = '';
+    
+    if (question.type === 'true_false') {
+        // Handle True/False questions
+        const options = ['True', 'False'];
+        options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-button py-3 sm:py-4 px-4 sm:px-6 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 font-medium text-left hover:bg-gray-100 transition duration-300 text-sm sm:text-base';
+            button.innerHTML = `
+                <span class="font-bold mr-3 text-gray-700">${option}</span>
+            `;
+            
+            button.addEventListener('click', () => {
+                console.log(`Selected ${option} (index: ${index})`);
+                selectOption(index);
+            });
+            
+            optionsContainer.appendChild(button);
+        });
+    } else if (question.options && Array.isArray(question.options)) {
+        // Handle multiple choice questions
+        const letters = ['A', 'B', 'C', 'D'];
+        question.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-button py-3 sm:py-4 px-4 sm:px-6 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 font-medium text-left hover:bg-gray-100 transition duration-300 text-sm sm:text-base';
+            button.innerHTML = `
+                <span class="font-bold mr-3 text-gray-700">${letters[index]}.</span> 
+                <span class="break-words">${option}</span>
+            `;
+            
+            button.addEventListener('click', () => {
+                console.log(`Selected option ${letters[index]} (index: ${index})`);
+                selectOption(index);
+            });
+            
+            optionsContainer.appendChild(button);
+        });
+    } else {
+        // Handle written questions
+        const inputContainer = document.createElement('div');
+        inputContainer.className = 'space-y-2';
+        inputContainer.innerHTML = `
+            <textarea 
+                id="written-answer"
+                rows="3" 
+                class="w-full p-3 sm:p-4 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 font-medium focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-300 text-sm sm:text-base"
+                placeholder="Type your answer here..."
+                autocomplete="off"></textarea>
+            <button 
+                id="submit-written"
+                class="w-full py-3 px-4 sm:px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 shadow-md text-sm sm:text-base">
+                <i data-lucide="send" class="inline-block w-4 h-4 sm:w-5 sm:h-5 mr-2 align-middle"></i> Submit Answer
+            </button>
+        `;
+        optionsContainer.appendChild(inputContainer);
+        
+        document.getElementById('submit-written').addEventListener('click', () => {
+            const answer = document.getElementById('written-answer').value.trim();
+            if (answer) {
+                selectOption(answer);
+            }
+        });
+    }
+    
+    feedbackMessage.classList.add('hidden');
+    feedbackMessage.classList.remove('feedback-correct', 'feedback-incorrect');
+    
+    prevButton.disabled = currentQuestion === 0;
+    if (prevButton.disabled) {
+        prevButton.classList.add('opacity-50', 'cursor-not-allowed');
+        prevButton.classList.remove('hover:bg-gray-200');
+    } else {
+        prevButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        prevButton.classList.add('hover:bg-gray-200');
+    }
+    
+    if (currentQuestion === quizData.length - 1) {
+        nextButton.innerHTML = `
+            Finish
+            <i data-lucide="flag" class="inline-block w-4 h-4 sm:w-5 sm:h-5 ml-2 align-middle"></i>
+        `;
+        nextButton.disabled = false;
+    } else {
+        nextButton.innerHTML = `
+            Next
+            <i data-lucide="arrow-right" class="inline-block w-4 h-4 sm:w-5 sm:h-5 ml-2 align-middle"></i>
+        `;
+        nextButton.disabled = userAnswers[currentQuestion] === null;
+    }
+    
+    if (userAnswers[currentQuestion] !== null) {
+        const question = quizData[currentQuestion];
+        const correctIndex = getCorrectAnswerIndex(question);
+        
+        if (correctIndex !== null) {
+            highlightOption(userAnswers[currentQuestion], correctIndex);
+            showFeedback(userAnswers[currentQuestion] === correctIndex, question);
+        }
+    }
+}
+
+// FIXED: CORRECT ANSWER CHECKING FUNCTION
+function getCorrectAnswerIndex(question) {
+    if (question.correct_answer === undefined || question.correct_answer === null) {
+        return null;
+    }
+    
+    // Handle both string and number formats from backend
+    let correctAnswer = question.correct_answer;
+    
+    console.log('🔍 Checking correct answer:', {
+        raw: correctAnswer,
+        type: typeof correctAnswer,
+        questionType: question.type
+    });
+    
+    // For True/False questions - correct_answer is 0 for True, 1 for False
+    if (question.type === 'true_false') {
+        if (typeof correctAnswer === 'boolean') {
+            return correctAnswer ? 0 : 1;
+        } else if (typeof correctAnswer === 'string') {
+            const lowerAnswer = correctAnswer.toLowerCase().trim();
+            if (lowerAnswer === 'true' || lowerAnswer === 't' || lowerAnswer === '0') {
+                return 0;
+            } else if (lowerAnswer === 'false' || lowerAnswer === 'f' || lowerAnswer === '1') {
+                return 1;
+            }
+        } else if (typeof correctAnswer === 'number') {
+            return correctAnswer === 0 ? 0 : 1;
+        }
+        return null;
+    }
+    
+    // For multiple choice questions
+    if (question.type === 'multiple_choice') {
+        // Try to parse the correct answer
+        if (typeof correctAnswer === 'string') {
+            // If it's a string like "0", "1", "2", "3"
+            if (/^\d+$/.test(correctAnswer)) {
+                return parseInt(correctAnswer, 10);
+            }
+            // If it's a letter like "A", "B", "C", "D"
+            else if (/^[A-D]$/i.test(correctAnswer)) {
+                const letters = ['A', 'B', 'C', 'D'];
+                return letters.indexOf(correctAnswer.toUpperCase());
+            }
+            return null;
+        }
+        // If it's already a number
+        else if (typeof correctAnswer === 'number') {
+            return correctAnswer;
+        }
+    }
+    
+    return null;
+}
+
+function selectOption(selectedAnswer) {
+    if (userAnswers[currentQuestion] !== null) return;
+    
+    const question = quizData[currentQuestion];
+    const correctAnswer = getCorrectAnswerIndex(question);
+    
+    console.log('🎯 Answer Check:', {
+        questionType: question.type,
+        selectedAnswer: selectedAnswer,
+        correctAnswer: correctAnswer,
+        selectedType: typeof selectedAnswer,
+        correctType: typeof correctAnswer,
+        options: question.options
+    });
+    
+    // Store the user's answer as-is
+    userAnswers[currentQuestion] = selectedAnswer;
+    
+    // Check if answer is correct
+    let isCorrect = false;
+    
+    // For True/False questions
+    if (question.type === 'true_false') {
+        isCorrect = selectedAnswer === correctAnswer;
+        console.log(`📊 True/False: Selected ${selectedAnswer === 0 ? 'True' : 'False'} (${selectedAnswer}) vs Correct ${correctAnswer === 0 ? 'True' : 'False'} (${correctAnswer}) -> ${isCorrect ? '✓' : '✗'}`);
+    }
+    // For multiple choice questions
+    else if (question.type === 'multiple_choice') {
+        isCorrect = selectedAnswer === correctAnswer;
+        const letters = ['A', 'B', 'C', 'D'];
+        console.log(`📊 Multiple Choice: Selected "${letters[selectedAnswer]}" (${selectedAnswer}) vs Correct "${letters[correctAnswer]}" (${correctAnswer}) -> ${isCorrect ? '✓' : '✗'}`);
+    }
+    // For written questions, always mark as correct (handled in backend)
+    else if (question.type === 'written') {
+        isCorrect = true;
+        console.log(`📊 Written answer submitted: "${selectedAnswer}"`);
+    }
+    
+    // Update adaptive learning state
+    updateAdaptiveState(isCorrect, question);
+    
+    // Update score - 1 point per correct answer
+    if (isCorrect) {
+        playSound('correct');
+        score += 1;
+        correctAnswers++;
+        showFeedback(true, question);
+    } else {
+        playSound('incorrect');
+        incorrectAnswers++;
+        showFeedback(false, question);
+    }
+    
+    updateScore();
+    
+    if (correctAnswer !== null) {
+        highlightOption(selectedAnswer, correctAnswer);
+    }
+    
+    nextButton.disabled = false;
+    
+    if (currentQuestion === quizData.length - 1) {
+        nextButton.disabled = false;
+    }
+}
+
+function showFeedback(isCorrect, question) {
+    if (isCorrect) {
+        feedbackText.textContent = question.explanation || 'Correct! Well done.';
+        feedbackMessage.className = 'p-3 sm:p-4 rounded-lg mb-4 sm:mb-6 feedback-correct';
+        correctIcon.classList.remove('hidden');
+        incorrectIcon.classList.add('hidden');
+        
+        if (question.adaptiveData && question.adaptiveData.difficulty === 3) {
+            feedbackText.textContent += ' (Excellent! You answered a hard question correctly!)';
+        }
+    } else {
+        const correctIndex = getCorrectAnswerIndex(question);
+        let correctAnswerText = '';
+        
+        if (question.type === 'true_false') {
+            correctAnswerText = correctIndex === 0 ? 'True' : 'False';
+            feedbackText.textContent = `Incorrect. The correct answer is: ${correctAnswerText}`;
+        } else if (question.type === 'multiple_choice') {
+            const letters = ['A', 'B', 'C', 'D'];
+            const correctAnswer = question.options ? question.options[correctIndex] : 'Check the correct answer';
+            feedbackText.textContent = `Incorrect. The correct answer is ${letters[correctIndex]}: "${correctAnswer}"`;
+        } else {
+            feedbackText.textContent = 'Incorrect. Please review the material.';
+        }
+        
+        if (question.explanation) {
+            feedbackText.textContent += `\n\nExplanation: ${question.explanation}`;
+        }
+        
+        feedbackMessage.className = 'p-3 sm:p-4 rounded-lg mb-4 sm:mb-6 feedback-incorrect';
+        incorrectIcon.classList.remove('hidden');
+        correctIcon.classList.add('hidden');
+        
+        if (question.adaptiveData && question.adaptiveData.difficulty === 1) {
+            feedbackText.textContent += '\n\nLet\'s review this basic concept.';
+        }
+    }
+    
+    feedbackMessage.classList.remove('hidden');
+}
+
+function highlightOption(selectedIndex, correctIndex) {
+    const optionButtons = optionsContainer.querySelectorAll('.option-button');
+    
+    console.log(`🎨 Highlighting: Selected index ${selectedIndex}, Correct index ${correctIndex}`);
+    
+    optionButtons.forEach((button, index) => {
+        button.classList.remove('correct', 'incorrect');
+        
+        if (index === correctIndex) {
+            button.classList.add('correct');
+            console.log(`  ✓ Marking index ${index} as CORRECT`);
+        } else if (index === selectedIndex && index !== correctIndex) {
+            button.classList.add('incorrect');
+            console.log(`  ✗ Marking index ${index} as INCORRECT`);
+        }
+        
+        button.disabled = true;
+        button.classList.remove('hover:bg-gray-100');
+    });
+}
+
+function nextQuestion() {
+    if (currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        showQuestion();
+        updateProgress();
+    } else {
+        finishQuiz();
+    }
+}
+
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+        updateProgress();
+    }
+}
+
+function updateProgress() {
+    const progress = ((currentQuestion + 1) / quizData.length) * 100;
+    progressText.textContent = `${currentQuestion + 1}/${quizData.length}`;
+    progressFill.style.width = `${progress}%`;
+}
+
+function updateScore() {
+    scoreElement.textContent = score;
+    correctCountElement.textContent = correctAnswers;
+    incorrectCountElement.textContent = incorrectAnswers;
+}
+
+function finishQuiz() {
+    console.log('🚀 FINISH QUIZ FUNCTION CALLED');
+    
+    // Calculate final score and percentage
+    const totalQuestions = quizData.length;
+    const percentage = totalQuestions > 0 
+        ? Math.round((correctAnswers / totalQuestions) * 100)
+        : 0;
+    
+    console.log('📊 Quiz Results:', {
+        correctAnswers: correctAnswers,
+        totalQuestions: totalQuestions,
+        percentage: percentage,
+        startTime: startTime,
+        userAnswers: userAnswers
+    });
+    
+    // Play completion sound if passed
+    if (percentage >= PASSING_SCORE) {
+        playSound('complete');
+    }
+    
+    // Show results
+    quizContent.classList.add('hidden');
+    resultsSection.classList.remove('hidden');
+    
+    finalScoreElement.textContent = correctAnswers;
+    finalCorrectElement.textContent = correctAnswers;
+    finalIncorrectElement.textContent = incorrectAnswers;
+    finalPercentageElement.textContent = `${percentage}%`;
+    
+    // Get adaptive learning report
+    const adaptiveReport = getAdaptivePerformanceReport();
+    
+    // Generate performance message
+    let performanceMessage = '';
+    if (percentage >= 90) {
+        performanceMessage = '🏆 Outstanding! You have mastered this material. ';
+    } else if (percentage >= 80) {
+        performanceMessage = '👍 Very Good! You have a strong understanding of the material. ';
+    } else if (percentage >= 70) {
+        performanceMessage = '👌 Good job! You have a solid grasp of the concepts. ';
+    } else if (percentage >= 60) {
+        performanceMessage = '📚 Satisfactory. You know the basics well. ';
+    } else if (percentage >= 50) {
+        performanceMessage = '📖 Not bad! You know the fundamentals, but there is room for improvement. ';
+    } else {
+        performanceMessage = '💪 Keep practicing! Review the material and try again. ';
+    }
+    
+    // Add adaptive learning insights
+    if (availableQuestions.length > 0) {
+        performanceMessage += `\n\n📊 Adaptive Learning Insights:`;
+        performanceMessage += `\n• Your proficiency level: ${adaptiveReport.proficiencyLevel}%`;
+        performanceMessage += `\n• Final difficulty level: ${['Easy', 'Medium', 'Hard'][adaptiveReport.finalDifficulty - 1]}`;
+        performanceMessage += `\n• Topics mastered: ${adaptiveReport.topicsMastered}`;
+        
+        if (adaptiveReport.weakAreas.length > 0) {
+            performanceMessage += `\n• Areas to focus on:`;
+            adaptiveReport.weakAreas.forEach(area => {
+                performanceMessage += `\n  - ${area.topic} (${area.accuracy}% correct)`;
+            });
+        }
+    }
+    
+    if (percentage >= PASSING_SCORE) {
+        performanceMessage += `\n\n🎉 Congratulations! You passed with ${percentage}%!`;
+    } else {
+        performanceMessage += `\n\n📊 You need ${PASSING_SCORE}% to pass. You scored ${percentage}%.`;
+    }
+    
+    performanceMessageElement.textContent = performanceMessage;
+    
+    // Submit quiz results to backend
+    console.log('📤 Submitting quiz results to server...');
+    submitQuizResults(percentage, adaptiveReport);
+}
+
+async function submitQuizResults(percentage, adaptiveReport = null) {
+    try {
+        console.log('📝 SUBMIT QUIZ RESULTS FUNCTION CALLED');
+        
+        // Calculate time taken in minutes
+        const endTime = new Date();
+        const timeTaken = startTime ? Math.max(1, Math.round((endTime - startTime) / 60000)) : 1;
+        
+        console.log('⏱️ Time taken:', timeTaken, 'minutes');
+        
+        // Prepare answers object with question IDs
+        const answers = {};
+        quizData.forEach((question, index) => {
+            const questionId = question.id || `q${index + 1}`;
+            answers[questionId] = userAnswers[index] !== null ? String(userAnswers[index]) : '';
+        });
+        
+        console.log('📋 Answers prepared:', Object.keys(answers).length, 'answers');
+        console.log('📋 Sample answer:', answers[Object.keys(answers)[0]]);
+        
+        // Prepare submission data
+        const submissionData = {
+            quiz_type: QUIZ_SLUG,
+            answers: answers,
+            course_name: COURSE_NAME,
+            course_code: COURSE_CODE,
+            score: correctAnswers, // Use correctAnswers as score
+            total_questions: quizData.length,
+            percentage: percentage,
+            correct_answers: correctAnswers,
+            incorrect_answers: incorrectAnswers,
+            time_taken: timeTaken,
+            adaptive_metrics: adaptiveReport ? {
+                proficiency: adaptiveReport.proficiencyLevel,
+                final_difficulty: adaptiveReport.finalDifficulty,
+                weak_areas: adaptiveReport.weakAreas,
+                topics_mastered: adaptiveReport.topicsMastered
+            } : null
+        };
+        
+        console.log('📤 Submission Data:', submissionData);
+        
+        // Submit to Flask API
+        console.log('🌐 Making API call to /quizzes/api/submit');
+        const response = await fetch('/quizzes/api/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(submissionData)
+        });
+        
+        console.log('📨 Response Status:', response.status);
+        console.log('📨 Response OK:', response.ok);
+        
+        const data = await response.json();
+        console.log('📊 Server Response:', data);
+        
+        if (data.success) {
+            console.log('✅ Quiz results saved successfully to database');
+            console.log('✅ Attempt ID:', data.attempt_id);
+            showMessage('Quiz results saved successfully!', false);
+            
+            // Store attempt ID for later reference
+            if (data.attempt_id) {
+                localStorage.setItem('last_attempt_id', data.attempt_id);
+                localStorage.setItem('last_quiz_slug', QUIZ_SLUG);
+            }
+            
+            // Add View Results button
+            addViewResultsButton();
+            
+        } else {
+            console.error('❌ Failed to save results:', data.error || data.message);
+            showMessage('Could not save results to server: ' + (data.error || 'Unknown error'), true);
+        }
+        
+    } catch (error) {
+        console.error('❌ Error submitting results:', error);
+        showMessage('Network error. Your score is saved locally.', true);
+    }
+}
+
+// NEW FUNCTION: Add View Results button
+function addViewResultsButton() {
+    // Check if button already exists
+    if (document.getElementById('viewResultsBtn')) return;
+    
+    // Create view results button
+    const viewResultsBtn = document.createElement('button');
+    viewResultsBtn.id = 'viewResultsBtn';
+    viewResultsBtn.className = 'mt-4 py-3 px-6 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 transition duration-300 inline-flex items-center justify-center w-full sm:w-auto';
+    viewResultsBtn.innerHTML = `
+        <i data-lucide="bar-chart" class="inline-block w-5 h-5 mr-2 align-middle"></i>
+        View All Results
+    `;
+    
+    // Add click event
+    viewResultsBtn.addEventListener('click', function() {
+        // Redirect to results page
+        window.location.href = '/quizzes/quiz-results';
+    });
+    
+    // Find the results action buttons container
+    const resultsActions = document.querySelector('#results-section .flex.flex-col.sm\\:flex-row.gap-4');
+    
+    if (resultsActions) {
+        // Add button to the container
+        resultsActions.appendChild(viewResultsBtn);
+        
+        // Re-initialize icons
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+}
+
+function restartQuiz() {
+    startQuiz();
+}
+
+// ============================
+// UTILITY FUNCTIONS
+// ============================
+
+function playSound(type) {
+    try {
+        let sound;
+        switch(type) {
+            case 'correct':
+                sound = correctSound;
+                break;
+            case 'incorrect':
+                sound = incorrectSound;
+                break;
+            case 'complete':
+                sound = completeSound;
+                break;
+        }
+        
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play().catch(e => console.log('Sound play prevented:', e));
+        }
+    } catch (error) {
+        console.log('Sound playback error:', error);
+    }
+}
+
+function showError(message) {
+    loadingState.classList.add('hidden');
+    quizContent.classList.add('hidden');
+    errorState.classList.remove('hidden');
+    errorMessage.textContent = message;
+}
+
+function showMessage(message, isError = false) {
+    // Create or get message box
+    let messageBox = document.getElementById('messageBox');
+    if (!messageBox) {
+        messageBox = document.createElement('div');
+        messageBox.id = 'messageBox';
+        messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform translate-y-full opacity-0';
+        document.body.appendChild(messageBox);
+    }
+    
+    messageBox.textContent = message;
+    
+    // Reset classes
+    messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+    
+    if (isError) {
+        messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+    } else {
+        messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+    }
+
+    // Show message
+    messageBox.classList.remove('translate-y-full', 'opacity-0');
+    messageBox.classList.add('translate-y-0', 'opacity-100');
+
+    // Hide after 3 seconds
+    setTimeout(() => {
+        messageBox.classList.remove('translate-y-0', 'opacity-100');
+        messageBox.classList.add('translate-y-full', 'opacity-0');
+    }, 3000);
+}
+</script>
+</body>
+</html> 

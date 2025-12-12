@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Periodic Timetable</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #DC2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer-link {
+            @apply text-gray-400 hover:text-white transition duration-200;
+        }
+        
+        /* Periodic Table Styles */
+        .periodic-table {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .periodic-table {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                gap: 10px;
+                margin: 15px 0;
+                scrollbar-width: thin;
+                scrollbar-color: #DC2626 #f1f1f1;
+            }
+            .periodic-table::-webkit-scrollbar {
+                height: 6px;
+            }
+            .periodic-table::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+            .periodic-table::-webkit-scrollbar-thumb {
+                background: #DC2626;
+                border-radius: 10px;
+            }
+            .periodic-element {
+                min-width: 140px;
+                flex-shrink: 0;
+            }
+        }
+        .periodic-element {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            padding: 12px 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .periodic-element:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .element-symbol {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .element-name {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+        .element-time {
+            font-size: 0.6rem;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .element-venue {
+            font-size: 0.6rem;
+            opacity: 0.7;
+        }
+        
+        /* Color coding for days */
+        .tuesday-element {
+            background: linear-gradient(135deg, #fecaca, #fca5a5);
+            border: 1px solid #f87171;
+        }
+        .wednesday-element {
+            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+            border: 1px solid #60a5fa;
+        }
+        .friday-element {
+            background: linear-gradient(135deg, #bbf7d0, #86efac);
+            border: 1px solid #4ade80;
+        }
+        
+        /* Active class indicator */
+        .active-class {
+            box-shadow: 0 0 0 2px #DC2626, 0 4px 8px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+        
+        /* Upcoming classes section */
+        .upcoming-class-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .upcoming-class-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Personal Timetable Styles */
+        .personal-timetable {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .personal-timetable {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                gap: 10px;
+                margin: 15px 0;
+                scrollbar-width: thin;
+                scrollbar-color: #3b82f6 #f1f1f1;
+            }
+            .personal-timetable::-webkit-scrollbar {
+                height: 6px;
+            }
+            .personal-timetable::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+            .personal-timetable::-webkit-scrollbar-thumb {
+                background: #3b82f6;
+                border-radius: 10px;
+            }
+            .personal-day-card {
+                min-width: 160px;
+                flex-shrink: 0;
+            }
+        }
+        .personal-day-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .personal-day-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .day-name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .day-classes {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+        
+        /* Day-specific colors */
+        .monday-card {
+            background: linear-gradient(135deg, #d1d5db, #9ca3af);
+            border: 1px solid #6b7280;
+        }
+        .tuesday-card {
+            background: linear-gradient(135deg, #fecaca, #fca5a5);
+            border: 1px solid #f87171;
+        }
+        .wednesday-card {
+            background: linear-gradient(135deg, #bfdbfe, #93c5fd);
+            border: 1px solid #60a5fa;
+        }
+        .thursday-card {
+            background: linear-gradient(135deg, #c7d2fe, #a5b4fc);
+            border: 1px solid #818cf8;
+        }
+        .friday-card {
+            background: linear-gradient(135deg, #bbf7d0, #86efac);
+            border: 1px solid #4ade80;
+        }
+        .saturday-card {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #fbbf24;
+        }
+        
+        /* Activity types */
+        .class-activity {
+            background: #fef2f2;
+            border-left: 4px solid #DC2626;
+        }
+        .study-activity {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+        }
+        .break-activity {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+        }
+        .meal-activity {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        .personal-activity {
+            background: #f3e8ff;
+            border-left: 4px solid #a855f7;
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            padding: 20px;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .activity-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar (Sticky) -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="/course" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+             <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Periodic Timetable</h1>
+            <p class="text-gray-600">Level 200 - Semester 1 (2+2)</p>
+            
+            <!-- Current Date and Time -->
+            <div class="mt-4 flex flex-wrap items-center gap-4">
+                <div class="flex items-center bg-white rounded-lg shadow-sm p-3">
+                    <i data-lucide="calendar" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="currentDate" class="text-gray-700 font-medium"></span>
+                </div>
+                <div class="flex items-center bg-white rounded-lg shadow-sm p-3">
+                    <i data-lucide="clock" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="currentTime" class="text-gray-700 font-medium"></span>
+                </div>
+                <div class="flex items-center bg-white rounded-lg shadow-sm p-3">
+                    <i data-lucide="bell" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="notificationStatus" class="text-gray-700 font-medium">Notifications Active</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timetable Controls -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Timetable Controls</h2>
+                    <p class="text-gray-600">Manage your schedule and notifications</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <button id="enableNotifications" class="flex items-center bg-green-100 text-green-700 px-4 py-2 rounded-lg font-medium hover:bg-green-200 transition duration-150">
+                        <i data-lucide="bell" class="w-4 h-4 mr-2"></i>
+                        Enable Notifications
+                    </button>
+                    <button id="addCustomEvent" class="flex items-center bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200 transition duration-150">
+                        <i data-lucide="plus" class="w-4 h-4 mr-2"></i>
+                        Add Study Time
+                    </button>
+                    <button id="exportTimetable" class="flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-medium hover:bg-purple-200 transition duration-150">
+                        <i data-lucide="download" class="w-4 h-4 mr-2"></i>
+                        Export Timetable
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Periodic Table Timetable -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Periodic Timetable</h2>
+            <p class="text-gray-600 mb-4">Your classes organized in a periodic table format. Click on any element for details.</p>
+            
+            <div class="periodic-table" id="periodicTimetable">
+                <!-- Periodic elements will be populated by JavaScript -->
+            </div>
+            
+            <!-- Legend -->
+            <div class="mt-6 flex flex-wrap gap-4">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-red-200 border border-red-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Tuesday Classes</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-blue-200 border border-blue-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Wednesday Classes</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-green-200 border border-green-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Friday Classes</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-red-600 rounded-full mr-2"></div>
+                    <span class="text-sm text-gray-600">Current/Active Class</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Timetable -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Personal Study Timetable</h2>
+            <p class="text-gray-600 mb-4">Your complete weekly schedule with classes, study sessions, breaks, and personal time</p>
+            
+            <div class="personal-timetable" id="personalTimetable">
+                <!-- Personal timetable cards will be populated by JavaScript -->
+            </div>
+            
+            <!-- Legend -->
+            <div class="mt-6 flex flex-wrap gap-4">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-gray-300 border border-gray-500 mr-2"></div>
+                    <span class="text-sm text-gray-600">Monday</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-red-200 border border-red-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Tuesday</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-blue-200 border border-blue-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Wednesday</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-indigo-200 border border-indigo-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Thursday</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-green-200 border border-green-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Friday</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-yellow-200 border border-yellow-400 mr-2"></div>
+                    <span class="text-sm text-gray-600">Saturday</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Classes -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Upcoming Classes</h2>
+            <div id="upcomingClasses" class="space-y-2">
+                <!-- Upcoming classes will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Class Details Modal -->
+    <div id="classModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalCourse" class="text-xl font-bold text-gray-800"></h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <i data-lucide="calendar" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="modalDay" class="text-gray-700"></span>
+                </div>
+                <div class="flex items-center">
+                    <i data-lucide="clock" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="modalTime" class="text-gray-700"></span>
+                </div>
+                <div class="flex items-center">
+                    <i data-lucide="map-pin" class="w-5 h-5 text-gray-500 mr-2"></i>
+                    <span id="modalVenue" class="text-gray-700"></span>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-end space-x-3">
+                <button id="setReminder" class="bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-200 transition duration-150">
+                    Set Reminder
+                </button>
+                <button id="addStudyTime" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200 transition duration-150">
+                    Add Study Time
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day Activities Modal -->
+    <div id="dayModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalDayTitle" class="text-xl font-bold text-gray-800"></h3>
+                <button id="closeDayModal" class="text-gray-500 hover:text-gray-700">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="dayActivities" class="space-y-2">
+                <!-- Day activities will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation (Bottom Bar) -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="/course" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Footer -->
+    <!--<footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <h3 class="text-xl font-bold">RedCharger</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4 max-w-md">
+                        Your smarter semester companion. Supercharge your learning journey with intelligent course management, 
+                        personalized scheduling, and comprehensive study tools.
+                    </p>
+                </div>
+
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="footer-link">Home</a></li>
+                        <li><a href="#" class="footer-link">Courses</a></li>
+                        <li><a href="#" class="footer-link">Timetable</a></li>
+                        <li><a href="#" class="footer-link">Resources</a></li>
+                    </ul>
+                </div>
+
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="footer-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link">Contact Us</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 RedCharger. All rights reserved. Future, Supercharged.</p>
+            </div>
+        </div>
+    </footer>-->
+
+    <!-- Custom Message Box for Interaction Feedback -->
+    <div id="messageBox" class="fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm hidden transition duration-300" role="alert">
+        <!-- Message content will be inserted here -->
+    </div>
+
+    <script>
+        // Timetable data
+        const timetableData = [
+            { day: 'Tuesday', time: '7:00 AM - 10:00 AM', course: 'Computer Organization Architecture', code: 'BCP 203', venue: 'Create Hall A' },
+            { day: 'Tuesday', time: '11:00 AM - 1:00 PM', course: 'Logic and Critical Thinking', code: 'ATU 203', venue: 'T.B.A' },
+            { day: 'Tuesday', time: '2:00 PM - 5:00 PM', course: 'Data Communication and Computer Networks', code: 'BCP 105', venue: 'T.B.A' },
+            { day: 'Wednesday', time: '10:00 AM - 12:00 PM', course: 'Introduction to Principles of Entrepreneurship', code: 'ATU 201', venue: 'Great Hall A' },
+            { day: 'Wednesday', time: '12:00 PM - 2:00 PM', course: 'Principles and Applications in Sustainability', code: 'BCB 209', venue: 'T.B.A' },
+            { day: 'Friday', time: '7:00 AM - 11:00 AM', course: 'Web Development Technologies', code: 'BCP 207', venue: 'B.Tech Large Lab' },
+            { day: 'Friday', time: '11:00 AM - 3:00 PM', course: 'Programming with C++', code: 'BCP 201', venue: 'B.Tech Large Lab' }
+        ];
+
+        // Personal timetable data (Monday to Saturday)
+        const personalTimetableData = {
+            'Monday': [
+                { time: '6:00 - 7:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '7:00 - 8:00 AM', activity: 'Study: Computer Organization', type: 'study' },
+                { time: '8:00 - 9:00 AM', activity: 'Study: Data Communication', type: 'study' },
+                { time: '9:00 - 10:00 AM', activity: 'Break / Snack', type: 'break' },
+                { time: '10:00 - 11:00 AM', activity: 'Study: Logic & Critical Thinking', type: 'study' },
+                { time: '11:00 - 12:00 PM', activity: 'Lunch Break', type: 'meal' },
+                { time: '12:00 - 1:00 PM', activity: 'Study: C++ Programming', type: 'study' },
+                { time: '1:00 - 2:00 PM', activity: 'Study: Web Development', type: 'study' },
+                { time: '2:00 - 3:00 PM', activity: 'Short Break', type: 'break' },
+                { time: '3:00 - 4:00 PM', activity: 'Study: Entrepreneurship', type: 'study' },
+                { time: '4:00 - 5:00 PM', activity: 'Study: Sustainability', type: 'study' },
+                { time: '5:00 - 6:00 PM', activity: 'Dinner Break', type: 'meal' },
+                { time: '6:00 - 8:00 PM', activity: 'Revision & Assignment Work', type: 'study' },
+                { time: '8:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ],
+            'Tuesday': [
+                { time: '6:00 - 7:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '7:00 - 10:00 AM', activity: 'Class: Computer Organization (Create Hall A)', type: 'class' },
+                { time: '10:00 - 11:00 AM', activity: 'Break / Preparation', type: 'break' },
+                { time: '11:00 - 1:00 PM', activity: 'Class: Logic & Critical Thinking (T.B.A)', type: 'class' },
+                { time: '1:00 - 2:00 PM', activity: 'Lunch Break', type: 'meal' },
+                { time: '2:00 - 5:00 PM', activity: 'Class: Data Communication (T.B.A)', type: 'class' },
+                { time: '5:00 - 6:00 PM', activity: 'Dinner Break', type: 'meal' },
+                { time: '6:00 - 8:00 PM', activity: 'Revision & Assignment Work', type: 'study' },
+                { time: '8:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ],
+            'Wednesday': [
+                { time: '6:00 - 7:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '7:00 - 8:00 AM', activity: 'Study: Entrepreneurship', type: 'study' },
+                { time: '8:00 - 9:00 AM', activity: 'Study: Sustainability', type: 'study' },
+                { time: '9:00 - 10:00 AM', activity: 'Break / Snack', type: 'break' },
+                { time: '10:00 - 12:00 PM', activity: 'Class: Entrepreneurship (Great Hall A)', type: 'class' },
+                { time: '12:00 - 2:00 PM', activity: 'Class: Sustainability (T.B.A)', type: 'class' },
+                { time: '2:00 - 3:00 PM', activity: 'Lunch Break', type: 'meal' },
+                { time: '3:00 - 4:00 PM', activity: 'Study: Computer Organization', type: 'study' },
+                { time: '4:00 - 5:00 PM', activity: 'Study: Data Communication', type: 'study' },
+                { time: '5:00 - 6:00 PM', activity: 'Dinner Break', type: 'meal' },
+                { time: '6:00 - 8:00 PM', activity: 'Revision & Assignment Work', type: 'study' },
+                { time: '8:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ],
+            'Thursday': [
+                { time: '6:00 - 7:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '7:00 - 8:00 AM', activity: 'Study: C++ Programming', type: 'study' },
+                { time: '8:00 - 9:00 AM', activity: 'Study: Web Development', type: 'study' },
+                { time: '9:00 - 10:00 AM', activity: 'Break / Snack', type: 'break' },
+                { time: '10:00 - 11:00 AM', activity: 'Study: Data Communication', type: 'study' },
+                { time: '11:00 - 12:00 PM', activity: 'Lunch Break', type: 'meal' },
+                { time: '12:00 - 1:00 PM', activity: 'Study: Computer Organization', type: 'study' },
+                { time: '1:00 - 2:00 PM', activity: 'Study: Logic & Critical Thinking', type: 'study' },
+                { time: '2:00 - 3:00 PM', activity: 'Short Break', type: 'break' },
+                { time: '3:00 - 4:00 PM', activity: 'Study: Sustainability', type: 'study' },
+                { time: '4:00 - 5:00 PM', activity: 'Study: Web Development', type: 'study' },
+                { time: '5:00 - 6:00 PM', activity: 'Dinner Break', type: 'meal' },
+                { time: '6:00 - 8:00 PM', activity: 'Revision & Assignment Work', type: 'study' },
+                { time: '8:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ],
+            'Friday': [
+                { time: '6:00 - 7:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '7:00 - 11:00 AM', activity: 'Class: Web Development (B.Tech Lab)', type: 'class' },
+                { time: '11:00 - 3:00 PM', activity: 'Class: C++ Programming (B.Tech Lab)', type: 'class' },
+                { time: '3:00 - 4:00 PM', activity: 'Break / Rest', type: 'break' },
+                { time: '4:00 - 5:00 PM', activity: 'Review: Week\'s Classes', type: 'study' },
+                { time: '5:00 - 6:00 PM', activity: 'Dinner Break', type: 'meal' },
+                { time: '6:00 - 8:00 PM', activity: 'Revision & Assignment Work', type: 'study' },
+                { time: '8:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ],
+            'Saturday': [
+                { time: '7:00 - 8:00 AM', activity: 'Morning Routine', type: 'personal' },
+                { time: '8:00 - 9:00 AM', activity: 'Review: All Courses', type: 'study' },
+                { time: '9:00 - 10:00 AM', activity: 'Practice: Quizzes', type: 'study' },
+                { time: '10:00 - 11:00 AM', activity: 'Break / Snack', type: 'break' },
+                { time: '11:00 - 12:00 PM', activity: 'Study: Weak Areas', type: 'study' },
+                { time: '12:00 - 1:00 PM', activity: 'Lunch Break', type: 'meal' },
+                { time: '1:00 - 3:00 PM', activity: 'Project Work', type: 'study' },
+                { time: '3:00 - 4:00 PM', activity: 'Short Break', type: 'break' },
+                { time: '4:00 - 5:00 PM', activity: 'Review: Week\'s Progress', type: 'study' },
+                { time: '5:00 - 10:00 PM', activity: 'Personal Time / Relaxation', type: 'personal' }
+            ]
+        };
+
+        // Utility Functions
+        function showMessage(message, isError = false) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            
+            messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+            
+            if (isError) {
+                messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+            } else {
+                messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+            }
+
+            messageBox.classList.remove('hidden', 'translate-y-full');
+            messageBox.classList.add('translate-y-0');
+
+            setTimeout(() => {
+                messageBox.classList.remove('translate-y-0');
+                messageBox.classList.add('translate-y-full');
+            }, 3000);
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 3500);
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // Create periodic table elements
+        function createPeriodicTable() {
+            const container = document.getElementById('periodicTimetable');
+            container.innerHTML = '';
+            
+            timetableData.forEach((classItem, index) => {
+                const element = document.createElement('div');
+                element.className = `periodic-element ${classItem.day.toLowerCase()}-element`;
+                element.setAttribute('data-index', index);
+                
+                // Create a short symbol for the course
+                const words = classItem.course.split(' ');
+                let symbol = '';
+                if (words.length === 1) {
+                    symbol = words[0].substring(0, 3).toUpperCase();
+                } else {
+                    symbol = words.map(word => word[0]).join('').toUpperCase();
+                }
+                
+                element.innerHTML = `
+                    <div class="element-symbol">${symbol}</div>
+                    <div class="element-name">${classItem.code}</div>
+                    <div class="element-time">${classItem.time.split(' - ')[0]}</div>
+                    <div class="element-venue">${classItem.venue}</div>
+                `;
+                
+                element.addEventListener('click', () => openClassModal(index));
+                container.appendChild(element);
+            });
+        }
+
+        // Create personal timetable
+        function createPersonalTimetable() {
+            const container = document.getElementById('personalTimetable');
+            container.innerHTML = '';
+            
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            
+            days.forEach(day => {
+                const card = document.createElement('div');
+                card.className = `personal-day-card ${day.toLowerCase()}-card`;
+                card.setAttribute('data-day', day);
+                
+                // Count number of activities for this day
+                const activityCount = personalTimetableData[day].length;
+                
+                card.innerHTML = `
+                    <div class="day-name">${day}</div>
+                    <div class="day-classes">${activityCount} activities</div>
+                `;
+                
+                card.addEventListener('click', () => openDayModal(day));
+                container.appendChild(card);
+            });
+        }
+
+        // Open class details modal
+        function openClassModal(index) {
+            const classItem = timetableData[index];
+            document.getElementById('modalCourse').textContent = classItem.course;
+            document.getElementById('modalDay').textContent = classItem.day;
+            document.getElementById('modalTime').textContent = classItem.time;
+            document.getElementById('modalVenue').textContent = classItem.venue;
+            
+            document.getElementById('classModal').classList.remove('hidden');
+        }
+
+        // Open day activities modal
+        function openDayModal(day) {
+            document.getElementById('modalDayTitle').textContent = `${day} Schedule`;
+            
+            const activitiesContainer = document.getElementById('dayActivities');
+            activitiesContainer.innerHTML = '';
+            
+            personalTimetableData[day].forEach(activity => {
+                const activityElement = document.createElement('div');
+                activityElement.className = `activity-item ${activity.type}-activity`;
+                
+                activityElement.innerHTML = `
+                    <div class="font-medium">${activity.time}</div>
+                    <div class="text-sm">${activity.activity}</div>
+                `;
+                
+                activitiesContainer.appendChild(activityElement);
+            });
+            
+            document.getElementById('dayModal').classList.remove('hidden');
+        }
+
+        // Close class details modal
+        function closeClassModal() {
+            document.getElementById('classModal').classList.add('hidden');
+        }
+
+        // Close day activities modal
+        function closeDayModal() {
+            document.getElementById('dayModal').classList.add('hidden');
+        }
+
+        // Check for upcoming classes and update UI
+        function checkUpcomingClasses() {
+            const now = new Date();
+            const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
+            const currentTime = now.getHours() * 60 + now.getMinutes(); // Time in minutes
+            
+            const upcomingClassesContainer = document.getElementById('upcomingClasses');
+            upcomingClassesContainer.innerHTML = '';
+            
+            // Reset all periodic elements
+            document.querySelectorAll('.periodic-element').forEach(el => {
+                el.classList.remove('active-class');
+            });
+            
+            let upcomingCount = 0;
+            let activeClassFound = false;
+            
+            timetableData.forEach((classItem, index) => {
+                if (classItem.day === currentDay) {
+                    const classStartTime = parseTime(classItem.time.split(' - ')[0]);
+                    const classEndTime = parseTime(classItem.time.split(' - ')[1]);
+                    
+                    // Check if class is currently active
+                    if (currentTime >= classStartTime && currentTime <= classEndTime) {
+                        // Highlight active class in periodic table
+                        const element = document.querySelector(`.periodic-element[data-index="${index}"]`);
+                        if (element) {
+                            element.classList.add('active-class');
+                            activeClassFound = true;
+                            
+                            // Send notification for active class (once)
+                            if (!classItem.notified) {
+                                sendNotification(`Class in progress: ${classItem.course}`);
+                                classItem.notified = true;
+                            }
+                        }
+                    }
+                    
+                    // Check if class is upcoming today
+                    if (currentTime < classStartTime) {
+                        upcomingCount++;
+                        
+                        const timeUntilClass = classStartTime - currentTime;
+                        const hoursUntil = Math.floor(timeUntilClass / 60);
+                        const minutesUntil = timeUntilClass % 60;
+                        
+                        let timeText = '';
+                        if (hoursUntil > 0) {
+                            timeText = `in ${hoursUntil}h ${minutesUntil}m`;
+                        } else {
+                            timeText = `in ${minutesUntil}m`;
+                        }
+                        
+                        const classElement = document.createElement('div');
+                        classElement.className = 'upcoming-class-item';
+                        classElement.innerHTML = `
+                            <div>
+                                <h3 class="font-medium text-gray-800">${classItem.course}</h3>
+                                <p class="text-gray-600 text-sm">${classItem.time} • ${classItem.venue}</p>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-blue-700 font-medium">${timeText}</span>
+                            </div>
+                        `;
+                        
+                        upcomingClassesContainer.appendChild(classElement);
+                        
+                        // Send notification for upcoming class (15 minutes before)
+                        if (timeUntilClass <= 15 && !classItem.upcomingNotified) {
+                            sendNotification(`Upcoming class: ${classItem.course} in 15 minutes`);
+                            classItem.upcomingNotified = true;
+                        }
+                    }
+                }
+            });
+            
+            if (upcomingCount === 0 && !activeClassFound) {
+                upcomingClassesContainer.innerHTML = `
+                    <div class="text-center py-4 text-gray-500">
+                        <i data-lucide="calendar" class="w-8 h-8 mx-auto mb-2"></i>
+                        <p>No classes scheduled for today</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Parse time string to minutes since midnight
+        function parseTime(timeStr) {
+            const [time, modifier] = timeStr.split(' ');
+            let [hours, minutes] = time.split(':').map(Number);
+            
+            if (modifier === 'PM' && hours !== 12) {
+                hours += 12;
+            }
+            if (modifier === 'AM' && hours === 12) {
+                hours = 0;
+            }
+            
+            return hours * 60 + minutes;
+        }
+
+        // Send browser notification
+        function sendNotification(message) {
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification(`RedCharger`, {
+                    body: message,
+                    icon: '/favicon.ico'
+                });
+            }
+        }
+
+        function requestNotificationPermission() {
+            if ("Notification" in window) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        document.getElementById('notificationStatus').textContent = "Notifications Enabled";
+                        showMessage("Notifications enabled successfully!", false);
+                    } else {
+                        document.getElementById('notificationStatus').textContent = "Notifications Blocked";
+                        showMessage("Notifications are blocked. Please enable them in your browser settings.", true);
+                    }
+                });
+            } else {
+                showMessage("Your browser doesn't support notifications", true);
+            }
+        }
+
+        function setupExportButton() {
+            document.getElementById('exportTimetable').addEventListener('click', function() {
+                showMessage("Timetable exported successfully!", false);
+                // In a real app, this would trigger a download of the timetable
+            });
+        }
+
+        function setupAddEventButton() {
+            document.getElementById('addCustomEvent').addEventListener('click', function() {
+                const eventName = prompt("Enter event name:");
+                if (eventName) {
+                    showMessage(`Event "${eventName}" added to your schedule`, false);
+                }
+            });
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // Create periodic table
+            createPeriodicTable();
+            
+            // Create personal timetable
+            createPersonalTimetable();
+
+            // Update date and time
+            updateDateTime();
+            setInterval(updateDateTime, 60000); // Update every minute
+
+            // Check upcoming classes
+            checkUpcomingClasses();
+            setInterval(checkUpcomingClasses, 60000); // Check every minute
+
+            // Setup modal close buttons
+            document.getElementById('closeModal').addEventListener('click', closeClassModal);
+            document.getElementById('closeDayModal').addEventListener('click', closeDayModal);
+            
+            // Setup modal buttons
+            document.getElementById('setReminder').addEventListener('click', function() {
+                const course = document.getElementById('modalCourse').textContent;
+                showMessage(`Reminder set for ${course}`, false);
+                closeClassModal();
+            });
+            
+            document.getElementById('addStudyTime').addEventListener('click', function() {
+                const course = document.getElementById('modalCourse').textContent;
+                showMessage(`Study time added for ${course}`, false);
+                closeClassModal();
+            });
+
+            // Setup notification button
+            document.getElementById('enableNotifications').addEventListener('click', requestNotificationPermission);
+
+            // Setup export button
+            setupExportButton();
+
+            // Setup add event button
+            setupAddEventButton();
+
+            // Setup logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    showMessage('Logging out...', false);
+                    
+                    // Redirect to logout route
+                    setTimeout(() => {
+                        window.location.href = '/logout';
+                    }, 1000);
+                });
+            }
+
+            console.log('Periodic timetable page initialized successfully');
+        });
+    </script>
+
+</body>
+</html>

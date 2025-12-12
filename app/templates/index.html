@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Your Learning Companion</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDK (Dependencies for auth) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Custom red color for RedCharger branding */
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        /* Active nav link style */
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        /* Spinner is kept */
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #DC2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* --- Custom Animations and Styles --- */
+        
+        /* Fade-in animation for content blocks */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        .animate-delay-3 { animation-delay: 0.6s; }
+
+        /* Pulse glow animation for the main CTA button */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.8); }
+        }
+        .hero-cta-button {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        /* Red overlay for hero image */
+.hero-image-container {
+    position: relative;
+}
+
+.hero-red-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(220, 38, 38, 0.15); /* Red (#DC2626) with 15% opacity */
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 1.5rem; /* Match rounded-3xl */
+}
+
+        /* Video Background Container */
+        .video-bg-container {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        /* Video Background Styling */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* Video overlay for better readability */
+        .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.65); /* White with 40% opacity */
+        z-index: -1; /* Behind content but in front of video */
+        pointer-events: none;
+}
+
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar (Sticky) - UNCHANGED -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+
+            <!-- Add these to your head section -->
+<!-- PWA Manifest -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- iOS Safari PWA Support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RedCharger">
+<link rel="apple-touch-icon" href="/static/icons/android-chrome-192x192.png">
+
+<!-- Theme Color for Mobile Browsers -->
+<meta name="theme-color" content="#DC2626">
+<meta name="msapplication-TileColor" content="#DC2626">
+
+<!-- Viewport for PWA -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="/course" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+            <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area - MODIFIED -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+        
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="video-bg">
+            <source src="/static/videos/vecteezy_fly-through-formulas-white_1623381.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Video overlay for better readability -->
+        <div class="video-overlay"></div>
+
+        <!-- 1. Hero Section -->
+        <section class="grid md:grid-cols-2 gap-10 items-center mb-20">
+            <!-- Text Content -->
+            <div class="animate-fadeInUp">
+                <p class="text-sm font-semibold text-red-600 uppercase tracking-wider mb-2">Welcome Back, {{ current_user.name }}!</p>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Supercharge Your Semester with <span class="redcharger-text">RedCharger</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-600 mb-6">
+                    The integrated platform designed to streamline your studies, manage your schedule, and boost your knowledge retention.
+                </p>
+                <a href="/course" class="inline-flex items-center redcharger-bg text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-[1.02] hero-cta-button">
+                    <i data-lucide="arrow-right" class="w-5 h-5 mr-2"></i>
+                    Start Learning Now
+                </a>
+            </div>
+
+            <!-- Visual / Image Placeholder (Visible on Mobile) -->
+            <div class="animate-fadeInUp animate-delay-1 rounded-3xl shadow-2xl overflow-hidden mt-8 md:mt-0 hero-image-container">
+    <div class="hero-red-overlay"></div>
+    <img src="/static/images/hero.jpg" 
+         alt="Illustration of a student dashboard" 
+         class="w-full h-auto object-cover relative z-0"
+         onerror="this.onerror=null; this.src='https://placehold.co/800x600/4B5563/ffffff?text=RedCharger+Visual'">
+</div>
+        </section>
+
+        <!-- 2. Key Features/Modules Section -->
+        <section class="mb-20 animate-fadeInUp animate-delay-2">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Your Academic Toolkit</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Feature 1: Courses -->
+                <a href="/course" class="feature-card bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-red-500 hover:shadow-xl">
+                    <div class="mx-auto w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4 transform hover:scale-110 transition duration-300">
+                        <i data-lucide="book-open" class="w-6 h-6 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-1">Courses</h3>
+                    <p class="text-gray-500 text-sm">Manage enrolled classes & track progress.</p>
+                </a>
+
+                <!-- Feature 2: Timetable -->
+                <a href="/timetable" class="feature-card bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-blue-500 hover:shadow-xl">
+                    <div class="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 transform hover:scale-110 transition duration-300">
+                        <i data-lucide="calendar" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-1">Timetable</h3>
+                    <p class="text-gray-500 text-sm">Organize your schedule and deadlines.</p>
+                </a>
+
+                <!-- Feature 3: Resources -->
+                <a href="/resources" class="feature-card bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-purple-500 hover:shadow-xl">
+                    <div class="mx-auto w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 transform hover:scale-110 transition duration-300">
+                        <i data-lucide="file-text" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-1">Resources</h3>
+                    <p class="text-gray-500 text-sm">Access study notes & digital materials.</p>
+                </a>
+
+                <!-- Feature 4: Quizzes -->
+                <a href="/quizzes" class="feature-card bg-white p-6 rounded-2xl shadow-md text-center border-t-4 border-green-500 hover:shadow-xl">
+                    <div class="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 transform hover:scale-110 transition duration-300">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-1">Quizzes</h3>
+                    <p class="text-gray-500 text-sm">Test yourself and validate learning.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. Stats/Trust Section (Image with Text) -->
+        <section class="bg-white rounded-3xl shadow-xl p-8 lg:p-12 animate-fadeInUp animate-delay-3">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">The Smart Way to Study</h2>
+                    <p class="text-gray-600 mb-6">
+                        RedCharger isn't just about organizing; it's about optimizing your study time. Our integrated system ensures you focus on what matters most, leading to better results and less stress. Join thousands of students boosting their grades!
+                    </p>
+                    <div class="flex flex-wrap gap-6 mt-6">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold redcharger-text">12k+</p>
+                            <p class="text-sm text-gray-500">Active Students</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold redcharger-text">95%</p>
+                            <p class="text-sm text-gray-500">Satisfaction Rate</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold redcharger-text">4.8/5</p>
+                            <p class="text-sm text-gray-500">Avg. Review Score</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Visual Stat Placeholder (Visible on Mobile) -->
+                <div class="md:block mt-8 md:mt-0">
+                    <img src="https://thumbs.dreamstime.com/b/red-bar-chart-upward-trend-arrow-light-background-d-rendering-clean-concept-financial-growth-market-rise-economic-332247722.jpg" 
+                         alt="Success chart visualization" 
+                         class="rounded-2xl w-full h-auto"
+                         onerror="this.onerror=null; this.src='https://placehold.co/400x400/4B5563/ffffff?text=Chart+Placeholder'">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Mobile Navigation (Bottom Bar) - UNCHANGED -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="/course" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    
+
+    <!-- Custom Message Box for Interaction Feedback -->
+    <div id="messageBox" class="fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm hidden transition duration-300" role="alert">
+        <!-- Message content will be inserted here -->
+    </div>
+
+    <script>
+        // Firebase Configuration (kept as is)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAw4CCOFDlfsVxkAcg2YdshgEB-x3fKNLY",
+            authDomain: "redchargerhsk1.firebaseapp.com",
+            projectId: "redchargerhsk1",
+            storageBucket: "redchargerhsk1.firebasestorage.app",
+            messagingSenderId: "287577907928",
+            appId: "1:287577907928:web:ea58eaba023213696d6dad"
+        };
+
+        // Initialize Firebase
+        let auth = null;
+        try {
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            auth = firebase.auth();
+        } catch (error) {
+            console.log('Firebase initialization skipped:', error);
+        }
+
+        // Utility Functions
+        function showMessage(message, isError = false) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            
+            messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+            
+            if (isError) {
+                messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+            } else {
+                messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+            }
+
+            messageBox.classList.remove('hidden', 'translate-y-full');
+            messageBox.classList.add('translate-y-0');
+
+            setTimeout(() => {
+                messageBox.classList.remove('translate-y-0');
+                messageBox.classList.add('translate-y-full');
+            }, 3000);
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 3500);
+        }
+
+        function checkAuthentication() {
+            // Note: The Jinja template syntax below checks server-side auth status. 
+            const isAuthenticated = {{ 'true' if current_user.is_authenticated else 'false' }};
+            
+            if (!isAuthenticated) {
+                showMessage('Please log in to access the dashboard.', true);
+                setTimeout(() => {
+                    // window.location.href = '/login'; 
+                }, 2000);
+                return false;
+            }
+            return true;
+        }
+
+        function setupLogout() {
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async function(e) {
+                    e.preventDefault();
+                    
+                    showMessage('Logging out...', false);
+                    
+                    // Sign out from Firebase if available
+                    if (auth) {
+                        try {
+                            await auth.signOut();
+                            console.log('Firebase sign-out successful');
+                        } catch (error) {
+                            console.error('Firebase sign-out error:', error);
+                        }
+                    }
+                    
+                    // Redirect to Flask logout route
+                    setTimeout(() => {
+                        // window.location.href = '/logout'; 
+                    }, 1000);
+                });
+            }
+        }
+
+        // Navigation functionality (kept as is)
+        function setActiveSection(sectionId) {
+            // Update navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('nav-active');
+                }
+            });
+
+            console.log('Navigating to:', sectionId);
+        }
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check authentication first
+            // checkAuthentication(); 
+
+            // Initialize Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+
+            // Setup logout functionality
+            setupLogout();
+
+            // Monitor Firebase auth state
+            if (auth) {
+                auth.onAuthStateChanged((user) => {
+                    if (!user) {
+                        console.log('User signed out from Firebase');
+                    }
+                });
+            }
+
+            console.log('RedCharger initialized successfully');
+        });
+    </script>
+<!-- PWA Installation Handler -->
+<script>
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful:', registration.scope);
+      })
+      .catch(error => {
+        console.log('ServiceWorker registration failed:', error);
+      });
+  });
+}
+
+// PWA Installation Prompt
+let deferredPrompt;
+const installButton = document.createElement('button');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  
+  // Stash the event so it can be triggered later
+  deferredPrompt = e;
+  
+  // Create and show install button
+  installButton.innerHTML = `
+    <div class="fixed bottom-20 right-4 z-30 bg-white rounded-full shadow-xl p-3 border border-gray-200 animate-bounce">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="download" class="w-5 h-5 text-red-600"></i>
+        <span class="text-sm font-semibold text-gray-700">Install App</span>
+      </div>
+    </div>
+  `;
+  
+  installButton.className = 'install-prompt';
+  installButton.addEventListener('click', installPWA);
+  
+  document.body.appendChild(installButton);
+  
+  // Initialize lucide icons for the button
+  setTimeout(() => {
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  }, 100);
+});
+
+// Track successful installation
+window.addEventListener('appinstalled', () => {
+  console.log('PWA installed successfully');
+  
+  // Remove install button
+  if (installButton.parentNode) {
+    installButton.parentNode.removeChild(installButton);
+  }
+  
+  // Show success message
+  showMessage('RedCharger installed successfully! You can now access it from your home screen.', false);
+  
+  // Reset deferredPrompt
+  deferredPrompt = null;
+});
+
+// Installation function
+async function installPWA() {
+  if (!deferredPrompt) {
+    return;
+  }
+  
+  // Show the install prompt
+  deferredPrompt.prompt();
+  
+  // Wait for the user to respond to the prompt
+  const { outcome } = await deferredPrompt.userChoice;
+  
+  if (outcome === 'accepted') {
+    console.log('User accepted the install prompt');
+  } else {
+    console.log('User dismissed the install prompt');
+  }
+  
+  // Reset deferredPrompt
+  deferredPrompt = null;
+  
+  // Remove install button
+  if (installButton.parentNode) {
+    installButton.parentNode.removeChild(installButton);
+  }
+}
+
+// Check if running as PWA
+function isRunningAsPWA() {
+  return window.matchMedia('(display-mode: standalone)').matches || 
+         window.navigator.standalone || 
+         document.referrer.includes('android-app://');
+}
+
+// If running as PWA, hide browser UI elements
+if (isRunningAsPWA()) {
+  console.log('Running as PWA');
+  // You can add PWA-specific behavior here
+}
+
+// Detect iOS and add special handling
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+// iOS specific installation instructions
+if (isIOS()) {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if not already installed
+    if (!isRunningAsPWA() && !localStorage.getItem('ios-install-shown')) {
+      setTimeout(() => {
+        showMessage(
+          'To install RedCharger: Tap Share → "Add to Home Screen"',
+          false
+        );
+        localStorage.setItem('ios-install-shown', 'true');
+      }, 5000);
+    }
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Add Course - EduPal{% endblock %}
+
+{% block content %}
+<h2>Add New Course</h2>
+<form method="POST" class="course-form">
+    <div class="form-group">
+        <label for="name">Course Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Days:</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="days" value="Mon"> Monday</label>
+            <label><input type="checkbox" name="days" value="Tue"> Tuesday</label>
+            <label><input type="checkbox" name="days" value="Wed"> Wednesday</label>
+            <label><input type="checkbox" name="days" value="Thu"> Thursday</label>
+            <label><input type="checkbox" name="days" value="Fri"> Friday</label>
+            <label><input type="checkbox" name="days" value="Sat"> Saturday</label>
+            <label><input type="checkbox" name="days" value="Sun"> Sunday</label>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group">
+            <label for="start_time">Start Time:</label>
+            <input type="time" id="start_time" name="start_time" required>
+        </div>
+        <div class="form-group">
+            <label for="end_time">End Time:</label>
+            <input type="time" id="end_time" name="end_time" required>
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Course</button>
+    <a href="{{ url_for('courses.courses') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

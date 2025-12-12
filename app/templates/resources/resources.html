@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Learning Resources</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        
+        /* Course card styling */
+        .course-card {
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            background-color: rgba(220, 38, 38, 0.1) !important;
+        }
+        
+        .course-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .course-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.8) 0%, rgba(220, 38, 38, 0.4) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .course-card:hover .course-overlay {
+            opacity: 1;
+        }
+        
+        .course-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+        
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .course-code {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+        
+        .course-stats {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .course-title {
+                font-size: 1.1rem;
+            }
+            .course-image {
+                height: 150px;
+            }
+        }
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar (Sticky) -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="/course" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+            <!-- User Info / Dropdown Menu -->
+            <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Resources Page -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Learning Resources</h1>
+            <p class="text-gray-600">Access videos, PDFs, and study materials for all your courses</p>
+        </div>
+
+        <!-- Courses Grid -->
+        <!-- In your resources.html - FIXED VERSION -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Course 1 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='computer-organization-architecture') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Computer Organization & Architecture</h3>
+            <div class="course-code">BCP 203</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">12 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>8 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 2 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='logic-critical-thinking') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Logic & Critical Thinking</h3>
+            <div class="course-code">ATU 203</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">8 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>6 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 3 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='data-communication-networks') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Data Communication & Networks</h3>
+            <div class="course-code">BCP 105</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">15 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>10 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 4 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='principles-entrepreneurship') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Principles of Entrepreneurship</h3>
+            <div class="course-code">ATU 201</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">10 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>7 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 5 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='principles-sustainability') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Principles of Sustainability</h3>
+            <div class="course-code">BCB 209</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">9 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>5 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 6 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='web-development-technologies') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Web Development Technologies</h3>
+            <div class="course-code">BCP 207</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">20 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>12 PDFs</span>
+            </div>
+        </div>
+    </a>
+
+    <!-- Course 7 -->
+    <a href="{{ url_for('resources.course_resources', course_slug='programming-cpp') }}" class="course-card">
+        <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+            <div class="course-overlay">
+                <i data-lucide="play" class="w-12 h-12 text-white"></i>
+            </div>
+        </div>
+        <div class="course-content">
+            <h3 class="course-title">Programming with C++</h3>
+            <div class="course-code">BCP 201</div>
+            <div class="course-stats">
+                <i data-lucide="video" class="w-4 h-4 mr-1"></i>
+                <span class="mr-4">18 Videos</span>
+                <i data-lucide="file-text" class="w-4 h-4 mr-1"></i>
+                <span>14 PDFs</span>
+            </div>
+        </div>
+    </a>
+</div>
+    </main>
+
+    <!-- Mobile Navigation (Bottom Bar) -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="/course" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

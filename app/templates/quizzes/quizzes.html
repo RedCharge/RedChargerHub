@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Quizzes</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #DC2626;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Course Card Styles */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin: 20px 0;
+        }
+        .course-card {
+            position: relative;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 220px;
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        .course-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        .course-card:hover .course-image {
+            filter: brightness(0.7);
+            transform: scale(1.05);
+        }
+        .course-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+            color: white;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .course-card:hover .course-overlay {
+            background: linear-gradient(to top, rgba(220, 38, 38, 0.95), rgba(220, 38, 38, 0.7));
+        }
+        .course-code {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .course-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* New Fading Red Overlay */
+        .course-hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(220, 38, 38, 0.9), rgba(220, 38, 38, 0.1), transparent);
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        .course-card:hover .course-hover-overlay {
+            opacity: 1;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 8px;
+        }
+
+        /* Progress badge styles */
+        .progress-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+        .progress-badge.good {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .progress-badge.average {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .progress-badge.poor {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Loading state */
+        .skeleton-loader {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar (Sticky) -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="/course" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+             <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Page Header - SIMPLIFIED: No stats, no extra text -->
+        <div class="mb-10">
+            <!-- Only the section header remains -->
+        </div>
+
+        <!-- Course Cards Section -->
+        <div class="mb-12">
+            <div class="section-header">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Select a Course</h2>
+                <p class="text-gray-600 text-lg mb-6">Choose a course to take a quiz. Each quiz contains multiple-choice questions to test your understanding.</p>
+            </div>
+            
+            <div class="course-grid" id="courseGrid">
+                <!-- Loading skeletons -->
+                {% for _ in range(7) %}
+                <div class="course-card skeleton-loader">
+                    <div class="course-image" style="background: #e5e7eb;"></div>
+                    <div class="course-overlay">
+                        <div class="course-code skeleton-loader" style="width: 80px; height: 16px; margin-bottom: 8px;"></div>
+                        <div class="course-name skeleton-loader" style="width: 100%; height: 24px;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Quiz Instructions - RESTORED -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">How Quizzes Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center p-5">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="list" class="w-7 h-7 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3 text-lg">Multiple Choice</h3>
+                    <p class="text-gray-600">Answer multiple-choice questions with 4 options each.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-5">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="clock" class="w-7 h-7 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3 text-lg">Timed Practice</h3>
+                    <p class="text-gray-600">Complete quizzes at your own pace with no time limits.</p>
+                </div>
+                <div class="flex flex-col items-center text-center p-5">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                        <i data-lucide="bar-chart" class="w-7 h-7 text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-800 mb-3 text-lg">Track Progress</h3>
+                    <p class="text-gray-600">Review your scores and track improvement over time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Attempts Section (if any) -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mt-8 hidden" id="recentAttemptsSection">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Quiz Attempts</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200" id="attemptsTable">
+                    <thead>
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200" id="attemptsTableBody">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation (Bottom Bar) -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="/course" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Custom Message Box for Interaction Feedback -->
+    <div id="messageBox" class="fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm hidden transition duration-300 transform translate-y-full" role="alert">
+        <!-- Message content will be inserted here -->
+    </div>
+
+    <script>
+    // Initialize App
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Initialize Lucide icons
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        try {
+            // Load recent attempts only (no stats)
+            const attemptsResponse = await fetch('/api/quizzes/attempts');
+
+            // Load recent attempts
+            if (attemptsResponse.ok) {
+                const attempts = await attemptsResponse.json();
+                updateRecentAttempts(attempts);
+            }
+
+            // Load user progress and create course cards - IMMEDIATELY, no async
+            loadCourseCardsImmediately();
+
+        } catch (error) {
+            console.error('Error loading quiz data:', error);
+            showMessage('Error loading quiz data. Please refresh the page.', true);
+        }
+
+        // Setup logout functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showMessage('Logging out...', false);
+                setTimeout(() => {
+                    window.location.href = '/logout';
+                }, 1000);
+            });
+        }
+
+        console.log('Quiz page initialized successfully');
+    });
+
+    // Load course cards immediately without async/await
+    function loadCourseCardsImmediately() {
+        const coursesData = {{ courses|tojson|safe }};
+        const courseGrid = document.getElementById('courseGrid');
+        
+        if (!courseGrid) {
+            console.error('Course grid not found');
+            return;
+        }
+        
+        // Clear loading skeletons
+        courseGrid.innerHTML = '';
+        
+        // Create course cards immediately
+        coursesData.forEach(course => {
+            const card = createCourseCard(course);
+            courseGrid.appendChild(card);
+        });
+        
+        // Load progress data in background
+        loadProgressDataInBackground();
+    }
+
+    // Create a course card with progress data
+    function createCourseCard(course) {
+        const card = document.createElement('div');
+        card.className = 'course-card';
+        card.setAttribute('data-course', course.code);
+        
+        // Get quiz slug from course code
+        const quizSlug = getQuizSlug(course.code);
+        
+        // Build card content - IMMEDIATELY
+        let cardContent = `
+            <img src="${course.image}" alt="${course.name}" class="course-image" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'">
+            <div class="course-hover-overlay"></div>
+            <div class="course-overlay">
+                <div class="course-code">${course.code}</div>
+                <div class="course-name">${course.name}</div>
+                <div class="mt-2 text-sm opacity-75">${course.questions} questions • ${course.duration}</div>
+                <div class="mt-1 text-xs opacity-50" id="progress-${quizSlug}"></div>
+            </div>
+        `;
+        
+        card.innerHTML = cardContent;
+        
+        // FIXED: Use proper navigation
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Course card clicked:', {
+                courseCode: course.code,
+                courseName: course.name,
+                quizSlug: quizSlug
+            });
+            
+            // Show loading message
+            showMessage(`Loading ${course.name} quiz...`, false);
+            
+            // Navigate to quiz page
+            setTimeout(() => {
+                // Use the correct URL format for your Flask app
+                const quizUrl = `/quizzes/take/${quizSlug}`;
+                console.log('Navigating to:', quizUrl);
+                window.location.href = quizUrl;
+            }, 300);
+        });
+        
+        return card;
+    }
+
+    // Load progress data in background
+    async function loadProgressDataInBackground() {
+        try {
+            const coursesData = {{ courses|tojson|safe }};
+            
+            // Load all progress at once
+            const response = await fetch('/api/quizzes/progress');
+            if (!response.ok) {
+                console.error('Failed to fetch progress data');
+                return;
+            }
+            
+            const progressData = await response.json();
+            
+            // Update each course card with progress
+            coursesData.forEach(course => {
+                const quizSlug = getQuizSlug(course.code);
+                const userAttempt = progressData.db_progress?.[quizSlug] || 
+                                  progressData.session_progress?.[quizSlug];
+                
+                if (userAttempt) {
+                    const progressElement = document.getElementById(`progress-${quizSlug}`);
+                    if (progressElement) {
+                        progressElement.innerHTML = `
+                            <div class="mt-1 flex items-center">
+                                <span class="progress-badge ${getProgressClass(userAttempt.percentage)}">
+                                    ${userAttempt.grade} (${userAttempt.percentage}%)
+                                </span>
+                            </div>
+                        `;
+                        
+                        // Remove the questions/duration text
+                        const card = progressElement.closest('.course-card');
+                        const durationText = card.querySelector('.mt-2.text-sm.opacity-75');
+                        if (durationText) {
+                            durationText.style.display = 'none';
+                        }
+                    }
+                }
+            });
+            
+        } catch (error) {
+            console.error('Error loading progress data:', error);
+        }
+    }
+
+    // Helper function to get quiz slug from course code
+    function getQuizSlug(courseCode) {
+        const codeMap = {
+            'BCP 203': 'computer-organization',
+            'ATU 203': 'logic-critical-thinking',
+            'BCP 105': 'data-communication',
+            'ATU 201': 'entrepreneurship',
+            'BCB 209': 'sustainability',
+            'BCP 207': 'web-development',
+            'BCP 201': 'cpp-programming'
+        };
+        
+        // Trim any whitespace and normalize
+        const trimmedCode = courseCode.trim();
+        return codeMap[trimmedCode] || trimmedCode.toLowerCase().replace(/ /g, '-').replace(/[^a-z0-9-]/g, '');
+    }
+
+    // Get progress badge class based on percentage
+    function getProgressClass(percentage) {
+        if (percentage >= 70) return 'good';
+        if (percentage >= 50) return 'average';
+        return 'poor';
+    }
+
+    // Update recent attempts table
+    function updateRecentAttempts(attempts) {
+        const attemptsSection = document.getElementById('recentAttemptsSection');
+        const attemptsTableBody = document.getElementById('attemptsTableBody');
+        
+        if (!attempts || attempts.length === 0) {
+            attemptsSection?.classList.add('hidden');
+            return;
+        }
+        
+        // Show the section
+        attemptsSection?.classList.remove('hidden');
+        
+        // Clear existing rows
+        if (attemptsTableBody) {
+            attemptsTableBody.innerHTML = '';
+            
+            // Add up to 5 recent attempts
+            attempts.slice(0, 5).forEach(attempt => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(attempt.attempt_date);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                
+                // Determine status badge
+                const statusClass = attempt.passed ? 
+                    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800' :
+                    'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800';
+                
+                const statusText = attempt.passed ? 'Passed' : 'Failed';
+                
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">${attempt.quiz_name}</div>
+                        <div class="text-sm text-gray-500">${attempt.quiz_type}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">${attempt.score}/${attempt.total_questions}</div>
+                        <div class="text-sm text-gray-500">${attempt.percentage}%</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-semibold text-gray-900">${attempt.grade}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        ${formattedDate}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="${statusClass}">${statusText}</span>
+                    </td>
+                `;
+                
+                // Make row clickable to view attempt details
+                row.addEventListener('click', () => {
+                    window.location.href = `/quiz-results?attempt=${attempt.id}`;
+                });
+                row.style.cursor = 'pointer';
+                row.classList.add('hover:bg-gray-50');
+                
+                attemptsTableBody.appendChild(row);
+            });
+        }
+    }
+
+    // Debug function to test navigation
+    function debugNavigation() {
+        const coursesData = {{ courses|tojson|safe }};
+        console.log('=== NAVIGATION DEBUG ===');
+        console.log('Courses data from Flask:', coursesData);
+        
+        coursesData.forEach(course => {
+            const quizSlug = getQuizSlug(course.code);
+            console.log(`Course: ${course.code} (${course.name})`);
+            console.log(`  Quiz slug: ${quizSlug}`);
+            console.log(`  Target URL: /quizzes/take/${quizSlug}`);
+            console.log(`  quizUrl from Flask: ${course.quizUrl}`);
+            console.log('---');
+        });
+        
+        // Add click listeners to debug
+        document.querySelectorAll('.course-card').forEach((card, index) => {
+            card.addEventListener('click', function(e) {
+                const courseCode = this.getAttribute('data-course');
+                const quizSlug = getQuizSlug(courseCode);
+                console.log(`Clicked on: ${courseCode}, navigating to: /quizzes/take/${quizSlug}`);
+            });
+        });
+    }
+
+    // Run debug on load
+    setTimeout(debugNavigation, 1000);
+
+    // Utility Functions
+    function showMessage(message, isError = false) {
+        const messageBox = document.getElementById('messageBox');
+        if (!messageBox) return;
+        
+        messageBox.textContent = message;
+        
+        // Reset classes
+        messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+        
+        if (isError) {
+            messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+        } else {
+            messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+        }
+
+        // Show message
+        messageBox.classList.remove('hidden', 'translate-y-full');
+        messageBox.classList.add('translate-y-0');
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+            messageBox.classList.remove('translate-y-0');
+            messageBox.classList.add('translate-y-full');
+        }, 3000);
+        
+        setTimeout(() => {
+            messageBox.classList.add('hidden');
+        }, 3500);
+    }
+</script>
+</body>
+</html>

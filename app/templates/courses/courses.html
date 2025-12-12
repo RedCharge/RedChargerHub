@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedCharger - Courses</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .redcharger-bg {
+            background-color: #DC2626;
+        }
+        .redcharger-text {
+            color: #DC2626;
+        }
+        .nav-active {
+            color: #DC2626;
+            font-weight: 700;
+            border-bottom: 2px solid #DC2626;
+        }
+        
+        /* Course card styling */
+        .course-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .course-code {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .course-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .course-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .course-description {
+            color: #4b5563;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+        
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .course-schedule {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .resources-btn {
+            background: #dc2626;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .resources-btn:hover {
+            background: #b91c1c;
+        }
+        
+        /* Modal styling */
+        .course-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .course-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .course-modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 24px;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .course-image {
+                height: 150px;
+            }
+            
+            .course-content {
+                padding: 16px;
+            }
+            
+            .course-title {
+                font-size: 1.1rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .course-footer {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+        }
+        
+        /* Course-specific colors */
+        .course-1:hover { border-top: 4px solid #dc2626; }
+        .course-2:hover { border-top: 4px solid #3b82f6; }
+        .course-3:hover { border-top: 4px solid #10b981; }
+        .course-4:hover { border-top: 4px solid #f59e0b; }
+        .course-5:hover { border-top: 4px solid #8b5cf6; }
+        .course-6:hover { border-top: 4px solid #ec4899; }
+        .course-7:hover { border-top: 4px solid #06b6d4; }
+    </style>
+    <!-- Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header / Navigation Bar (Sticky) -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Branding -->
+            <div class="flex items-center space-x-2">
+                <svg class="h-6 w-6 redcharger-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h1 class="text-xl font-extrabold text-gray-900">RedCharger</h1>
+            </div>
+
+            <!-- Main Navigation Links (Desktop) -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="home" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Home
+                </a>
+                <a href="#" class="nav-active text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="book-open" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Courses
+                </a>
+                <a href="/timetable" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="calendar" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Timetable
+                </a>
+                <a href="/resources" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="file-text" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Resources
+                </a>
+                <a href="/quizzes" class="text-gray-500 hover:redcharger-text transition duration-150 py-1">
+                    <i data-lucide="check-circle" class="inline-block w-5 h-5 mr-1 align-middle"></i>
+                    Quizzes
+                </a>
+            </nav>
+
+            <!-- User Info / Dropdown Menu -->
+            <div class="relative group">
+                <button class="flex items-center justify-center w-10 h-10 redcharger-bg text-white rounded-full text-sm font-semibold shadow-md hover:bg-red-700 transition duration-150 ease-in-out">
+                    <span id="userInitials">
+                        {% if current_user.is_authenticated and current_user.name %}
+                            {{ current_user.name[0]|upper }}
+                        {% else %}
+                            U
+                        {% endif %}
+                    </span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    <div class="p-3 border-b border-gray-100">
+                        <p class="text-sm font-medium text-gray-800" id="userName">
+                            {% if current_user.is_authenticated and current_user.name %}
+                                {{ current_user.name }}
+                            {% else %}
+                                User
+                            {% endif %}
+                        </p>
+                        <p class="text-xs text-gray-500" id="userEmail">
+                            {% if current_user.is_authenticated and current_user.email %}
+                                {{ current_user.email }}
+                            {% else %}
+                                user@example.com
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="p-2">
+                        <a href="#" class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition duration-150">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            Profile Settings
+                        </a>
+                        <a href="/logout" class="flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded transition duration-150" id="logoutBtn">
+                            <i data-lucide="log-out" class="w-4 h-4 mr-2"></i>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Your Courses</h1>
+            <p class="text-gray-600">Level 200 - Semester 1 (2+2)</p>
+            
+            <!-- Updated Stats - Removed Progress/Completed -->
+            <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-red-100 rounded-lg mr-3">
+                            <i data-lucide="book-open" class="w-5 h-5 text-red-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Total Courses</p>
+                            <p class="text-xl font-bold text-gray-800">7</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-blue-100 rounded-lg mr-3">
+                            <i data-lucide="clock" class="w-5 h-5 text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Hours/Week</p>
+                            <p class="text-xl font-bold text-gray-800">18</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm p-4">
+                    <div class="flex items-center">
+                        <div class="p-2 bg-green-100 rounded-lg mr-3">
+                            <i data-lucide="video" class="w-5 h-5 text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Learning Videos</p>
+                            <p class="text-xl font-bold text-gray-800">92</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Current Semester Courses</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Course 1 - Computer Organization & Architecture -->
+                <div class="course-card course-1" data-course="1">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')">
+                        <div class="course-code">BCP 203</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Computer Organization & Architecture</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Dr. James Anderson</span>
+                        </div>
+                        <p class="course-description">Study of computer system organization, CPU architecture, memory systems, and I/O organization. Focus on performance evaluation and instruction set design.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Tue 7:00-10:00 AM</span>
+                            </div>
+                            <a href="/resources/computer-organization-architecture" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 - Logic & Critical Thinking -->
+                <div class="course-card course-2" data-course="2">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="course-code">ATU 203</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Logic & Critical Thinking</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Prof. Sarah Johnson</span>
+                        </div>
+                        <p class="course-description">Develop analytical thinking skills, logical reasoning, and argument evaluation. Learn to identify fallacies and construct valid arguments.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Tue 11:00-1:00 PM</span>
+                            </div>
+                            <a href="/resources/logic-critical-thinking" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 - Data Communication & Networks -->
+                <div class="course-card course-3" data-course="3">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="course-code">BCP 105</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Communication & Computer Networks</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Dr. Michael Chen</span>
+                        </div>
+                        <p class="course-description">Fundamentals of data transmission, network architectures, protocols, and internet technologies. Hands-on with network configuration and troubleshooting.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Tue 2:00-5:00 PM</span>
+                            </div>
+                            <a href="/resources/data-communication-networks" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 - Principles of Entrepreneurship -->
+                <div class="course-card course-4" data-course="4">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="course-code">ATU 201</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Introduction to Principles of Entrepreneurship</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Prof. Robert Williams</span>
+                        </div>
+                        <p class="course-description">Explore the entrepreneurial mindset, opportunity recognition, business planning, and startup fundamentals. Case studies of successful entrepreneurs.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Wed 10:00-12:00 PM</span>
+                            </div>
+                            <a href="/resources/principles-entrepreneurship" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 5 - Principles of Sustainability -->
+                <div class="course-card course-5" data-course="5">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')">
+                        <div class="course-code">BCB 209</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Principles & Applications in Sustainability</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Dr. Emily Parker</span>
+                        </div>
+                        <p class="course-description">Examine sustainable development principles, environmental impact assessment, and green technologies. Focus on practical applications in modern society.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Wed 12:00-2:00 PM</span>
+                            </div>
+                            <a href="/resources/principles-sustainability" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 6 - Web Development Technologies -->
+                <div class="course-card course-6" data-course="6">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80')">
+                        <div class="course-code">BCP 207</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Web Development Technologies</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Prof. David Miller</span>
+                        </div>
+                        <p class="course-description">Comprehensive study of modern web technologies including HTML5, CSS3, JavaScript, and frameworks. Hands-on projects building responsive web applications.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Fri 7:00-11:00 AM</span>
+                            </div>
+                            <a href="/resources/web-development-technologies" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 7 - Programming with C++ -->
+                <div class="course-card course-7" data-course="7">
+                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+                        <div class="course-code">BCP 201</div>
+                    </div>
+                    <div class="course-content">
+                        <h3 class="course-title">Programming with C++</h3>
+                        <div class="course-meta">
+                            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
+                            <span>Dr. Lisa Thompson</span>
+                        </div>
+                        <p class="course-description">Advanced programming concepts using C++. Object-oriented programming, data structures, algorithms, memory management, and software development practices.</p>
+                        <div class="course-footer">
+                            <div class="course-schedule">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-1"></i>
+                                <span>Fri 11:00-3:00 PM</span>
+                            </div>
+                            <a href="/resources/programming-cpp" class="resources-btn">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                                View Resources
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation (Bottom Bar) -->
+    <nav class="fixed inset-x-0 bottom-0 md:hidden bg-white border-t border-gray-200 z-10 shadow-lg">
+        <div class="flex justify-around items-center h-16">
+            <a href="/" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-active text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+                <span>Courses</span>
+            </a>
+            <a href="/timetable" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="calendar" class="w-6 h-6"></i>
+                <span>Schedule</span>
+            </a>
+            <a href="/resources" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="file-text" class="w-6 h-6"></i>
+                <span>Resources</span>
+            </a>
+            <a href="/quizzes" class="text-gray-500 hover:redcharger-text flex flex-col items-center text-xs">
+                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                <span>Quizzes</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Course Detail Modal -->
+    <div class="course-modal" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-2xl font-bold text-gray-800" id="modalTitle">Course Title</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="md:col-span-2">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Course Description</h3>
+                        <p id="modalDescription" class="text-gray-600 mb-4">Course description will appear here.</p>
+                        
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Learning Outcomes</h3>
+                        <ul id="modalOutcomes" class="list-disc list-inside text-gray-600 space-y-1">
+                            <!-- Outcomes will be populated by JS -->
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                            <h3 class="font-semibold text-gray-800 mb-2">Course Details</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Course Code:</span>
+                                    <span id="modalCode" class="font-medium">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Instructor:</span>
+                                    <span id="modalInstructor" class="font-medium">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Credits:</span>
+                                    <span class="font-medium">3</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Schedule:</span>
+                                    <span id="modalSchedule" class="font-medium">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Venue:</span>
+                                    <span id="modalVenue" class="font-medium">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="font-semibold text-gray-800 mb-2">Resources Available</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Learning Videos:</span>
+                                    <span id="modalVideos" class="font-medium">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Study Materials:</span>
+                                    <span id="modalPDFs" class="font-medium">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3">
+                    <a href="#" id="modalResourcesBtn" class="resources-btn">
+                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                        View Resources
+                    </a>
+                    <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition duration-150">
+                        Take Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Course data with resource URLs
+        const courses = {
+            1: {
+                title: "Computer Organization & Architecture",
+                code: "BCP 203",
+                instructor: "Dr. James Anderson",
+                schedule: "Tuesday 7:00-10:00 AM",
+                venue: "Create Hall A",
+                description: "This course provides a comprehensive study of computer system organization and architecture. Students will explore CPU design, memory hierarchy, input/output systems, and performance evaluation. The course emphasizes the relationship between hardware and software and how architectural decisions impact program performance.",
+                outcomes: [
+                    "Understand computer system components and their interactions",
+                    "Analyze instruction set architectures and their impact",
+                    "Design and evaluate memory hierarchy systems",
+                    "Understand I/O organization and interfacing",
+                    "Evaluate computer system performance"
+                ],
+                resourcesUrl: "/resources/computer-organization-architecture",
+                videos: "12 videos",
+                pdfs: "8 PDFs"
+            },
+            2: {
+                title: "Logic & Critical Thinking",
+                code: "ATU 203",
+                instructor: "Prof. Sarah Johnson",
+                schedule: "Tuesday 11:00-1:00 PM",
+                venue: "T.B.A",
+                description: "This course develops analytical thinking skills and logical reasoning abilities. Students learn to identify arguments, evaluate evidence, recognize fallacies, and construct valid reasoning. The course applies logical principles to real-world problems and decision-making scenarios.",
+                outcomes: [
+                    "Identify and analyze arguments in various contexts",
+                    "Apply logical principles to evaluate reasoning",
+                    "Recognize common fallacies in reasoning",
+                    "Construct valid and sound arguments",
+                    "Apply critical thinking to problem-solving"
+                ],
+                resourcesUrl: "/resources/logic-critical-thinking",
+                videos: "8 videos",
+                pdfs: "6 PDFs"
+            },
+            3: {
+                title: "Data Communication & Computer Networks",
+                code: "BCP 105",
+                instructor: "Dr. Michael Chen",
+                schedule: "Tuesday 2:00-5:00 PM",
+                venue: "T.B.A",
+                description: "This course covers the fundamentals of data communication and computer networks. Topics include network architectures, protocols, transmission media, network devices, and internet technologies. Hands-on activities include network configuration, troubleshooting, and basic network design.",
+                outcomes: [
+                    "Understand network architectures and protocols",
+                    "Configure and troubleshoot network devices",
+                    "Analyze data transmission and error control",
+                    "Understand internetworking concepts",
+                    "Design simple network topologies"
+                ],
+                resourcesUrl: "/resources/data-communication-networks",
+                videos: "15 videos",
+                pdfs: "10 PDFs"
+            },
+            4: {
+                title: "Introduction to Principles of Entrepreneurship",
+                code: "ATU 201",
+                instructor: "Prof. Robert Williams",
+                schedule: "Wednesday 10:00-12:00 PM",
+                venue: "Great Hall A",
+                description: "This course introduces the fundamental principles of entrepreneurship and innovation. Students explore opportunity recognition, business planning, resource acquisition, and startup management. Case studies of successful entrepreneurs provide practical insights into the entrepreneurial process.",
+                outcomes: [
+                    "Identify and evaluate business opportunities",
+                    "Develop comprehensive business plans",
+                    "Understand funding options for startups",
+                    "Analyze market needs and customer segments",
+                    "Apply entrepreneurial thinking to problems"
+                ],
+                resourcesUrl: "/resources/principles-entrepreneurship",
+                videos: "10 videos",
+                pdfs: "7 PDFs"
+            },
+            5: {
+                title: "Principles & Applications in Sustainability",
+                code: "BCB 209",
+                instructor: "Dr. Emily Parker",
+                schedule: "Wednesday 12:00-2:00 PM",
+                venue: "T.B.A",
+                description: "This course examines the principles of sustainable development and their practical applications. Topics include environmental impact assessment, renewable energy, waste management, and sustainable business practices. The course emphasizes the integration of sustainability into various sectors of society.",
+                outcomes: [
+                    "Understand sustainability principles and frameworks",
+                    "Evaluate environmental impacts of human activities",
+                    "Analyze sustainable technologies and practices",
+                    "Develop sustainability assessment tools",
+                    "Apply sustainability concepts to real-world problems"
+                ],
+                resourcesUrl: "/resources/principles-sustainability",
+                videos: "9 videos",
+                pdfs: "5 PDFs"
+            },
+            6: {
+                title: "Web Development Technologies",
+                code: "BCP 207",
+                instructor: "Prof. David Miller",
+                schedule: "Friday 7:00-11:00 AM",
+                venue: "B.Tech Large Lab",
+                description: "This comprehensive course covers modern web development technologies and practices. Students learn HTML5, CSS3, JavaScript, and popular frameworks to create responsive and interactive web applications. The course includes hands-on projects building real-world web solutions.",
+                outcomes: [
+                    "Create responsive web layouts using HTML5 and CSS3",
+                    "Implement interactive features with JavaScript",
+                    "Understand client-server architecture",
+                    "Apply web development frameworks",
+                    "Deploy and maintain web applications"
+                ],
+                resourcesUrl: "/resources/web-development-technologies",
+                videos: "20 videos",
+                pdfs: "12 PDFs"
+            },
+            7: {
+                title: "Programming with C++",
+                code: "BCP 201",
+                instructor: "Dr. Lisa Thompson",
+                schedule: "Friday 11:00-3:00 PM",
+                venue: "B.Tech Large Lab",
+                description: "This advanced programming course focuses on C++ and object-oriented programming concepts. Topics include classes, inheritance, polymorphism, templates, memory management, and standard library usage. The course emphasizes software engineering principles and efficient algorithm implementation.",
+                outcomes: [
+                    "Apply object-oriented programming principles",
+                    "Implement complex data structures in C++",
+                    "Manage memory efficiently using pointers",
+                    "Use C++ standard library components",
+                    "Develop robust and maintainable C++ applications"
+                ],
+                resourcesUrl: "/resources/programming-cpp",
+                videos: "18 videos",
+                pdfs: "14 PDFs"
+            }
+        };
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+            
+            // Set up course card click events
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const courseId = this.getAttribute('data-course');
+                    openCourseModal(courseId);
+                });
+            });
+            
+            // Set up modal close event
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            document.getElementById('courseModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Open course modal with data
+        function openCourseModal(courseId) {
+            const course = courses[courseId];
+            const modal = document.getElementById('courseModal');
+            
+            // Populate modal with course data
+            document.getElementById('modalTitle').textContent = course.title;
+            document.getElementById('modalCode').textContent = course.code;
+            document.getElementById('modalInstructor').textContent = course.instructor;
+            document.getElementById('modalSchedule').textContent = course.schedule;
+            document.getElementById('modalVenue').textContent = course.venue;
+            document.getElementById('modalDescription').textContent = course.description;
+            document.getElementById('modalVideos').textContent = course.videos;
+            document.getElementById('modalPDFs').textContent = course.pdfs;
+            
+            // Set resources button URL
+            document.getElementById('modalResourcesBtn').href = course.resourcesUrl;
+            
+            // Populate learning outcomes
+            const outcomesList = document.getElementById('modalOutcomes');
+            outcomesList.innerHTML = '';
+            course.outcomes.forEach(outcome => {
+                const li = document.createElement('li');
+                li.textContent = outcome;
+                outcomesList.appendChild(li);
+            });
+            
+            // Show modal
+            modal.classList.add('active');
+        }
+        
+        // Close course modal
+        function closeModal() {
+            document.getElementById('courseModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
