@@ -393,18 +393,18 @@ data_communication_quiz = {
         "correct_answer": 1,
         "explanation": "Audio is continuous by nature, unlike text, numbers, or images which are discrete entities."
     },
-    {
+        {
         "id": 31,
         "type": "multiple_choice",
         "question": "Calculate the effective area of an antenna if gain is 3 dBi and frequency is 50 MHz (c = 3 × 10⁸ m/s)",
         "options": [
-            "0.36 m²",
-            "0.72 m²",
-            "1.44 m²",
-            "2.88 m²"
+            "2.86 m²",
+            "5.73 m²", 
+            "11.46 m²",
+            "22.92 m²"
         ],
         "correct_answer": 1,
-        "explanation": "First convert dBi to ratio: 3 dBi = 2 (since 10log₁₀(G) = 3, G = 10^(0.3) ≈ 2). λ = c/f = 6 m. Aₑ = Gλ²/(4π) = 2 × 36/(12.57) ≈ 0.72 m²"
+        "explanation": "First convert 3 dBi to ratio: G = 10^(3/10) = 10^0.3 ≈ 2. Calculate wavelength: λ = c/f = 3 × 10⁸/50 × 10⁶ = 6 m. Use formula Aₑ = Gλ²/(4π) = 2 × 6²/(4 × 3.1416) = 2 × 36/12.5664 = 72/12.5664 ≈ 5.73 m²."
     },
     {
         "id": 32,
