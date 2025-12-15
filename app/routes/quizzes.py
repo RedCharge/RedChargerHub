@@ -402,7 +402,7 @@ def take_quiz(quiz_slug):
 @quizzes_bp.route('/api/submit', methods=['POST'])
 @login_required
 def submit_quiz():
-    """API endpoint to submit and grade quiz - FIXED FOR EMPTY ANSWERS"""
+    """API endpoint to submit and grade quiz - PROPERLY HANDLES BOTH MULTIPLE CHOICE AND TRUE/FALSE"""
     try:
         data = request.json
         print(f"SUBMIT QUIZ: Received data for user {current_user.id}")
@@ -503,11 +503,22 @@ def submit_quiz():
                 'explanation': question.get('explanation', '')
             }
             
-            if question.get('type') == 'multiple_choice':
+            question_type = question.get('type', 'multiple_choice')
+            
+            if question_type == 'multiple_choice':
                 correct_answer = question.get('correct_answer')
                 options = question.get('options', [])
                 
-                if correct_answer is not None and options:
+                # Handle case where correct_answer is None
+                if correct_answer is None:
+                    print(f"  WARNING: No correct answer specified for question {q_id}")
+                    result['correct_answer'] = 'Not specified'
+                    result['is_correct'] = False
+                    result['points'] = 0
+                    incorrect_answers += 1
+                    print(f"  RESULT: ✗ INCORRECT (No correct answer in database)")
+                
+                else:
                     # Handle empty answer - mark as incorrect
                     if user_answer is None or str(user_answer).strip() == '':
                         result['is_correct'] = False
@@ -517,39 +528,104 @@ def submit_quiz():
                         
                     else:
                         # Convert both to strings and normalize
-                        user_ans_str = str(user_answer).strip().upper()
-                        correct_ans_str = str(correct_answer).strip().upper()
+                        user_ans_str = str(user_answer).strip()
+                        correct_ans_str = str(correct_answer).strip()
+                        
+                        # Debug print
+                        print(f"  Comparing: user='{user_ans_str}', correct='{correct_ans_str}'")
                         
                         is_correct = False
                         
-                        # Method 1: User answer is letter (A, B, C, D)
-                        if user_ans_str in ['A', 'B', 'C', 'D']:
-                            # Convert letter to index
-                            letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-                            user_index = letter_to_index.get(user_ans_str)
-                            
-                            # Check if correct answer is index (0, 1, 2, 3)
-                            if correct_ans_str in ['0', '1', '2', '3']:
-                                is_correct = (user_index == int(correct_ans_str))
-                                print(f"  Letter '{user_ans_str}' -> index {user_index} compares to index {correct_ans_str}: {is_correct}")
-                            else:
-                                is_correct = False
-                                print(f"  Letter '{user_ans_str}' but correct answer '{correct_ans_str}' is not an index")
+                        # Get options safely
+                        if not isinstance(options, list):
+                            options = []
                         
-                        # Method 2: User answer is numeric string ('0', '1', '2', '3')
-                        elif user_ans_str in ['0', '1', '2', '3']:
-                            if correct_ans_str in ['0', '1', '2', '3']:
-                                is_correct = (user_ans_str == correct_ans_str)
-                                print(f"  Number '{user_ans_str}' compares to number '{correct_ans_str}': {is_correct}")
-                            else:
-                                is_correct = False
-                                print(f"  Number '{user_ans_str}' but correct answer '{correct_ans_str}' is not a number")
+                        # CRITICAL FIX: Check if this is REALLY a true/false question
+                        # True/false questions have NO options array or empty options
+                        is_true_false = False
                         
-                        # Method 3: Direct comparison for other cases
+                        # Method 1: Check question type from data
+                        if question.get('type') == 'true_false':
+                            is_true_false = True
+                            print(f"  Question marked as 'true_false' type")
+                        
+                        # Method 2: No options = true/false question  
+                        elif len(options) == 0:
+                            is_true_false = True
+                            print(f"  No options - treating as True/False question")
+                        
+                        # Method 3: Check for boolean correct answer
+                        elif isinstance(correct_answer, bool):
+                            is_true_false = True
+                            print(f"  Boolean correct answer - treating as True/False question")
+                        
+                        # Method 4: Check question text for true/false indicators
+                        elif 'true or false' in question.get('question', '').lower() or \
+                             'true/false' in question.get('question', '').lower():
+                            is_true_false = True
+                            print(f"  Question contains 'true/false' - treating as True/False question")
+                        
                         else:
-                            is_correct = (user_ans_str == correct_ans_str)
-                            print(f"  Direct comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
+                            # Has options = regular multiple choice
+                            is_true_false = False
+                            print(f"  Has {len(options)} options - treating as regular multiple choice")
                         
+                        if is_true_false:
+                            # ==============================================
+                            # TRUE/FALSE QUESTION LOGIC
+                            # ==============================================
+                            
+                            # Normalize user answer
+                            user_normalized = user_ans_str.upper()
+                            if user_normalized in ['TRUE', 'T', '1', 'YES', 'Y']:
+                                user_normalized = 'TRUE'
+                            elif user_normalized in ['FALSE', 'F', '0', 'NO', 'N']:
+                                user_normalized = 'FALSE'
+                            
+                            # Normalize correct answer
+                            if isinstance(correct_answer, bool):
+                                correct_normalized = 'TRUE' if correct_answer else 'FALSE'
+                            elif correct_ans_str.upper() in ['TRUE', 'T', '1']:
+                                correct_normalized = 'TRUE'
+                            elif correct_ans_str.upper() in ['FALSE', 'F', '0']:
+                                correct_normalized = 'FALSE'
+                            else:
+                                correct_normalized = correct_ans_str.upper()
+                            
+                            is_correct = (user_normalized == correct_normalized)
+                            print(f"  True/False comparison: '{user_normalized}' == '{correct_normalized}': {is_correct}")
+                        
+                        else:
+                            # ==============================================
+                            # REGULAR MULTIPLE CHOICE QUESTION LOGIC
+                            # ==============================================
+                            
+                            print(f"  Regular multiple choice with {len(options)} options")
+                            
+                            # Method 1: Direct numeric comparison (0, 1, 2, 3)
+                            if user_ans_str in ['0', '1', '2', '3'] and correct_ans_str in ['0', '1', '2', '3']:
+                                is_correct = (user_ans_str == correct_ans_str)
+                                print(f"  Numeric comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
+                            
+                            # Method 2: Letter to index comparison (A, B, C, D -> 0, 1, 2, 3)
+                            elif user_ans_str.upper() in ['A', 'B', 'C', 'D']:
+                                letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
+                                user_index = letter_to_index.get(user_ans_str.upper())
+                                
+                                if correct_ans_str in ['0', '1', '2', '3']:
+                                    is_correct = (user_index == int(correct_ans_str))
+                                    print(f"  Letter '{user_ans_str}' (index {user_index}) == '{correct_ans_str}': {is_correct}")
+                                else:
+                                    # Try to match letter directly
+                                    is_correct = (user_ans_str.upper() == correct_ans_str.upper())
+                                    print(f"  Direct letter comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
+                            
+                            # Method 3: Direct string comparison (for any other format)
+                            else:
+                                is_correct = (user_ans_str.upper() == correct_ans_str.upper())
+                                print(f"  Direct string comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
+                        
+                        # Update counters based on result
                         if is_correct:
                             result['is_correct'] = True
                             result['points'] = 1
@@ -557,29 +633,39 @@ def submit_quiz():
                             correct_answers += 1
                             print(f"  RESULT: ✓ CORRECT! Total correct: {correct_answers}")
                         else:
+                            result['is_correct'] = False
+                            result['points'] = 0
                             incorrect_answers += 1
                             print(f"  RESULT: ✗ INCORRECT")
                     
                     # Store correct answer text for display
                     try:
-                        if isinstance(correct_answer, int) and 0 <= correct_answer < len(options):
-                            result['correct_answer'] = options[correct_answer]
-                        elif isinstance(correct_answer, str) and correct_answer.isdigit():
-                            idx = int(correct_answer)
-                            if 0 <= idx < len(options):
-                                result['correct_answer'] = options[idx]
+                        # For true/false questions
+                        if isinstance(correct_answer, bool):
+                            result['correct_answer'] = 'True' if correct_answer else 'False'
+                        elif str(correct_answer).upper() in ['TRUE', 'T', '1']:
+                            result['correct_answer'] = 'True'
+                        elif str(correct_answer).upper() in ['FALSE', 'F', '0']:
+                            result['correct_answer'] = 'False'
+                        # For multiple choice with options
+                        elif len(options) > 0:
+                            if isinstance(correct_answer, int) and 0 <= correct_answer < len(options):
+                                result['correct_answer'] = options[correct_answer]
+                            elif isinstance(correct_answer, str) and correct_answer.isdigit():
+                                idx = int(correct_answer)
+                                if 0 <= idx < len(options):
+                                    result['correct_answer'] = options[idx]
+                                else:
+                                    result['correct_answer'] = str(correct_answer)
                             else:
-                                result['correct_answer'] = correct_ans_str
+                                result['correct_answer'] = str(correct_answer)
                         else:
-                            result['correct_answer'] = correct_ans_str
-                    except:
+                            result['correct_answer'] = str(correct_answer)
+                    except Exception as e:
+                        print(f"  Error formatting correct answer: {e}")
                         result['correct_answer'] = str(correct_answer)
-                else:
-                    result['correct_answer'] = 'Not specified'
-                    incorrect_answers += 1
-                    print(f"  WARNING: No correct answer specified")
-                    
-            elif question.get('type') == 'written':
+            
+            elif question_type == 'written':
                 verification = verify_written_answer(
                     user_answer,
                     question.get('correct_answer', ''),
@@ -594,6 +680,8 @@ def submit_quiz():
                     correct_answers += 1
                     print(f"  Written answer: ✓ CORRECT! Similarity: {verification['similarity']:.2f}")
                 else:
+                    result['is_correct'] = False
+                    result['points'] = 0
                     incorrect_answers += 1
                     print(f"  Written answer: ✗ INCORRECT! Similarity: {verification['similarity']:.2f}")
                 
@@ -611,6 +699,13 @@ def submit_quiz():
         print(f"Correct Answers: {correct_answers}")
         print(f"Incorrect Answers: {incorrect_answers}")
         
+        # Validate that totals match
+        if (correct_answers + incorrect_answers) != total_questions:
+            print(f"WARNING: Numbers don't match! {correct_answers} + {incorrect_answers} != {total_questions}")
+            print(f"Fixing discrepancy...")
+            incorrect_answers = total_questions - correct_answers
+            print(f"Adjusted: Correct={correct_answers}, Incorrect={incorrect_answers}")
+        
         # Calculate percentage and grade
         percentage = (total_score / total_questions) * 100 if total_questions > 0 else 0
         grade_letter, grade_message = calculate_grade(percentage)
@@ -620,29 +715,40 @@ def submit_quiz():
         passing_score = quiz_data.get('passing_score', 60)
         
         print(f"\n=== FINAL RESULTS ===")
-        print(f"Percentage: {percentage}%")
+        print(f"Percentage: {percentage:.1f}%")
         print(f"Grade: {grade_letter}")
+        print(f"Passing Score: {passing_score}%")
+        print(f"Passed: {percentage >= passing_score}")
         
-        # SAVE TO DATABASE
-        try:
-            # Create metadata
-            metadata = {
+        # Create metadata for JSON storage
+        metadata = {
+            'correct_answers': correct_answers,
+            'incorrect_answers': incorrect_answers,
+            'time_taken': time_taken,
+            'passing_score': passing_score,
+            'adaptive_metrics': adaptive_metrics,
+            'course_name': quiz_info['name'],
+            'course_code': quiz_info['course_code'],
+            'passed': percentage >= passing_score,
+            'total_score': total_score,
+            'total_questions': total_questions
+        }
+        
+        # Combine all data for JSON storage
+        combined_data = {
+            'quiz_data': metadata,
+            'user_answers': answers,
+            'results_summary': {
+                'total_questions': total_questions,
                 'correct_answers': correct_answers,
                 'incorrect_answers': incorrect_answers,
-                'time_taken': time_taken,
-                'passing_score': passing_score,
-                'adaptive_metrics': adaptive_metrics,
-                'course_name': quiz_info['name'],
-                'course_code': quiz_info['course_code']
+                'score': total_score,
+                'percentage': percentage
             }
-            
-            # Store metadata in answers JSON
-            combined_data = {
-                'quiz_data': metadata,
-                'user_answers': answers
-            }
-            
-            # Create quiz attempt
+        }
+        
+        # Save to database
+        try:
             quiz_attempt = QuizAttempt(
                 user_id=current_user.id,
                 quiz_type=quiz_type,
@@ -651,11 +757,6 @@ def submit_quiz():
                 total_questions=total_questions,
                 percentage=round(percentage, 2),
                 grade=grade_letter,
-                correct_answers=correct_answers,
-                incorrect_answers=incorrect_answers,
-                time_taken=time_taken,
-                passing_score=passing_score,
-                adaptive_metrics=json.dumps(adaptive_metrics) if adaptive_metrics else None,
                 answers=json.dumps(combined_data),
                 results=json.dumps(results),
                 attempt_date=datetime.now()
@@ -665,34 +766,15 @@ def submit_quiz():
             db.session.commit()
             attempt_id = quiz_attempt.id
             print(f"SUCCESS: Quiz attempt saved to database with ID {attempt_id}")
+            print(f"  Correct answers: {correct_answers}")
+            print(f"  Incorrect answers: {incorrect_answers}")
+            print(f"  Total questions: {total_questions}")
             
         except Exception as db_error:
             print(f"DATABASE ERROR: {db_error}")
-            # Try fallback without new columns
-            try:
-                quiz_attempt = QuizAttempt(
-                    user_id=current_user.id,
-                    quiz_type=quiz_type,
-                    quiz_name=quiz_info['name'],
-                    score=total_score,
-                    total_questions=total_questions,
-                    percentage=round(percentage, 2),
-                    grade=grade_letter,
-                    answers=json.dumps(combined_data),
-                    results=json.dumps(results),
-                    attempt_date=datetime.now()
-                )
-                
-                db.session.add(quiz_attempt)
-                db.session.commit()
-                attempt_id = quiz_attempt.id
-                print(f"SUCCESS (fallback): Quiz attempt saved without new columns")
-                
-            except Exception as e2:
-                print(f"FALLBACK ALSO FAILED: {e2}")
-                traceback.print_exc()
-                attempt_id = None
-                db.session.rollback()
+            traceback.print_exc()
+            attempt_id = None
+            db.session.rollback()
         
         return jsonify({
             'success': True,
@@ -776,65 +858,36 @@ def get_all_results():
         
         results = []
         for attempt in attempts:
-            # Get course information
+            # Get course information from QUIZ_COURSES mapping
             course_info = QUIZ_COURSES.get(attempt.quiz_type, {})
             
-            # Try to get data from columns first, then from JSON
-            correct_answers = 0
-            incorrect_answers = 0
+            # Initialize with defaults
+            correct_answers = attempt.score  # Use score as correct answers
+            incorrect_answers = attempt.total_questions - correct_answers if attempt.total_questions else 0
             time_taken = 0
             passing_score = 60
             adaptive_metrics = {}
             course_name = attempt.quiz_name
             course_code = course_info.get('course_code', '')
+            passed = attempt.percentage >= passing_score
             
-            # Check if columns exist in the model
-            if hasattr(attempt, 'correct_answers'):
-                correct_answers = attempt.correct_answers
-            if hasattr(attempt, 'incorrect_answers'):
-                incorrect_answers = attempt.incorrect_answers
-            if hasattr(attempt, 'time_taken'):
-                time_taken = attempt.time_taken
-            if hasattr(attempt, 'passing_score'):
-                passing_score = attempt.passing_score
-            if hasattr(attempt, 'adaptive_metrics') and attempt.adaptive_metrics:
-                try:
-                    adaptive_metrics = json.loads(attempt.adaptive_metrics)
-                except:
-                    adaptive_metrics = {}
-            
-            # Fallback: extract from JSON if columns don't have data
-            if correct_answers == 0 or incorrect_answers == 0:
-                try:
-                    if attempt.answers:
-                        answers_data = json.loads(attempt.answers)
-                        if isinstance(answers_data, dict) and 'quiz_data' in answers_data:
-                            quiz_metadata = answers_data['quiz_data']
-                            
-                            if correct_answers == 0:
-                                correct_answers = quiz_metadata.get('correct_answers', attempt.score)
-                            if incorrect_answers == 0:
-                                incorrect_answers = quiz_metadata.get('incorrect_answers', attempt.total_questions - attempt.score)
-                            if time_taken == 0:
-                                time_taken = quiz_metadata.get('time_taken', 0)
-                            if passing_score == 60:
-                                passing_score = quiz_metadata.get('passing_score', 60)
-                            if not adaptive_metrics:
-                                adaptive_metrics = quiz_metadata.get('adaptive_metrics', {})
-                            
-                            course_name = quiz_metadata.get('course_name', attempt.quiz_name)
-                            course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
-                except Exception as e:
-                    print(f"Error parsing JSON for attempt {attempt.id}: {e}")
-            
-            # Final fallback: calculate from score
-            if correct_answers == 0 and attempt.score is not None:
-                correct_answers = attempt.score
-                incorrect_answers = attempt.total_questions - correct_answers
-            
-            # Ensure passing_score is set
-            if passing_score == 60:  # Still default
-                passing_score = course_info.get('passing_score', 60)
+            # Try to extract from JSON answers
+            try:
+                if attempt.answers:
+                    answers_data = json.loads(attempt.answers)
+                    if isinstance(answers_data, dict) and 'quiz_data' in answers_data:
+                        quiz_metadata = answers_data['quiz_data']
+                        
+                        correct_answers = quiz_metadata.get('correct_answers', attempt.score)
+                        incorrect_answers = quiz_metadata.get('incorrect_answers', incorrect_answers)
+                        time_taken = quiz_metadata.get('time_taken', 0)
+                        passing_score = quiz_metadata.get('passing_score', 60)
+                        adaptive_metrics = quiz_metadata.get('adaptive_metrics', {})
+                        course_name = quiz_metadata.get('course_name', attempt.quiz_name)
+                        course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
+                        passed = quiz_metadata.get('passed', attempt.percentage >= passing_score)
+            except Exception as e:
+                print(f"Error parsing JSON for attempt {attempt.id}: {e}")
             
             results.append({
                 'id': attempt.id,
@@ -846,43 +899,20 @@ def get_all_results():
                 'total_questions': attempt.total_questions,
                 'percentage': float(attempt.percentage),
                 'grade': attempt.grade,
-                'passed': attempt.percentage >= passing_score,
+                'passed': passed,
                 'passing_score': passing_score,
                 'completed_at': attempt.attempt_date.isoformat() if attempt.attempt_date else None,
                 'time_taken': time_taken,
                 'correct_answers': correct_answers,
                 'incorrect_answers': incorrect_answers,
-                'adaptive_metrics': adaptive_metrics,
-                'data_source': 'columns' if hasattr(attempt, 'correct_answers') and attempt.correct_answers > 0 else 'json'
+                'adaptive_metrics': adaptive_metrics
             })
-        
-        # Calculate statistics
-        total_attempts = len(attempts)
-        if total_attempts > 0:
-            passed_attempts = len([a for a in attempts if a.percentage >= 60])
-            average_score = round(sum(a.percentage for a in attempts) / total_attempts, 2)
-        else:
-            passed_attempts = 0
-            average_score = 0
-        
-        # Get unique courses
-        unique_courses = set(a.quiz_type for a in attempts)
-        total_courses = len(QUIZ_COURSES)
-        completion_rate = round((len(unique_courses) / total_courses) * 100, 2) if total_courses > 0 else 0
         
         print(f"DEBUG: Returning {len(results)} results")
         
         return jsonify({
             'success': True,
-            'results': results,
-            'stats': {
-                'total_attempts': total_attempts,
-                'passed_quizzes': passed_attempts,
-                'average_score': average_score,
-                'completion_rate': completion_rate,
-                'courses_attempted': len(unique_courses),
-                'total_courses': total_courses
-            }
+            'results': results
         })
         
     except Exception as e:
@@ -913,18 +943,34 @@ def get_quiz_attempt_details(attempt_id):
         course_info = QUIZ_COURSES.get(attempt.quiz_type, {})
         
         # Extract data
-        correct_answers = attempt.correct_answers if hasattr(attempt, 'correct_answers') else 0
-        incorrect_answers = attempt.incorrect_answers if hasattr(attempt, 'incorrect_answers') else 0
-        time_taken = attempt.time_taken if hasattr(attempt, 'time_taken') else 0
-        passing_score = attempt.passing_score if hasattr(attempt, 'passing_score') else 60
-        
+        correct_answers = attempt.score
+        incorrect_answers = attempt.total_questions - correct_answers if attempt.total_questions else 0
+        time_taken = 0
+        passing_score = 60
         adaptive_metrics = {}
-        if hasattr(attempt, 'adaptive_metrics') and attempt.adaptive_metrics:
-            try:
-                adaptive_metrics = json.loads(attempt.adaptive_metrics)
-            except:
-                adaptive_metrics = {}
+        course_name = attempt.quiz_name
+        course_code = course_info.get('course_code', '')
+        passed = attempt.percentage >= passing_score
         
+        # Try to extract from JSON
+        try:
+            if attempt.answers:
+                answers_data = json.loads(attempt.answers)
+                if isinstance(answers_data, dict) and 'quiz_data' in answers_data:
+                    quiz_metadata = answers_data['quiz_data']
+                    
+                    correct_answers = quiz_metadata.get('correct_answers', attempt.score)
+                    incorrect_answers = quiz_metadata.get('incorrect_answers', incorrect_answers)
+                    time_taken = quiz_metadata.get('time_taken', 0)
+                    passing_score = quiz_metadata.get('passing_score', 60)
+                    adaptive_metrics = quiz_metadata.get('adaptive_metrics', {})
+                    course_name = quiz_metadata.get('course_name', attempt.quiz_name)
+                    course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
+                    passed = quiz_metadata.get('passed', attempt.percentage >= passing_score)
+        except:
+            pass
+        
+        # Get questions data
         questions_data = []
         try:
             if attempt.results:
@@ -938,15 +984,15 @@ def get_quiz_attempt_details(attempt_id):
             'id': attempt.id,
             'quiz_type': attempt.quiz_type,
             'quiz_name': attempt.quiz_name,
-            'course_name': course_info.get('name', attempt.quiz_name),
-            'course_code': course_info.get('course_code', ''),
+            'course_name': course_name,
+            'course_code': course_code,
             'score': attempt.score,
             'percentage': float(attempt.percentage),
             'total_questions': attempt.total_questions,
             'correct_answers': correct_answers,
             'incorrect_answers': incorrect_answers,
             'time_taken': time_taken,
-            'passed': attempt.percentage >= passing_score,
+            'passed': passed,
             'passing_score': passing_score,
             'completed_at': attempt.attempt_date.isoformat() if attempt.attempt_date else None,
             'questions': questions_data,
@@ -991,8 +1037,6 @@ def debug_latest_attempt():
             'total_questions': attempt.total_questions,
             'percentage': attempt.percentage,
             'grade': attempt.grade,
-            'correct_answers_db': attempt.correct_answers if hasattr(attempt, 'correct_answers') else 'NO COLUMN',
-            'incorrect_answers_db': attempt.incorrect_answers if hasattr(attempt, 'incorrect_answers') else 'NO COLUMN',
             'answers_raw': attempt.answers,
             'results_raw': attempt.results[:500] + '...' if attempt.results and len(attempt.results) > 500 else attempt.results
         }
@@ -1024,11 +1068,7 @@ def debug_latest_attempt():
         return jsonify({
             'success': True,
             'raw': raw_data,
-            'parsed': parsed_data,
-            'debug_info': {
-                'model_has_correct_answers_column': hasattr(attempt, 'correct_answers'),
-                'score_correct_match': attempt.score == (attempt.correct_answers if hasattr(attempt, 'correct_answers') else 0)
-            }
+            'parsed': parsed_data
         })
         
     except Exception as e:
@@ -1055,6 +1095,12 @@ def debug_answer_matching():
             {'user': '3', 'correct': 3, 'expected': True, 'desc': 'String 3 -> index 3'},
             {'user': 'a', 'correct': 0, 'expected': True, 'desc': 'Lowercase a -> index 0'},
             {'user': 'Option A', 'correct': 0, 'expected': False, 'desc': 'Full option text'},
+            {'user': 'True', 'correct': 'True', 'expected': True, 'desc': 'True string match'},
+            {'user': 'true', 'correct': 'True', 'expected': True, 'desc': 'Lowercase true -> True'},
+            {'user': 'T', 'correct': 'True', 'expected': True, 'desc': 'T -> True'},
+            {'user': 'False', 'correct': 'False', 'expected': True, 'desc': 'False string match'},
+            {'user': 'false', 'correct': 'False', 'expected': True, 'desc': 'Lowercase false -> False'},
+            {'user': 'F', 'correct': 'False', 'expected': True, 'desc': 'F -> False'},
         ]
         
         results = []
@@ -1072,6 +1118,22 @@ def debug_answer_matching():
                 is_correct = True
             elif user_ans_str in ['0', '1', '2', '3'] and user_ans_str == correct_ans_str:
                 is_correct = True
+            else:
+                # Normalize true/false answers
+                user_normalized = user_ans_str
+                correct_normalized = correct_ans_str
+                
+                if user_normalized in ['TRUE', 'T', '1']:
+                    user_normalized = 'TRUE'
+                elif user_normalized in ['FALSE', 'F', '0']:
+                    user_normalized = 'FALSE'
+                
+                if correct_normalized in ['TRUE', 'T', '1']:
+                    correct_normalized = 'TRUE'
+                elif correct_normalized in ['FALSE', 'F', '0']:
+                    correct_normalized = 'FALSE'
+                
+                is_correct = (user_normalized == correct_normalized)
             
             results.append({
                 'test': test['desc'],
@@ -1085,7 +1147,7 @@ def debug_answer_matching():
         return jsonify({
             'success': True,
             'tests': results,
-            'note': 'This tests the answer matching logic. If any test fails, that might be why you get 19/20 instead of 20/20.'
+            'note': 'This tests the answer matching logic including true/false questions.'
         })
         
     except Exception as e:
@@ -1115,8 +1177,6 @@ def debug_db_state():
                 'total_questions': attempt.total_questions,
                 'percentage': attempt.percentage,
                 'grade': attempt.grade,
-                'correct_answers': attempt.correct_answers if hasattr(attempt, 'correct_answers') else 'N/A',
-                'incorrect_answers': attempt.incorrect_answers if hasattr(attempt, 'incorrect_answers') else 'N/A',
                 'attempt_date': attempt.attempt_date.isoformat() if attempt.attempt_date else None,
                 'has_answers': bool(attempt.answers),
                 'has_results': bool(attempt.results)
@@ -1126,8 +1186,7 @@ def debug_db_state():
             'success': True,
             'user_id': current_user.id,
             'total_attempts_in_db': total_attempts,
-            'attempts': attempts_data,
-            'note': 'These are REAL database entries'
+            'attempts': attempts_data
         })
         
     except Exception as e:

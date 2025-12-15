@@ -626,1122 +626,997 @@
 
     <!-- JavaScript -->
     <script>
-        // Global state
-        let quizResults = [];
-        let currentPage = 1;
-        const itemsPerPage = 10;
-        let filteredResults = [];
-        let performanceCharts = {};
-        let activeFilter = 'all';
-        let selectedCourse = '';
+    // Global state
+    let quizResults = [];
+    let currentPage = 1;
+    const itemsPerPage = 10;
+    let filteredResults = [];
+    let performanceCharts = {};
+    let activeFilter = 'all';
+    let selectedCourse = '';
 
-        // DOM elements
-        const loadingState = document.getElementById('loading-state');
-        const errorState = document.getElementById('error-state');
-        const resultsContent = document.getElementById('results-content');
-        const emptyState = document.getElementById('empty-state');
-        const retryButton = document.getElementById('retry-btn');
-        const refreshButton = document.getElementById('refreshBtn');
-        const exportButton = document.getElementById('exportBtn');
-        const filterChips = document.querySelectorAll('.filter-chip');
-        const courseFilter = document.getElementById('courseFilter');
-        const searchInput = document.getElementById('searchAttempts');
-        const clearSearch = document.getElementById('clearSearch');
-        const prevPageButton = document.getElementById('prev-page');
-        const nextPageButton = document.getElementById('next-page');
-        const pageNumbersContainer = document.getElementById('page-numbers');
-        const paginationInfo = document.getElementById('pagination-info');
-        const attemptsTableBody = document.getElementById('attempts-table-body');
-        const recentAttempts = document.getElementById('recent-attempts');
-        const strengthsList = document.getElementById('strengths-list');
-        const weaknessesList = document.getElementById('weaknesses-list');
-        const recommendationsList = document.getElementById('recommendations-list');
-        const timeRangeSelect = document.getElementById('timeRange');
-        const modal = document.getElementById('detailedResultsModal');
-        const closeModalButton = document.getElementById('closeModal');
-        const modalContent = document.getElementById('modal-content');
-        const modalTitle = document.getElementById('modal-title');
+    // DOM elements
+    const loadingState = document.getElementById('loading-state');
+    const errorState = document.getElementById('error-state');
+    const resultsContent = document.getElementById('results-content');
+    const emptyState = document.getElementById('empty-state');
+    const retryButton = document.getElementById('retry-btn');
+    const refreshButton = document.getElementById('refreshBtn');
+    const exportButton = document.getElementById('exportBtn');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const courseFilter = document.getElementById('courseFilter');
+    const searchInput = document.getElementById('searchAttempts');
+    const clearSearch = document.getElementById('clearSearch');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+    const pageNumbersContainer = document.getElementById('page-numbers');
+    const paginationInfo = document.getElementById('pagination-info');
+    const attemptsTableBody = document.getElementById('attempts-table-body');
+    const recentAttempts = document.getElementById('recent-attempts');
+    const strengthsList = document.getElementById('strengths-list');
+    const weaknessesList = document.getElementById('weaknesses-list');
+    const recommendationsList = document.getElementById('recommendations-list');
+    const timeRangeSelect = document.getElementById('timeRange');
+    const modal = document.getElementById('detailedResultsModal');
+    const closeModalButton = document.getElementById('closeModal');
+    const modalContent = document.getElementById('modal-content');
+    const modalTitle = document.getElementById('modal-title');
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.lucide) {
-                lucide.createIcons();
-            }
-            
-            loadResults();
-            
-            // Set up event listeners
-            retryButton.addEventListener('click', loadResults);
-            refreshButton.addEventListener('click', loadResults);
-            exportButton.addEventListener('click', exportResults);
-            
-            filterChips.forEach(chip => {
-                if (!chip.hasAttribute('data-filter')) return;
-                chip.addEventListener('click', () => {
-                    filterChips.forEach(c => c.classList.remove('active'));
-                    chip.classList.add('active');
-                    activeFilter = chip.getAttribute('data-filter');
-                    filterResults();
-                });
-            });
-            
-            courseFilter.addEventListener('change', function() {
-                selectedCourse = this.value;
-                filterResults();
-            });
-            
-            searchInput.addEventListener('input', filterResults);
-            clearSearch.addEventListener('click', () => {
-                searchInput.value = '';
-                filterResults();
-            });
-            
-            prevPageButton.addEventListener('click', () => changePage(currentPage - 1));
-            nextPageButton.addEventListener('click', () => changePage(currentPage + 1));
-            
-            timeRangeSelect.addEventListener('change', updateCharts);
-            closeModalButton.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-            
-            // Listen for quiz completion events
-            window.addEventListener('quizCompleted', loadResults);
-            
-            console.log('Quiz results page initialized');
-        });
-
-        async function loadResults() {
-            loadingState.classList.remove('hidden');
-            errorState.classList.add('hidden');
-            resultsContent.classList.add('hidden');
-            emptyState.classList.add('hidden');
-            
-            try {
-                console.log('Loading quiz results...');
-                const response = await fetch('/quizzes/api/results');
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                
-                const data = await response.json();
-                console.log('Results data received:', data);
-                
-                if (data.success) {
-                    quizResults = data.results || [];
-                    
-                    // Sort by date (newest first)
-                    quizResults.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-                    
-                    // Populate course filter dropdown
-                    populateCourseFilter();
-                    
-                    // Filter results
-                    filterResults();
-                    
-                    if (quizResults.length === 0) {
-                        showEmptyState();
-                    } else {
-                        showResults();
-                    }
-                } else {
-                    throw new Error(data.message || 'Failed to load results');
-                }
-            } catch (error) {
-                console.error('Error loading results:', error);
-                showError(`Failed to load results: ${error.message}`);
-            }
-        }
-
-        function populateCourseFilter() {
-            const courses = new Set();
-            quizResults.forEach(result => {
-                if (result.course_name && result.course_code) {
-                    courses.add(`${result.course_code} - ${result.course_name}`);
-                }
-            });
-            
-            // Clear existing options except the first one
-            while (courseFilter.options.length > 1) {
-                courseFilter.remove(1);
-            }
-            
-            // Add courses
-            courses.forEach(course => {
-                const option = document.createElement('option');
-                option.value = course;
-                option.textContent = course;
-                courseFilter.appendChild(option);
-            });
-        }
-
-        function filterResults() {
-            filteredResults = [...quizResults];
-            
-            // Apply filters
-            if (activeFilter === 'recent') {
-                const thirtyDaysAgo = new Date();
-                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-                filteredResults = filteredResults.filter(result => 
-                    new Date(result.completed_at) >= thirtyDaysAgo
-                );
-            } else if (activeFilter === 'passed') {
-                filteredResults = filteredResults.filter(result => 
-                    result.passed || result.percentage >= (result.passing_score || 70)
-                );
-            } else if (activeFilter === 'failed') {
-                filteredResults = filteredResults.filter(result => 
-                    !result.passed && result.percentage < (result.passing_score || 70)
-                );
-            }
-            
-            // Filter by course
-            if (selectedCourse) {
-                filteredResults = filteredResults.filter(result => 
-                    `${result.course_code} - ${result.course_name}` === selectedCourse
-                );
-            }
-            
-            // Filter by search
-            const searchTerm = searchInput.value.toLowerCase();
-            if (searchTerm) {
-                filteredResults = filteredResults.filter(result => 
-                    result.course_name?.toLowerCase().includes(searchTerm) ||
-                    result.course_code?.toLowerCase().includes(searchTerm) ||
-                    result.quiz_type?.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            // Update UI
-            updateStats();
-            updateRecentAttempts();
-            updateAllAttempts();
-            updateStrengthsAndWeaknesses();
-            updateRecommendations();
-            updateCharts();
-        }
-
-        function updateStats() {
-            const totalQuizzes = quizResults.length;
-            const passedQuizzes = quizResults.filter(r => r.passed || r.percentage >= (r.passing_score || 70)).length;
-            const totalScore = quizResults.reduce((sum, r) => sum + (r.percentage || 0), 0);
-            const avgScore = totalQuizzes > 0 ? totalScore / totalQuizzes : 0;
-            const passRate = totalQuizzes > 0 ? (passedQuizzes / totalQuizzes) * 100 : 0;
-            
-            // Calculate average time (assuming each quiz has time_taken in minutes)
-            const totalTime = quizResults.reduce((sum, r) => sum + (r.time_taken || 0), 0);
-            const avgTime = totalQuizzes > 0 ? Math.round(totalTime / totalQuizzes) : 0;
-            
-            // Calculate trend (compare last 10 attempts with previous 10)
-            const recentAttempts = quizResults.slice(0, 10);
-            const previousAttempts = quizResults.slice(10, 20);
-            
-            const recentAvg = recentAttempts.length > 0 ? 
-                recentAttempts.reduce((sum, r) => sum + (r.percentage || 0), 0) / recentAttempts.length : 0;
-            const previousAvg = previousAttempts.length > 0 ? 
-                previousAttempts.reduce((sum, r) => sum + (r.percentage || 0), 0) / previousAttempts.length : 0;
-            
-            let trend = 'neutral';
-            let trendIcon = 'minus';
-            let change = 0;
-            
-            if (recentAvg > previousAvg + 5) {
-                trend = 'up';
-                trendIcon = 'trending-up';
-                change = Math.round(recentAvg - previousAvg);
-            } else if (recentAvg < previousAvg - 5) {
-                trend = 'down';
-                trendIcon = 'trending-down';
-                change = Math.round(previousAvg - recentAvg);
-            }
-            
-            // Update DOM elements
-            document.getElementById('overall-score').textContent = `${Math.round(avgScore)}%`;
-            document.getElementById('total-quizzes').textContent = totalQuizzes;
-            document.getElementById('pass-rate').textContent = `${Math.round(passRate)}%`;
-            document.getElementById('pass-count').textContent = `${passedQuizzes} of ${totalQuizzes} quizzes passed`;
-            document.getElementById('avg-time').textContent = `${avgTime} min`;
-            
-            const scoreTrend = document.getElementById('score-trend');
-            scoreTrend.textContent = '';
-            if (trend !== 'neutral') {
-                const icon = document.createElement('i');
-                icon.setAttribute('data-lucide', trendIcon);
-                icon.className = `w-4 h-4 inline-block mr-1 ${trend === 'up' ? 'trend-up' : 'trend-down'}`;
-                scoreTrend.appendChild(icon);
-                scoreTrend.innerHTML += `${change}%`;
-                scoreTrend.className = `flex items-center ${trend === 'up' ? 'trend-up' : 'trend-down'}`;
-                document.getElementById('score-change').textContent = 'vs previous period';
-            } else {
-                scoreTrend.textContent = 'Stable';
-                scoreTrend.className = 'trend-neutral';
-                document.getElementById('score-change').textContent = 'vs last period';
-            }
-            
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.lucide) {
             lucide.createIcons();
         }
+        
+        loadResults();
+        
+        // Set up event listeners
+        retryButton.addEventListener('click', loadResults);
+        refreshButton.addEventListener('click', loadResults);
+        exportButton.addEventListener('click', exportResults);
+        
+        filterChips.forEach(chip => {
+            if (!chip.hasAttribute('data-filter')) return;
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeFilter = chip.getAttribute('data-filter');
+                filterResults();
+            });
+        });
+        
+        courseFilter.addEventListener('change', function() {
+            selectedCourse = this.value;
+            filterResults();
+        });
+        
+        searchInput.addEventListener('input', filterResults);
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            filterResults();
+        });
+        
+        prevPageButton.addEventListener('click', () => changePage(currentPage - 1));
+        nextPageButton.addEventListener('click', () => changePage(currentPage + 1));
+        
+        timeRangeSelect.addEventListener('change', updateCharts);
+        closeModalButton.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // Listen for quiz completion events
+        window.addEventListener('quizCompleted', loadResults);
+        
+        console.log('Quiz results page initialized');
+    });
 
-        function updateRecentAttempts() {
-            const recent = filteredResults.slice(0, 5);
+    async function loadResults() {
+        loadingState.classList.remove('hidden');
+        errorState.classList.add('hidden');
+        resultsContent.classList.add('hidden');
+        emptyState.classList.add('hidden');
+        
+        try {
+            console.log('Loading quiz results...');
+            const response = await fetch('/quizzes/api/results');
             
-            if (recent.length === 0) {
-                recentAttempts.innerHTML = `
-                    <div class="text-center py-8 text-gray-500">
-                        <i data-lucide="inbox" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
-                        <p>No quiz attempts found with current filters</p>
-                    </div>
-                `;
-                return;
+            if (!response.ok) {
+                // Try to get error message from response
+                let errorMsg = `HTTP ${response.status}: ${response.statusText}`;
+                try {
+                    const errorData = await response.json();
+                    errorMsg = errorData.message || errorData.error || errorMsg;
+                } catch (e) {
+                    // If can't parse JSON, use default message
+                }
+                throw new Error(errorMsg);
             }
             
+            const data = await response.json();
+            console.log('Results data received:', data);
+            
+            if (data.success) {
+                quizResults = data.results || [];
+                
+                // Process and normalize quiz results
+                quizResults = quizResults.map(result => {
+                    // Ensure all required fields exist with defaults
+                    const totalQuestions = result.total_questions || 20;
+                    const correctAnswers = result.correct_answers || result.score || 0;
+                    const incorrectAnswers = result.incorrect_answers || (totalQuestions - correctAnswers);
+                    const percentage = result.percentage || (totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0);
+                    const passed = result.passed || percentage >= (result.passing_score || 70);
+                    
+                    return {
+                        ...result,
+                        total_questions: totalQuestions,
+                        correct_answers: correctAnswers,
+                        incorrect_answers: incorrectAnswers,
+                        percentage: Math.round(percentage),
+                        passed: passed,
+                        passing_score: result.passing_score || 70,
+                        // Ensure dates are properly formatted
+                        completed_at: result.completed_at || new Date().toISOString(),
+                        // Ensure course info
+                        course_name: result.course_name || result.quiz_name || 'Unknown Course',
+                        course_code: result.course_code || ''
+                    };
+                });
+                
+                // Sort by date (newest first)
+                quizResults.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
+                
+                // Populate course filter dropdown
+                populateCourseFilter();
+                
+                // Filter results
+                filterResults();
+                
+                if (quizResults.length === 0) {
+                    showEmptyState();
+                } else {
+                    showResults();
+                }
+            } else {
+                throw new Error(data.message || 'Failed to load results');
+            }
+        } catch (error) {
+            console.error('Error loading results:', error);
+            showError(`Failed to load results: ${error.message}`);
+        }
+    }
+
+    function populateCourseFilter() {
+        const courses = new Set();
+        quizResults.forEach(result => {
+            if (result.course_name) {
+                courses.add(result.course_name);
+            } else if (result.quiz_name) {
+                courses.add(result.quiz_name);
+            }
+        });
+        
+        // Clear existing options except the first one
+        while (courseFilter.options.length > 1) {
+            courseFilter.remove(1);
+        }
+        
+        // Add courses
+        courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseFilter.appendChild(option);
+        });
+    }
+
+    function filterResults() {
+        filteredResults = [...quizResults];
+        
+        // Apply filters
+        if (activeFilter === 'recent') {
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            filteredResults = filteredResults.filter(result => 
+                new Date(result.completed_at) >= thirtyDaysAgo
+            );
+        } else if (activeFilter === 'passed') {
+            filteredResults = filteredResults.filter(result => result.passed);
+        } else if (activeFilter === 'failed') {
+            filteredResults = filteredResults.filter(result => !result.passed);
+        }
+        
+        // Filter by course
+        if (selectedCourse) {
+            filteredResults = filteredResults.filter(result => 
+                result.course_name === selectedCourse || 
+                result.quiz_name === selectedCourse
+            );
+        }
+        
+        // Filter by search
+        const searchTerm = searchInput.value.toLowerCase();
+        if (searchTerm) {
+            filteredResults = filteredResults.filter(result => 
+                (result.course_name && result.course_name.toLowerCase().includes(searchTerm)) ||
+                (result.course_code && result.course_code.toLowerCase().includes(searchTerm)) ||
+                (result.quiz_name && result.quiz_name.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        // Update UI
+        updateStats();
+        updateRecentAttempts();
+        updateAllAttempts();
+        updateStrengthsAndWeaknesses();
+        updateRecommendations();
+        updateCharts();
+    }
+
+    function updateStats() {
+        const totalQuizzes = quizResults.length;
+        const passedQuizzes = quizResults.filter(r => r.passed).length;
+        const totalScore = quizResults.reduce((sum, r) => sum + (r.percentage || 0), 0);
+        const avgScore = totalQuizzes > 0 ? Math.round(totalScore / totalQuizzes) : 0;
+        const passRate = totalQuizzes > 0 ? Math.round((passedQuizzes / totalQuizzes) * 100) : 0;
+        
+        // Calculate average time
+        const totalTime = quizResults.reduce((sum, r) => sum + (r.time_taken || 0), 0);
+        const avgTime = totalQuizzes > 0 ? Math.round(totalTime / totalQuizzes) : 0;
+        
+        // Calculate trend
+        const recentAttempts = quizResults.slice(0, Math.min(5, quizResults.length));
+        const previousAttempts = quizResults.slice(5, Math.min(10, quizResults.length));
+        
+        const recentAvg = recentAttempts.length > 0 ? 
+            Math.round(recentAttempts.reduce((sum, r) => sum + (r.percentage || 0), 0) / recentAttempts.length) : 0;
+        const previousAvg = previousAttempts.length > 0 ? 
+            Math.round(previousAttempts.reduce((sum, r) => sum + (r.percentage || 0), 0) / previousAttempts.length) : 0;
+        
+        let trend = 'neutral';
+        let trendIcon = 'minus';
+        let change = 0;
+        
+        if (previousAvg > 0 && recentAvg > previousAvg + 2) {
+            trend = 'up';
+            trendIcon = 'trending-up';
+            change = Math.abs(recentAvg - previousAvg);
+        } else if (previousAvg > 0 && recentAvg < previousAvg - 2) {
+            trend = 'down';
+            trendIcon = 'trending-down';
+            change = Math.abs(previousAvg - recentAvg);
+        }
+        
+        // Update DOM elements
+        document.getElementById('overall-score').textContent = `${avgScore}%`;
+        document.getElementById('total-quizzes').textContent = totalQuizzes;
+        document.getElementById('pass-rate').textContent = `${passRate}%`;
+        document.getElementById('pass-count').textContent = `${passedQuizzes} of ${totalQuizzes} quizzes passed`;
+        document.getElementById('avg-time').textContent = `${avgTime} min`;
+        
+        const scoreTrend = document.getElementById('score-trend');
+        scoreTrend.textContent = '';
+        if (trend !== 'neutral') {
+            const icon = document.createElement('i');
+            icon.setAttribute('data-lucide', trendIcon);
+            icon.className = `w-4 h-4 inline-block mr-1 ${trend === 'up' ? 'trend-up' : 'trend-down'}`;
+            scoreTrend.appendChild(icon);
+            scoreTrend.innerHTML += `${change}%`;
+            scoreTrend.className = `flex items-center ${trend === 'up' ? 'trend-up' : 'trend-down'}`;
+            document.getElementById('score-change').textContent = 'vs previous period';
+        } else {
+            scoreTrend.textContent = 'Stable';
+            scoreTrend.className = 'trend-neutral';
+            document.getElementById('score-change').textContent = 'vs last period';
+        }
+        
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    function updateRecentAttempts() {
+        const recent = filteredResults.slice(0, 5);
+        
+        if (recent.length === 0) {
+            recentAttempts.innerHTML = `
+                <div class="text-center py-8 text-gray-500">
+                    <i data-lucide="inbox" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                    <p>No quiz attempts found with current filters</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let html = '';
+        recent.forEach(attempt => {
+            const date = new Date(attempt.completed_at);
+            const dateStr = date.toLocaleDateString();
+            const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const passed = attempt.passed;
+            
+            html += `
+                <div class="performance-card p-4 mb-4 hover:bg-gray-50 cursor-pointer" data-attempt-id="${attempt.id}">
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <h4 class="font-bold text-gray-800">${attempt.course_name || attempt.quiz_name || 'Quiz'}</h4>
+                            <p class="text-sm text-gray-500">${dateStr} at ${timeStr}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold ${passed ? 'text-green-600' : 'text-red-600'} mr-3">
+                                ${attempt.percentage}%
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium ${passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${passed ? 'Passed' : 'Failed'}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center text-gray-500">
+                            <i data-lucide="check-circle" class="w-4 h-4 mr-1 text-green-500"></i>
+                            <span>${attempt.correct_answers || 0} correct</span>
+                            <i data-lucide="x-circle" class="w-4 h-4 ml-3 mr-1 text-red-500"></i>
+                            <span>${attempt.incorrect_answers || 0} incorrect</span>
+                            <span class="ml-3 text-gray-400">(${attempt.total_questions || 0} total)</span>
+                        </div>
+                        <div class="text-gray-500">
+                            ${attempt.time_taken ? attempt.time_taken + ' min' : '-- min'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        recentAttempts.innerHTML = html;
+        
+        // Add click listeners
+        recentAttempts.querySelectorAll('.performance-card[data-attempt-id]').forEach(card => {
+            card.addEventListener('click', function() {
+                const attemptId = this.getAttribute('data-attempt-id');
+                showDetailedResults(attemptId);
+            });
+        });
+        
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    function updateAllAttempts() {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const pageResults = filteredResults.slice(startIndex, endIndex);
+        const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
+        
+        // Update table
+        if (pageResults.length === 0) {
+            attemptsTableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-8 text-gray-500">
+                        <i data-lucide="inbox" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                        <p>No quiz attempts found with current filters</p>
+                    </td>
+                </tr>
+            `;
+        } else {
             let html = '';
-            recent.forEach(attempt => {
+            pageResults.forEach(attempt => {
                 const date = new Date(attempt.completed_at);
                 const dateStr = date.toLocaleDateString();
                 const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                const passed = attempt.passed || attempt.percentage >= (attempt.passing_score || 70);
+                const passed = attempt.passed;
+                const totalQuestions = attempt.total_questions || 20;
+                const correctAnswers = attempt.correct_answers || 0;
                 
                 html += `
-                    <div class="performance-card p-4 mb-4 hover:bg-gray-50 cursor-pointer" data-attempt-id="${attempt.id}">
-                        <div class="flex items-center justify-between mb-2">
-                            <div>
-                                <h4 class="font-bold text-gray-800">${attempt.course_name || attempt.quiz_type || 'Quiz'}</h4>
-                                <p class="text-sm text-gray-500">${attempt.course_code || ''} • ${dateStr} at ${timeStr}</p>
-                            </div>
+                    <tr class="border-b border-gray-100 hover:bg-gray-50" data-attempt-id="${attempt.id}">
+                        <td class="py-4 px-4">
+                            <div class="font-medium text-gray-800">${attempt.course_name || attempt.quiz_name || 'Quiz'}</div>
+                            <div class="text-sm text-gray-500">${attempt.course_code || ''}</div>
+                        </td>
+                        <td class="py-4 px-4 text-gray-700">
+                            ${dateStr}<br>
+                            <span class="text-sm text-gray-500">${timeStr}</span>
+                        </td>
+                        <td class="py-4 px-4">
                             <div class="flex items-center">
-                                <span class="text-lg font-bold ${passed ? 'text-green-600' : 'text-red-600'} mr-3">
-                                    ${attempt.percentage}%
+                                <div class="w-16 bg-gray-200 rounded-full h-2 mr-3">
+                                    <div class="h-2 rounded-full ${passed ? 'bg-green-500' : 'bg-red-500'}" 
+                                         style="width: ${Math.min(100, attempt.percentage)}%"></div>
+                                </div>
+                                <span class="font-medium ${passed ? 'text-green-600' : 'text-red-600'}">
+                                    ${attempt.percentage}%<br>
+                                    <small class="text-xs text-gray-500">${correctAnswers}/${totalQuestions}</small>
                                 </span>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium ${passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                    ${passed ? 'Passed' : 'Failed'}
-                                </span>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <div class="flex items-center text-gray-500">
-                                <i data-lucide="check-circle" class="w-4 h-4 mr-1 text-green-500"></i>
-                                <span>${attempt.correct_answers || 0} correct</span>
-                                <i data-lucide="x-circle" class="w-4 h-4 ml-3 mr-1 text-red-500"></i>
-                                <span>${attempt.incorrect_answers || 0} incorrect</span>
-                            </div>
-                            <div class="text-gray-500">
-                                ${attempt.time_taken ? attempt.time_taken + ' min' : ''}
-                            </div>
-                        </div>
-                    </div>
+                        </td>
+                        <td class="py-4 px-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium ${passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${passed ? 'Passed' : 'Failed'}
+                            </span>
+                        </td>
+                        <td class="py-4 px-4 text-gray-700">
+                            ${attempt.time_taken ? attempt.time_taken + ' min' : '--'}
+                        </td>
+                        <td class="py-4 px-4">
+                            <button class="text-red-600 hover:text-red-700 font-medium text-sm flex items-center view-details" data-attempt-id="${attempt.id}">
+                                View Details
+                                <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                            </button>
+                        </td>
+                    </tr>
                 `;
             });
             
-            recentAttempts.innerHTML = html;
+            attemptsTableBody.innerHTML = html;
             
             // Add click listeners
-            recentAttempts.querySelectorAll('.performance-card[data-attempt-id]').forEach(card => {
-                card.addEventListener('click', function() {
+            attemptsTableBody.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const attemptId = this.getAttribute('data-attempt-id');
                     showDetailedResults(attemptId);
                 });
             });
             
+            // Also make rows clickable
+            attemptsTableBody.querySelectorAll('tr[data-attempt-id]').forEach(row => {
+                row.addEventListener('click', function() {
+                    const attemptId = this.getAttribute('data-attempt-id');
+                    showDetailedResults(attemptId);
+                });
+            });
+        }
+        
+        // Update pagination
+        prevPageButton.disabled = currentPage === 1;
+        nextPageButton.disabled = currentPage === totalPages || totalPages === 0;
+        
+        const showingEnd = Math.min(endIndex, filteredResults.length);
+        paginationInfo.textContent = `Showing ${startIndex + 1}-${showingEnd} of ${filteredResults.length} attempts`;
+        
+        // Update page numbers
+        let pageNumbersHtml = '';
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            pageNumbersHtml += `
+                <button class="w-8 h-8 rounded-lg ${i === currentPage ? 'bg-red-600 text-white' : 'border border-gray-300 hover:bg-gray-50'}" 
+                        onclick="changePage(${i})">
+                    ${i}
+                </button>
+            `;
+        }
+        
+        pageNumbersContainer.innerHTML = pageNumbersHtml;
+        
+        if (window.lucide) {
             lucide.createIcons();
         }
+    }
 
-        function updateAllAttempts() {
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const pageResults = filteredResults.slice(startIndex, endIndex);
-            const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
-            
-            // Update table
-            if (pageResults.length === 0) {
-                attemptsTableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="text-center py-8 text-gray-500">
-                            <i data-lucide="inbox" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
-                            <p>No quiz attempts found with current filters</p>
-                        </td>
-                    </tr>
-                `;
-            } else {
-                let html = '';
-                pageResults.forEach(attempt => {
-                    const date = new Date(attempt.completed_at);
-                    const dateStr = date.toLocaleDateString();
-                    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    const passed = attempt.passed || attempt.percentage >= (attempt.passing_score || 70);
-                    
-                    html += `
-                        <tr class="border-b border-gray-100 hover:bg-gray-50" data-attempt-id="${attempt.id}">
-                            <td class="py-4 px-4">
-                                <div class="font-medium text-gray-800">${attempt.course_name || attempt.quiz_type || 'Quiz'}</div>
-                                <div class="text-sm text-gray-500">${attempt.course_code || ''}</div>
-                            </td>
-                            <td class="py-4 px-4 text-gray-700">
-                                ${dateStr}<br>
-                                <span class="text-sm text-gray-500">${timeStr}</span>
-                            </td>
-                            <td class="py-4 px-4">
-                                <div class="flex items-center">
-                                    <div class="w-16 bg-gray-200 rounded-full h-2 mr-3">
-                                        <div class="h-2 rounded-full ${passed ? 'bg-green-500' : 'bg-red-500'}" 
-                                             style="width: ${Math.min(100, attempt.percentage)}%"></div>
-                                    </div>
-                                    <span class="font-medium ${passed ? 'text-green-600' : 'text-red-600'}">
-                                        ${attempt.percentage}%
-                                    </span>
-                                </div>
-                            </td>
-                            <td class="py-4 px-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-medium ${passed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
-                                    ${passed ? 'Passed' : 'Failed'}
-                                </span>
-                            </td>
-                            <td class="py-4 px-4 text-gray-700">
-                                ${attempt.time_taken ? attempt.time_taken + ' min' : '--'}
-                            </td>
-                            <td class="py-4 px-4">
-                                <button class="text-red-600 hover:text-red-700 font-medium text-sm flex items-center view-details" data-attempt-id="${attempt.id}">
-                                    View Details
-                                    <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                
-                attemptsTableBody.innerHTML = html;
-                
-                // Add click listeners
-                attemptsTableBody.querySelectorAll('.view-details').forEach(button => {
-                    button.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const attemptId = this.getAttribute('data-attempt-id');
-                        showDetailedResults(attemptId);
-                    });
-                });
-                
-                // Also make rows clickable
-                attemptsTableBody.querySelectorAll('tr[data-attempt-id]').forEach(row => {
-                    row.addEventListener('click', function() {
-                        const attemptId = this.getAttribute('data-attempt-id');
-                        showDetailedResults(attemptId);
-                    });
-                });
-            }
-            
-            // Update pagination
-            prevPageButton.disabled = currentPage === 1;
-            nextPageButton.disabled = currentPage === totalPages || totalPages === 0;
-            
-            paginationInfo.textContent = `Showing ${startIndex + 1}-${Math.min(endIndex, filteredResults.length)} of ${filteredResults.length} attempts`;
-            
-            // Update page numbers
-            let pageNumbersHtml = '';
-            const maxVisiblePages = 5;
-            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-            
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-            
-            for (let i = startPage; i <= endPage; i++) {
-                pageNumbersHtml += `
-                    <button class="w-8 h-8 rounded-lg ${i === currentPage ? 'bg-red-600 text-white' : 'border border-gray-300 hover:bg-gray-50'}" 
-                            onclick="changePage(${i})">
-                        ${i}
-                    </button>
-                `;
-            }
-            
-            pageNumbersContainer.innerHTML = pageNumbersHtml;
-            
-            lucide.createIcons();
+    function changePage(page) {
+        currentPage = page;
+        updateAllAttempts();
+    }
+
+    function updateStrengthsAndWeaknesses() {
+        // Simple implementation for now
+        if (filteredResults.length === 0) {
+            strengthsList.innerHTML = `
+                <div class="text-center py-4 text-gray-500">
+                    <p>Complete more quizzes to identify your strengths</p>
+                </div>
+            `;
+            weaknessesList.innerHTML = `
+                <div class="text-center py-4 text-gray-500">
+                    <p>Complete more quizzes to identify weaknesses</p>
+                </div>
+            `;
+            return;
         }
-
-        function changePage(page) {
-            currentPage = page;
-            updateAllAttempts();
-        }
-
-        function updateStrengthsAndWeaknesses() {
-            // Analyze topics from adaptive metrics
-            const topicPerformance = {};
-            
-            quizResults.forEach(result => {
-                if (result.adaptive_metrics && result.adaptive_metrics.weak_areas) {
-                    result.adaptive_metrics.weak_areas.forEach(area => {
-                        if (!topicPerformance[area.topic]) {
-                            topicPerformance[area.topic] = {
-                                total: 0,
-                                correct: 0,
-                                accuracy: 0
-                            };
-                        }
-                        // This is a weak area, so mark it as low accuracy
-                        topicPerformance[area.topic].total += area.totalQuestions || 1;
-                        topicPerformance[area.topic].correct += Math.floor((area.accuracy || 0) * (area.totalQuestions || 1) / 100);
-                    });
-                }
-            });
-            
-            // Also look at high-performing topics (not in weak areas)
-            const allTopics = new Set();
-            quizResults.forEach(result => {
-                if (result.adaptive_metrics && result.adaptive_metrics.topics_mastered) {
-                    // This indicates topics mastered (accuracy >= 80%)
-                    for (let i = 0; i < result.adaptive_metrics.topics_mastered; i++) {
-                        const topicName = `Topic ${i + 1}`;
-                        allTopics.add(topicName);
-                        if (!topicPerformance[topicName]) {
-                            topicPerformance[topicName] = {
-                                total: 10,
-                                correct: 8, // 80% correct
-                                accuracy: 80
-                            };
-                        }
-                    }
-                }
-            });
-            
-            // Calculate accuracies
-            Object.keys(topicPerformance).forEach(topic => {
-                const data = topicPerformance[topic];
-                data.accuracy = data.total > 0 ? Math.round((data.correct / data.total) * 100) : 0;
-            });
-            
-            // Sort topics by accuracy
-            const sortedTopics = Object.entries(topicPerformance).sort((a, b) => b[1].accuracy - a[1].accuracy);
-            
-            // Get top 3 strengths (accuracy >= 80%)
-            const strengths = sortedTopics.filter(([_, data]) => data.accuracy >= 80).slice(0, 3);
-            
-            // Get top 3 weaknesses (accuracy < 70%)
-            const weaknesses = sortedTopics.filter(([_, data]) => data.accuracy < 70).slice(0, 3);
-            
-            // Update strengths list
-            if (strengths.length === 0) {
-                strengthsList.innerHTML = `
-                    <div class="text-center py-4 text-gray-500">
-                        <p>Complete more quizzes to identify your strengths</p>
+        
+        // For now, just show recent performance
+        const recent = filteredResults.slice(0, 3);
+        
+        // Strengths
+        let strengthsHtml = '';
+        recent.forEach(attempt => {
+            if (attempt.passed) {
+                strengthsHtml += `
+                    <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium text-gray-800">${attempt.course_name || attempt.quiz_name}</h4>
+                            <p class="text-sm text-gray-500">${attempt.correct_answers}/${attempt.total_questions} correct</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-lg font-bold text-green-600">${attempt.percentage}%</div>
+                            <div class="text-xs text-gray-500">Score</div>
+                        </div>
                     </div>
                 `;
-            } else {
-                let html = '';
-                strengths.forEach(([topic, data]) => {
-                    html += `
-                        <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                            <div>
-                                <h4 class="font-medium text-gray-800">${topic}</h4>
-                                <p class="text-sm text-gray-500">${data.total} questions attempted</p>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-lg font-bold text-green-600">${data.accuracy}%</div>
-                                <div class="text-xs text-gray-500">Accuracy</div>
-                            </div>
-                        </div>
-                    `;
-                });
-                strengthsList.innerHTML = html;
             }
-            
-            // Update weaknesses list
-            if (weaknesses.length === 0) {
-                weaknessesList.innerHTML = `
-                    <div class="text-center py-4 text-gray-500">
-                        <p>Great! No major weaknesses identified</p>
+        });
+        
+        strengthsList.innerHTML = strengthsHtml || `
+            <div class="text-center py-4 text-gray-500">
+                <p>Focus on passing more quizzes to build strengths</p>
+            </div>
+        `;
+        
+        // Weaknesses
+        let weaknessesHtml = '';
+        recent.forEach(attempt => {
+            if (!attempt.passed) {
+                weaknessesHtml += `
+                    <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                        <div>
+                            <h4 class="font-medium text-gray-800">${attempt.course_name || attempt.quiz_name}</h4>
+                            <p class="text-sm text-gray-500">${attempt.correct_answers}/${attempt.total_questions} correct</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-lg font-bold text-red-600">${attempt.percentage}%</div>
+                            <div class="text-xs text-gray-500">Score</div>
+                        </div>
                     </div>
                 `;
-            } else {
-                let html = '';
-                weaknesses.forEach(([topic, data]) => {
-                    html += `
-                        <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-                            <div>
-                                <h4 class="font-medium text-gray-800">${topic}</h4>
-                                <p class="text-sm text-gray-500">${data.total} questions attempted</p>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-lg font-bold text-red-600">${data.accuracy}%</div>
-                                <div class="text-xs text-gray-500">Accuracy</div>
-                            </div>
-                        </div>
-                    `;
-                });
-                weaknessesList.innerHTML = html;
             }
-        }
+        });
+        
+        weaknessesList.innerHTML = weaknessesHtml || `
+            <div class="text-center py-4 text-gray-500">
+                <p>Great! No failed quizzes recently</p>
+            </div>
+        `;
+    }
 
-        function updateRecommendations() {
-            const recommendations = [];
+    function updateRecommendations() {
+        const recommendations = [];
+        
+        if (filteredResults.length === 0) {
+            recommendations.push({
+                icon: 'target',
+                color: 'blue',
+                title: 'Start Taking Quizzes',
+                description: 'Take your first quiz to begin tracking your progress and getting personalized recommendations.'
+            });
+        } else {
+            const totalAttempts = filteredResults.length;
+            const passedAttempts = filteredResults.filter(r => r.passed).length;
+            const passRate = totalAttempts > 0 ? Math.round((passedAttempts / totalAttempts) * 100) : 0;
             
-            // Analyze performance for recommendations
-            const totalAttempts = quizResults.length;
-            const passedAttempts = quizResults.filter(r => r.passed || r.percentage >= (r.passing_score || 70)).length;
-            const passRate = totalAttempts > 0 ? (passedAttempts / totalAttempts) * 100 : 0;
-            
-            // Recommendation 1: Based on pass rate
             if (passRate < 70) {
                 recommendations.push({
                     icon: 'target',
                     color: 'red',
-                    title: 'Focus on Fundamentals',
-                    description: 'Your pass rate suggests you should review core concepts before attempting more advanced quizzes.'
+                    title: 'Improve Your Pass Rate',
+                    description: `Your current pass rate is ${passRate}%. Review questions you got wrong and retake quizzes to improve.`
                 });
             } else if (passRate >= 90) {
                 recommendations.push({
                     icon: 'trending-up',
                     color: 'green',
-                    title: 'Challenge Yourself',
-                    description: 'You\'re doing great! Try more difficult quizzes or explore advanced topics.'
+                    title: 'Excellent Performance!',
+                    description: `Great job with a ${passRate}% pass rate! Challenge yourself with more difficult questions.`
+                });
+            } else {
+                recommendations.push({
+                    icon: 'lightbulb',
+                    color: 'yellow',
+                    title: 'Keep Practicing',
+                    description: `You're doing well with a ${passRate}% pass rate. Regular practice will help maintain your skills.`
                 });
             }
             
-            // Recommendation 2: Based on recent performance
-            const recentAttempts = quizResults.slice(0, 5);
-            if (recentAttempts.length >= 3) {
-                const recentAvg = recentAttempts.reduce((sum, r) => sum + r.percentage, 0) / recentAttempts.length;
-                const previousAttempts = quizResults.slice(5, 10);
-                if (previousAttempts.length >= 3) {
-                    const previousAvg = previousAttempts.reduce((sum, r) => sum + r.percentage, 0) / previousAttempts.length;
-                    if (recentAvg < previousAvg - 10) {
-                        recommendations.push({
-                            icon: 'alert-circle',
-                            color: 'yellow',
-                            title: 'Review Recent Material',
-                            description: 'Your recent scores have dropped. Consider reviewing the last few topics you studied.'
-                        });
-                    }
-                }
-            }
-            
-            // Recommendation 3: Based on quiz frequency
-            if (totalAttempts > 0) {
-                const firstAttempt = new Date(quizResults[quizResults.length - 1].completed_at);
-                const lastAttempt = new Date(quizResults[0].completed_at);
-                const daysBetween = (lastAttempt - firstAttempt) / (1000 * 60 * 60 * 24);
-                const attemptsPerDay = totalAttempts / Math.max(1, daysBetween);
-                
-                if (attemptsPerDay < 0.2) { // Less than 1 attempt every 5 days
-                    recommendations.push({
-                        icon: 'calendar',
-                        color: 'blue',
-                        title: 'Practice More Regularly',
-                        description: 'Regular practice improves retention. Try to take at least one quiz every 2-3 days.'
-                    });
-                }
-            }
-            
-            // Recommendation 4: Based on weak areas
-            if (document.querySelectorAll('#weaknesses-list .bg-red-50').length > 0) {
+            // Check for recent failures
+            const recentFailed = filteredResults.slice(0, 3).filter(r => !r.passed);
+            if (recentFailed.length > 0) {
                 recommendations.push({
                     icon: 'book-open',
                     color: 'purple',
-                    title: 'Target Weak Areas',
-                    description: 'Focus your study sessions on the topics where you\'re struggling the most.'
+                    title: 'Review Recent Mistakes',
+                    description: 'Review the quizzes you recently failed to understand where you need improvement.'
                 });
             }
-            
-            // Default recommendation if none apply
-            if (recommendations.length === 0) {
-                recommendations.push({
-                    icon: 'lightbulb',
-                    color: 'gray',
-                    title: 'Keep Up the Good Work',
-                    description: 'Continue taking quizzes regularly to track your progress and maintain your knowledge.'
-                });
-            }
-            
-            // Update recommendations list
-            let html = '';
-            recommendations.forEach(rec => {
-                html += `
-                    <div class="flex items-start p-4 bg-gray-50 rounded-lg">
-                        <div class="w-10 h-10 rounded-lg bg-${rec.color}-100 flex items-center justify-center mr-3 flex-shrink-0">
-                            <i data-lucide="${rec.icon}" class="w-5 h-5 text-${rec.color}-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 mb-1">${rec.title}</h4>
-                            <p class="text-gray-600 text-sm">${rec.description}</p>
-                        </div>
-                    </div>
-                `;
+        }
+        
+        // Default recommendation
+        if (recommendations.length === 0) {
+            recommendations.push({
+                icon: 'lightbulb',
+                color: 'gray',
+                title: 'Keep Learning',
+                description: 'Continue taking quizzes regularly to track your progress and maintain your knowledge.'
             });
-            
-            recommendationsList.innerHTML = html;
+        }
+        
+        // Update recommendations list
+        let html = '';
+        recommendations.forEach(rec => {
+            html += `
+                <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 rounded-lg bg-${rec.color}-100 flex items-center justify-center mr-3 flex-shrink-0">
+                        <i data-lucide="${rec.icon}" class="w-5 h-5 text-${rec.color}-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-1">${rec.title}</h4>
+                        <p class="text-gray-600 text-sm">${rec.description}</p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        recommendationsList.innerHTML = html;
+        if (window.lucide) {
             lucide.createIcons();
         }
+    }
 
-        function updateCharts() {
-            const timeRange = timeRangeSelect.value;
-            const now = new Date();
-            let cutoffDate = new Date(now);
+    function updateCharts() {
+        // Simple chart implementation
+        if (filteredResults.length === 0) {
+            // Hide or show empty chart states
+            const performanceChartContainer = document.getElementById('performanceChart').closest('.chart-container');
+            const courseChartContainer = document.getElementById('courseChart').closest('.chart-container');
             
-            if (timeRange === '7') {
-                cutoffDate.setDate(now.getDate() - 7);
-            } else if (timeRange === '30') {
-                cutoffDate.setDate(now.getDate() - 30);
-            } else if (timeRange === '90') {
-                cutoffDate.setDate(now.getDate() - 90);
-            } else {
-                cutoffDate = new Date(0); // All time
-            }
+            performanceChartContainer.innerHTML = `
+                <div class="text-center py-12 text-gray-500">
+                    <i data-lucide="bar-chart" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                    <p>No data available for charts</p>
+                </div>
+            `;
             
-            const filtered = quizResults.filter(r => new Date(r.completed_at) >= cutoffDate);
-            
-            // Update performance over time chart
-            updatePerformanceChart(filtered);
-            
-            // Update course comparison chart
-            updateCourseChart();
+            courseChartContainer.innerHTML = `
+                <div class="text-center py-12 text-gray-500">
+                    <i data-lucide="bar-chart" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                    <p>No course data available</p>
+                </div>
+            `;
+            return;
         }
-
-        function updatePerformanceChart(data) {
-            const canvas = document.getElementById('performanceChart');
-            if (!canvas) return;
-            
-            // Destroy existing chart
-            if (performanceCharts.performance) {
-                performanceCharts.performance.destroy();
-            }
-            
-            // Group by date
-            const dateGroups = {};
-            data.forEach(result => {
-                const date = new Date(result.completed_at).toLocaleDateString();
-                if (!dateGroups[date]) {
-                    dateGroups[date] = {
-                        total: 0,
-                        sum: 0,
-                        count: 0
-                    };
-                }
-                dateGroups[date].sum += result.percentage;
-                dateGroups[date].count++;
-                dateGroups[date].total = dateGroups[date].sum / dateGroups[date].count;
-            });
-            
-            const dates = Object.keys(dateGroups).sort();
-            const scores = dates.map(date => Math.round(dateGroups[date].total));
-            
-            const ctx = canvas.getContext('2d');
-            performanceCharts.performance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [{
-                        label: 'Average Score',
-                        data: scores,
-                        borderColor: '#DC2626',
-                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
-                    }]
+        
+        // Simple performance chart
+        const canvas1 = document.getElementById('performanceChart');
+        const ctx1 = canvas1.getContext('2d');
+        
+        // Destroy existing chart
+        if (performanceCharts.performance) {
+            performanceCharts.performance.destroy();
+        }
+        
+        // Create simple line chart with last 7 attempts
+        const recentData = filteredResults.slice(0, 7).reverse();
+        const labels = recentData.map((_, i) => `Attempt ${i + 1}`);
+        const data = recentData.map(r => r.percentage);
+        
+        performanceCharts.performance = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Score',
+                    data: data,
+                    borderColor: '#DC2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `Score: ${context.raw}%`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
                             }
                         }
                     }
                 }
-            });
-        }
-
-        function updateCourseChart() {
-            const canvas = document.getElementById('courseChart');
-            if (!canvas) return;
-            
-            // Destroy existing chart
-            if (performanceCharts.course) {
-                performanceCharts.course.destroy();
             }
-            
-            // Group by course
-            const courseGroups = {};
-            quizResults.forEach(result => {
-                const courseName = result.course_name || result.quiz_type || 'Unknown';
-                if (!courseGroups[courseName]) {
-                    courseGroups[courseName] = {
-                        total: 0,
-                        sum: 0,
-                        count: 0,
-                        passed: 0
-                    };
-                }
-                courseGroups[courseName].sum += result.percentage;
-                courseGroups[courseName].count++;
-                courseGroups[courseName].total = courseGroups[courseName].sum / courseGroups[courseName].count;
-                if (result.passed || result.percentage >= (result.passing_score || 70)) {
-                    courseGroups[courseName].passed++;
-                }
-            });
-            
-            // Get top 5 courses by attempt count
-            const sortedCourses = Object.entries(courseGroups)
-                .sort((a, b) => b[1].count - a[1].count)
-                .slice(0, 5);
-            
-            const courseNames = sortedCourses.map(([name]) => name.length > 15 ? name.substring(0, 15) + '...' : name);
-            const courseScores = sortedCourses.map(([_, data]) => Math.round(data.total));
-            const passRates = sortedCourses.map(([_, data]) => Math.round((data.passed / data.count) * 100));
-            
-            const colors = ['#DC2626', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6'];
-            
-            const ctx = canvas.getContext('2d');
-            performanceCharts.course = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: courseNames,
-                    datasets: [
-                        {
-                            label: 'Average Score',
-                            data: courseScores,
-                            backgroundColor: colors,
-                            borderColor: colors.map(c => c.replace('0.8', '1')),
-                            borderWidth: 1,
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'Pass Rate',
-                            data: passRates,
-                            type: 'line',
-                            borderColor: '#6B7280',
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
-                            tension: 0.4,
-                            yAxisID: 'y1'
-                        }
-                    ]
+        });
+        
+        // Simple course chart
+        const canvas2 = document.getElementById('courseChart');
+        const ctx2 = canvas2.getContext('2d');
+        
+        // Destroy existing chart
+        if (performanceCharts.course) {
+            performanceCharts.course.destroy();
+        }
+        
+        // Group by course
+        const courseGroups = {};
+        filteredResults.forEach(result => {
+            const course = result.course_name || result.quiz_name || 'Unknown';
+            if (!courseGroups[course]) {
+                courseGroups[course] = {
+                    scores: [],
+                    count: 0
+                };
+            }
+            courseGroups[course].scores.push(result.percentage);
+            courseGroups[course].count++;
+        });
+        
+        const courseNames = Object.keys(courseGroups).slice(0, 5);
+        const courseAverages = courseNames.map(name => {
+            const scores = courseGroups[name].scores;
+            return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+        });
+        
+        performanceCharts.course = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: courseNames.map(name => name.length > 15 ? name.substring(0, 15) + '...' : name),
+                datasets: [{
+                    label: 'Average Score',
+                    data: courseAverages,
+                    backgroundColor: ['#DC2626', '#3B82F6', '#10B981', '#F59E0B', '#8B5CF6'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            position: 'left',
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
-                            }
-                        },
-                        y1: {
-                            beginAtZero: true,
-                            max: 100,
-                            position: 'right',
-                            ticks: {
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            },
-                            grid: {
-                                drawOnChartArea: false
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
                             }
                         }
                     }
                 }
-            });
-        }
+            }
+        });
+    }
 
-        async function showDetailedResults(attemptId) {
-            try {
-                modalContent.innerHTML = `
-                    <div class="text-center py-8">
-                        <div class="loading-spinner mx-auto mb-4"></div>
-                        <p class="text-gray-500">Loading detailed results...</p>
-                    </div>
+    async function showDetailedResults(attemptId) {
+        try {
+            modalContent.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="loading-spinner mx-auto mb-4"></div>
+                    <p class="text-gray-500">Loading detailed results...</p>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            
+            const response = await fetch(`/quizzes/api/results/${attemptId}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                const attempt = data.result;
+                const date = new Date(attempt.completed_at);
+                const dateStr = date.toLocaleDateString();
+                const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const passed = attempt.passed;
+                const totalQuestions = attempt.total_questions || 20;
+                const correctAnswers = attempt.correct_answers || 0;
+                const incorrectAnswers = attempt.incorrect_answers || (totalQuestions - correctAnswers);
+                
+                modalTitle.textContent = `${attempt.course_name || attempt.quiz_name} - Detailed Results`;
+                
+                let html = `
+                    <div class="space-y-6">
+                        <!-- Header -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="text-4xl font-bold ${passed ? 'text-green-600' : 'text-red-600'} mb-1">${attempt.percentage}%</div>
+                                <div class="text-gray-500">Final Score</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="text-2xl font-bold text-gray-800 mb-1">${correctAnswers}/${totalQuestions}</div>
+                                <div class="text-gray-500">Questions Correct</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <div class="text-xl font-bold text-gray-800 mb-1">${attempt.time_taken || '--'} min</div>
+                                <div class="text-gray-500">Time Taken</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Status -->
+                        <div class="flex items-center justify-between p-4 ${passed ? 'bg-green-50' : 'bg-red-50'} rounded-lg">
+                            <div class="flex items-center">
+                                <i data-lucide="${passed ? 'check-circle' : 'x-circle'}" class="w-5 h-5 ${passed ? 'text-green-600' : 'text-red-600'} mr-2"></i>
+                                <span class="font-medium">${passed ? 'Quiz Passed' : 'Quiz Failed'}</span>
+                            </div>
+                            <div class="text-sm text-gray-500">Passing Score: ${attempt.passing_score || 70}%</div>
+                        </div>
                 `;
                 
-                modal.classList.remove('hidden');
-                
-                const response = await fetch(`/quizzes/api/results/${attemptId}`);
-                const data = await response.json();
-                
-                if (data.success) {
-                    const attempt = data.result;
-                    const date = new Date(attempt.completed_at);
-                    const dateStr = date.toLocaleDateString();
-                    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    const passed = attempt.passed || attempt.percentage >= (attempt.passing_score || 70);
-                    
-                    modalTitle.textContent = `${attempt.course_name || attempt.quiz_type} - Detailed Results`;
-                    
-                    let html = `
-                        <div class="space-y-6">
-                            <!-- Header -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <div class="text-4xl font-bold ${passed ? 'text-green-600' : 'text-red-600'} mb-1">${attempt.percentage}%</div>
-                                    <div class="text-gray-500">Final Score</div>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <div class="text-2xl font-bold text-gray-800 mb-1">${attempt.correct_answers || 0}/${attempt.total_questions || 0}</div>
-                                    <div class="text-gray-500">Questions Correct</div>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <div class="text-xl font-bold text-gray-800 mb-1">${attempt.time_taken || '--'} min</div>
-                                    <div class="text-gray-500">Time Taken</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Status -->
-                            <div class="flex items-center justify-between p-4 ${passed ? 'bg-green-50' : 'bg-red-50'} rounded-lg">
-                                <div class="flex items-center">
-                                    <i data-lucide="${passed ? 'check-circle' : 'x-circle'}" class="w-5 h-5 ${passed ? 'text-green-600' : 'text-red-600'} mr-2"></i>
-                                    <span class="font-medium">${passed ? 'Quiz Passed' : 'Quiz Failed'}</span>
-                                </div>
-                                <div class="text-sm text-gray-500">Passing Score: ${attempt.passing_score || 70}%</div>
-                            </div>
-                            
-                            <!-- Questions Review -->
-                            <div>
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">Question Review</h4>
+                // Questions Review
+                if (attempt.questions && Array.isArray(attempt.questions) && attempt.questions.length > 0) {
+                    html += `
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-4">Question Review</h4>
                     `;
                     
-                    // If we have question details
-                    if (attempt.questions && Array.isArray(attempt.questions)) {
-                        attempt.questions.forEach((question, index) => {
-                            const isCorrect = question.user_answer === question.correct_answer;
-                            html += `
-                                <div class="border border-gray-200 rounded-lg p-4 mb-4 ${isCorrect ? 'bg-green-50' : 'bg-red-50'}">
-                                    <div class="flex items-start mb-3">
-                                        <div class="w-8 h-8 rounded-full ${isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} flex items-center justify-center font-bold mr-3 flex-shrink-0">
-                                            ${index + 1}
-                                        </div>
-                                        <div class="flex-1">
-                                            <p class="font-medium text-gray-800 mb-2">${question.question_text}</p>
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
-                                                <div class="p-2 ${question.user_answer === question.correct_answer ? 'bg-green-100 border border-green-200' : 'bg-gray-100'} rounded">
-                                                    <div class="text-xs text-gray-500">Your Answer</div>
-                                                    <div class="font-medium">${question.user_answer || 'Not answered'}</div>
-                                                </div>
-                                                ${!isCorrect ? `
-                                                <div class="p-2 bg-green-50 border border-green-200 rounded">
-                                                    <div class="text-xs text-gray-500">Correct Answer</div>
-                                                    <div class="font-medium text-green-700">${question.correct_answer}</div>
-                                                </div>
-                                                ` : ''}
+                    attempt.questions.forEach((question, index) => {
+                        const isCorrect = question.is_correct;
+                        html += `
+                            <div class="border border-gray-200 rounded-lg p-4 mb-4 ${isCorrect ? 'bg-green-50' : 'bg-red-50'}">
+                                <div class="flex items-start mb-3">
+                                    <div class="w-8 h-8 rounded-full ${isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} flex items-center justify-center font-bold mr-3 flex-shrink-0">
+                                        ${index + 1}
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-gray-800 mb-2">${question.question || 'Question ' + (index + 1)}</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-3">
+                                            <div class="p-2 ${isCorrect ? 'bg-green-100 border border-green-200' : 'bg-gray-100'} rounded">
+                                                <div class="text-xs text-gray-500">Your Answer</div>
+                                                <div class="font-medium">${question.user_answer || 'Not answered'}</div>
                                             </div>
-                                            ${question.explanation ? `
-                                            <div class="text-sm text-gray-600 bg-white p-3 rounded border border-gray-200">
-                                                <strong>Explanation:</strong> ${question.explanation}
+                                            ${!isCorrect ? `
+                                            <div class="p-2 bg-green-50 border border-green-200 rounded">
+                                                <div class="text-xs text-gray-500">Correct Answer</div>
+                                                <div class="font-medium text-green-700">${question.correct_answer || 'Not provided'}</div>
                                             </div>
                                             ` : ''}
                                         </div>
+                                        ${question.explanation ? `
+                                        <div class="text-sm text-gray-600 bg-white p-3 rounded border border-gray-200">
+                                            <strong>Explanation:</strong> ${question.explanation}
+                                        </div>
+                                        ` : ''}
                                     </div>
                                 </div>
-                            `;
-                        });
-                    } else {
-                        html += `
-                            <div class="text-center py-8 text-gray-500">
-                                <i data-lucide="info" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
-                                <p>Question details not available for this attempt</p>
                             </div>
                         `;
-                    }
+                    });
                     
-                    // Adaptive metrics if available
-                    if (attempt.adaptive_metrics) {
-                        html += `
-                            <div class="mt-6">
-                                <h4 class="text-lg font-bold text-gray-800 mb-4">Adaptive Learning Insights</h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="bg-gray-50 p-4 rounded-lg">
-                                        <div class="text-xl font-bold text-gray-800 mb-1">${attempt.adaptive_metrics.proficiency || '--'}%</div>
-                                        <div class="text-gray-500">Proficiency Level</div>
-                                    </div>
-                                    <div class="bg-gray-50 p-4 rounded-lg">
-                                        <div class="text-xl font-bold text-gray-800 mb-1">${['Easy', 'Medium', 'Hard'][(attempt.adaptive_metrics.final_difficulty || 2) - 1]}</div>
-                                        <div class="text-gray-500">Final Difficulty</div>
-                                    </div>
-                                </div>
-                        `;
-                        
-                        if (attempt.adaptive_metrics.weak_areas && attempt.adaptive_metrics.weak_areas.length > 0) {
-                            html += `
-                                <div class="mt-4">
-                                    <h5 class="font-medium text-gray-700 mb-2">Areas Needing Improvement:</h5>
-                                    <div class="flex flex-wrap gap-2">
-                            `;
-                            attempt.adaptive_metrics.weak_areas.forEach(area => {
-                                html += `<span class="weakness-tag">${area.topic} (${area.accuracy}%)</span>`;
-                            });
-                            html += `</div></div>`;
-                        }
-                        
-                        html += `</div>`;
-                    }
-                    
-                    // Action buttons
-                    html += `
-                            <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-gray-200">
-                                <button onclick="retakeQuiz('${attempt.quiz_type}')" class="py-2 px-4 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300">
-                                    <i data-lucide="refresh-cw" class="w-4 h-4 inline-block mr-2"></i>
-                                    Retake Quiz
-                                </button>
-                                <button onclick="closeModal()" class="py-2 px-4 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300">
-                                    Close
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    
-                    modalContent.innerHTML = html;
-                    lucide.createIcons();
+                    html += `</div>`;
                 } else {
-                    modalContent.innerHTML = `
-                        <div class="text-center py-8">
-                            <i data-lucide="alert-triangle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-                            <h4 class="text-lg font-bold text-gray-800 mb-2">Failed to Load Details</h4>
-                            <p class="text-gray-600 mb-4">${data.message || 'Could not load detailed results'}</p>
-                            <button onclick="closeModal()" class="py-2 px-4 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300">
-                                Close
-                            </button>
+                    html += `
+                        <div class="text-center py-8 text-gray-500">
+                            <i data-lucide="info" class="w-12 h-12 mx-auto mb-4 text-gray-300"></i>
+                            <p>Question details not available for this attempt</p>
+                            <p class="text-sm mt-2">You scored ${correctAnswers} out of ${totalQuestions} questions correctly.</p>
                         </div>
                     `;
                 }
-            } catch (error) {
-                console.error('Error loading detailed results:', error);
+                
+                // Action buttons
+                html += `
+                        <div class="flex justify-end space-x-3 mt-6 pt-6 border-t border-gray-200">
+                            <button onclick="closeModal()" class="py-2 px-4 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300">
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-2"></i>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                modalContent.innerHTML = html;
+                if (window.lucide) {
+                    lucide.createIcons();
+                }
+            } else {
                 modalContent.innerHTML = `
                     <div class="text-center py-8">
                         <i data-lucide="alert-triangle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-                        <h4 class="text-lg font-bold text-gray-800 mb-2">Error Loading Details</h4>
-                        <p class="text-gray-600 mb-4">${error.message}</p>
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">Failed to Load Details</h4>
+                        <p class="text-gray-600 mb-4">${data.message || 'Could not load detailed results'}</p>
                         <button onclick="closeModal()" class="py-2 px-4 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300">
                             Close
                         </button>
                     </div>
                 `;
             }
+        } catch (error) {
+            console.error('Error loading detailed results:', error);
+            modalContent.innerHTML = `
+                <div class="text-center py-8">
+                    <i data-lucide="alert-triangle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Error Loading Details</h4>
+                    <p class="text-gray-600 mb-4">${error.message}</p>
+                    <button onclick="closeModal()" class="py-2 px-4 rounded-lg bg-gray-100 text-gray-700 border border-gray-300 font-medium hover:bg-gray-200 transition duration-300">
+                        Close
+                    </button>
+                </div>
+            `;
         }
+    }
 
-        function retakeQuiz(quizSlug) {
-            closeModal();
-            window.location.href = `/quizzes/${quizSlug}`;
-        }
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
 
-        function closeModal() {
-            modal.classList.add('hidden');
-        }
-
-        function exportResults() {
-            try {
-                // Create CSV content
-                let csv = 'Course Code,Course Name,Date,Score,Status,Time Taken,Correct Answers,Total Questions\n';
-                
-                quizResults.forEach(result => {
-                    const date = new Date(result.completed_at).toLocaleDateString();
-                    const passed = result.passed || result.percentage >= (result.passing_score || 70);
-                    const status = passed ? 'Passed' : 'Failed';
-                    
-                    csv += `"${result.course_code || ''}","${result.course_name || result.quiz_type || ''}","${date}",${result.percentage}%,${status},${result.time_taken || ''},${result.correct_answers || 0},${result.total_questions || 0}\n`;
-                });
-                
-                // Create blob and download
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `quiz-results-${new Date().toISOString().split('T')[0]}.csv`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-                
-                showMessage('Results exported successfully!', false);
-            } catch (error) {
-                console.error('Error exporting results:', error);
-                showMessage('Failed to export results', true);
-            }
-        }
-
-        function showResults() {
-            loadingState.classList.add('hidden');
-            errorState.classList.add('hidden');
-            emptyState.classList.add('hidden');
-            resultsContent.classList.remove('hidden');
-        }
-
-        function showEmptyState() {
-            loadingState.classList.add('hidden');
-            errorState.classList.add('hidden');
-            resultsContent.classList.add('hidden');
-            emptyState.classList.remove('hidden');
-        }
-
-        function showError(message) {
-            loadingState.classList.add('hidden');
-            errorState.classList.remove('hidden');
-            resultsContent.classList.add('hidden');
-            emptyState.classList.add('hidden');
-            document.getElementById('error-message').textContent = message;
-        }
-
-        function showMessage(message, isError = false) {
-            const messageBox = document.getElementById('messageBox');
-            messageBox.textContent = message;
-            messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+    function exportResults() {
+        try {
+            // Create CSV content
+            let csv = 'Course,Date,Score,Status,Time Taken,Correct Answers,Total Questions,Percentage\n';
             
-            if (isError) {
-                messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
-            } else {
-                messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
-            }
-
-            messageBox.classList.remove('translate-y-full', 'opacity-0');
-            messageBox.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                messageBox.classList.remove('translate-y-0', 'opacity-100');
-                messageBox.classList.add('translate-y-full', 'opacity-0');
-            }, 3000);
+            quizResults.forEach(result => {
+                const date = new Date(result.completed_at).toLocaleDateString();
+                const status = result.passed ? 'Passed' : 'Failed';
+                
+                csv += `"${result.course_name || result.quiz_name || ''}","${date}",${result.percentage}%,${status},${result.time_taken || ''},${result.correct_answers || 0},${result.total_questions || 0},${result.percentage}%\n`;
+            });
+            
+            // Create blob and download
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `quiz-results-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            showMessage('Results exported successfully!', false);
+        } catch (error) {
+            console.error('Error exporting results:', error);
+            showMessage('Failed to export results', true);
         }
-    </script>
+    }
+
+    function showResults() {
+        loadingState.classList.add('hidden');
+        errorState.classList.add('hidden');
+        emptyState.classList.add('hidden');
+        resultsContent.classList.remove('hidden');
+    }
+
+    function showEmptyState() {
+        loadingState.classList.add('hidden');
+        errorState.classList.add('hidden');
+        resultsContent.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+    }
+
+    function showError(message) {
+        loadingState.classList.add('hidden');
+        errorState.classList.remove('hidden');
+        resultsContent.classList.add('hidden');
+        emptyState.classList.add('hidden');
+        document.getElementById('error-message').textContent = message;
+    }
+
+    function showMessage(message, isError = false) {
+        const messageBox = document.getElementById('messageBox');
+        messageBox.textContent = message;
+        messageBox.className = 'fixed bottom-4 right-4 z-20 p-4 rounded-xl shadow-lg text-sm transition duration-300 transform';
+        
+        if (isError) {
+            messageBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+        } else {
+            messageBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+        }
+
+        messageBox.classList.remove('translate-y-full', 'opacity-0');
+        messageBox.classList.add('translate-y-0', 'opacity-100');
+
+        setTimeout(() => {
+            messageBox.classList.remove('translate-y-0', 'opacity-100');
+            messageBox.classList.add('translate-y-full', 'opacity-0');
+        }, 3000);
+    }
+</script>
 </body>
 </html>
