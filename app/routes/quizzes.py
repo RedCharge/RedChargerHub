@@ -402,7 +402,7 @@ def take_quiz(quiz_slug):
 @quizzes_bp.route('/api/submit', methods=['POST'])
 @login_required
 def submit_quiz():
-    """API endpoint to submit and grade quiz - PROPERLY HANDLES BOTH MULTIPLE CHOICE AND TRUE/FALSE"""
+    """API endpoint to submit and grade quiz - SIMPLIFIED VERSION"""
     try:
         data = request.json
         print(f"SUBMIT QUIZ: Received data for user {current_user.id}")
@@ -485,7 +485,6 @@ def submit_quiz():
             
             # If q_id not found, try with index
             if user_answer == '':
-                # Try with numeric index
                 user_answer = answers.get(str(i+1), '')
             
             print(f"\nQ{i+1} (ID: {q_id}):")
@@ -511,7 +510,7 @@ def submit_quiz():
                 
                 # Handle case where correct_answer is None
                 if correct_answer is None:
-                    print(f"  WARNING: No correct answer specified for question {q_id}")
+                    print(f"  WARNING: No correct answer specified")
                     result['correct_answer'] = 'Not specified'
                     result['is_correct'] = False
                     result['points'] = 0
@@ -519,7 +518,7 @@ def submit_quiz():
                     print(f"  RESULT: ✗ INCORRECT (No correct answer in database)")
                 
                 else:
-                    # Handle empty answer - mark as incorrect
+                    # Handle empty answer
                     if user_answer is None or str(user_answer).strip() == '':
                         result['is_correct'] = False
                         result['points'] = 0
@@ -527,105 +526,59 @@ def submit_quiz():
                         print(f"  EMPTY ANSWER - Marked as incorrect")
                         
                     else:
-                        # Convert both to strings and normalize
+                        # SIMPLE COMPARISON - treat ALL questions the same way
                         user_ans_str = str(user_answer).strip()
                         correct_ans_str = str(correct_answer).strip()
                         
-                        # Debug print
-                        print(f"  Comparing: user='{user_ans_str}', correct='{correct_ans_str}'")
+                        # Convert to uppercase for case-insensitive comparison
+                        user_upper = user_ans_str.upper()
+                        correct_upper = correct_ans_str.upper()
                         
-                        is_correct = False
+                        # SPECIAL HANDLING FOR TRUE/FALSE VARIATIONS
+                        # Map common true/false variations to '1' and '0'
                         
-                        # Get options safely
-                        if not isinstance(options, list):
-                            options = []
+                        # Normalize user answer
+                        if user_upper in ['TRUE', 'T', 'YES', 'Y']:
+                            user_normalized = '1'
+                        elif user_upper in ['FALSE', 'F', 'NO', 'N']:
+                            user_normalized = '0'
+                        else:
+                            user_normalized = user_ans_str  # Keep original
                         
-                        # CRITICAL FIX: Check if this is REALLY a true/false question
-                        # True/false questions have NO options array or empty options
-                        is_true_false = False
-                        
-                        # Method 1: Check question type from data
-                        if question.get('type') == 'true_false':
-                            is_true_false = True
-                            print(f"  Question marked as 'true_false' type")
-                        
-                        # Method 2: No options = true/false question  
-                        elif len(options) == 0:
-                            is_true_false = True
-                            print(f"  No options - treating as True/False question")
-                        
-                        # Method 3: Check for boolean correct answer
+                        # Normalize correct answer
+                        if correct_upper in ['TRUE', 'T', 'YES', 'Y']:
+                            correct_normalized = '1'
+                        elif correct_upper in ['FALSE', 'F', 'NO', 'N']:
+                            correct_normalized = '0'
                         elif isinstance(correct_answer, bool):
-                            is_true_false = True
-                            print(f"  Boolean correct answer - treating as True/False question")
-                        
-                        # Method 4: Check question text for true/false indicators
-                        elif 'true or false' in question.get('question', '').lower() or \
-                             'true/false' in question.get('question', '').lower():
-                            is_true_false = True
-                            print(f"  Question contains 'true/false' - treating as True/False question")
-                        
+                            correct_normalized = '1' if correct_answer else '0'
                         else:
-                            # Has options = regular multiple choice
-                            is_true_false = False
-                            print(f"  Has {len(options)} options - treating as regular multiple choice")
+                            correct_normalized = correct_ans_str  # Keep original
                         
-                        if is_true_false:
-                            # ==============================================
-                            # TRUE/FALSE QUESTION LOGIC
-                            # ==============================================
-                            
-                            # Normalize user answer
-                            user_normalized = user_ans_str.upper()
-                            if user_normalized in ['TRUE', 'T', '1', 'YES', 'Y']:
-                                user_normalized = 'TRUE'
-                            elif user_normalized in ['FALSE', 'F', '0', 'NO', 'N']:
-                                user_normalized = 'FALSE'
-                            
-                            # Normalize correct answer
-                            if isinstance(correct_answer, bool):
-                                correct_normalized = 'TRUE' if correct_answer else 'FALSE'
-                            elif correct_ans_str.upper() in ['TRUE', 'T', '1']:
-                                correct_normalized = 'TRUE'
-                            elif correct_ans_str.upper() in ['FALSE', 'F', '0']:
-                                correct_normalized = 'FALSE'
-                            else:
-                                correct_normalized = correct_ans_str.upper()
-                            
+                        # Now compare the normalized values
+                        # First try direct string comparison
+                        if user_normalized == correct_normalized:
+                            is_correct = True
+                            print(f"  Direct match: '{user_normalized}' == '{correct_normalized}': True")
+                        
+                        # Handle letter answers (A, B, C, D) for multiple choice
+                        elif user_normalized in ['A', 'B', 'C', 'D'] and correct_normalized in ['0', '1', '2', '3']:
+                            letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
+                            user_index = letter_to_index.get(user_normalized)
+                            is_correct = (user_index == int(correct_normalized))
+                            print(f"  Letter to index: '{user_normalized}' (index {user_index}) == '{correct_normalized}': {is_correct}")
+                        
+                        # Handle numeric string comparison
+                        elif user_normalized in ['0', '1', '2', '3'] and correct_normalized in ['0', '1', '2', '3']:
                             is_correct = (user_normalized == correct_normalized)
-                            print(f"  True/False comparison: '{user_normalized}' == '{correct_normalized}': {is_correct}")
+                            print(f"  Numeric comparison: '{user_normalized}' == '{correct_normalized}': {is_correct}")
                         
+                        # Last resort: case-insensitive string comparison
                         else:
-                            # ==============================================
-                            # REGULAR MULTIPLE CHOICE QUESTION LOGIC
-                            # ==============================================
-                            
-                            print(f"  Regular multiple choice with {len(options)} options")
-                            
-                            # Method 1: Direct numeric comparison (0, 1, 2, 3)
-                            if user_ans_str in ['0', '1', '2', '3'] and correct_ans_str in ['0', '1', '2', '3']:
-                                is_correct = (user_ans_str == correct_ans_str)
-                                print(f"  Numeric comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
-                            
-                            # Method 2: Letter to index comparison (A, B, C, D -> 0, 1, 2, 3)
-                            elif user_ans_str.upper() in ['A', 'B', 'C', 'D']:
-                                letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-                                user_index = letter_to_index.get(user_ans_str.upper())
-                                
-                                if correct_ans_str in ['0', '1', '2', '3']:
-                                    is_correct = (user_index == int(correct_ans_str))
-                                    print(f"  Letter '{user_ans_str}' (index {user_index}) == '{correct_ans_str}': {is_correct}")
-                                else:
-                                    # Try to match letter directly
-                                    is_correct = (user_ans_str.upper() == correct_ans_str.upper())
-                                    print(f"  Direct letter comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
-                            
-                            # Method 3: Direct string comparison (for any other format)
-                            else:
-                                is_correct = (user_ans_str.upper() == correct_ans_str.upper())
-                                print(f"  Direct string comparison: '{user_ans_str}' == '{correct_ans_str}': {is_correct}")
+                            is_correct = (user_upper == correct_upper)
+                            print(f"  Case-insensitive: '{user_upper}' == '{correct_upper}': {is_correct}")
                         
-                        # Update counters based on result
+                        # Update counters
                         if is_correct:
                             result['is_correct'] = True
                             result['points'] = 1
@@ -640,14 +593,12 @@ def submit_quiz():
                     
                     # Store correct answer text for display
                     try:
-                        # For true/false questions
                         if isinstance(correct_answer, bool):
                             result['correct_answer'] = 'True' if correct_answer else 'False'
                         elif str(correct_answer).upper() in ['TRUE', 'T', '1']:
                             result['correct_answer'] = 'True'
                         elif str(correct_answer).upper() in ['FALSE', 'F', '0']:
                             result['correct_answer'] = 'False'
-                        # For multiple choice with options
                         elif len(options) > 0:
                             if isinstance(correct_answer, int) and 0 <= correct_answer < len(options):
                                 result['correct_answer'] = options[correct_answer]

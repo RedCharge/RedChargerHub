@@ -395,115 +395,135 @@ computer_organization_quiz = {
         "correct_answer": 2,
         "explanation": "Secure applications include smart cards, SIM cards, and payment terminals."
     },
-    {
+        {
         "id": 31,
-        "type": "true_false",
-        "question": "Computer Architecture is concerned with hardware details transparent to the programmer.",
+        "type": "multiple_choice",
+        "question": "Which statement about Computer Architecture is correct?",
         "options": [
-            "True",
-            "False"
+            "It deals with hardware details transparent to programmers",
+            "It concerns visible attributes affecting program execution",
+            "It focuses only on operational unit interconnections",
+            "It is unrelated to instruction set design"
         ],
         "correct_answer": 1,
-        "explanation": "Computer Organization deals with hardware details transparent to the programmer; Architecture deals with visible attributes."
+        "explanation": "Computer Architecture deals with attributes visible to programmers, affecting logical program execution, unlike Organization which handles hardware details."
     },
     {
         "id": 32,
-        "type": "true_false",
-        "question": "The relationship between architecture and organization is very close in microcomputers.",
+        "type": "multiple_choice",
+        "question": "How is the relationship between architecture and organization in microcomputers?",
         "options": [
-            "True",
-            "False"
+            "Very distant with clear separation",
+            "Very close and interdependent",
+            "Architecture completely determines organization",
+            "Organization has no effect on architecture"
         ],
-        "correct_answer": 0,
-        "explanation": "In microcomputers, the relationship between architecture and organization is very close."
+        "correct_answer": 1,
+        "explanation": "In microcomputers, the relationship between architecture and organization is very close and often interdependent."
     },
     {
         "id": 33,
-        "type": "true_false",
-        "question": "ENIAC could perform 5000 multiplications per second.",
+        "type": "multiple_choice",
+        "question": "What was ENIAC's computational capability for multiplications?",
         "options": [
-            "True",
-            "False"
+            "5000 multiplications per second",
+            "1000 multiplications per second",
+            "357 multiplications per second",
+            "50 multiplications per second"
         ],
-        "correct_answer": 1,
+        "correct_answer": 2,
         "explanation": "ENIAC performed 5000 additions per second, but only 357 multiplications per second."
     },
     {
         "id": 34,
-        "type": "true_false",
-        "question": "The Von Neumann machine stores data and instructions in separate memories.",
+        "type": "multiple_choice",
+        "question": "How does the Von Neumann machine handle data and instruction storage?",
         "options": [
-            "True",
-            "False"
+            "Separate memories for data and instructions",
+            "Single main memory for both data and instructions",
+            "Distributed memory across multiple units",
+            "External storage only for instructions"
         ],
         "correct_answer": 1,
-        "explanation": "The Von Neumann machine uses a single main memory to store both data and instructions."
+        "explanation": "The Von Neumann architecture uses a single main memory to store both data and instructions."
     },
     {
         "id": 35,
-        "type": "true_false",
-        "question": "The Intel 4004 was designed for a programmable calculator.",
+        "type": "multiple_choice",
+        "question": "What was the original purpose of the Intel 4004 processor?",
         "options": [
-            "True",
-            "False"
+            "General-purpose desktop computer",
+            "Scientific calculations",
+            "Busicom's programmable calculator",
+            "Military guidance systems"
         ],
-        "correct_answer": 0,
-        "explanation": "The Intel 4004 was designed for Busicom's programmable calculator."
+        "correct_answer": 2,
+        "explanation": "The Intel 4004 was specifically designed for Busicom's programmable calculator."
     },
     {
         "id": 36,
-        "type": "true_false",
-        "question": "Speculative execution is based on branch prediction and data flow analysis.",
+        "type": "multiple_choice",
+        "question": "What techniques does speculative execution rely on?",
         "options": [
-            "True",
-            "False"
+            "Only branch prediction",
+            "Only data flow analysis",
+            "Both branch prediction and data flow analysis",
+            "Neither branch prediction nor data flow analysis"
         ],
-        "correct_answer": 0,
-        "explanation": "Speculative execution uses branch prediction and data flow analysis to execute instructions ahead of time."
+        "correct_answer": 2,
+        "explanation": "Speculative execution uses both branch prediction and data flow analysis to execute instructions ahead of time."
     },
     {
         "id": 37,
-        "type": "true_false",
-        "question": "The x86 architecture dominates only the embedded systems market.",
+        "type": "multiple_choice",
+        "question": "Which market segment does x86 architecture primarily dominate?",
         "options": [
-            "True",
-            "False"
+            "Only embedded systems",
+            "Only mobile devices",
+            "Non-embedded systems (desktops, servers)",
+            "All computing markets equally"
         ],
-        "correct_answer": 1,
-        "explanation": "x86 dominates outside of embedded systems; ARM dominates embedded systems."
+        "correct_answer": 2,
+        "explanation": "x86 dominates outside of embedded systems (desktops, servers), while ARM dominates the embedded systems market."
     },
     {
         "id": 38,
-        "type": "true_false",
-        "question": "ARM is a CISC-based architecture.",
+        "type": "multiple_choice",
+        "question": "What type of architecture is ARM based on?",
         "options": [
-            "True",
-            "False"
+            "CISC architecture",
+            "RISC architecture",
+            "VLIW architecture",
+            "Harvard architecture"
         ],
         "correct_answer": 1,
-        "explanation": "ARM is a RISC-based architecture."
+        "explanation": "ARM is based on Reduced Instruction Set Computer (RISC) architecture principles."
     },
     {
         "id": 39,
-        "type": "true_false",
-        "question": "Embedded systems are always standalone devices.",
+        "type": "multiple_choice",
+        "question": "What is characteristic of embedded systems?",
         "options": [
-            "True",
-            "False"
+            "Always standalone complete devices",
+            "Usually part of larger systems",
+            "Primarily used for general computing",
+            "Never include microprocessors"
         ],
         "correct_answer": 1,
-        "explanation": "Embedded systems are often part of a larger system or product."
+        "explanation": "Embedded systems are typically components within larger systems or products, not standalone general-purpose computers."
     },
     {
         "id": 40,
-        "type": "true_false",
-        "question": "ARM processors are used in digital imaging applications.",
+        "type": "multiple_choice",
+        "question": "In which applications are ARM processors commonly used?",
         "options": [
-            "True",
-            "False"
+            "Only in industrial control systems",
+            "Only in automotive applications",
+            "Digital imaging and consumer electronics",
+            "Mainframe computers exclusively"
         ],
-        "correct_answer": 0,
-        "explanation": "ARM application platforms are used in digital imaging, wireless, and consumer entertainment."
+        "correct_answer": 2,
+        "explanation": "ARM application platforms are widely used in digital imaging, wireless communication, and consumer entertainment devices."
     },
     {
         "id": 41,
