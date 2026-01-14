@@ -1715,6 +1715,7 @@ sustainability_quiz = {
             "Consumer confusion about what and how to recycle",
             "Absence of landfill space worldwide"
         ],
+        "correct_answer": 2,
         "explanation": "Contamination from improper sorting and lack of clear guidelines reduce material quality and economic viability, undermining recycling systems."
     },
     {
