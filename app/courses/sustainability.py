@@ -1157,6 +1157,7 @@ sustainability_quiz = {
             "Reducing resource use",
             "Increasing pollution and carbon footprint"
         ],
+        "correct_answer": 2,
         "explanation": "Wasted food represents a waste of all the resources (land, water, energy, labor) used to produce it and generates methane, a potent greenhouse gas, when it rots in landfills."
     },
     {

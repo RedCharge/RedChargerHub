@@ -1694,7 +1694,1445 @@ data_communication_quiz = {
         ],
         "correct_answer": 1,
         "explanation": "The key difference is that in Return-to-Zero (RZ) encoding, the signal returns to zero voltage halfway through each bit interval, regardless of the bit value. In Non-Return-to-Zero (NRZ) encoding, the signal maintains its voltage level for the entire bit duration. RZ provides better synchronization but requires more bandwidth."
+    },
+    {
+    "id": 131,
+    "type": "multiple_choice",
+    "question": "How is text typically represented in modern data communications to support all world languages?",
+    "options": [
+        "7-bit ASCII",
+        "32-bit Unicode",
+        "Analog Signals",
+        "Differential Manchester Encoding"
+    ],
+    "correct_answer": 1,
+    "explanation": "Unicode (typically UTF-8, UTF-16, or UTF-32) is the modern standard for text representation that supports all world languages, characters, and symbols, unlike ASCII which is limited to basic Latin characters."
+},
+{
+    "id": 132,
+    "type": "multiple_choice",
+    "question": "Which data type is described as 'continuous' by nature, rather than discrete?",
+    "options": [
+        "Text",
+        "Audio",
+        "Numbers",
+        "Static Images"
+    ],
+    "correct_answer": 1,
+    "explanation": "Audio is an analog, continuous signal by nature. It must be sampled and digitized for digital communication, while text, numbers, and static images are inherently discrete."
+},
+{
+    "id": 133,
+    "type": "multiple_choice",
+    "question": "In image representation, increasing the number of pixels (e.g., from 1000 to 10,000):",
+    "options": [
+        "Increases resolution but requires more memory",
+        "Decreases resolution but requires less memory",
+        "Increases resolution with no impact on memory",
+        "Has no effect on resolution"
+    ],
+    "correct_answer": 0,
+    "explanation": "More pixels mean higher image resolution (more detail). However, each pixel requires storage for color information, so higher resolution images require more memory/bandwidth."
+},
+{
+    "id": 134,
+    "type": "multiple_choice",
+    "question": "Which coding system constitutes the first 127 characters of Unicode?",
+    "options": [
+        "EBCDIC",
+        "BCD",
+        "ASCII",
+        "Gray Code"
+    ],
+    "correct_answer": 2,
+    "explanation": "The first 128 code points of Unicode (U+0000 to U+007F) are identical to the ASCII character set, ensuring backward compatibility."
+},
+{
+    "id": 135,
+    "type": "multiple_choice",
+    "question": "A television broadcast is an example of which transmission mode?",
+    "options": [
+        "Half-duplex",
+        "Full-duplex",
+        "Simplex",
+        "Multi-duplex"
+    ],
+    "correct_answer": 2,
+    "explanation": "Television broadcasting is a classic example of simplex communication: the signal flows in only one direction, from the broadcaster to the viewers, with no return path for data."
+},
+{
+    "id": 136,
+    "type": "multiple_choice",
+    "question": "Which transmission mode allows two-way communication but NOT simultaneously?",
+    "options": [
+        "Simplex",
+        "Half-duplex",
+        "Full-duplex",
+        "Semi-simplex"
+    ],
+    "correct_answer": 1,
+    "explanation": "Half-duplex mode allows communication in both directions, but only one direction at a time (like a walkie-talkie)."
+},
+{
+    "id": 137,
+    "type": "multiple_choice",
+    "question": "A telephone network is the classic example of which mode of communication?",
+    "options": [
+        "Simplex",
+        "Half-duplex",
+        "Full-duplex",
+        "Asynchronous"
+    ],
+    "correct_answer": 2,
+    "explanation": "A traditional telephone network supports full-duplex communication, allowing both parties to speak and listen simultaneously."
+},
+{
+    "id": 138,
+    "type": "multiple_choice",
+    "question": "In a half-duplex system, what is the limitation regarding channel capacity?",
+    "options": [
+        "The channel capacity is wasted during idle times.",
+        "The entire capacity of the channel is taken over by whichever device is transmitting.",
+        "The capacity is split evenly 50/50 at all times.",
+        "It requires two physical channels to operate."
+    ],
+    "correct_answer": 1,
+    "explanation": "In half-duplex, the entire capacity of the channel is dedicated to the device currently transmitting. The other device must wait until transmission stops to use the channel."
+},
+{
+    "id": 139,
+    "type": "multiple_choice",
+    "question": "Which diagram represents a Simplex mode?",
+    "options": [
+        "Workstation ↔ Workstation (Simultaneous)",
+        "CPU → Monitor",
+        "Walkie-Talkie ↔ Walkie-Talkie (One at a time)",
+        "Server ↔ Client"
+    ],
+    "correct_answer": 1,
+    "explanation": "CPU → Monitor represents simplex communication: data flows only from the CPU to the monitor for display, with no data sent back from monitor to CPU."
+},
+{
+    "id": 140,
+    "type": "multiple_choice",
+    "question": "An antenna is best described as a transducer that interfaces between:",
+    "options": [
+        "A transmitter and a receiver directly",
+        "A circuit and free-space",
+        "Analog and digital signals",
+        "A hard drive and the network"
+    ],
+    "correct_answer": 1,
+    "explanation": "An antenna converts guided electromagnetic waves (in a circuit/transmission line) into radiating waves in free space (transmitting), and vice versa (receiving)."
+},
+{
+    "id": 141,
+    "type": "multiple_choice",
+    "question": "An idealized antenna that radiates power equally in all directions is called:",
+    "options": [
+        "A dipole antenna",
+        "An isotropic antenna",
+        "A parabolic antenna",
+        "A Yagi-Uda antenna"
+    ],
+    "correct_answer": 1,
+    "explanation": "An isotropic antenna is a theoretical, lossless antenna that radiates power uniformly in all directions. It serves as a reference point for measuring antenna gain."
+},
+{
+    "id": 142,
+    "type": "multiple_choice",
+    "question": "The 'directivity' of an antenna is primarily captured by its:",
+    "options": [
+        "Frequency",
+        "Beam width",
+        "Weight",
+        "Material composition"
+    ],
+    "correct_answer": 1,
+    "explanation": "Directivity describes how focused an antenna's radiation pattern is. A narrower beam width indicates higher directivity (more focused energy in a specific direction)."
+},
+{
+    "id": 143,
+    "type": "multiple_choice",
+    "question": "Antennas radiate most effectively when their length is directly related to:",
+    "options": [
+        "The amplitude of the signal",
+        "The wavelength of the transmitted signal",
+        "The speed of the processor",
+        "The distance to the receiver"
+    ],
+    "correct_answer": 1,
+    "explanation": "Antenna efficiency and resonance are optimal when the antenna's physical dimensions (like length of a dipole) are proportional to the wavelength (e.g., half-wavelength or quarter-wavelength)."
+},
+{
+    "id": 144,
+    "type": "multiple_choice",
+    "question": "Which type of antenna is commonly used in radio astronomy and satellite tracking due to its high gain?",
+    "options": [
+        "Wire antenna",
+        "Reflector (Parabolic) antenna",
+        "Microstrip antenna",
+        "Loop antenna"
+    ],
+    "correct_answer": 1,
+    "explanation": "Parabolic reflector antennas concentrate signals into a very narrow, high-gain beam, making them ideal for long-distance point-to-point communication like satellite links and radio telescopes."
+},
+{
+    "id": 145,
+    "type": "multiple_choice",
+    "question": "A 'Horn antenna' falls under which category?",
+    "options": [
+        "Aperture antenna",
+        "Wire antenna",
+        "Lens antenna",
+        "Array antenna"
+    ],
+    "correct_answer": 0,
+    "explanation": "A horn antenna is a type of aperture antenna. It consists of a flaring metal waveguide shaped like a horn to direct radio waves in a beam."
+},
+{
+    "id": 146,
+    "type": "multiple_choice",
+    "question": "Yagi-Uda and Microstrip patch arrays are examples of:",
+    "options": [
+        "Isotropic antennas",
+        "Array antennas",
+        "Lens antennas",
+        "Reflector antennas"
+    ],
+    "correct_answer": 1,
+    "explanation": "Both are array antennas. A Yagi-Uda is a linear array of dipole elements, and a microstrip patch array combines multiple patch antenna elements to achieve higher gain and directivity."
+},
+{
+    "id": 147,
+    "type": "multiple_choice",
+    "question": "Which antenna type is described as a metallic patch above a ground plane, used often in mobile phones and missiles?",
+    "options": [
+        "Dipole",
+        "Microstrip",
+        "Horn",
+        "Parabolic"
+    ],
+    "correct_answer": 1,
+    "explanation": "Microstrip (patch) antennas are low-profile, lightweight, and easily integrated into circuits, making them ideal for compact devices like mobile phones, GPS units, and aerospace applications."
+},
+{
+    "id": 148,
+    "type": "multiple_choice",
+    "question": "The relationship between frequency ($f$), wavelength ($\\lambda$), and the speed of light ($c$) is:",
+    "options": [
+        "$\\lambda = f / c$",
+        "$c = f \\lambda$",
+        "$f = c \\lambda$",
+        "$\\lambda = c f$"
+    ],
+    "correct_answer": 1,
+    "explanation": "The fundamental wave equation is $c = f \\lambda$, where $c$ is the speed of light (~3×10⁸ m/s), $f$ is frequency, and $\\lambda$ is wavelength."
+},
+{
+    "id": 149,
+    "type": "multiple_choice",
+    "question": "If a radio station broadcasts at 100 MHz, what is the wavelength of the signal? (Assume $c = 3 \\times 10^8$ m/s)",
+    "options": [
+        "0.3 meters",
+        "3.0 meters",
+        "30 meters",
+        "300 meters"
+    ],
+    "correct_answer": 1,
+    "explanation": "Using $\\lambda = c / f$: $\\lambda = (3 \\times 10^8) / (100 \\times 10^6) = 3$ meters."
+},
+{
+    "id": 150,
+    "type": "multiple_choice",
+    "question": "High-frequency signals imply:",
+    "options": [
+        "Long wavelengths and large antennas",
+        "Short wavelengths and small antennas",
+        "Short wavelengths and large antennas",
+        "Long wavelengths and small antennas"
+    ],
+    "correct_answer": 1,
+    "explanation": "From $\\lambda = c / f$, higher frequency ($f$) means shorter wavelength ($\\lambda$). Smaller antennas are practical at shorter wavelengths (e.g., microwave frequencies)."
+},
+{
+    "id": 151,
+    "type": "multiple_choice",
+    "question": "In the antenna gain formula $G = \\frac{4\\pi A_e}{\\lambda^2}$, what does $A_e$ represent?",
+    "options": [
+        "Actual physical area",
+        "Effective area/aperture",
+        "Angular elevation",
+        "Antenna efficiency"
+    ],
+    "correct_answer": 1,
+    "explanation": "$A_e$ is the effective aperture or effective area of the antenna, which accounts for how efficiently it captures or radiates power, not just its physical size."
+},
+{
+    "id": 152,
+    "type": "multiple_choice",
+    "question": "If the carrier frequency increases while the effective area of an antenna remains constant, the Antenna Gain ($G$):",
+    "options": [
+        "Increases",
+        "Decreases",
+        "Remains the same",
+        "Becomes zero"
+    ],
+    "correct_answer": 0,
+    "explanation": "From $G = 4\\pi A_e / \\lambda^2$, increasing frequency decreases $\\lambda$. Since $G$ is inversely proportional to $\\lambda^2$, gain increases with higher frequency (shorter wavelength)."
+},
+{
+    "id": 153,
+    "type": "multiple_choice",
+    "question": "Any group of computers connected to share resources is called a:",
+    "options": [
+        "Protocol stack",
+        "Data communications network",
+        "Transmission medium",
+        "Modulation system"
+    ],
+    "correct_answer": 1,
+    "explanation": "A data communications network is defined as an interconnection of computers and peripherals that can exchange information and share resources."
+},
+{
+    "id": 154,
+    "type": "multiple_choice",
+    "question": "Which of the following is an example of a 'Client' in a network?",
+    "options": [
+        "A high-capacity hard drive storing a corporate database",
+        "A user's workstation requesting a file",
+        "The physical cable connecting devices",
+        "The network operating system software"
+    ],
+    "correct_answer": 1,
+    "explanation": "A client is a computer or process that requests and uses services or resources from a server, such as a workstation requesting files."
+},
+{
+    "id": 155,
+    "type": "multiple_choice",
+    "question": "The 'Shared Data' provided by file servers includes:",
+    "options": [
+        "Cables and Routers",
+        "NICs and Drivers",
+        "Files and E-mail",
+        "Printers and Scanners"
+    ],
+    "correct_answer": 2,
+    "explanation": "File servers primarily provide shared data resources like files, databases, and email messages, not physical hardware."
+},
+{
+    "id": 156,
+    "type": "multiple_choice",
+    "question": "What is the primary function of a Network Interface Card (NIC)?",
+    "options": [
+        "To host the operating system",
+        "To control the flow of data between the computer and the network",
+        "To print documents shared on the network",
+        "To act as a file server"
+    ],
+    "correct_answer": 1,
+    "explanation": "A NIC is hardware that provides the physical connection to the network and manages the flow of data to/from the computer at the data link layer."
+},
+{
+    "id": 157,
+    "type": "multiple_choice",
+    "question": "While transmitting, the NIC passes frames of data onto the:",
+    "options": [
+        "Physical layer",
+        "Application layer",
+        "Session layer",
+        "User interface"
+    ],
+    "correct_answer": 0,
+    "explanation": "The NIC operates at the Data Link and Physical layers. It takes frames from the Data Link layer and transmits them as bits/electrical signals onto the physical medium."
+},
+{
+    "id": 158,
+    "type": "multiple_choice",
+    "question": "A Local Operating System (LOS) allows a personal computer to:",
+    "options": [
+        "Route traffic across the internet",
+        "Manage local resources like disks and printers",
+        "Authenticate users on a remote server",
+        "Replace the need for a NIC"
+    ],
+    "correct_answer": 1,
+    "explanation": "A Local OS (like Windows or macOS) manages the computer's own resources—its CPU, memory, local disks, and attached printers—but does not inherently provide network services."
+},
+{
+    "id": 159,
+    "type": "multiple_choice",
+    "question": "Which software runs on servers to manage network functions like security and file sharing?",
+    "options": [
+        "LOS (Local Operating System)",
+        "BIOS",
+        "NOS (Network Operating System)",
+        "DBMS"
+    ],
+    "correct_answer": 2,
+    "explanation": "A Network Operating System (NOS) like Windows Server or Linux-based server distributions provides network-wide services: user management, security, file/print sharing, and administration."
+},
+{
+    "id": 160,
+    "type": "multiple_choice",
+    "question": "Which of the following is an example of a Local Operating System (LOS)?",
+    "options": [
+        "Windows 98",
+        "A standard Router Firmware",
+        "An HTML file",
+        "A Network Switch"
+    ],
+    "correct_answer": 0,
+    "explanation": "Windows 98 is a classic example of a single-user, standalone Local Operating System designed for personal computers, not for managing network resources."
+},
+{
+    "id": 161,
+    "type": "multiple_choice",
+    "question": "Which modern trend involves physical objects embedded with sensors communicating over the internet?",
+    "options": [
+        "Blockchain",
+        "Internet of Things (IoT)",
+        "Augmented Reality",
+        "Edge Computing"
+    ],
+    "correct_answer": 1,
+    "explanation": "The Internet of Things (IoT) refers to the network of physical objects ('things') embedded with sensors, software, and connectivity to exchange data over the internet."
+},
+{
+    "id": 162,
+    "type": "multiple_choice",
+    "question": "'Smart Cities' rely heavily on:",
+    "options": [
+        "Half-duplex communication only",
+        "Standalone computers without networks",
+        "Data communication and IoT",
+        "Analog signal processing"
+    ],
+    "correct_answer": 2,
+    "explanation": "Smart Cities integrate IoT sensors, data communication networks, and data analytics to manage urban infrastructure and services efficiently (traffic, energy, waste, etc.)."
+},
+{
+    "id": 163,
+    "type": "multiple_choice",
+    "question": "Which trend is primarily concerned with secure, decentralized communication ledgers?",
+    "options": [
+        "Big Data",
+        "Cloud Computing",
+        "Blockchain",
+        "5G Communication"
+    ],
+    "correct_answer": 2,
+    "explanation": "Blockchain is a distributed ledger technology that enables secure, transparent, and tamper-resistant recording of transactions across a decentralized network."
+},
+{
+    "id": 164,
+    "type": "multiple_choice",
+    "question": "What is the main advantage of 5G communication mentioned in modern trends?",
+    "options": [
+        "Lower power consumption only",
+        "High-speed communication",
+        "Support for analog devices",
+        "Slower but more reliable transfer"
+    ],
+    "correct_answer": 1,
+    "explanation": "5G's primary advantages include significantly higher data rates (multi-Gbps speeds), ultra-low latency, and massive device connectivity compared to previous generations."
+},
+{
+    "id": 165,
+    "type": "multiple_choice",
+    "question": "'Edge Computing' is often associated with:",
+    "options": [
+        "Centralizing all processing in one mainframe",
+        "Processing data closer to where it is generated",
+        "Removing the need for antennas",
+        "Using only copper wires"
+    ],
+    "correct_answer": 1,
+    "explanation": "Edge Computing processes data at or near the source (the 'edge' of the network) rather than sending all data to a centralized cloud, reducing latency and bandwidth use."
+},
+{
+    "id": 166,
+    "type": "multiple_choice",
+    "question": "If a system delivers data accurately and without jitter, but it arrives after the deadline in a real-time application, the system has failed in:",
+    "options": [
+        "Delivery",
+        "Timeliness",
+        "Consistency",
+        "Throughput"
+    ],
+    "correct_answer": 1,
+    "explanation": "Timeliness means data must be delivered within an acceptable time frame. In real-time systems (like live video or control systems), late data is often useless, regardless of accuracy."
+},
+{
+    "id": 167,
+    "type": "multiple_choice",
+    "question": "Why are digital signals generally preferred over analog for modern data communication?",
+    "options": [
+        "They are continuous waves.",
+        "They are discrete and less susceptible to noise accumulation.",
+        "They cannot travel over wire cables.",
+        "They do not require antennas."
+    ],
+    "correct_answer": 1,
+    "explanation": "Digital signals (discrete 0/1 values) are more robust against noise because they can be regenerated and error-corrected. Noise in analog signals accumulates and is hard to remove completely."
+},
+{
+    "id": 168,
+    "type": "multiple_choice",
+    "question": "In the simplified data communications model, the 'Source' outputs:",
+    "options": [
+        "Analog signals directly",
+        "A digital bit stream",
+        "Modulated frequencies",
+        "Electromagnetic waves"
+    ],
+    "correct_answer": 1,
+    "explanation": "The Source (e.g., a computer) generates the raw information to be transmitted, which is typically in the form of a digital bit stream (text, numbers, etc.)."
+},
+{
+    "id": 169,
+    "type": "multiple_choice",
+    "question": "The 'Transmitter' in the communication model is responsible for:",
+    "options": [
+        "Generating the data",
+        "Processing and converting data into a signal suitable for the medium",
+        "Storing the data for later use",
+        "Deciding the protocol"
+    ],
+    "correct_answer": 1,
+    "explanation": "The Transmitter transforms the source's data (e.g., a digital bit stream) into a signal (electrical, optical, radio) that can be propagated through the chosen transmission medium."
+},
+{
+    "id": 170,
+    "type": "multiple_choice",
+    "question": "Which antenna type would be most inappropriate for a mobile phone?",
+    "options": [
+        "Microstrip antenna",
+        "Parabolic reflector antenna",
+        "PIFA (Planar Inverted-F Antenna)",
+        "Small wire antenna"
+    ],
+    "correct_answer": 1,
+    "explanation": "Parabolic reflector antennas are large, highly directional, and require precise aiming. They are unsuitable for small, portable devices like mobile phones that need compact, omnidirectional antennas."
+},
+{
+    "id": 171,
+    "type": "multiple_choice",
+    "question": "If $f = 300$ MHz, calculate the wavelength $\\lambda$.",
+    "options": [
+        "10 meters",
+        "1 meter",
+        "0.1 meters",
+        "100 meters"
+    ],
+    "correct_answer": 1,
+    "explanation": "$\\lambda = c / f = (3 \\times 10^8) / (300 \\times 10^6) = 1$ meter."
+},
+{
+    "id": 172,
+    "type": "multiple_choice",
+    "question": "A 'transducer' in the context of antennas means it converts:",
+    "options": [
+        "Voltage to Current",
+        "Guided electromagnetic waves to free-space waves (and vice versa)",
+        "Sound to Light",
+        "Digital to Analog only"
+    ],
+    "correct_answer": 1,
+    "explanation": "An antenna acts as a transducer between guided waves in a transmission line/circuit and unguided (radiating) electromagnetic waves propagating through free space."
+},
+{
+    "id": 173,
+    "type": "multiple_choice",
+    "question": "Which network component acts as the 'Manager' of the network resources?",
+    "options": [
+        "Client",
+        "Server",
+        "Medium",
+        "NIC"
+    ],
+    "correct_answer": 1,
+    "explanation": "Servers manage and provide access to shared network resources (files, printers, applications, databases) and often handle authentication and security policies."
+},
+{
+    "id": 174,
+    "type": "multiple_choice",
+    "question": "Which of the following is NOT listed as a modern trend in data transmission?",
+    "options": [
+        "Artificial Intelligence",
+        "Augmented Reality",
+        "Vacuum Tube Computing",
+        "Cyber Security"
+    ],
+    "correct_answer": 2,
+    "explanation": "Vacuum Tube Computing is an obsolete technology. Modern trends include IoT, 5G, AI, Edge Computing, Blockchain, Augmented/Virtual Reality, and Cybersecurity."
+},
+{
+    "id": 175,
+    "type": "multiple_choice",
+    "question": "'Data delivered late are useless' best describes which specific environment?",
+    "options": [
+        "Email",
+        "File download",
+        "Real-time transmission (video/audio)",
+        "Web browsing"
+    ],
+    "correct_answer": 2,
+    "explanation": "Real-time applications like live video streaming, VoIP, or online gaming have strict timing requirements. Late packets cause glitches, freezes, or are simply discarded, making them useless."
+},
+    {
+        "id": 176,
+        "type": "multiple_choice",
+        "question": "A satellite operates at a frequency of 12 GHz. What is the wavelength of this signal?",
+        "options": [
+            "2.5 cm",
+            "0.025 m",
+            "25 mm",
+            "All of the above"
+        ],
+        "correct_answer": 3,
+        "explanation": "λ = c/f = (3×10⁸)/(12×10⁹) = 0.025 m = 2.5 cm = 25 mm. All options are equivalent measurements."
+    },
+    {
+        "id": 177,
+        "type": "multiple_choice",
+        "question": "A parabolic antenna has an effective area (Aₑ) of 2 m² and operates at 3 GHz (λ = 0.1 m). Calculate its Antenna Gain (G).",
+        "options": [
+            "2513.27",
+            "125.66",
+            "25.13",
+            "628.31"
+        ],
+        "correct_answer": 0,
+        "explanation": "Using G = 4πAₑ/λ² = (4π×2)/(0.1)² = (25.1327)/(0.01) = 2513.27 (unitless ratio, often expressed in dBi)."
+    },
+    {
+        "id": 178,
+        "type": "multiple_choice",
+        "question": "If the wavelength of a transmission is measured to be 15 meters, what is the operating frequency?",
+        "options": [
+            "20 MHz",
+            "2 MHz",
+            "200 kHz",
+            "45 MHz"
+        ],
+        "correct_answer": 0,
+        "explanation": "f = c/λ = (3×10⁸)/15 = 20×10⁶ Hz = 20 MHz."
+    },
+    {
+        "id": 179,
+        "type": "multiple_choice",
+        "question": "You are designing a half-wave dipole antenna for a 600 MHz signal. What should be the approximate total length of the antenna (λ/2)?",
+        "options": [
+            "0.5 meters",
+            "0.25 meters",
+            "1.0 meters",
+            "0.125 meters"
+        ],
+        "correct_answer": 1,
+        "explanation": "λ = c/f = (3×10⁸)/(600×10⁶) = 0.5 m. Half-wavelength (λ/2) = 0.25 m = 25 cm."
+    },
+    {
+        "id": 180,
+        "type": "multiple_choice",
+        "question": "An antenna has a gain of 400. If the operating wavelength is 0.5 meters, what is the effective area (Aₑ) of the antenna?",
+        "options": [
+            "7.96 m²",
+            "12.56 m²",
+            "25.13 m²",
+            "1.25 m²"
+        ],
+        "correct_answer": 0,
+        "explanation": "Rearrange G = 4πAₑ/λ² to Aₑ = Gλ²/(4π) = (400 × (0.5)²)/(4π) = (400 × 0.25)/(12.566) = 100/12.566 ≈ 7.96 m²."
+    },
+    {
+        "id": 181,
+        "type": "multiple_choice",
+        "question": "A cellular tower transmits at 900 MHz. Find the wavelength λ.",
+        "options": [
+            "3.33 meters",
+            "0.333 meters",
+            "30.0 meters",
+            "0.033 meters"
+        ],
+        "correct_answer": 1,
+        "explanation": "λ = c/f = (3×10⁸)/(900×10⁶) = 0.333... m ≈ 0.333 m or 33.3 cm."
+    },
+    {
+        "id": 182,
+        "type": "multiple_choice",
+        "question": "A microwave link uses a frequency of 30 GHz. What is the wavelength?",
+        "options": [
+            "1 cm",
+            "10 cm",
+            "1 mm",
+            "0.1 cm"
+        ],
+        "correct_answer": 0,
+        "explanation": "λ = c/f = (3×10⁸)/(30×10⁹) = 0.01 m = 1 cm."
+    },
+    {
+        "id": 183,
+        "type": "multiple_choice",
+        "question": "If an antenna's effective area (Aₑ) is doubled while the frequency remains constant, how does the gain G change?",
+        "options": [
+            "It decreases by half",
+            "It remains the same",
+            "It doubles",
+            "It quadruples"
+        ],
+        "correct_answer": 2,
+        "explanation": "From G = 4πAₑ/λ², with λ constant (frequency constant), G is directly proportional to Aₑ. Doubling Aₑ doubles G."
+    },
+    {
+        "id": 184,
+        "type": "multiple_choice",
+        "question": "Calculate the frequency of a signal whose wavelength is equal to the height of a 300-meter tower.",
+        "options": [
+            "1 GHz",
+            "10 MHz",
+            "100 kHz",
+            "1 MHz"
+        ],
+        "correct_answer": 3,
+        "explanation": "λ = 300 m. f = c/λ = (3×10⁸)/300 = 1×10⁶ Hz = 1 MHz."
+    },
+    {
+        "id": 185,
+        "type": "multiple_choice",
+        "question": "Using the gain formula G = 4πAₑ/λ², if the frequency is doubled, the gain increases by a factor of:",
+        "options": [
+            "2",
+            "4",
+            "8",
+            "16"
+        ],
+        "correct_answer": 1,
+        "explanation": "Doubling frequency halves wavelength (λ₂ = λ₁/2). Since G ∝ 1/λ², new gain G₂ = 4πAₑ/(λ₁/2)² = 4πAₑ/(λ₁²/4) = 4 × (4πAₑ/λ₁²) = 4G₁. Gain increases by factor of 4."
+    },
+    {
+        "id": 186,
+        "type": "multiple_choice",
+        "question": "According to the lecture notes, what are the three essential components required for communication to take place?",
+        "options": [
+            "Transmitter, Cable, and PC",
+            "Source, channel, and destination",
+            "Fiber, Copper, and Wireless",
+            "Internet, Router, and Client"
+        ],
+        "correct_answer": 1,
+        "explanation": "The three essential components of any communication system are: the source (transmitter), the channel (medium/path), and the destination (receiver)."
+    },
+    {
+        "id": 187,
+        "type": "multiple_choice",
+        "question": "How is 'transmission medium' defined in the context of communication?",
+        "options": [
+            "The software used to send messages",
+            "The path traveled by the communication signal from transmitter to receiver",
+            "The speed at which data is transferred",
+            "The physical location of the server"
+        ],
+        "correct_answer": 1,
+        "explanation": "A transmission medium is the physical path or channel through which the information signal travels from the transmitter to the receiver."
+    },
+    {
+        "id": 188,
+        "type": "multiple_choice",
+        "question": "Which category of media guides waves along a solid medium like a cable?",
+        "options": [
+            "Unguided media",
+            "Radiated media",
+            "Guided media",
+            "Spread spectrum media"
+        ],
+        "correct_answer": 2,
+        "explanation": "Guided media (also called bounded or wired media) use physical conductors like cables (copper, fiber) to guide and contain the signal along a specific path."
+    },
+    {
+        "id": 189,
+        "type": "multiple_choice",
+        "question": "Which of the following is an example of unguided (wireless) media?",
+        "options": [
+            "Fiber-optic cable",
+            "Coaxial cable",
+            "Twisted-pair copper wire",
+            "Digital satellite channel"
+        ],
+        "correct_answer": 3,
+        "explanation": "Digital satellite channels use radio waves through space, which is unguided/wireless media. The other options are all guided/wired media."
+    },
+    {
+        "id": 190,
+        "type": "multiple_choice",
+        "question": "In the classification chart, which of the following is a 'Light conductor'?",
+        "options": [
+            "Coaxial cable",
+            "Fiber optics",
+            "Wires (STP & UTP)",
+            "Radio frequency"
+        ],
+        "correct_answer": 1,
+        "explanation": "Fiber optics use light pulses to transmit data through glass or plastic fibers, making them light conductors. The others use electrical or radio signals."
+    },
+    {
+        "id": 191,
+        "type": "multiple_choice",
+        "question": "Fiber optic cables operate on which physical principle?",
+        "options": [
+            "Electromagnetic Induction",
+            "Total Internal Reflection (TIR)",
+            "Frequency Modulation",
+            "Electrical Resistance"
+        ],
+        "correct_answer": 1,
+        "explanation": "Fiber optics work on the principle of Total Internal Reflection (TIR), where light is continuously reflected within the glass core due to the refractive index difference with the cladding."
+    },
+    {
+        "id": 192,
+        "type": "multiple_choice",
+        "question": "What is the primary difference between Single-Mode Fiber (SMF) and Multi-Mode Fiber (MMF)?",
+        "options": [
+            "The length of the cable",
+            "The material of the jacket",
+            "The diameter of the glass core",
+            "The type of plastic used in the buffer"
+        ],
+        "correct_answer": 2,
+        "explanation": "The core diameter is the main difference: SMF has a very small core (8-10μm) allowing only one light path (mode); MMF has a larger core (50-62.5μm) allowing multiple light paths."
+    },
+    {
+        "id": 193,
+        "type": "multiple_choice",
+        "question": "Which light source is typically used for Single-Mode Fiber (SMF) to achieve longer ranges?",
+        "options": [
+            "Incandescent bulb",
+            "Standard LED",
+            "LASER",
+            "Infrared sensor"
+        ],
+        "correct_answer": 2,
+        "explanation": "SMF typically uses LASER light sources because they produce a highly focused, coherent beam that travels longer distances with less dispersion compared to LEDs."
+    },
+    {
+        "id": 194,
+        "type": "multiple_choice",
+        "question": "What is a major advantage of Fiber Optics over copper wiring?",
+        "options": [
+            "It is cheaper to install",
+            "It is not affected by EMI (Electromagnetic Interference)",
+            "It uses electrical pulses instead of light",
+            "It requires less skill to terminate"
+        ],
+        "correct_answer": 1,
+        "explanation": "Fiber optics are immune to electromagnetic interference (EMI) because they use light instead of electrical signals, making them ideal for electrically noisy environments."
+    },
+    {
+        "id": 195,
+        "type": "multiple_choice",
+        "question": "Which layer of the fiber optic cable protects the core and keeps light within it using a lower refractive index?",
+        "options": [
+            "Buffer coat",
+            "Cladding",
+            "Outer Jacket",
+            "Copper mesh"
+        ],
+        "correct_answer": 1,
+        "explanation": "The cladding surrounds the core and has a lower refractive index than the core, enabling Total Internal Reflection (TIR) to keep light confined within the core."
+    },
+    {
+        "id": 196,
+        "type": "multiple_choice",
+        "question": "Why is twisted-pair cable called 'twisted'?",
+        "options": [
+            "To make the cable more flexible",
+            "To reduce electromagnetic and crosstalk interference",
+            "To increase the resistance of the wire",
+            "To identify the manufacturer"
+        ],
+        "correct_answer": 1,
+        "explanation": "The pairs are twisted together to cancel out electromagnetic interference (EMI) and crosstalk from adjacent pairs. The twists cause interference to affect both wires equally, which can then be cancelled out."
+    },
+    {
+        "id": 197,
+        "type": "multiple_choice",
+        "question": "What occurs when two magnetic fields in twisted pairs occur in opposite directions and cancel each other out?",
+        "options": [
+            "Attenuation",
+            "Refraction",
+            "Cancellation",
+            "Dispersion"
+        ],
+        "correct_answer": 2,
+        "explanation": "Cancellation is the effect where electromagnetic interference (EMI) from external sources or crosstalk from adjacent pairs is reduced because the twisted wires produce opposite magnetic fields that cancel each other out."
+    },
+    {
+        "id": 198,
+        "type": "multiple_choice",
+        "question": "Which category of UTP cable is noted for having 3-4 turns per inch, making it more resistant to interference?",
+        "options": [
+            "CAT-3",
+            "CAT-4",
+            "CAT-5",
+            "CAT-2"
+        ],
+        "correct_answer": 2,
+        "explanation": "CAT-5 cable typically has more twists per inch (3-4) compared to earlier categories, providing better interference rejection and higher bandwidth capabilities."
+    },
+    {
+        "id": 199,
+        "type": "multiple_choice",
+        "question": "What is the main purpose of the 'drain wire' in Shielded Twisted Pair (STP) cabling?",
+        "options": [
+            "To carry the data signal",
+            "To carry away unwanted interference noise to the ground",
+            "To provide power to the device",
+            "To increase the bandwidth of the cable"
+        ],
+        "correct_answer": 1,
+        "explanation": "The drain wire in STP cabling connects the metallic shield to ground at one end, providing a low-resistance path to divert electromagnetic interference (EMI) away from the signal wires."
+    },
+    {
+        "id": 200,
+        "type": "multiple_choice",
+        "question": "Which type of twisted pair cable is most commonly used in computer networks and is terminated with an RJ-45 connector?",
+        "options": [
+            "Coaxial",
+            "STP",
+            "UTP",
+            "Fiber"
+        ],
+        "correct_answer": 2,
+        "explanation": "Unshielded Twisted Pair (UTP) cables, particularly CAT-5e and CAT-6, are the most common cabling for Ethernet networks and use RJ-45 connectors."
+    },
+    {
+        "id": 201,
+        "type": "multiple_choice",
+        "question": "Coaxial cable consists of a central copper conductor surrounded by what?",
+        "options": [
+            "A second fiber core",
+            "A braided mesh (outer conductor)",
+            "Only a plastic cover",
+            "A liquid coolant"
+        ],
+        "correct_answer": 1,
+        "explanation": "Coaxial cable has a central copper conductor surrounded by an insulating dielectric layer, which is then surrounded by a braided metallic mesh (outer conductor/shield), and finally an outer protective jacket."
+    },
+    {
+        "id": 202,
+        "type": "multiple_choice",
+        "question": "Which type of coaxial cable is commonly referred to as 'Thinnet' or 10Base2?",
+        "options": [
+            "RG-11",
+            "Thick coaxial",
+            "Thin coaxial",
+            "RG-59"
+        ],
+        "correct_answer": 2,
+        "explanation": "Thin coaxial cable (RG-58) is commonly known as 'Thinnet' and was used in 10Base2 Ethernet networks. 'Thicknet' (10Base5) refers to thicker RG-8 or RG-11 cable."
+    },
+    {
+        "id": 203,
+        "type": "multiple_choice",
+        "question": "What is a noted disadvantage of thick coaxial cable?",
+        "options": [
+            "It has low bandwidth",
+            "It does not bend easily and is difficult to install",
+            "It is susceptible to EMI",
+            "It cannot carry electrical signals"
+        ],
+        "correct_answer": 1,
+        "explanation": "Thick coaxial cable (Thicknet/10Base5) is rigid and difficult to bend, making installation challenging. It requires special tools and connectors compared to thinner, more flexible cables."
+    },
+    {
+        "id": 204,
+        "type": "multiple_choice",
+        "question": "Radio waves are used for 'multicast' communications. Which of these is an example given in the text?",
+        "options": [
+            "Cellular phones",
+            "Satellite uplink",
+            "Television and paging systems",
+            "Fiber optic sensors"
+        ],
+        "correct_answer": 2,
+        "explanation": "Television broadcasting and paging systems are examples of multicast communication using radio waves, where one transmitter sends signals to multiple receivers simultaneously."
+    },
+    {
+        "id": 205,
+        "type": "multiple_choice",
+        "question": "Which wireless transmission type is used for 'unicast' communication such as cellular phones?",
+        "options": [
+            "Infrared",
+            "Radio wave",
+            "Microwaves",
+            "Broadcast"
+        ],
+        "correct_answer": 2,
+        "explanation": "Cellular phones use radio waves for unicast (point-to-point) communication between the mobile device and the cell tower, as opposed to broadcast/multicast communication."
+    },
+    {
+        "id": 206,
+        "type": "multiple_choice",
+        "question": "Which transmission medium is described as being 'highly regulated' and able to penetrate through walls?",
+        "options": [
+            "Infrared",
+            "Radio waves",
+            "Fiber optics",
+            "Laser beams"
+        ],
+        "correct_answer": 1,
+        "explanation": "Radio waves are subject to government regulation (frequency allocation, power limits) and can penetrate walls and other obstacles, unlike infrared which is line-of-sight."
+    },
+    {
+        "id": 207,
+        "type": "multiple_choice",
+        "question": "Why are infrared signals restricted to short-range communication?",
+        "options": [
+            "They are too expensive",
+            "They cannot penetrate walls",
+            "They are too dangerous for humans",
+            "They only work in outer space"
+        ],
+        "correct_answer": 1,
+        "explanation": "Infrared signals are line-of-sight and cannot penetrate walls or solid objects, limiting their range and making them suitable only for short-distance communication in the same room."
+    },
+    {
+        "id": 208,
+        "type": "multiple_choice",
+        "question": "What is the term for the Earth-based station sending signals UP to a satellite?",
+        "options": [
+            "Downlink",
+            "Backhaul",
+            "Uplink",
+            "Side-load"
+        ],
+        "correct_answer": 2,
+        "explanation": "Uplink refers to the transmission from an Earth station up to a satellite. Downlink refers to the transmission from the satellite back down to Earth."
+    },
+    {
+        "id": 209,
+        "type": "multiple_choice",
+        "question": "A Wireless Local Area Network (WLAN) typically consists of which two key components?",
+        "options": [
+            "Server and Client",
+            "Access Point (AP) and a wireless device",
+            "Coaxial cable and Router",
+            "Satellite and Dish"
+        ],
+        "correct_answer": 1,
+        "explanation": "A basic WLAN infrastructure consists of an Access Point (AP) that connects to a wired network and wireless devices (clients) that connect to the AP."
+    },
+    {
+        "id": 210,
+        "type": "multiple_choice",
+        "question": "What is one major advantage of wireless networks mentioned in the notes?",
+        "options": [
+            "Higher security than wired",
+            "Installation can be fast and easy (no pulling cables through walls)",
+            "Unlimited bandwidth",
+            "Immunity to all interference"
+        ],
+        "correct_answer": 1,
+        "explanation": "Wireless networks eliminate the need to run physical cables through walls and ceilings, making installation faster, easier, and more flexible for temporary setups or difficult-to-wire locations."
+    },
+    {
+        "id": 211,
+        "type": "multiple_choice",
+        "question": "Which of the following is a disadvantage of wireless networks?",
+        "options": [
+            "Low cost of setup",
+            "Flexibility in dynamic environments",
+            "Wireless LANs are less reliable than cabled networks due to interference",
+            "Easy to add new devices"
+        ],
+        "correct_answer": 2,
+        "explanation": "Wireless networks are more susceptible to interference from other devices, physical obstacles, and environmental factors, making them generally less reliable than wired networks."
+    },
+    {
+        "id": 212,
+        "type": "multiple_choice",
+        "question": "As the number of computers using a wireless network increases, what happens to the data transfer rate?",
+        "options": [
+            "It stays the same",
+            "It increases proportionally",
+            "It decreases accordingly",
+            "It doubles"
+        ],
+        "correct_answer": 2,
+        "explanation": "In wireless networks, available bandwidth is shared among all connected devices. As more devices connect and use the network, each device gets a smaller share of the total bandwidth, reducing individual data transfer rates."
+    },
+    {
+        "id": 213,
+        "type": "multiple_choice",
+        "question": "In the context of wireless networks, what does 'Roaming' mean?",
+        "options": [
+            "Searching for a signal in a forest",
+            "Users being handed off from one access point to another like a cellular system",
+            "Hacking into a neighbor's Wi-Fi",
+            "Using a satellite dish in a car"
+        ],
+        "correct_answer": 1,
+        "explanation": "Roaming in wireless networks refers to the ability of a mobile device to automatically switch from one Access Point (AP) to another as the user moves, maintaining continuous connectivity, similar to cellular handoff."
+    },
+    {
+        "id": 214,
+        "type": "multiple_choice",
+        "question": "Which slot type is mentioned as being used for wireless network cards in older laptops?",
+        "options": [
+            "USB-C",
+            "PCMCIA",
+            "HDMI",
+            "AGP"
+        ],
+        "correct_answer": 1,
+        "explanation": "PCMCIA (Personal Computer Memory Card International Association) slots, also known as PC Card slots, were commonly used in older laptops for adding wireless network cards and other peripherals before USB became standard."
+    },
+    {
+        "id": 215,
+        "type": "multiple_choice",
+        "question": "According to the lecture, which medium would be most effective for video streaming if wireless bandwidth is low?",
+        "options": [
+            "Infrared",
+            "Wired LAN",
+            "Satellite",
+            "Bluetooth"
+        ],
+        "correct_answer": 1,
+        "explanation": "When wireless bandwidth is insufficient for video streaming, a wired LAN (like Ethernet over UTP or fiber) provides higher, more reliable bandwidth with less interference, making it more effective for bandwidth-intensive applications."
+    },
+    {
+        "id": 216,
+        "type": "multiple_choice",
+        "question": "Calculate the Remainder: Dataword: 1010. Divisor: 1001. What is the 3-bit CRC remainder?",
+        "options": [
+            "110",
+            "011",
+            "101",
+            "001"
+        ],
+        "correct_answer": 1,
+        "explanation": "Append 3 zeros (divisor length 4 - 1 = 3) to 1010 → 1010000. Perform binary division: 1010000 ÷ 1001. 1010 ⊕ 1001 = 0011 → bring down 0 → 1100 ⊕ 1001 = 101 → bring down 0 → 1010 ⊕ 1001 = 011. Remainder = 011."
+    },
+    {
+        "id": 217,
+        "type": "multiple_choice",
+        "question": "Determine the Codeword: Dataword: 1101. Divisor: 101. What is the final codeword transmitted?",
+        "options": [
+            "110110",
+            "110101",
+            "110100",
+            "110111"
+        ],
+        "correct_answer": 0,
+        "explanation": "Append 2 zeros (divisor length 3 - 1 = 2) to 1101 → 110100. Perform binary division: 110100 ÷ 101. 110 ⊕ 101 = 011 → bring down 1 → 111 ⊕ 101 = 010 → bring down 0 → 100 ⊕ 101 = 001 → bring down 0 → 010 (remainder). Remainder = 10. Codeword = dataword + remainder = 1101 + 10 = 110110."
+    },
+    {
+        "id": 218,
+        "type": "multiple_choice",
+        "question": "Error Detection (Syndrome): Receiver receives: 110101. Divisor: 101. What is the remainder (syndrome)?",
+        "options": [
+            "01",
+            "11",
+            "00",
+            "10"
+        ],
+        "correct_answer": 1,
+        "explanation": "Divide received codeword 110101 by divisor 101: 110 ⊕ 101 = 011 → bring down 1 → 111 ⊕ 101 = 010 → bring down 0 → 100 ⊕ 101 = 001 → bring down 1 → 011 (remainder 11). Non-zero remainder (11) indicates an error in transmission. Note: This differs from Q2's correct codeword 110110."
+    },
+    {
+        "id": 219,
+        "type": "multiple_choice",
+        "question": "Calculate the Remainder: Dataword: 1001. Divisor: 1011. What is the 3-bit remainder?",
+        "options": [
+            "011",
+            "110",
+            "001",
+            "101"
+        ],
+        "correct_answer": 2,
+        "explanation": "Append 3 zeros (divisor length 4 - 1 = 3) to 1001 → 1001000. Perform binary division: 1001000 ÷ 1011. 10010 ⊕ 1011 = 0110 → bring down 0 → 1100 ⊕ 1011 = 111 → bring down 0 → 1110 ⊕ 1011 = 101 → bring down 0 → 1010 ⊕ 1011 = 001. Remainder = 001."
+    },
+    {
+        "id": 220,
+        "type": "multiple_choice",
+        "question": "Redundancy Rule: If the divisor bit pattern is 101101, how many redundancy bits (zeros) are added to the dataword at the sender?",
+        "options": [
+            "6 bits",
+            "5 bits",
+            "4 bits",
+            "7 bits"
+        ],
+        "correct_answer": 1,
+        "explanation": "The number of redundancy bits (zeros appended) equals (divisor length - 1). Divisor 101101 has 6 bits, so zeros added = 6 - 1 = 5 bits."
+    },
+    
+    
+    {
+        "id": 221,
+        "type": "multiple_choice",
+        "question": "Which data-to-signal conversion combination involves amplitude and frequency modulation techniques?",
+        "options": [
+            "Digital data-to-analog signal",
+            "Analog data-to-analog signal",
+            "Digital data-to-digital signal",
+            "Analog data-to-digital signal"
+        ],
+        "correct_answer": 1,
+        "explanation": "Analog data-to-analog signal conversion uses modulation techniques like AM (Amplitude Modulation) and FM (Frequency Modulation) to encode analog information onto an analog carrier wave for transmission."
+    },
+    {
+        "id": 222,
+        "type": "multiple_choice",
+        "question": "According to the lecture notes, which device is used to convert analog data into digital form?",
+        "options": [
+            "Modem",
+            "Digital encoder",
+            "Codec",
+            "Radio tuner"
+        ],
+        "correct_answer": 2,
+        "explanation": "A codec (coder-decoder) converts analog signals (like voice) into digital form for transmission and then back to analog at the receiver. Modems convert digital data to analog signals for transmission over analog lines."
+    },
+    {
+        "id": 223,
+        "type": "multiple_choice",
+        "question": "What is the reciprocal of the frequency of a signal?",
+        "options": [
+            "Phase",
+            "Amplitude",
+            "Attenuation",
+            "Period"
+        ],
+        "correct_answer": 3,
+        "explanation": "Period (T) is the reciprocal of frequency (f): T = 1/f. The period is the time it takes for one complete cycle of the waveform to occur."
+    },
+    {
+        "id": 224,
+        "type": "multiple_choice",
+        "question": "A waveform that can be at an infinite number of points between a given minimum and maximum is described as:",
+        "options": [
+            "Discrete",
+            "Digital",
+            "Analog",
+            "Binary"
+        ],
+        "correct_answer": 2,
+        "explanation": "Analog signals are continuous and can take on an infinite number of amplitude values between their minimum and maximum. Digital signals are discrete with a limited set of values."
+    },
+    {
+        "id": 225,
+        "type": "multiple_choice",
+        "question": "Which of the following is a primary shortcoming of analog data and signals?",
+        "options": [
+            "They cannot represent human voice.",
+            "They are difficult to separate from noise.",
+            "They occupy too little bandwidth.",
+            "They have a fixed number of values."
+        ],
+        "correct_answer": 1,
+        "explanation": "Analog signals are susceptible to noise, and once noise is added, it's difficult to remove completely because the noise becomes part of the signal. Digital signals can be regenerated and error-corrected."
+    },
+    {
+        "id": 226,
+        "type": "multiple_choice",
+        "question": "If a signal makes 12 complete cycles within one second, its frequency is:",
+        "options": [
+            "1/12 Hz",
+            "12 Hz",
+            "1 Hz",
+            "120 Hz"
+        ],
+        "correct_answer": 1,
+        "explanation": "Frequency is defined as the number of cycles per second (Hertz). 12 cycles in 1 second = 12 Hz."
+    },
+    {
+        "id": 227,
+        "type": "multiple_choice",
+        "question": "Phase describes the position of the waveform relative to:",
+        "options": [
+            "Time 0",
+            "Maximum amplitude",
+            "The frequency domain",
+            "The vertical axis"
+        ],
+        "correct_answer": 0,
+        "explanation": "Phase is measured in degrees or radians and indicates the offset of a waveform relative to a reference point at time zero. It shows where in its cycle the wave begins."
+    },
+    {
+        "id": 228,
+        "type": "multiple_choice",
+        "question": "The loss of signal strength due to friction as it travels through a medium is called:",
+        "options": [
+            "Amplification",
+            "Modulation",
+            "Attenuation",
+            "Quantization"
+        ],
+        "correct_answer": 2,
+        "explanation": "Attenuation is the reduction in signal strength (power) as it propagates through a medium due to resistance, absorption, scattering, or other factors. It's measured in decibels (dB)."
+    },
+    {
+        "id": 229,
+        "type": "multiple_choice",
+        "question": "Which technique finds the change from the previous sample rather than the absolute amplitude?",
+        "options": [
+            "Pulse Code Modulation (PCM)",
+            "Amplitude Shift Keying (ASK)",
+            "Delta Modulation (DM)",
+            "Frequency Shift Keying (FSK)"
+        ],
+        "correct_answer": 2,
+        "explanation": "Delta Modulation encodes the difference (delta) between the current sample and the previous one, rather than the absolute value. This can be more efficient for signals with small changes between samples."
+    },
+    {
+        "id": 230,
+        "type": "multiple_choice",
+        "question": "In PCM, what is the correct order of the three main processes involved?",
+        "options": [
+            "Quantizing, Sampling, Encoding",
+            "Sampling, Quantizing, Encoding",
+            "Encoding, Sampling, Quantizing",
+            "Sampling, Encoding, Quantizing"
+        ],
+        "correct_answer": 1,
+        "explanation": "Pulse Code Modulation follows three steps: 1) Sampling (measure amplitude at regular intervals), 2) Quantizing (round to nearest predefined level), 3) Encoding (convert to binary code)."
+    },
+    {
+        "id": 231,
+        "type": "multiple_choice",
+        "question": "Which common system utilizes Digital-to-Analog conversion (Digital data, Analog signal)?",
+        "options": [
+            "Cable TV",
+            "Local area networks",
+            "Dial-up Internet access",
+            "Music systems"
+        ],
+        "correct_answer": 2,
+        "explanation": "Dial-up modems use Digital-to-Analog conversion: the computer's digital data is converted to analog signals by the modem for transmission over the telephone line (which was originally designed for analog voice)."
+    },
+    {
+        "id": 232,
+        "type": "multiple_choice",
+        "question": "A signal that changes instantaneously would have a frequency of:",
+        "options": [
+            "Zero",
+            "Infinite",
+            "1 Hz",
+            "180 degrees"
+        ],
+        "correct_answer": 1,
+        "explanation": "Frequency measures how often a signal repeats. An instantaneous change implies an infinitely fast transition, which would require infinite frequency components (as per Fourier analysis)."
+    },
+    {
+        "id": 233,
+        "type": "multiple_choice",
+        "question": "The vertical height of a wave above or below a given reference point denotes its:",
+        "options": [
+            "Frequency",
+            "Period",
+            "Phase",
+            "Amplitude"
+        ],
+        "correct_answer": 3,
+        "explanation": "Amplitude is the maximum displacement or height of a wave from its equilibrium (rest) position. It's related to the signal's power or intensity."
+    },
+    {
+        "id": 234,
+        "type": "multiple_choice",
+        "question": "NRZ-I, Manchester, and Differential Manchester are examples of:",
+        "options": [
+            "Encoding techniques",
+            "Modulation techniques",
+            "Digitization techniques",
+            "Analog conversion techniques"
+        ],
+        "correct_answer": 0,
+        "explanation": "These are line coding (encoding) techniques used in digital-to-digital conversion. They map binary data to electrical pulses for transmission over a channel, addressing issues like synchronization and DC balance."
+    },
+    {
+        "id": 235,
+        "type": "multiple_choice",
+        "question": "Decibel (dB) is a relative measure of signal loss or gain and is a:",
+        "options": [
+            "Linear value",
+            "Logarithmic value",
+            "Discrete value",
+            "Constant value"
+        ],
+        "correct_answer": 1,
+        "explanation": "Decibel uses a logarithmic scale to express ratios (like signal-to-noise ratio, gain, loss). This compresses large ranges into manageable numbers and makes multiplication of gains/losses become addition."
+    },
+    {
+        "id": 236,
+        "type": "multiple_choice",
+        "question": "Pulse Code Modulation (PCM) and Delta Modulation (DM) are specifically used for:",
+        "options": [
+            "Digital-to-Analog conversion",
+            "Analog-to-Analog conversion",
+            "Analog-to-Digital conversion",
+            "Digital-to-Digital conversion"
+        ],
+        "correct_answer": 2,
+        "explanation": "Both PCM and DM are analog-to-digital conversion techniques. They convert continuous analog signals (like voice) into discrete digital representations for transmission or storage."
+    },
+    {
+        "id": 237,
+        "type": "multiple_choice",
+        "question": "A sine wave represented by a single spike in a graph is being shown in the:",
+        "options": [
+            "Time domain",
+            "Amplitude domain",
+            "Frequency domain",
+            "Phase domain"
+        ],
+        "correct_answer": 2,
+        "explanation": "In the frequency domain, a pure sine wave appears as a single spike (impulse) at its frequency. The time domain shows the waveform's amplitude variation over time."
+    },
+    {
+        "id": 238,
+        "type": "multiple_choice",
+        "question": "What happens to the frequency of a signal if the change occurs over a very short period?",
+        "options": [
+            "It becomes zero",
+            "It results in low frequency",
+            "It results in high frequency",
+            "It remains constant"
+        ],
+        "correct_answer": 2,
+        "explanation": "Frequency is inversely related to period (time for one cycle). A very short period (rapid change) means high frequency. Rapid changes in time domain correspond to high-frequency components."
+    },
+    {
+        "id": 239,
+        "type": "multiple_choice",
+        "question": "The process of finding a sufficient number of samples to represent the original signal is called:",
+        "options": [
+            "Encoding",
+            "Quantizing",
+            "Sampling",
+            "Attenuation"
+        ],
+        "correct_answer": 2,
+        "explanation": "Sampling is the process of taking measurements of an analog signal's amplitude at discrete time intervals. According to Nyquist theorem, the sampling rate must be at least twice the highest frequency component."
+    },
+    {
+        "id": 240,
+        "type": "multiple_choice",
+        "question": "If a sine wave starts its cycle at its peak instead of zero, it is said to have a phase of:",
+        "options": [
+            "0 degrees",
+            "90 degrees",
+            "180 degrees",
+            "360 degrees"
+        ],
+        "correct_answer": 1,
+        "explanation": "A standard sine wave starts at zero amplitude. If it starts at its positive peak, it's shifted by 90° (π/2 radians), which is a cosine wave. Phase is measured relative to a reference sine wave starting at zero."
     }
+
+
+
+
+
+
 
 
 ]
