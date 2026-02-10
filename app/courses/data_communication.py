@@ -4,6 +4,7 @@ data_communication_quiz = {
     "total_questions": 50,
     "questions": [
         
+  
   {
     "id": 1,
     "type": "multiple_choice",
@@ -66,8 +67,8 @@ data_communication_quiz = {
       "Post office protocol",
       "Simple mail transfer protocol"
     ],
-    "correct_answer": 3,
-    "explanation": "SMTP is used to push mail from a client to a server or between servers, while POP/IMAP are used by clients to retrieve mail."
+    "correct_answer": 2,
+    "explanation": "Note: According to your answer key, this should be Post Office Protocol (POP), which is option c. In the original JSON, it was marked as SMTP (option d). I'm using your provided answer."
   },
   {
     "id": 6,
@@ -105,8 +106,8 @@ data_communication_quiz = {
       "Ring",
       "Mesh"
     ],
-    "correct_answer": 2,
-    "explanation": "In a basic ring topology, data passes through every node; if one fails, the loop is broken and communication stops for all."
+    "correct_answer": 1,
+    "explanation": "Note: According to your answer key, this should be Bus (option b). In the original JSON, it was marked as Ring (option c). I'm using your provided answer."
   },
   {
     "id": 9,
@@ -174,7 +175,7 @@ data_communication_quiz = {
     "explanation": "Because all nodes share a single cable, a break anywhere can bring down the whole network, making it hard to isolate the fault."
   },
   {
-    "id": 29,
+    "id": 14,
     "type": "multiple_choice",
     "question": "Which transmission medium is commonly used in modern data centers for ultra-fast data rates?",
     "options": [
@@ -187,7 +188,7 @@ data_communication_quiz = {
     "explanation": "Optical fiber provides the highest bandwidth and lowest latency required for the high-speed demands of modern data centers."
   },
   {
-    "id": 30,
+    "id": 15,
     "type": "multiple_choice",
     "question": "Which of the following is a key characteristic of analog signals?",
     "options": [
@@ -200,7 +201,7 @@ data_communication_quiz = {
     "explanation": "Analog signals represent information as a continuous range of values over time, unlike digital signals which are discrete."
   },
   {
-    "id": 31,
+    "id": 16,
     "type": "multiple_choice",
     "question": "Digital signals are represented by:",
     "options": [
@@ -213,7 +214,7 @@ data_communication_quiz = {
     "explanation": "Digital signals use discrete binary code (bits) to represent and transmit data."
   },
   {
-    "id": 32,
+    "id": 17,
     "type": "multiple_choice",
     "question": "Which of the following is a disadvantage of analog systems?",
     "options": [
@@ -226,7 +227,7 @@ data_communication_quiz = {
     "explanation": "Analog signals are highly susceptible to noise and degradation as they travel, making them less reliable than digital signals for long distances."
   },
   {
-    "id": 33,
+    "id": 18,
     "type": "multiple_choice",
     "question": "___ assigns a unique number to each IP network adapter called the MAC address",
     "options": [
@@ -239,7 +240,7 @@ data_communication_quiz = {
     "explanation": "MAC stands for Media Access Control, a unique identifier assigned to a network interface controller."
   },
   {
-    "id": 34,
+    "id": 19,
     "type": "multiple_choice",
     "question": "The transport layer of the OSI model lies between Network and __ layer.",
     "options": [
@@ -252,7 +253,7 @@ data_communication_quiz = {
     "explanation": "Layer 4 (Transport) sits above Layer 3 (Network) and below Layer 5 (Session)."
   },
   {
-    "id": 35,
+    "id": 20,
     "type": "multiple_choice",
     "question": "What does PoE stand for in Ethernet technology?",
     "options": [
@@ -265,7 +266,7 @@ data_communication_quiz = {
     "explanation": "PoE allows network cables to carry electrical power to devices like IP cameras or VoIP phones alongside data."
   },
   {
-    "id": 36,
+    "id": 21,
     "type": "multiple_choice",
     "question": "What is the unit of antenna gain?",
     "options": [
@@ -278,7 +279,7 @@ data_communication_quiz = {
     "explanation": "Antenna gain is a measurement of the power ratio and is typically expressed in decibels (dB)."
   },
   {
-    "id": 37,
+    "id": 22,
     "type": "multiple_choice",
     "question": "The radiation pattern of an ideal isotropic antenna is:",
     "options": [
@@ -291,7 +292,7 @@ data_communication_quiz = {
     "explanation": "An isotropic antenna is an ideal point source that radiates power equally in all directions (360 degrees)."
   },
   {
-    "id": 38,
+    "id": 23,
     "type": "multiple_choice",
     "question": "What type of antenna is typically used for satellite communication?",
     "options": [
@@ -304,7 +305,7 @@ data_communication_quiz = {
     "explanation": "Parabolic reflectors (dish antennas) provide high gain and directivity needed for long-distance space communication."
   },
   {
-    "id": 39,
+    "id": 24,
     "type": "multiple_choice",
     "question": "Which parameter of an antenna is defined as the ratio of radiated power to input power?",
     "options": [
@@ -317,7 +318,7 @@ data_communication_quiz = {
     "explanation": "Antenna efficiency describes how much of the power delivered to the antenna is actually radiated as electromagnetic waves."
   },
   {
-    "id": 40,
+    "id": 25,
     "type": "multiple_choice",
     "question": "The bandwidth of an antenna is the range of frequencies over which:",
     "options": [
@@ -330,7 +331,7 @@ data_communication_quiz = {
     "explanation": "Antenna bandwidth is the frequency range where the antenna meets performance specifications like gain and radiation pattern."
   },
   {
-    "id": 41,
+    "id": 26,
     "type": "multiple_choice",
     "question": "The commonly used multiple technique that has very stringent timing and synchronization requirements for the Earth station is",
     "options": [
@@ -343,7 +344,7 @@ data_communication_quiz = {
     "explanation": "TDMA (Time Division Multiple Access) requires precise timing so that users transmit only in their specific time slots."
   },
   {
-    "id": 42,
+    "id": 27,
     "type": "multiple_choice",
     "question": "__ is a type of transmission impairment in which the signal loses strength due to the different propagation speeds of each frequency that makes up the signal.",
     "options": [
@@ -356,7 +357,7 @@ data_communication_quiz = {
     "explanation": "Distortion occurs when different frequency components of a signal travel at different speeds, changing the signal's shape."
   },
   {
-    "id": 43,
+    "id": 28,
     "type": "multiple_choice",
     "question": "__ is used to validate the identity of the message sender to the recipient",
     "options": [
@@ -369,7 +370,7 @@ data_communication_quiz = {
     "explanation": "A digital certificate provides a way to verify that a public key belongs to a specific entity, validating their identity."
   },
   {
-    "id": 44,
+    "id": 29,
     "type": "multiple_choice",
     "question": "What is the main purpose of an antenna?",
     "options": [
@@ -382,7 +383,7 @@ data_communication_quiz = {
     "explanation": "Antennas are transducers that convert electrical currents into electromagnetic waves (transmission) and vice versa (reception)."
   },
   {
-    "id": 45,
+    "id": 30,
     "type": "multiple_choice",
     "question": "Which of the following is not a guided transmission medium?",
     "options": [
@@ -395,7 +396,7 @@ data_communication_quiz = {
     "explanation": "Guided media (cables) provide a physical path; unguided media (like radio waves) transmit signals through free space."
   },
   {
-    "id": 46,
+    "id": 31,
     "type": "multiple_choice",
     "question": "What is the primary advantage of fiber optic cables over copper cables?",
     "options": [
@@ -408,7 +409,7 @@ data_communication_quiz = {
     "explanation": "Fiber optics support significantly higher data rates and can transmit over much longer distances with minimal signal loss."
   },
   {
-    "id": 47,
+    "id": 32,
     "type": "multiple_choice",
     "question": "The two types of twisted pair cables are:",
     "options": [
@@ -421,7 +422,7 @@ data_communication_quiz = {
     "explanation": "Twisted pair cabling is categorized as Unshielded (UTP) or Shielded (STP)."
   },
   {
-    "id": 48,
+    "id": 33,
     "type": "multiple_choice",
     "question": "Which of the following media is used in wireless communication?",
     "options": [
@@ -434,7 +435,7 @@ data_communication_quiz = {
     "explanation": "Microwaves are electromagnetic waves used for wireless terrestrial and satellite communications."
   },
   {
-    "id": 49,
+    "id": 34,
     "type": "multiple_choice",
     "question": "What is the maximum distance for data transmission over unshielded twisted pair (UTP) without a repeater?",
     "options": [
@@ -447,7 +448,7 @@ data_communication_quiz = {
     "explanation": "The standard maximum segment length for Ethernet over UTP is 100 meters."
   },
   {
-    "id": 50,
+    "id": 35,
     "type": "multiple_choice",
     "question": "One way to limit hostile sniffing on a Local Area Network is by installing:",
     "options": [
@@ -460,7 +461,7 @@ data_communication_quiz = {
     "explanation": "Switches only forward traffic to the specific destination port, preventing other devices from seeing the traffic (unlike hubs)."
   },
   {
-    "id": 51,
+    "id": 36,
     "type": "multiple_choice",
     "question": "In a network with 25 computers, which topology would require the most extensive cabling?",
     "options": [
@@ -473,7 +474,7 @@ data_communication_quiz = {
     "explanation": "A full mesh topology for $n$ devices requires $n(n-1)/2$ connections, which is significantly more than other topologies."
   },
   {
-    "id": 52,
+    "id": 37,
     "type": "multiple_choice",
     "question": "Forward Error Correction (FEC) is a technique that:",
     "options": [
@@ -486,7 +487,7 @@ data_communication_quiz = {
     "explanation": "FEC adds redundant data (error-correcting code) so the receiver can fix errors locally without asking for a retransmission."
   },
   {
-    "id": 53,
+    "id": 38,
     "type": "multiple_choice",
     "question": "In CRC, the divisor is represented as a:",
     "options": [
@@ -499,7 +500,7 @@ data_communication_quiz = {
     "explanation": "In Cyclic Redundancy Check (CRC) mathematics, binary strings are treated as coefficients of a polynomial."
   },
   {
-    "id": 54,
+    "id": 39,
     "type": "multiple_choice",
     "question": "Which error correction technique is commonly used in modern digital communication systems like satellite communication?",
     "options": [
@@ -512,7 +513,7 @@ data_communication_quiz = {
     "explanation": "Reed-Solomon codes are powerful error-correcting codes used extensively in space and satellite communications to handle burst errors."
   },
   {
-    "id": 55,
+    "id": 40,
     "type": "multiple_choice",
     "question": "What is a protocol in the context of computer networks?",
     "options": [
@@ -525,7 +526,7 @@ data_communication_quiz = {
     "explanation": "A protocol is a standardized set of rules that defines how data is formatted and transmitted between devices."
   },
   {
-    "id": 56,
+    "id": 41,
     "type": "multiple_choice",
     "question": "DNS stands for:",
     "options": [
@@ -538,7 +539,7 @@ data_communication_quiz = {
     "explanation": "DNS is the service that translates human-readable domain names into IP addresses."
   },
   {
-    "id": 57,
+    "id": 42,
     "type": "multiple_choice",
     "question": "Which protocol is used to assign IP addresses dynamically to devices?",
     "options": [
@@ -551,7 +552,7 @@ data_communication_quiz = {
     "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices joining a network."
   },
   {
-    "id": 58,
+    "id": 43,
     "type": "multiple_choice",
     "question": "Which layer of the OSI model does the IP protocol belong to?",
     "options": [
@@ -564,7 +565,7 @@ data_communication_quiz = {
     "explanation": "IP (Internet Protocol) handles logical addressing and routing, which are Layer 3 (Network) functions."
   },
   {
-    "id": 59,
+    "id": 44,
     "type": "multiple_choice",
     "question": "What is the primary characteristic of link-state routing protocols?",
     "options": [
@@ -577,7 +578,7 @@ data_communication_quiz = {
     "explanation": "Link-state protocols (like OSPF) require every router to have a complete map of the network area."
   },
   {
-    "id": 60,
+    "id": 45,
     "type": "multiple_choice",
     "question": "Which of the following is true about link-state routing protocols compared to distance-vector protocols?",
     "options": [
@@ -590,7 +591,7 @@ data_communication_quiz = {
     "explanation": "Link-state protocols react quickly to network changes, leading to faster convergence than distance-vector protocols."
   },
   {
-    "id": 61,
+    "id": 46,
     "type": "multiple_choice",
     "question": "Which layer of the OSI model does OSPF operate at?",
     "options": [
@@ -603,7 +604,7 @@ data_communication_quiz = {
     "explanation": "OSPF is a routing protocol used to determine paths at Layer 3 (Network Layer)."
   },
   {
-    "id": 62,
+    "id": 47,
     "type": "multiple_choice",
     "question": "How does OSPF prevent routing loops?",
     "options": [
@@ -616,7 +617,7 @@ data_communication_quiz = {
     "explanation": "Because every router has the full topology map (Link State Database), they calculate loops-free paths using the Dijkstra algorithm."
   },
   {
-    "id": 63,
+    "id": 48,
     "type": "multiple_choice",
     "question": "In simplex communication, which device can transmit data?",
     "options": [
@@ -629,7 +630,7 @@ data_communication_quiz = {
     "explanation": "Simplex is strictly one-way communication; one side is the permanent sender and the other is the permanent receiver."
   },
   {
-    "id": 64,
+    "id": 49,
     "type": "multiple_choice",
     "question": "Simplex communication is best suited for:",
     "options": [
@@ -642,111 +643,7 @@ data_communication_quiz = {
     "explanation": "Simplex is used for broadcasting (like TV/Radio) where the audience doesn't need to send data back."
   },
   {
-    "id": 65,
-    "type": "multiple_choice",
-    "question": "Which protocol is used to assign IP addresses dynamically to devices?",
-    "options": [
-      "ARP",
-      "ICMP",
-      "DHCP",
-      "DNS"
-    ],
-    "correct_answer": 2,
-    "explanation": "DHCP is the standard protocol for dynamic IP allocation."
-  },
-  {
-    "id": 66,
-    "type": "multiple_choice",
-    "question": "Which layer of the OSI model does the IP protocol belong to?",
-    "options": [
-      "Application layer",
-      "Transport layer",
-      "Network layer",
-      "Data Link layer"
-    ],
-    "correct_answer": 2,
-    "explanation": "IP is the core protocol of the Network Layer (Layer 3)."
-  },
-  {
-    "id": 67,
-    "type": "multiple_choice",
-    "question": "What is the primary characteristic of link-state routing protocols?",
-    "options": [
-      "Distance-based metrics",
-      "Periodic updates to all routers",
-      "Knowledge of the entire network topology",
-      "Use of vector tables"
-    ],
-    "correct_answer": 2,
-    "explanation": "Link-state protocols build a full topological map of the network."
-  },
-  {
-    "id": 68,
-    "type": "multiple_choice",
-    "question": "Which of the following is true about link-state routing protocols compared to distance-vector protocols?",
-    "options": [
-      "They use less CPU and memory",
-      "They converge faster",
-      "They are simpler to configure",
-      "They rely on hop count as the sole metric"
-    ],
-    "correct_answer": 1,
-    "explanation": "Convergence speed is a major advantage of link-state protocols."
-  },
-  {
-    "id": 69,
-    "type": "multiple_choice",
-    "question": "Which layer of the OSI model does OSPF operate at?",
-    "options": [
-      "Data Link Layer",
-      "Network Layer",
-      "Transport Layer",
-      "Application Layer"
-    ],
-    "correct_answer": 1,
-    "explanation": "Routing happens at Layer 3."
-  },
-  {
-    "id": 70,
-    "type": "multiple_choice",
-    "question": "How does OSPF prevent routing loops?",
-    "options": [
-      "By using split horizon",
-      "By maintaining a complete map of the network topology",
-      "By limiting the number of hops",
-      "By using hold-down timers"
-    ],
-    "correct_answer": 1,
-    "explanation": "A full topology view allows routers to calculate the shortest path tree without loops."
-  },
-  {
-    "id": 71,
-    "type": "multiple_choice",
-    "question": "In simplex communication, which device can transmit data?",
-    "options": [
-      "Both devices",
-      "Only the receiver",
-      "Only the sender",
-      "Neither device"
-    ],
-    "correct_answer": 2,
-    "explanation": "Simplex is one-way only."
-  },
-  {
-    "id": 72,
-    "type": "multiple_choice",
-    "question": "Simplex communication is best suited for:",
-    "options": [
-      "Interactive communication",
-      "Two-way communication",
-      "Broadcasting information",
-      "Secure communication"
-    ],
-    "correct_answer": 2,
-    "explanation": "Ideal for scenarios like radio transmission."
-  },
-  {
-    "id": 73,
+    "id": 50,
     "type": "multiple_choice",
     "question": "Which communication mode allows two-way communication but alternately?",
     "options": [
@@ -759,7 +656,7 @@ data_communication_quiz = {
     "explanation": "In half-duplex, both parties can communicate but not at the same time (e.g., Walkie-talkies)."
   },
   {
-    "id": 74,
+    "id": 51,
     "type": "multiple_choice",
     "question": "Which of the following is a common example of full-duplex communication?",
     "options": [
@@ -772,7 +669,7 @@ data_communication_quiz = {
     "explanation": "Telephones allow both parties to speak and listen simultaneously."
   },
   {
-    "id": 75,
+    "id": 52,
     "type": "multiple_choice",
     "question": "Which of the following is NOT a characteristic of full-duplex communication?",
     "options": [
@@ -785,7 +682,7 @@ data_communication_quiz = {
     "explanation": "Full-duplex is simultaneous, not turn-by-turn."
   },
   {
-    "id": 76,
+    "id": 53,
     "type": "multiple_choice",
     "question": "Which topology uses a closed-loop communication path?",
     "options": [
@@ -798,7 +695,7 @@ data_communication_quiz = {
     "explanation": "A ring topology connects devices in a circular loop."
   },
   {
-    "id": 77,
+    "id": 54,
     "type": "multiple_choice",
     "question": "Which device is used to extend the length of a network by regenerating signals?",
     "options": [
@@ -811,7 +708,7 @@ data_communication_quiz = {
     "explanation": "A repeater takes a weak signal and regenerates it to extend the transmission distance."
   },
   {
-    "id": 78,
+    "id": 55,
     "type": "multiple_choice",
     "question": "Which device allows a computer to be connected to a network?",
     "options": [
@@ -824,7 +721,7 @@ data_communication_quiz = {
     "explanation": "The NIC is the hardware component that provides the interface between the computer and the network cable/wireless signal."
   },
   {
-    "id": 79,
+    "id": 56,
     "type": "multiple_choice",
     "question": "Which of the following is NOT a network or Internet device?",
     "options": [
@@ -837,7 +734,7 @@ data_communication_quiz = {
     "explanation": "A scanner is a peripheral input device, not a network infrastructure device."
   },
   {
-    "id": 80,
+    "id": 57,
     "type": "multiple_choice",
     "question": "An antenna used for both transmitting and receiving is called:",
     "options": [
@@ -848,6 +745,305 @@ data_communication_quiz = {
     ],
     "correct_answer": 2,
     "explanation": "A duplexer allows a single antenna to handle both transmission and reception at the same time."
+  },
+  {
+    "id": 58,
+    "type": "multiple_choice",
+    "question": "Which protocol is used to assign IP addresses dynamically to devices?",
+    "options": [
+      "ARP",
+      "ICMP",
+      "DHCP",
+      "DNS"
+    ],
+    "correct_answer": 2,
+    "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices joining a network."
+  },
+  {
+    "id": 59,
+    "type": "multiple_choice",
+    "question": "Which layer of the OSI model does the IP protocol belong to?",
+    "options": [
+      "Application layer",
+      "Transport layer",
+      "Network layer",
+      "Data Link layer"
+    ],
+    "correct_answer": 2,
+    "explanation": "IP (Internet Protocol) handles logical addressing and routing, which are Layer 3 (Network) functions."
+  },
+  {
+    "id": 60,
+    "type": "multiple_choice",
+    "question": "What is the primary characteristic of link-state routing protocols?",
+    "options": [
+      "Distance-based metrics",
+      "Periodic updates to all routers",
+      "Knowledge of the entire network topology",
+      "Use of vector tables"
+    ],
+    "correct_answer": 2,
+    "explanation": "Link-state protocols (like OSPF) require every router to have a complete map of the network area."
+  },
+  {
+    "id": 61,
+    "type": "multiple_choice",
+    "question": "Which of the following is true about link-state routing protocols compared to distance-vector protocols?",
+    "options": [
+      "They use less CPU and memory",
+      "They converge faster",
+      "They are simpler to configure",
+      "They rely on hop count as the sole metric"
+    ],
+    "correct_answer": 1,
+    "explanation": "Link-state protocols react quickly to network changes, leading to faster convergence than distance-vector protocols."
+  },
+  {
+    "id": 62,
+    "type": "multiple_choice",
+    "question": "Which layer of the OSI model does OSPF operate at?",
+    "options": [
+      "Data Link Layer",
+      "Network Layer",
+      "Transport Layer",
+      "Application Layer"
+    ],
+    "correct_answer": 1,
+    "explanation": "OSPF is a routing protocol used to determine paths at Layer 3 (Network Layer)."
+  },
+  {
+    "id": 63,
+    "type": "multiple_choice",
+    "question": "How does OSPF prevent routing loops?",
+    "options": [
+      "By using split horizon",
+      "By maintaining a complete map of the network topology",
+      "By limiting the number of hops",
+      "By using hold-down timers"
+    ],
+    "correct_answer": 1,
+    "explanation": "Because every router has the full topology map (Link State Database), they calculate loops-free paths using the Dijkstra algorithm."
+  },
+  {
+    "id": 64,
+    "type": "multiple_choice",
+    "question": "Which protocol is used to assign IP addresses dynamically to devices?",
+    "options": [
+      "ARP",
+      "ICMP",
+      "DHCP",
+      "DNS"
+    ],
+    "correct_answer": 2,
+    "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices joining a network."
+  },
+  {
+    "id": 65,
+    "type": "multiple_choice",
+    "question": "Which layer of the OSI model does the IP protocol belong to?",
+    "options": [
+      "Application layer",
+      "Transport layer",
+      "Network layer",
+      "Data Link layer"
+    ],
+    "correct_answer": 2,
+    "explanation": "IP (Internet Protocol) handles logical addressing and routing, which are Layer 3 (Network) functions."
+  },
+  {
+    "id": 66,
+    "type": "multiple_choice",
+    "question": "What is the primary characteristic of link-state routing protocols?",
+    "options": [
+      "Distance-based metrics",
+      "Periodic updates to all routers",
+      "Knowledge of the entire network topology",
+      "Use of vector tables"
+    ],
+    "correct_answer": 2,
+    "explanation": "Link-state protocols (like OSPF) require every router to have a complete map of the network area."
+  },
+  {
+    "id": 67,
+    "type": "multiple_choice",
+    "question": "Which of the following is true about link-state routing protocols compared to distance-vector protocols?",
+    "options": [
+      "They use less CPU and memory",
+      "They converge faster",
+      "They are simpler to configure",
+      "They rely on hop count as the sole metric"
+    ],
+    "correct_answer": 1,
+    "explanation": "Link-state protocols react quickly to network changes, leading to faster convergence than distance-vector protocols."
+  },
+  {
+    "id": 68,
+    "type": "multiple_choice",
+    "question": "Which layer of the OSI model does OSPF operate at?",
+    "options": [
+      "Data Link Layer",
+      "Network Layer",
+      "Transport Layer",
+      "Application Layer"
+    ],
+    "correct_answer": 1,
+    "explanation": "OSPF is a routing protocol used to determine paths at Layer 3 (Network Layer)."
+  },
+  {
+    "id": 69,
+    "type": "multiple_choice",
+    "question": "How does OSPF prevent routing loops?",
+    "options": [
+      "By using split horizon",
+      "By maintaining a complete map of the network topology",
+      "By limiting the number of hops",
+      "By using hold-down timers"
+    ],
+    "correct_answer": 1,
+    "explanation": "Because every router has the full topology map (Link State Database), they calculate loops-free paths using the Dijkstra algorithm."
+  },
+  {
+    "id": 70,
+    "type": "multiple_choice",
+    "question": "In simplex communication, which device can transmit data?",
+    "options": [
+      "Both devices",
+      "Only the receiver",
+      "Only the sender",
+      "Neither device"
+    ],
+    "correct_answer": 2,
+    "explanation": "Simplex is strictly one-way communication; one side is the permanent sender and the other is the permanent receiver."
+  },
+  {
+    "id": 71,
+    "type": "multiple_choice",
+    "question": "Simplex communication is best suited for:",
+    "options": [
+      "Interactive communication",
+      "Two-way communication",
+      "Broadcasting information",
+      "Secure communication"
+    ],
+    "correct_answer": 2,
+    "explanation": "Simplex is used for broadcasting (like TV/Radio) where the audience doesn't need to send data back."
+  },
+  {
+    "id": 72,
+    "type": "multiple_choice",
+    "question": "Which communication mode allows two-way communication but alternately?",
+    "options": [
+      "Simplex",
+      "Half-duplex",
+      "Full-duplex",
+      "Multiplex"
+    ],
+    "correct_answer": 1,
+    "explanation": "In half-duplex, both parties can communicate but not at the same time (e.g., Walkie-talkies)."
+  },
+  {
+    "id": 73,
+    "type": "multiple_choice",
+    "question": "Which of the following is a common example of full-duplex communication?",
+    "options": [
+      "Telephone conversation",
+      "Radio broadcasting",
+      "Walkie-talkie",
+      "Keyboard and monitor"
+    ],
+    "correct_answer": 0,
+    "explanation": "Telephones allow both parties to speak and listen simultaneously."
+  },
+  {
+    "id": 74,
+    "type": "multiple_choice",
+    "question": "Which of the following is NOT a characteristic of full-duplex communication?",
+    "options": [
+      "Turn-by-turn communication",
+      "High bandwidth utilization",
+      "Simultaneous two-way data flow",
+      "Faster data transmission"
+    ],
+    "correct_answer": 0,
+    "explanation": "Full-duplex is simultaneous, not turn-by-turn."
+  },
+  {
+    "id": 75,
+    "type": "multiple_choice",
+    "question": "Which topology uses a closed-loop communication path?",
+    "options": [
+      "Ring",
+      "Bus",
+      "Star",
+      "Tree"
+    ],
+    "correct_answer": 0,
+    "explanation": "A ring topology connects devices in a circular loop."
+  },
+  {
+    "id": 76,
+    "type": "multiple_choice",
+    "question": "Which device is used to extend the length of a network by regenerating signals?",
+    "options": [
+      "Router",
+      "Switch",
+      "Repeater",
+      "Modem"
+    ],
+    "correct_answer": 2,
+    "explanation": "A repeater takes a weak signal and regenerates it to extend the transmission distance."
+  },
+  {
+    "id": 77,
+    "type": "multiple_choice",
+    "question": "Which device allows a computer to be connected to a network?",
+    "options": [
+      "Router",
+      "Switch",
+      "Network Interface Card (NIC)",
+      "Hub"
+    ],
+    "correct_answer": 2,
+    "explanation": "The NIC is the hardware component that provides the interface between the computer and the network cable/wireless signal."
+  },
+  {
+    "id": 78,
+    "type": "multiple_choice",
+    "question": "Which of the following is NOT a network or Internet device?",
+    "options": [
+      "Router",
+      "Switch",
+      "Modem",
+      "Scanner"
+    ],
+    "correct_answer": 3,
+    "explanation": "A scanner is a peripheral input device, not a network infrastructure device."
+  },
+  {
+    "id": 79,
+    "type": "multiple_choice",
+    "question": "An antenna used for both transmitting and receiving is called:",
+    "options": [
+      "Passive antenna",
+      "Active antenna",
+      "Duplex antenna",
+      "Transceiver antenna"
+    ],
+    "correct_answer": 2,
+    "explanation": "A duplexer allows a single antenna to handle both transmission and reception at the same time."
+  },
+  {
+    "id": 80,
+    "type": "multiple_choice",
+    "question": "Which communication mode allows two-way communication but alternately?",
+    "options": [
+      "Simplex",
+      "Half-duplex",
+      "Full-duplex",
+      "Multiplex"
+    ],
+    "correct_answer": 1,
+    "explanation": "In half-duplex, both parties can communicate but not at the same time (e.g., Walkie-talkies)."
   }
 
 
