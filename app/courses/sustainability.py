@@ -6,7 +6,8 @@ sustainability_quiz = {
      
     
     {
-        "id": 1,
+        "id":
+            1,
         "type": "multiple_choice",
         "question": "A university plans to expand its campus by constructing new lecture halls and dormitories. Before starting construction, the planning committee conducts a comprehensive environmental impact assessment, evaluating energy requirements, water usage, building materials, and potential effects on nearby rivers and green spaces. They aim to minimize ecological degradation while maintaining functional infrastructure. Which sustainability principle is being applied here?",
         "options": [
