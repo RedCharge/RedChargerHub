@@ -5,1306 +5,786 @@ computer_organization_quiz = {
     "questions": [
         # Multiple Choice Questions (1-25)
         
+    
     {
         "id": 1,
         "type": "multiple_choice",
-        "question": "Computer Architecture refers to attributes that are:",
+        "question": "A computer where both program instructions and data share the same memory and bus is based on",
         "options": [
-            "Visible to the programmer",
-            "Transparent to the programmer",
-            "Related to hardware details",
-            "Concerned with control signals"
+            "Harvard architecture",
+            "Von Neumann architecture",
+            "Parallel architecture",
+            "Distributed architecture"
         ],
-        "correct_answer": 0,
-        "explanation": "Computer Architecture refers to attributes visible to the programmer, affecting the logical execution of a program."
+        "correct_answer": 1,
+        "explanation": "The Von Neumann architecture is characterized by a single shared memory space and bus for both instructions and data."
     },
     {
         "id": 2,
         "type": "multiple_choice",
-        "question": "Which of the following is an example of an architectural attribute?",
+        "question": "The main performance limitation in Von Neumann architecture occurs because",
         "options": [
-            "Control signals",
-            "Memory technology used",
-            "Instruction set",
-            "Interfaces with peripherals"
+            "memory is too large",
+            "instructions are too small",
+            "data and instructions share one bus",
+            "there is no cache"
         ],
         "correct_answer": 2,
-        "explanation": "Architectural attributes include the instruction set, data type representation, I/O mechanisms, and memory addressing techniques."
+        "explanation": "The shared bus creates a bottleneck, often called the Von Neumann bottleneck, as instructions and data compete for the same pathway, limiting throughput."
     },
     {
         "id": 3,
         "type": "multiple_choice",
-        "question": "Computer Organization is concerned with:",
+        "question": "Harvard architecture improves performance mainly because",
         "options": [
-            "Logical execution of programs",
-            "Operational units and their interconnections",
-            "Number of bits for data representation",
-            "Techniques for addressing memory"
+            "it removes RAM",
+            "it separates data and instruction paths",
+            "it increases voltage",
+            "it reduces registers"
         ],
         "correct_answer": 1,
-        "explanation": "Computer Organization refers to operational units and their interconnections that realize architectural specifications."
+        "explanation": "By using separate memory and buses for instructions and data, the CPU can fetch both simultaneously, reducing wait times and improving performance."
     },
     {
         "id": 4,
         "type": "multiple_choice",
-        "question": "Changes in technology affect:",
+        "question": "Moore's Law predicts that over time",
         "options": [
-            "Only computer organization",
-            "Only computer architecture",
-            "Both organization and architecture",
-            "Neither organization nor architecture"
+            "transistor count decreases",
+            "processor speed remains constant",
+            "transistor count doubles about every two years",
+            "memory disappears"
         ],
         "correct_answer": 2,
-        "explanation": "Changes in technology affect organization and can lead to more powerful and complex architectures."
+        "explanation": "Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, though it's more of a trend than a physical law."
     },
     {
         "id": 5,
         "type": "multiple_choice",
-        "question": "A computer system can be viewed as:",
+        "question": "According to Amdahl's Law, if only 30 percent of a system is improved, the overall speed gain will",
         "options": [
-            "Only a top-down hierarchical system",
-            "Only a bottom-up hierarchical system",
-            "Both top-down and bottom-up",
-            "Neither hierarchical nor structured"
+            "be unlimited",
+            "depend on the unimproved portion",
+            "double automatically",
+            "ignore slow components"
         ],
-        "correct_answer": 2,
-        "explanation": "A computer is a hierarchical system that can be approached top-down or bottom-up."
+        "correct_answer": 1,
+        "explanation": "Amdahl's Law states that the overall speedup is limited by the portion of the system that cannot be improved. The unimproved part becomes the bottleneck."
     },
     {
         "id": 6,
         "type": "multiple_choice",
-        "question": "What are the two main concerns when describing a computer system?",
+        "question": "Little's Law shows that system performance depends on",
         "options": [
-            "Speed and cost",
-            "Structure and function",
-            "Hardware and software",
-            "Input and output"
+            "temperature and voltage",
+            "number of tasks and time spent in system",
+            "transistor size only",
+            "clock speed only"
         ],
         "correct_answer": 1,
-        "explanation": "We are concerned with structure (how components are interrelated) and function (operation of each component)."
+        "explanation": "Little's Law (L = λW) states that the average number of tasks in a system (L) is equal to the average arrival rate (λ) multiplied by the average time a task spends in the system (W)."
     },
     {
         "id": 7,
         "type": "multiple_choice",
-        "question": "Which of the following is NOT a basic function of a computer?",
+        "question": "An embedded system is best described as a computer that",
         "options": [
-            "Data processing",
-            "Data storage",
-            "Data movement",
-            "Data creation"
+            "runs many operating systems",
+            "performs a dedicated function inside a larger device",
+            "stores unlimited data",
+            "replaces servers"
         ],
-        "correct_answer": 3,
-        "explanation": "The four basic functions are data processing, storage, movement, and control."
+        "correct_answer": 1,
+        "explanation": "Embedded systems are specialized computing systems designed for specific control functions within larger systems, often with real-time computing constraints."
     },
     {
         "id": 8,
         "type": "multiple_choice",
-        "question": "Which structural component is responsible for system interconnection?",
+        "question": "ARM processors are widely used in embedded systems because they",
         "options": [
-            "CPU",
-            "Main memory",
-            "I/O",
-            "System bus"
+            "consume high power",
+            "are designed for low power and efficiency",
+            "are magnetic",
+            "are mechanical"
         ],
-        "correct_answer": 3,
-        "explanation": "System interconnection is a structural component connecting CPU, memory, and I/O."
+        "correct_answer": 1,
+        "explanation": "ARM processors utilize a RISC architecture known for its low power consumption and high energy efficiency, making them ideal for battery-powered and heat-sensitive embedded devices."
     },
     {
         "id": 9,
         "type": "multiple_choice",
-        "question": "The control unit in the CPU is responsible for:",
+        "question": "Registers are implemented using flip flops because flip flops",
         "options": [
-            "Performing arithmetic operations",
-            "Storing data internally",
-            "Controlling CPU and computer operation",
-            "Communicating with peripherals"
+            "store analog signals",
+            "store binary values reliably and quickly",
+            "reduce disk space",
+            "generate clock pulses"
         ],
-        "correct_answer": 2,
-        "explanation": "The Control Unit controls the operation of the CPU and the computer."
+        "correct_answer": 1,
+        "explanation": "Flip-flops are bistable circuits that can hold a binary state (0 or 1) indefinitely until changed, making them the fundamental building blocks for fast, reliable storage in registers."
     },
     {
         "id": 10,
         "type": "multiple_choice",
-        "question": "What is the primary function of the ALU?",
+        "question": "During instruction execution, the Program Counter contains",
         "options": [
-            "Control operations",
-            "Data storage",
-            "Data processing",
-            "Instruction interpretation"
+            "the result of arithmetic",
+            "the next instruction address",
+            "memory data",
+            "parity bits"
         ],
-        "correct_answer": 2,
-        "explanation": "The ALU performs the computer's data processing functions."
+        "correct_answer": 1,
+        "explanation": "The Program Counter (PC) is a special-purpose register that holds the memory address of the next instruction to be fetched and executed."
     },
     {
         "id": 11,
         "type": "multiple_choice",
-        "question": "Registers in the CPU are used for:",
+        "question": "The Instruction Register holds the instruction that is",
         "options": [
-            "Long-term data storage",
-            "External data storage",
-            "Internal CPU storage",
-            "I/O buffering"
+            "about to be written to disk",
+            "currently being decoded or executed",
+            "stored in cache permanently",
+            "erased from memory"
         ],
-        "correct_answer": 2,
-        "explanation": "Registers provide storage internal to the CPU."
+        "correct_answer": 1,
+        "explanation": "The Instruction Register (IR) stores the current instruction fetched from memory while it is being decoded and executed by the control unit."
     },
     {
         "id": 12,
         "type": "multiple_choice",
-        "question": "ENIAC was invented in:",
+        "question": "The MAR is directly connected to the",
         "options": [
-            "1939",
-            "1945",
-            "1951",
-            "1960"
+            "data bus only",
+            "control bus only",
+            "address bus",
+            "printer"
         ],
-        "correct_answer": 1,
-        "explanation": "ENIAC was invented in 1945 by the U.S. Army’s Ballistics Research Laboratory."
+        "correct_answer": 2,
+        "explanation": "The Memory Address Register (MAR) holds the address of a memory location to be accessed. It is directly connected to the address bus, which carries this address to memory."
     },
     {
         "id": 13,
         "type": "multiple_choice",
-        "question": "ENIAC used which number system?",
+        "question": "The MDR temporarily holds",
         "options": [
-            "Binary",
-            "Hexadecimal",
-            "Decimal",
-            "Octal"
+            "memory addresses",
+            "data read from or written to memory",
+            "control signals",
+            "CPU temperature"
         ],
-        "correct_answer": 2,
-        "explanation": "ENIAC used the decimal number system."
+        "correct_answer": 1,
+        "explanation": "The Memory Data Register (MDR), also called the Memory Buffer Register (MBR), acts as a temporary buffer for data being transferred to or from memory via the data bus."
     },
     {
         "id": 14,
         "type": "multiple_choice",
-        "question": "ENIAC had no:",
+        "question": "The first step in the fetch decode execute cycle is",
         "options": [
-            "Vacuum tubes",
-            "Long-term storage",
-            "Arithmetic unit",
-            "Input mechanism"
+            "execute",
+            "fetch instruction from memory",
+            "store result",
+            "decode instruction"
         ],
         "correct_answer": 1,
-        "explanation": "ENIAC had no long-term storage and used accumulators for results."
+        "explanation": "The instruction cycle begins with the fetch phase, where the CPU retrieves the next instruction from the memory address pointed to by the Program Counter."
     },
     {
         "id": 15,
         "type": "multiple_choice",
-        "question": "The stored program concept is attributed to:",
+        "question": "The system bus acts as",
         "options": [
-            "Charles Babbage",
-            "Alan Turing",
-            "John Von Neumann",
-            "Gordon Moore"
+            "permanent storage",
+            "communication pathway between CPU, memory, and I O",
+            "backup memory",
+            "arithmetic unit"
         ],
-        "correct_answer": 2,
-        "explanation": "The stored program concept is attributed to John Von Neumann."
+        "correct_answer": 1,
+        "explanation": "The system bus is a set of parallel wires or communication pathways that connect the major components of a computer: the CPU, main memory, and I/O modules."
     },
     {
         "id": 16,
         "type": "multiple_choice",
-        "question": "The IAS computer was developed at:",
+        "question": "The data bus width determines",
         "options": [
-            "Harvard University",
-            "MIT",
-            "Princeton Institute of Advanced Studies",
-            "Stanford University"
+            "how many addresses exist",
+            "how many bits move at once",
+            "disk rotation speed",
+            "number of monitors"
         ],
-        "correct_answer": 2,
-        "explanation": "The IAS computer was made at the Princeton Institute of Advanced Studies in 1946."
+        "correct_answer": 1,
+        "explanation": "The width of the data bus (in bits) determines how much data can be transferred simultaneously between components in a single bus cycle."
     },
     {
         "id": 17,
         "type": "multiple_choice",
-        "question": "Which component in the Von Neumann machine stores both data and instructions?",
+        "question": "Increasing address bus width increases",
         "options": [
-            "ALU",
-            "Control Unit",
-            "Main Memory",
-            "I/O Equipment"
+            "memory capacity",
+            "clock speed",
+            "voltage",
+            "cache size"
         ],
-        "correct_answer": 2,
-        "explanation": "Main memory in the Von Neumann machine stores both data and instructions."
+        "correct_answer": 0,
+        "explanation": "The address bus width determines the maximum number of unique memory addresses the CPU can reference, directly limiting the system's maximum addressable memory capacity."
     },
     {
         "id": 18,
         "type": "multiple_choice",
-        "question": "The first microprocessor was the:",
+        "question": "SRAM is faster than DRAM because SRAM",
         "options": [
-            "8008",
-            "8080",
-            "4004",
-            "8086"
+            "uses capacitors",
+            "requires refreshing",
+            "uses flip flop circuits and no refresh",
+            "is magnetic"
         ],
         "correct_answer": 2,
-        "explanation": "The first microprocessor was the Intel 4004, introduced in 1971."
+        "explanation": "SRAM uses flip-flops (typically 4-6 transistors per cell) to store data, which does not require constant refreshing and provides faster access times than DRAM's capacitor-based storage."
     },
     {
         "id": 19,
         "type": "multiple_choice",
-        "question": "The Intel 4004 was a:",
+        "question": "DRAM is cheaper per bit because",
         "options": [
-            "4-bit processor",
-            "8-bit processor",
-            "16-bit processor",
-            "32-bit processor"
+            "its cells are simpler and smaller",
+            "it uses glass",
+            "it has no refresh",
+            "it is external"
         ],
         "correct_answer": 0,
-        "explanation": "The Intel 4004 was a 4-bit processor."
+        "explanation": "DRAM cells consist of only one transistor and one capacitor, making them physically smaller and simpler to manufacture than SRAM cells, leading to higher density and lower cost per bit."
     },
     {
         "id": 20,
         "type": "multiple_choice",
-        "question": "The 8086 processor was introduced in:",
+        "question": "Cache memory improves performance by",
         "options": [
-            "1971",
-            "1974",
-            "1978",
-            "1985"
+            "increasing disk size",
+            "storing frequently used data close to CPU",
+            "slowing memory",
+            "reducing bus lines"
         ],
-        "correct_answer": 2,
-        "explanation": "The 16-bit 8086 processor was introduced in 1978."
+        "correct_answer": 1,
+        "explanation": "Cache is a small, fast memory located close to the CPU that holds copies of frequently accessed data and instructions, reducing the average time to access data from main memory."
     },
     {
         "id": 21,
         "type": "multiple_choice",
-        "question": "Intel introduced its first 32-bit processor in:",
+        "question": "DDR4 differs from DDR3 mainly in",
         "options": [
-            "1978",
-            "1985",
-            "1993",
-            "2000"
+            "having no banks",
+            "using lower voltage and higher speeds",
+            "using UV light",
+            "being magnetic"
         ],
         "correct_answer": 1,
-        "explanation": "Intel introduced the 32-bit 80386 processor in 1985."
+        "explanation": "DDR4 SDRAM provides improvements over DDR3, including higher module densities, higher data transfer rates, and lower operating voltages (typically 1.2V compared to 1.5V for DDR3)."
     },
     {
         "id": 22,
         "type": "multiple_choice",
-        "question": "Performance in microprocessors has improved due to:",
+        "question": "EPROM differs from EEPROM because EPROM",
         "options": [
-            "Only new circuits",
-            "Only reduced distances between circuits",
-            "Both new circuits and reduced distances",
-            "Increased power consumption"
+            "is erased electrically",
+            "is erased using ultraviolet light",
+            "cannot be erased",
+            "is volatile"
         ],
-        "correct_answer": 2,
-        "explanation": "Performance improved due to new circuits and reduced distances between them."
+        "correct_answer": 1,
+        "explanation": "EPROM (Erasable Programmable Read-Only Memory) chips have a quartz window and are erased by exposing the die to intense ultraviolet light, whereas EEPROM (Electrically Erasable PROM) can be erased electrically."
     },
     {
         "id": 23,
         "type": "multiple_choice",
-        "question": "Which technique executes instructions ahead of time based on predictions?",
+        "question": "Flash memory improves on EEPROM by",
         "options": [
-            "Branch prediction",
-            "Data flow analysis",
-            "Speculative execution",
-            "Pipelining"
+            "erasing entire blocks at once",
+            "using UV light",
+            "being volatile",
+            "using parity disks"
         ],
-        "correct_answer": 2,
-        "explanation": "Speculative execution executes instructions ahead of time based on branch prediction and data flow analysis."
+        "correct_answer": 0,
+        "explanation": "Flash memory is a type of EEPROM that allows data to be written or erased in blocks, which is much faster than the byte-by-byte erasure and writing of traditional EEPROM."
     },
     {
         "id": 24,
         "type": "multiple_choice",
-        "question": "The x86 architecture is primarily a:",
+        "question": "An SSD is faster than a magnetic drive mainly because it",
         "options": [
-            "RISC architecture",
-            "CISC architecture",
-            "VLIW architecture",
-            "Harvard architecture"
+            "spins faster",
+            "has no moving mechanical parts",
+            "uses glass substrate",
+            "uses parity"
         ],
         "correct_answer": 1,
-        "explanation": "x86 is essentially a CISC architecture with some RISC features."
+        "explanation": "Solid State Drives (SSDs) use flash memory with no moving parts, allowing for near-instantaneous data access. This eliminates the mechanical seek time and rotational latency inherent in HDDs."
     },
     {
         "id": 25,
         "type": "multiple_choice",
-        "question": "Which of the following is NOT part of the Intel x86 evolution?",
+        "question": "Magnetic hard drives store data by",
         "options": [
-            "80286",
-            "80486",
-            "ARM7",
-            "Core i7"
+            "electrical charge only",
+            "magnetic orientation on spinning platters",
+            "laser reflection",
+            "flip flops"
         ],
-        "correct_answer": 2,
-        "explanation": "ARM7 is an ARM processor, not part of the Intel x86 line."
+        "correct_answer": 1,
+        "explanation": "HDDs store data by magnetizing tiny regions (domains) on the surface of spinning magnetic platters in one of two directions, representing binary 0s and 1s."
     },
     {
         "id": 26,
         "type": "multiple_choice",
-        "question": "An embedded system is designed to:",
+        "question": "Using glass substrate in disks improves",
         "options": [
-            "Perform general-purpose computing",
-            "Run multiple applications simultaneously",
-            "Perform a dedicated function",
-            "Serve as a server"
+            "fragility",
+            "surface smoothness and rigidity",
+            "voltage",
+            "refresh rate"
         ],
-        "correct_answer": 2,
-        "explanation": "An embedded system is designed to perform a dedicated function."
+        "correct_answer": 1,
+        "explanation": "Glass substrates for hard drive platters are smoother, more rigid, and more thermally stable than aluminum, allowing for higher data densities and more reliable performance."
     },
     {
         "id": 27,
         "type": "multiple_choice",
-        "question": "ARM stands for:",
+        "question": "RAID 0 increases performance by",
         "options": [
-            "Advanced Random Memory",
-            "Advanced RISC Machines",
-            "Automated Register Module",
-            "Arithmetic Register Machine"
+            "mirroring data",
+            "adding parity",
+            "striping data across disks without redundancy",
+            "duplicating disks"
         ],
-        "correct_answer": 1,
-        "explanation": "ARM stands for Advanced RISC Machines."
+        "correct_answer": 2,
+        "explanation": "RAID 0 (striping) splits data across multiple disks, allowing for parallel reads and writes which increases performance. However, it provides no fault tolerance."
     },
     {
         "id": 28,
         "type": "multiple_choice",
-        "question": "ARM processors are commonly used in:",
+        "question": "RAID 1 protects data by",
         "options": [
-            "Mainframe computers",
-            "Supercomputers",
-            "Embedded systems",
-            "Desktop PCs only"
+            "striping",
+            "mirroring identical copies",
+            "compression",
+            "caching"
         ],
-        "correct_answer": 2,
-        "explanation": "ARM processors are widely used in embedded systems."
+        "correct_answer": 1,
+        "explanation": "RAID 1 (mirroring) writes identical data to two or more drives simultaneously. If one drive fails, the data is still available from the other mirrored drive(s)."
     },
     {
         "id": 29,
         "type": "multiple_choice",
-        "question": "Which category of ARM processors is used in automotive body systems?",
+        "question": "RAID 5 achieves fault tolerance by",
         "options": [
-            "Application platform",
-            "Embedded real-time systems",
-            "Secure applications",
-            "General-purpose computing"
+            "no redundancy",
+            "storing distributed parity across disks",
+            "single disk storage",
+            "UV erasing"
         ],
         "correct_answer": 1,
-        "explanation": "Embedded real-time ARM systems are used in automotive, industrial, and networking applications."
+        "explanation": "RAID 5 stripes data and parity information across all disks in the array. If one disk fails, the missing data can be calculated from the remaining data and parity."
     },
     {
         "id": 30,
         "type": "multiple_choice",
-        "question": "ARM processors in smart cards fall under which category?",
+        "question": "RAID 6 can tolerate",
         "options": [
-            "Embedded real-time systems",
-            "Application platform",
-            "Secure applications",
-            "General computing"
+            "zero failures",
+            "one disk failure",
+            "two disk failures",
+            "unlimited failures"
         ],
         "correct_answer": 2,
-        "explanation": "Secure applications include smart cards, SIM cards, and payment terminals."
+        "explanation": "RAID 6 uses double distributed parity, allowing the array to continue functioning and rebuild data even if two disks fail simultaneously."
     },
-        {
+    {
         "id": 31,
         "type": "multiple_choice",
-        "question": "Which statement about Computer Architecture is correct?",
+        "question": "Internal memory is directly accessible by",
         "options": [
-            "It deals with hardware details transparent to programmers",
-            "It concerns visible attributes affecting program execution",
-            "It focuses only on operational unit interconnections",
-            "It is unrelated to instruction set design"
+            "printer",
+            "CPU",
+            "monitor",
+            "network switch"
         ],
         "correct_answer": 1,
-        "explanation": "Computer Architecture deals with attributes visible to programmers, affecting logical program execution, unlike Organization which handles hardware details."
+        "explanation": "Internal memory, primarily RAM, is directly addressable and accessible by the CPU via the memory bus, allowing for fast read and write operations during program execution."
     },
     {
         "id": 32,
         "type": "multiple_choice",
-        "question": "How is the relationship between architecture and organization in microcomputers?",
+        "question": "External memory is mainly used for",
         "options": [
-            "Very distant with clear separation",
-            "Very close and interdependent",
-            "Architecture completely determines organization",
-            "Organization has no effect on architecture"
+            "temporary CPU storage",
+            "long term data storage",
+            "arithmetic",
+            "decoding"
         ],
         "correct_answer": 1,
-        "explanation": "In microcomputers, the relationship between architecture and organization is very close and often interdependent."
+        "explanation": "External memory, such as HDDs and SSDs, provides non-volatile, long-term storage for data and programs, even when the power is turned off."
     },
     {
         "id": 33,
         "type": "multiple_choice",
-        "question": "What was ENIAC's computational capability for multiplications?",
+        "question": "Virtual memory allows",
         "options": [
-            "5000 multiplications per second",
-            "1000 multiplications per second",
-            "357 multiplications per second",
-            "50 multiplications per second"
+            "RAM to shrink",
+            "programs larger than physical RAM to run",
+            "cache removal",
+            "no storage"
         ],
-        "correct_answer": 2,
-        "explanation": "ENIAC performed 5000 additions per second, but only 357 multiplications per second."
+        "correct_answer": 1,
+        "explanation": "Virtual memory uses a portion of the hard drive (or SSD) as an extension of physical RAM, enabling a system to run programs that require more memory than is physically available."
     },
     {
         "id": 34,
         "type": "multiple_choice",
-        "question": "How does the Von Neumann machine handle data and instruction storage?",
+        "question": "Disk cache reduces access time by",
         "options": [
-            "Separate memories for data and instructions",
-            "Single main memory for both data and instructions",
-            "Distributed memory across multiple units",
-            "External storage only for instructions"
+            "deleting data",
+            "storing recently accessed disk data temporarily",
+            "slowing rotation",
+            "compressing files"
         ],
         "correct_answer": 1,
-        "explanation": "The Von Neumann architecture uses a single main memory to store both data and instructions."
+        "explanation": "A disk cache is a small amount of fast memory (often DRAM) on the disk controller or in main memory that stores recently accessed data, anticipating future requests and avoiding slow disk accesses."
     },
     {
         "id": 35,
         "type": "multiple_choice",
-        "question": "What was the original purpose of the Intel 4004 processor?",
+        "question": "A hardwired program means control signals are generated by",
         "options": [
-            "General-purpose desktop computer",
-            "Scientific calculations",
-            "Busicom's programmable calculator",
-            "Military guidance systems"
+            "software only",
+            "hardware circuits",
+            "operating system",
+            "disk"
         ],
-        "correct_answer": 2,
-        "explanation": "The Intel 4004 was specifically designed for Busicom's programmable calculator."
+        "correct_answer": 1,
+        "explanation": "In a hardwired control unit, the control signals are generated directly by fixed logic circuits (gates, flip-flops, etc.) based on the current instruction and state."
     },
     {
         "id": 36,
         "type": "multiple_choice",
-        "question": "What techniques does speculative execution rely on?",
+        "question": "DMA improves performance because it",
         "options": [
-            "Only branch prediction",
-            "Only data flow analysis",
-            "Both branch prediction and data flow analysis",
-            "Neither branch prediction nor data flow analysis"
+            "removes RAM",
+            "allows I O to transfer data without constant CPU involvement",
+            "reduces registers",
+            "erases memory"
         ],
-        "correct_answer": 2,
-        "explanation": "Speculative execution uses both branch prediction and data flow analysis to execute instructions ahead of time."
+        "correct_answer": 1,
+        "explanation": "Direct Memory Access (DMA) allows I/O devices to transfer data directly to or from memory without continuous intervention from the CPU, freeing the CPU to perform other tasks."
     },
     {
         "id": 37,
         "type": "multiple_choice",
-        "question": "Which market segment does x86 architecture primarily dominate?",
+        "question": "The accumulator is mainly used for",
         "options": [
-            "Only embedded systems",
-            "Only mobile devices",
-            "Non-embedded systems (desktops, servers)",
-            "All computing markets equally"
+            "storing addresses",
+            "holding intermediate arithmetic results",
+            "parity storage",
+            "disk buffering"
         ],
-        "correct_answer": 2,
-        "explanation": "x86 dominates outside of embedded systems (desktops, servers), while ARM dominates the embedded systems market."
+        "correct_answer": 1,
+        "explanation": "The accumulator is a register in the CPU that temporarily stores the results of arithmetic and logical operations performed by the ALU."
     },
     {
         "id": 38,
         "type": "multiple_choice",
-        "question": "What type of architecture is ARM based on?",
+        "question": "In DRAM, information is stored as",
         "options": [
-            "CISC architecture",
-            "RISC architecture",
-            "VLIW architecture",
-            "Harvard architecture"
+            "magnetic field",
+            "electrical charge in capacitors",
+            "light",
+            "mechanical position"
         ],
         "correct_answer": 1,
-        "explanation": "ARM is based on Reduced Instruction Set Computer (RISC) architecture principles."
+        "explanation": "Dynamic RAM (DRAM) stores each bit of data as an electrical charge in a tiny capacitor. The presence or absence of charge represents a 1 or 0."
     },
     {
         "id": 39,
         "type": "multiple_choice",
-        "question": "What is characteristic of embedded systems?",
+        "question": "The control bus carries signals such as",
         "options": [
-            "Always standalone complete devices",
-            "Usually part of larger systems",
-            "Primarily used for general computing",
-            "Never include microprocessors"
+            "read and write commands",
+            "memory addresses",
+            "arithmetic data",
+            "transistor count"
         ],
-        "correct_answer": 1,
-        "explanation": "Embedded systems are typically components within larger systems or products, not standalone general-purpose computers."
+        "correct_answer": 0,
+        "explanation": "The control bus carries command and timing signals from the control unit to coordinate activities. Common signals include Memory Read, Memory Write, I/O Read, and I/O Write."
     },
     {
         "id": 40,
         "type": "multiple_choice",
-        "question": "In which applications are ARM processors commonly used?",
+        "question": "Increasing cache size generally",
         "options": [
-            "Only in industrial control systems",
-            "Only in automotive applications",
-            "Digital imaging and consumer electronics",
-            "Mainframe computers exclusively"
+            "increases access time drastically",
+            "reduces hit rate",
+            "increases hit rate and performance",
+            "removes RAM"
         ],
         "correct_answer": 2,
-        "explanation": "ARM application platforms are widely used in digital imaging, wireless communication, and consumer entertainment devices."
+        "explanation": "A larger cache can hold more data, increasing the probability (hit rate) that requested data is found in the cache. This generally improves performance, though with diminishing returns."
     },
     {
         "id": 41,
         "type": "multiple_choice",
-        "question": "Which of these is an organizational attribute?",
+        "question": "In a stored program computer, instructions are",
         "options": [
-            "Instruction set",
-            "Memory technology used",
-            "I/O mechanisms",
-            "Data type representation"
+            "stored only in CPU",
+            "stored in main memory with data",
+            "stored in hard disk only",
+            "executed directly from keyboard"
         ],
         "correct_answer": 1,
-        "explanation": "Organizational attributes include hardware details like memory technology, control signals, and interfaces."
+        "explanation": "The fundamental concept of the stored-program computer (Von Neumann architecture) is that both program instructions and data are stored together in main memory."
     },
     {
         "id": 42,
         "type": "multiple_choice",
-        "question": "What does CPU interconnection facilitate?",
+        "question": "The Von Neumann bottleneck refers to",
         "options": [
-            "Communication between CPU and I/O only",
-            "Communication between control unit, ALU, and registers",
-            "Communication between main memory and ALU only",
-            "External device communication"
+            "limited disk space",
+            "shared path between CPU and memory",
+            "low transistor count",
+            "slow monitor refresh rate"
         ],
         "correct_answer": 1,
-        "explanation": "CPU interconnection enables communication among control unit, ALU, and registers."
+        "explanation": "The Von Neumann bottleneck describes the limitation of throughput caused by the single shared bus between the CPU and memory, which must be used for both instruction fetches and data transfers."
     },
     {
         "id": 43,
         "type": "multiple_choice",
-        "question": "ENIAC consumed how much power?",
+        "question": "If the address bus is 32 bits wide, the maximum addressable memory is",
         "options": [
-            "14 kW",
-            "140 kW",
-            "1.4 MW",
-            "14 MW"
+            "2^16 locations",
+            "2^32 locations",
+            "32 bytes",
+            "32 KB"
         ],
         "correct_answer": 1,
-        "explanation": "ENIAC consumed 140 kilowatts of power."
+        "explanation": "A 32-bit address bus can generate 2^32 unique addresses, allowing the CPU to directly address up to 4 GiB of memory (if each address points to a byte)."
     },
     {
         "id": 44,
         "type": "multiple_choice",
-        "question": "The 8008 processor was released in:",
+        "question": "Increasing the data bus width mainly increases",
         "options": [
-            "1971",
-            "1972",
-            "1974",
-            "1978"
+            "memory capacity",
+            "number of I O devices",
+            "amount of data transferred per cycle",
+            "disk speed"
         ],
-        "correct_answer": 1,
-        "explanation": "The 8-bit 8008 was introduced in 1972."
+        "correct_answer": 2,
+        "explanation": "A wider data bus allows more bits to be transferred in a single bus cycle, directly increasing the data transfer rate between the CPU, memory, and I/O devices."
     },
     {
         "id": 45,
         "type": "multiple_choice",
-        "question": "Which Intel processor followed the 8086?",
+        "question": "The purpose of refresh in DRAM is to",
         "options": [
-            "80286",
-            "80386",
-            "80486",
-            "Pentium"
+            "increase speed",
+            "restore lost electrical charge",
+            "reduce voltage",
+            "increase parity"
         ],
-        "correct_answer": 0,
-        "explanation": "The 80286 followed the 8086 in the x86 family."
+        "correct_answer": 1,
+        "explanation": "DRAM cells store data as charge on a capacitor, which leaks over time. The memory controller periodically reads and rewrites (refreshes) each cell to restore the charge and prevent data loss."
     },
     {
         "id": 46,
         "type": "multiple_choice",
-        "question": "What does data flow analysis do?",
+        "question": "SRAM consumes more power than DRAM because it",
         "options": [
-            "Predicts branch instructions",
-            "Executes instructions ahead of time",
-            "Analyzes instruction dependencies",
-            "Controls I/O operations"
+            "uses magnetic storage",
+            "uses more transistors per cell",
+            "refreshes constantly",
+            "uses UV light"
         ],
-        "correct_answer": 2,
-        "explanation": "Data flow analysis analyzes which instructions depend on other results or data."
+        "correct_answer": 1,
+        "explanation": "SRAM cells typically use 4-6 transistors to form a flip-flop, which draws continuous leakage current. In contrast, a DRAM cell uses only one transistor and one capacitor."
     },
     {
         "id": 47,
         "type": "multiple_choice",
-        "question": "Which operating system runs on ARM application platforms?",
+        "question": "A key advantage of SSD over HDD is",
         "options": [
-            "Windows NT",
-            "macOS",
-            "Linux",
-            "DOS"
+            "higher noise",
+            "mechanical parts",
+            "faster access time",
+            "spinning disks"
         ],
         "correct_answer": 2,
-        "explanation": "ARM application platforms run open OS like Linux, Palm OS, Symbian OS, and Windows CE."
+        "explanation": "SSDs have no moving parts, resulting in significantly faster access times (low latency) and much higher random I/O performance compared to HDDs."
     },
     {
         "id": 48,
         "type": "multiple_choice",
-        "question": "Which of these is a Core processor series?",
+        "question": "RAID redundancy ensures that",
         "options": [
-            "Celeron",
-            "Pentium III",
-            "Core i5",
-            "80386"
+            "data cannot be deleted",
+            "system never fails",
+            "data can be recovered after disk failure",
+            "storage capacity doubles automatically"
         ],
         "correct_answer": 2,
-        "explanation": "Core i3, i5, i7, i9, and Core Ultra are part of Intel's Core series."
+        "explanation": "RAID (Redundant Array of Independent Disks) uses techniques like mirroring or parity to provide fault tolerance, allowing data to be reconstructed if a disk in the array fails."
     },
     {
         "id": 49,
         "type": "multiple_choice",
-        "question": "Embedded systems are:",
+        "question": "RAID 3 uses",
         "options": [
-            "More numerous than general-purpose systems",
-            "Less numerous than general-purpose systems",
-            "Equal in number to general-purpose systems",
-            "Only used in industrial applications"
+            "block level striping with distributed parity",
+            "byte level striping with dedicated parity disk",
+            "mirroring only",
+            "no redundancy"
         ],
-        "correct_answer": 0,
-        "explanation": "Embedded systems far outnumber general-purpose computer systems."
+        "correct_answer": 1,
+        "explanation": "RAID 3 stripes data at the byte level across multiple data disks and uses a single, dedicated parity disk to store parity information for error recovery."
     },
     {
         "id": 50,
         "type": "multiple_choice",
-        "question": "Where is ARM Inc. based?",
+        "question": "RAID 4 differs from RAID 5 because RAID 4",
         "options": [
-            "United States",
-            "Japan",
-            "England",
-            "Germany"
+            "uses distributed parity",
+            "uses dedicated parity disk",
+            "uses mirroring",
+            "has no parity"
         ],
-        "correct_answer": 2,
-        "explanation": "ARM Inc. is based in Cambridge, England."
+        "correct_answer": 1,
+        "explanation": "RAID 4 uses block-level striping with a dedicated parity disk. RAID 5 also uses block-level striping but distributes the parity information across all disks in the array, avoiding the dedicated parity disk bottleneck."
     },
-    
     {
         "id": 51,
         "type": "multiple_choice",
-        "question": "What are the three main hardware systems in a stored-program machine architecture?",
+        "question": "The main role of cache memory is to reduce",
         "options": [
-            "CPU, ALU, I/O System",
-            "CPU, Main Memory, I/O System",
-            "ALU, Registers, Control Unit",
-            "CPU, Cache, Bus"
+            "disk size",
+            "memory access time",
+            "voltage",
+            "CPU registers"
         ],
         "correct_answer": 1,
-        "explanation": "The PDF states that a stored-program machine consists of three hardware systems: a CPU (with control unit, ALU, registers, program counter), a main memory system, and an I/O system."
+        "explanation": "Cache memory reduces the average time (latency) for the CPU to access data and instructions by providing a small, fast storage layer close to the CPU core."
     },
     {
         "id": 52,
         "type": "multiple_choice",
-        "question": "What is the term for the single path between main memory and the CPU control unit?",
+        "question": "Virtual memory works by",
         "options": [
-            "Harvard Bottleneck",
-            "Pipeline Hazard",
-            "von Neumann Bottleneck",
-            "Execution Cycle"
+            "replacing RAM",
+            "using part of secondary storage as extension of RAM",
+            "deleting unused files",
+            "compressing cache"
         ],
-        "correct_answer": 2,
-        "explanation": "The single path is referred to as the von Neumann bottleneck, as explained in the PDF."
+        "correct_answer": 1,
+        "explanation": "Virtual memory maps virtual addresses used by a program to physical addresses in RAM or to addresses on secondary storage (like a hard drive), using the disk as an extension of RAM."
     },
     {
         "id": 53,
         "type": "multiple_choice",
-        "question": "Which architecture is designed to address the von Neumann bottleneck?",
+        "question": "EPROM must be erased",
         "options": [
-            "SIMD Architecture",
-            "Supercomputer Architecture",
-            "Harvard Architecture",
-            "Multithreaded Architecture"
+            "electrically inside the system",
+            "by ultraviolet light after removing chip",
+            "by magnetic field",
+            "automatically"
         ],
-        "correct_answer": 2,
-        "explanation": "The PDF mentions that the Harvard architecture and modified Harvard architecture were developed to address this bottleneck."
+        "correct_answer": 1,
+        "explanation": "EPROM chips have a transparent quartz window. To erase the data, the chip must be removed from the circuit and exposed to intense ultraviolet light for a period of time."
     },
     {
         "id": 54,
         "type": "multiple_choice",
-        "question": "What are the two fundamental ways a computer processes data?",
+        "question": "EEPROM differs from Flash because EEPROM",
         "options": [
-            "Input and Output",
-            "Fetch and Execute",
-            "Arithmetic and Logic",
-            "Read and Write"
+            "erases entire blocks at once",
+            "erases byte by byte",
+            "uses UV light",
+            "is volatile"
         ],
-        "correct_answer": 2,
-        "explanation": "The PDF specifies that a computer processes data either through arithmetic operations or logic operations."
+        "correct_answer": 1,
+        "explanation": "Traditional EEPROM allows erasing and writing of individual bytes, whereas Flash memory, a faster and denser type of EEPROM, operates on larger blocks of data."
     },
     {
         "id": 55,
         "type": "multiple_choice",
-        "question": "A program that is physically built into hardware is known as a:",
+        "question": "During execution, after an instruction is executed, the CPU",
         "options": [
-            "Software Program",
-            "Firmware Program",
-            "Microcode Program",
-            "Hardwired Program"
+            "shuts down",
+            "clears memory",
+            "updates the Program Counter",
+            "erases cache"
         ],
-        "correct_answer": 3,
-        "explanation": "When logic components are connected into a specific configuration to perform a computation, the resulting program is called a hardwired program."
+        "correct_answer": 2,
+        "explanation": "After executing an instruction, the CPU typically updates the Program Counter (PC) to point to the next instruction in the sequence, unless a jump or branch occurred."
     },
     {
         "id": 56,
         "type": "multiple_choice",
-        "question": "Which CPU register is used to specify the address in memory for the next read or write operation?",
+        "question": "An interconnection structure allows transfer between",
         "options": [
-            "Memory Buffer Register (MBR)",
-            "Instruction Register (IR)",
-            "Program Counter (PC)",
-            "Memory Address Register (MAR)"
+            "CPU and CPU only",
+            "CPU, memory, and I O devices",
+            "monitor and keyboard only",
+            "disk and printer only"
         ],
-        "correct_answer": 3,
-        "explanation": "The MAR specifies the address in memory for the next read or write, as per the PDF."
+        "correct_answer": 1,
+        "explanation": "The system's interconnection structure, typically one or more buses, provides the communication pathways for data and control signals to flow between the CPU, main memory, and I/O modules."
     },
     {
         "id": 57,
         "type": "multiple_choice",
-        "question": "Which register holds the address of the next instruction to be fetched?",
+        "question": "In Harvard architecture, simultaneous access to data and instructions",
         "options": [
-            "Memory Buffer Register (MBR)",
-            "Instruction Register (IR)",
-            "Program Counter (PC)",
-            "Memory Address Register (MAR)"
+            "is impossible",
+            "slows down CPU",
+            "improves performance",
+            "deletes memory"
         ],
         "correct_answer": 2,
-        "explanation": "The PDF states that the Program Counter (PC) holds the address of the next instruction to fetch."
+        "explanation": "Because Harvard architecture uses separate memory and buses for instructions and data, the CPU can fetch an instruction and read/write data in the same clock cycle, improving throughput."
     },
     {
         "id": 58,
         "type": "multiple_choice",
-        "question": "What is the collection of paths connecting the basic modules of a computer called?",
+        "question": "Moore's Law mainly explains the growth of",
         "options": [
-            "Data Bus",
-            "Control Network",
-            "Interconnection Structure",
-            "System Network"
+            "disk rotation speed",
+            "transistor density on chips",
+            "RAM voltage",
+            "bus width"
         ],
-        "correct_answer": 2,
-        "explanation": "The PDF defines this as the interconnection structure."
+        "correct_answer": 1,
+        "explanation": "Moore's Law is an observation about the exponential increase in the number of transistors that can be placed on an integrated circuit, leading to improvements in performance and capability."
     },
     {
         "id": 59,
         "type": "multiple_choice",
-        "question": "Which of the following transfers is NOT typically supported by an interconnection structure?",
+        "question": "According to Amdahl's Law, to achieve large speed improvement you must",
         "options": [
-            "Memory to Processor",
-            "Processor to Memory",
-            "Processor to Cache",
-            "I/O to Memory"
+            "improve every part equally",
+            "focus on the part that consumes most execution time",
+            "increase voltage",
+            "reduce memory size"
         ],
-        "correct_answer": 2,
-        "explanation": "The listed transfers in the PDF are: Memory to/from Processor, I/O to/from Processor, and I/O to/from Memory. Transfer to cache is not listed as a primary type."
+        "correct_answer": 1,
+        "explanation": "Amdahl's Law implies that the greatest overall speedup is achieved by improving the component or part of a task that accounts for the largest portion of the execution time."
     },
     {
         "id": 60,
         "type": "multiple_choice",
-        "question": "What is the most common interconnection structure in computers?",
+        "question": "According to Little's Law, if the average time tasks spend in a system increases and arrival rate stays constant",
         "options": [
-            "Point-to-Point",
-            "Star Network",
-            "Bus",
-            "Crossbar Switch"
+            "number of tasks in system increases",
+            "throughput decreases automatically",
+            "memory doubles",
+            "CPU stops"
         ],
-        "correct_answer": 2,
-        "explanation": "The PDF states that by far the most common interconnection structure is the bus."
-    },
-    {
-        "id": 61,
-        "type": "multiple_choice",
-        "question": "A communication pathway connecting two or more devices is called a:",
-        "options": [
-            "Port",
-            "Channel",
-            "Line",
-            "Bus"
-        ],
-        "correct_answer": 3,
-        "explanation": "The PDF defines a bus as a communication pathway connecting two or more devices."
-    },
-    {
-        "id": 62,
-        "type": "multiple_choice",
-        "question": "A typical system bus consists of approximately how many separate lines?",
-        "options": [
-            "1-10 lines",
-            "10-30 lines",
-            "50 to hundreds of lines",
-            "Thousands of lines"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF mentions a typical system bus may consist of from about 50 to hundreds of separate lines."
-    },
-    {
-        "id": 63,
-        "type": "multiple_choice",
-        "question": "What material are the conductors in a classic bus arrangement typically made of?",
-        "options": [
-            "Optical fibers",
-            "Plastic wires",
-            "Metal lines etched on a PCB",
-            "Wireless transmission waves"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF states these conductors are metal lines etched in a card or board (printed circuit board)."
-    },
-    {
-        "id": 64,
-        "type": "multiple_choice",
-        "question": "Which of the following is NOT one of the three functional groups of bus lines?",
-        "options": [
-            "Data Lines",
-            "Address Lines",
-            "Control Lines",
-            "Power Lines"
-        ],
-        "correct_answer": 3,
-        "explanation": "Bus lines are classified into data, address, and control lines. Power lines are not part of this functional classification for signaling."
-    },
-    {
-        "id": 65,
-        "type": "multiple_choice",
-        "question": "The number of data lines in a bus is referred to as its:",
-        "options": [
-            "Length",
-            "Speed",
-            "Width",
-            "Depth"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF states: 'Number of lines is referred to as the width of the bus.'"
-    },
-    {
-        "id": 66,
-        "type": "multiple_choice",
-        "question": "Which bus lines determine the maximum possible memory capacity of a system?",
-        "options": [
-            "Data Lines",
-            "Control Lines",
-            "Address Lines",
-            "Timing Lines"
-        ],
-        "correct_answer": 2,
-        "explanation": "The width of the address bus determines the maximum possible memory capacity."
-    },
-    {
-        "id": 67,
-        "type": "multiple_choice",
-        "question": "What type of information do control lines transmit?",
-        "options": [
-            "Only data",
-            "Only addresses",
-            "Command and timing information",
-            "Power signals"
-        ],
-        "correct_answer": 2,
-        "explanation": "Control signals transmit command and timing information among system modules."
-    },
-    {
-        "id": 68,
-        "type": "multiple_choice",
-        "question": "Which of the following is a method of bus arbitration?",
-        "options": [
-            "Synchronous",
-            "Asynchronous",
-            "Centralized",
-            "Multiplexed"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF lists 'Centralized' and 'Distributed' as methods of arbitration."
-    },
-    {
-        "id": 69,
-        "type": "multiple_choice",
-        "question": "A bus timing method that uses a clock signal is called:",
-        "options": [
-            "Asynchronous",
-            "Isochronous",
-            "Synchronous",
-            "Sequential"
-        ],
-        "correct_answer": 2,
-        "explanation": "Synchronous timing uses a clock to coordinate actions."
-    },
-    {
-        "id": 70,
-        "type": "multiple_choice",
-        "question": "What type of connection provides a dedicated line between an I/O module and an external device?",
-        "options": [
-            "Multipoint Connection",
-            "Bus Connection",
-            "Point-to-Point Connection",
-            "Network Connection"
-        ],
-        "correct_answer": 2,
-        "explanation": "A point-to-point interface provides a dedicated line, as defined in the PDF."
-    },
-    {
-        "id": 71,
-        "type": "multiple_choice",
-        "question": "Which of these is an example of a point-to-point link in a small system?",
-        "options": [
-            "Ethernet Network",
-            "PCI Express Bus",
-            "Connection to a Keyboard",
-            "USB Hub"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF gives examples like connections to the keyboard, printer, and modem as typical point-to-point links on small systems."
-    },
-    {
-        "id": 72,
-        "type": "multiple_choice",
-        "question": "What does PCI stand for?",
-        "options": [
-            "Peripheral Computer Interconnect",
-            "Processor Control Interface",
-            "Personal Computer Interface",
-            "Peripheral Component Interconnect"
-        ],
-        "correct_answer": 3,
-        "explanation": "PCI stands for Peripheral Component Interconnect."
-    },
-    {
-        "id": 73,
-        "type": "multiple_choice",
-        "question": "What is a key characteristic of the PCI bus?",
-        "options": [
-            "It is processor-dependent.",
-            "It is a low-speed serial bus.",
-            "It is a high-bandwidth, processor-independent bus.",
-            "It is used only inside the CPU."
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF describes PCI as a popular high-bandwidth, processor-independent bus."
-    },
-    {
-        "id": 74,
-        "type": "multiple_choice",
-        "question": "To whom did Intel release the PCI patents?",
-        "options": [
-            "Private tech companies",
-            "Microsoft Corporation",
-            "The public domain",
-            "Apple Inc."
-        ],
-        "correct_answer": 2,
-        "explanation": "Intel released all PCI patents to the public domain."
-    },
-    {
-        "id": 75,
-        "type": "multiple_choice",
-        "question": "What type of system configurations does PCI support?",
-        "options": [
-            "Only single-processor systems",
-            "Only multiprocessor systems",
-            "Both single and multiprocessor systems",
-            "Only systems made by Intel"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF states PCI is designed to support both single and multiprocessor systems."
-    },
-    {
-        "id": 76,
-        "type": "multiple_choice",
-        "question": "Which component is typically NOT served by a PCI bus?",
-        "options": [
-            "Graphic display adapters",
-            "Network adapters",
-            "Power supply units",
-            "Disk controllers"
-        ],
-        "correct_answer": 2,
-        "explanation": "PCI serves adapters and controllers, not power supply units, which are not data devices."
-    },
-    {
-        "id": 77,
-        "type": "multiple_choice",
-        "question": "What is the primary purpose of a computer's I/O system?",
-        "options": [
-            "To permanently store data",
-            "To increase CPU clock speed",
-            "To interact with the external environment",
-            "To manage virtual memory addresses"
-        ],
-        "correct_answer": 2,
-        "explanation": "I/O components provide a means of interaction with the external environment."
-    },
-    {
-        "id": 78,
-        "type": "multiple_choice",
-        "question": "Instructions and data are temporarily stored in:",
-        "options": [
-            "Hard Disk",
-            "Registers",
-            "Cache",
-            "Main Memory"
-        ],
-        "correct_answer": 3,
-        "explanation": "The PDF refers to main memory as the place to store temporarily both instructions and data."
-    },
-    {
-        "id": 79,
-        "type": "multiple_choice",
-        "question": "What are the two basic steps in the execution of a program?",
-        "options": [
-            "Read and Write",
-            "Input and Output",
-            "Fetch and Execute",
-            "Encode and Decode"
-        ],
-        "correct_answer": 2,
-        "explanation": "The basic function is to fetch instructions from memory and then execute each instruction."
-    },
-    {
-        "id": 80,
-        "type": "multiple_choice",
-        "question": "The processing required for a single instruction is called the:",
-        "options": [
-            "Machine Cycle",
-            "Clock Cycle",
-            "Instruction Cycle",
-            "Execution Phase"
-        ],
-        "correct_answer": 2,
-        "explanation": "This is defined in the PDF as the instruction cycle."
-    },
-    {
-        "id": 81,
-        "type": "multiple_choice",
-        "question": "After fetching, an instruction is loaded into which register?",
-        "options": [
-            "Program Counter (PC)",
-            "Memory Address Register (MAR)",
-            "Instruction Register (IR)",
-            "Accumulator"
-        ],
-        "correct_answer": 2,
-        "explanation": "The fetched instruction is loaded into the Instruction Register (IR)."
-    },
-    {
-        "id": 82,
-        "type": "multiple_choice",
-        "question": "Why is an interrupt cycle added to the instruction cycle?",
-        "options": [
-            "To speed up processing",
-            "To increase memory size",
-            "To handle errors only",
-            "To accommodate interrupts from other modules"
-        ],
-        "correct_answer": 3,
-        "explanation": "An interrupt cycle is added to accommodate interrupts from I/O, memory, etc."
-    },
-    {
-        "id": 83,
-        "type": "multiple_choice",
-        "question": "Which register holds data that has been read from memory?",
-        "options": [
-            "Memory Address Register (MAR)",
-            "Instruction Register (IR)",
-            "Memory Buffer Register (MBR)",
-            "Program Counter (PC)"
-        ],
-        "correct_answer": 2,
-        "explanation": "The MBR contains data to be written or receives data read from memory."
-    },
-    {
-        "id": 84,
-        "type": "multiple_choice",
-        "question": "What does the I/O Address Register (I/OAR) specify?",
-        "options": [
-            "The data to be written",
-            "A particular I/O device",
-            "The interrupt type",
-            "A memory address"
-        ],
-        "correct_answer": 1,
-        "explanation": "The I/OAR specifies a particular I/O device."
-    },
-    {
-        "id": 85,
-        "type": "multiple_choice",
-        "question": "What component accepts a code and generates control signals to make programming easier?",
-        "options": [
-            "ALU",
-            "Memory Module",
-            "I/O Module",
-            "Control Unit"
-        ],
-        "correct_answer": 3,
-        "explanation": "The PDF refers to a general-purpose hardware segment (the control unit) that can accept a code and generate control signals."
-    },
-    {
-        "id": 86,
-        "type": "multiple_choice",
-        "question": "What is the fundamental cause of the von Neumann bottleneck?",
-        "options": [
-            "Slow I/O devices",
-            "Limited number of CPU registers",
-            "A single path between memory and CPU",
-            "Lack of cache memory"
-        ],
-        "correct_answer": 2,
-        "explanation": "The bottleneck is caused by the single path (physically or logically) between main memory and the CPU's control unit."
-    },
-    {
-        "id": 87,
-        "type": "multiple_choice",
-        "question": "Command signals on a bus are part of which group of lines?",
-        "options": [
-            "Data Lines",
-            "Address Lines",
-            "Control Lines",
-            "Timing Lines"
-        ],
-        "correct_answer": 2,
-        "explanation": "Command signals are transmitted over control lines."
-    },
-    {
-        "id": 88,
-        "type": "multiple_choice",
-        "question": "In a bus design context, 'dedicated' versus 'multiplexed' refers to:",
-        "options": [
-            "The arbitration method",
-            "The data transfer type",
-            "How the bus width is used",
-            "The timing method"
-        ],
-        "correct_answer": 2,
-        "explanation": "In the table in the PDF, 'Dedicated' and 'Multiplexed' are listed under 'Type' which relates to how bus lines are allocated (e.g., dedicated address lines vs. multiplexed address/data lines)."
-    },
-    {
-        "id": 89,
-        "type": "multiple_choice",
-        "question": "The width of the data bus determines:",
-        "options": [
-            "The maximum memory capacity",
-            "The number of I/O devices possible",
-            "The data transfer size per cycle",
-            "The CPU's clock speed"
-        ],
-        "correct_answer": 2,
-        "explanation": "The width (number of data lines) determines how many bits can be transferred at once."
-    },
-    {
-        "id": 90,
-        "type": "multiple_choice",
-        "question": "What does the term 'software' refer to in computing?",
-        "options": [
-            "Physical circuits and hardware",
-            "A sequence of codes or instructions",
-            "The control signals in the CPU",
-            "The power supply system"
-        ],
-        "correct_answer": 1,
-        "explanation": "The PDF defines software as programming using a sequence of codes or instructions."
-    },
-    {
-        "id": 91,
-        "type": "multiple_choice",
-        "question": "A bus that connects the processor, memory, and I/O is specifically called a:",
-        "options": [
-            "Expansion Bus",
-            "Local Bus",
-            "System Bus",
-            "External Bus"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF defines a system bus as one connecting major components like processor, memory, and I/O."
-    },
-    {
-        "id": 92,
-        "type": "multiple_choice",
-        "question": "Which of the following is a 'Data Transfer Type' in bus design?",
-        "options": [
-            "Synchronous",
-            "Centralized",
-            "Read",
-            "Multiplexed"
-        ],
-        "correct_answer": 2,
-        "explanation": "The PDF table lists Read, Write, Read-modify-write, etc., as Data Transfer Types."
-    },
-    {
-        "id": 93,
-        "type": "multiple_choice",
-        "question": "What is the I/O Buffer Register (I/OBR) used for?",
-        "options": [
-            "Exchanging data between CPU and Memory",
-            "Exchanging data between an I/O module and the CPU",
-            "Holding the address of an I/O device",
-            "Storing the current instruction"
-        ],
-        "correct_answer": 1,
-        "explanation": "The I/OBR is used for the exchange of data between an I/O module and the CPU."
-    },
-    {
-        "id": 94,
-        "type": "multiple_choice",
-        "question": "How is each location in a memory module identified?",
-        "options": [
-            "By a unique control signal",
-            "By a specific data bus line",
-            "By a sequentially numbered address",
-            "By the type of data it holds"
-        ],
-        "correct_answer": 2,
-        "explanation": "Memory consists of locations defined by sequentially numbered addresses."
-    },
-    {
-        "id": 95,
-        "type": "multiple_choice",
-        "question": "What is the purpose of timing signals on a bus?",
-        "options": [
-            "To indicate which device is connected",
-            "To specify the type of operation (read/write)",
-            "To indicate the validity of data and address information",
-            "To set the interrupt priority level"
-        ],
-        "correct_answer": 2,
-        "explanation": "Timing signals indicate the validity of data and address information."
-    },
-    {
-        "id": 96,
-        "type": "multiple_choice",
-        "question": "PCI is commonly used as which type of bus?",
-        "options": [
-            "A memory-only bus",
-            "A mezzanine or peripheral bus",
-            "A CPU internal bus",
-            "A power distribution bus"
-        ],
-        "correct_answer": 1,
-        "explanation": "The PDF states PCI can function as a mezzanine or peripheral bus."
-    },
-    {
-        "id": 97,
-        "type": "multiple_choice",
-        "question": "The sequence of actions in a computer—fetch instruction, execute instruction—is driven by the:",
-        "options": [
-            "Clock signal only",
-            "Operating system",
-            "Program Counter and Instruction Cycle",
-            "Interrupt controller"
-        ],
-        "correct_answer": 2,
-        "explanation": "The basic function is governed by the instruction cycle, initiated by the address in the Program Counter."
-    },
-    {
-        "id": 98,
-        "type": "multiple_choice",
-        "question": "What is a major advantage of the PCI bus being in the public domain?",
-        "options": [
-            "It is faster than all other buses.",
-            "Products from different vendors are compatible.",
-            "It requires no power.",
-            "It can only be used by Intel."
-        ],
-        "correct_answer": 1,
-        "explanation": "Because patents were released to the public domain, products from different vendors are compatible."
-    },
-    {
-        "id": 99,
-        "type": "multiple_choice",
-        "question": "In the context of the PDF, what does 'programming' a hardwired system involve?",
-        "options": [
-            "Writing software code in a high-level language",
-            "Connecting various logic components into a desired configuration",
-            "Loading instructions into main memory",
-            "Setting switches on the front panel"
-        ],
-        "correct_answer": 1,
-        "explanation": "For a hardwired program, programming is the process of connecting logic components into the desired configuration."
-    },
-    {
-        "id": 100,
-        "type": "multiple_choice",
-        "question": "Which component is essential for a computer to carry out sequential instruction processing?",
-        "options": [
-            "A wide data bus",
-            "A multi-core CPU",
-            "A single path between memory and CPU control unit",
-            "A large hard disk"
-        ],
-        "correct_answer": 2,
-        "explanation": "A characteristic of the stored-program architecture is the capacity to carry out sequential instruction processing, which relies on the single, sequential path described."
+        "correct_answer": 0,
+        "explanation": "Based on Little's Law (L = λW), if the arrival rate (λ) remains constant and the average time spent (W) increases, the average number of tasks in the system (L) must also increase."
     }
 
 
