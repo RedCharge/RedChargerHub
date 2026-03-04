@@ -5,286 +5,786 @@ sustainability_quiz = {
     "questions": [
      
     
+    
     {
-        "id":
-            1,
+        "id": 1,
         "type": "multiple_choice",
-        "question": "A university plans to expand its campus by constructing new lecture halls and dormitories. Before starting construction, the planning committee conducts a comprehensive environmental impact assessment, evaluating energy requirements, water usage, building materials, and potential effects on nearby rivers and green spaces. They aim to minimize ecological degradation while maintaining functional infrastructure. Which sustainability principle is being applied here?",
+        "question": "A firm replaces fossil fuels with solar energy, increasing initial costs but reducing emissions. This illustrates:",
         "options": [
-            "Economic growth optimization",
-            "Environmental management",
-            "Social equity prioritization",
-            "Market expansion strategy",
-            "Resource commodification"
+            "Short-term economic gain",
+            "Sustainable development",
+            "Market exploitation",
+            "Social sustainability"
         ],
         "correct_answer": 1,
-        "explanation": "Environmental management involves systematically assessing and mitigating the environmental impacts of projects. By evaluating energy, water, materials, and ecological effects before construction, the committee is applying environmental management principles to minimize ecological degradation."
+        "explanation": "Sustainable development balances economic, environmental, and social considerations. Here, the firm accepts higher short-term costs for long-term environmental benefit."
     },
     {
         "id": 2,
         "type": "multiple_choice",
-        "question": "A software company adopts a hybrid working policy, allowing employees to work remotely three days a week. By doing so, the company reduces employee commuting, lowers office energy consumption, and decreases CO₂ emissions. The HR team also tracks employee well-being and productivity metrics to ensure the transition is sustainable. Which dimension of sustainability is primarily demonstrated?",
+        "question": "A country grows economically but shows rising pollution and declining public health. Which pillar is most neglected?",
         "options": [
-            "Economic dimension",
-            "Social dimension",
-            "Environmental dimension",
-            "Market-driven sustainability",
-            "Sustainable development goal compliance"
+            "Social",
+            "Economic",
+            "Environmental",
+            "Market"
         ],
         "correct_answer": 2,
-        "explanation": "The primary focus of this scenario is on reducing commuting, lowering office energy use, and decreasing CO₂ emissions, which are all environmental impacts. While well-being is tracked, the core initiative targets environmental sustainability."
+        "explanation": "Both environmental (rising pollution) and social (declining public health) pillars are neglected, but the question asks which is most neglected—pollution directly indicates environmental pillar failure."
     },
     {
         "id": 3,
         "type": "multiple_choice",
-        "question": "A government launches a nationwide program offering tax incentives for renewable energy installations in industrial plants. The program not only reduces greenhouse gas emissions but also stimulates economic activity through green jobs and infrastructure investments. Which type of sustainability approach does this represent?",
+        "question": "A city enforces strict water recycling rules while residents face higher bills. Which sustainability principle is prioritized?",
         "options": [
-            "Economic-focused sustainability",
-            "Environmental-focused sustainability",
-            "Integrated sustainable development",
-            "Market-only approach",
-            "Social welfare initiative"
+            "Economic sustainability",
+            "Environmental sustainability",
+            "Social equity",
+            "Labor rights"
         ],
-        "correct_answer": 2,
-        "explanation": "The program addresses both environmental benefits (reduced emissions) and economic benefits (green jobs, infrastructure investments). This simultaneous consideration of multiple dimensions represents integrated sustainable development."
+        "correct_answer": 1,
+        "explanation": "Environmental sustainability is prioritized through water conservation, even though it creates economic burden (higher bills) for residents."
     },
     {
         "id": 4,
         "type": "multiple_choice",
-        "question": "An urban agriculture research project evaluates the water consumption of rooftop gardens in a metropolitan city. Researchers analyze how irrigation practices affect local rivers, groundwater levels, and urban water security. They also consider seasonal variations and climate change impacts to recommend optimal water management practices. Which human consumption impact is being assessed?",
+        "question": "Mining rare minerals unsustainably while claiming 'eco-friendly products' represents:",
         "options": [
-            "Energy consumption",
-            "Water consumption",
-            "Food consumption",
-            "Mineral exploitation",
-            "Synthetic chemicals consumption"
+            "Greenwashing",
+            "Effective sustainability",
+            "Economic sustainability",
+            "Social equity"
         ],
-        "correct_answer": 1,
-        "explanation": "The research specifically examines irrigation practices, effects on rivers and groundwater, and urban water security, all of which relate directly to water consumption and its environmental impacts."
+        "correct_answer": 0,
+        "explanation": "Greenwashing is when companies spend more effort marketing themselves as environmentally friendly than actually minimizing their environmental impact."
     },
     {
         "id": 5,
         "type": "multiple_choice",
-        "question": "A food processing company reviews its supply chain to determine how sourcing raw materials like wheat, sugar, and vegetable oils affects deforestation, soil degradation, and local ecosystems. The management team also evaluates how these sourcing choices influence production costs and profitability, aiming to balance environmental responsibility with business sustainability. Which sustainability dimensions are being addressed simultaneously?",
+        "question": "Investing in renewable energy and public health programs simultaneously demonstrates:",
         "options": [
-            "Environmental and economic",
-            "Social and economic",
-            "Environmental and social",
-            "Economic only",
-            "Social only"
+            "Integrated sustainable development",
+            "Short-term growth strategy",
+            "Market-only approach",
+            "Exploitative economic policy"
         ],
         "correct_answer": 0,
-        "explanation": "The company evaluates environmental impacts (deforestation, soil degradation, ecosystems) alongside economic considerations (production costs, profitability). This demonstrates simultaneous attention to environmental and economic dimensions."
+        "explanation": "Integrated sustainable development addresses multiple pillars simultaneously—environmental (renewable energy) and social (public health)."
     },
     {
         "id": 6,
         "type": "multiple_choice",
-        "question": "A university campus implements solar panels on dormitories, rainwater harvesting systems for irrigation, and composting programs for organic waste. The administration reports that these initiatives reduce utility costs, decrease reliance on fossil fuels, and create hands-on learning opportunities for students in sustainability practices. Which dimension and benefit of sustainability does this scenario reflect?",
+        "question": "Rapid urbanization increases slums and deforestation. Which dimensions are violated?",
         "options": [
-            "Environmental dimension; energy efficiency",
-            "Economic dimension; profit maximization",
-            "Social dimension; improved student wellbeing",
-            "Market approach; consumer satisfaction",
-            "Sustainable development; SDG alignment"
+            "Environmental and social",
+            "Economic only",
+            "Social only",
+            "Environmental only"
         ],
         "correct_answer": 0,
-        "explanation": "The primary focus is on reducing utility costs (economic) and decreasing fossil fuel reliance (environmental), with energy efficiency being the key environmental benefit demonstrated through solar panels and reduced consumption."
+        "explanation": "Deforestation violates the environmental dimension; slums indicate failure in the social dimension (adequate housing, living conditions)."
     },
     {
         "id": 7,
         "type": "multiple_choice",
-        "question": "A small packaging company analyzes switching from conventional plastic to biodegradable materials. They examine how this affects environmental pollution, potential cost increases, market demand, and brand reputation. Their final decision aims to reduce environmental harm while creating a new business opportunity and gaining a competitive advantage in eco-conscious markets. What sustainability concept is being applied here?",
+        "question": "A company imports cheap materials that increase pollution abroad. Which principle is compromised?",
         "options": [
-            "Environmental management only",
-            "Economic growth only",
-            "Sustainability as a business opportunity",
-            "Social equity only",
-            "Market-driven exploitation"
+            "Environmental justice",
+            "Economic growth",
+            "Labor rights",
+            "Market efficiency"
         ],
-        "correct_answer": 2,
-        "explanation": "The company views sustainable packaging not just as an environmental necessity but as a strategic move to create business opportunities and competitive advantage. This represents sustainability as a business opportunity."
+        "correct_answer": 0,
+        "explanation": "Environmental justice requires that no group bears disproportionate environmental burdens. Exporting pollution violates this principle."
     },
     {
         "id": 8,
         "type": "multiple_choice",
-        "question": "A municipal project educates local households about reducing energy and water usage and offers incentives for installing solar panels and efficient appliances. Over a year, average household energy consumption drops by 30%, water bills are reduced, and community members adopt environmentally friendly habits. Which Sustainable Development Goal (SDG) is primarily addressed?",
+        "question": "Overfishing maximizes short-term profit but threatens long-term fish supply. Which risk is illustrated?",
         "options": [
-            "SDG 7 – Affordable and Clean Energy",
-            "SDG 13 – Climate Action",
-            "SDG 12 – Responsible Consumption and Production",
-            "SDG 3 – Good Health and Well-being",
-            "SDG 8 – Decent Work and Economic Growth"
+            "Resource depletion",
+            "Social inequality",
+            "Market failure",
+            "Economic sustainability"
         ],
         "correct_answer": 0,
-        "explanation": "The project specifically targets energy consumption reduction, solar panel installation, and efficient appliances, which directly aligns with SDG 7: Affordable and Clean Energy."
+        "explanation": "Overfishing directly causes resource depletion—reducing fish populations below sustainable levels, threatening future availability."
     },
     {
         "id": 9,
         "type": "multiple_choice",
-        "question": "An electronics manufacturing company investigates how mining rare earth minerals for device production impacts deforestation, soil erosion, and biodiversity in supplier regions. They also evaluate regulatory compliance, cost implications, and long-term supply security. Which environmental impact is being studied in this scenario?",
+        "question": "Employee training, waste reduction, and community programs together demonstrate:",
         "options": [
-            "Freshwater depletion",
-            "Land use and mineral extraction",
-            "Atmospheric emissions",
-            "Food consumption",
-            "Synthetic chemicals"
+            "Holistic sustainability",
+            "Short-term profit maximization",
+            "Environmental-only strategy",
+            "Market-only strategy"
         ],
-        "correct_answer": 1,
-        "explanation": "The investigation focuses on mining impacts including deforestation, soil erosion, and biodiversity loss, all of which are consequences of land use change and mineral extraction activities."
+        "correct_answer": 0,
+        "explanation": "Holistic sustainability addresses all three pillars: social (employee training, community programs), environmental (waste reduction), and economic (implied efficiency gains)."
     },
     {
         "id": 10,
         "type": "multiple_choice",
-        "question": "A city government evaluates urban forests as a potential economic asset. Analysts estimate revenue from tourism, recreational services, and carbon credits while also considering ecological benefits like biodiversity preservation and flood mitigation. Which sustainability approach is being applied in this evaluation?",
+        "question": "Sustainability policies often face resistance because:",
         "options": [
-            "Environmental protection only",
-            "Nature as an economic commodity",
-            "Social sustainability only",
-            "Energy efficiency",
-            "Market regulation compliance"
+            "Benefits are long-term",
+            "Policies reduce immediate costs",
+            "Everyone agrees",
+            "Environmental degradation has no economic effect"
         ],
-        "correct_answer": 1,
-        "explanation": "The evaluation explicitly assigns economic value to ecosystem services (tourism revenue, carbon credits) while acknowledging ecological benefits, representing an approach that treats nature as an economic commodity or natural capital."
+        "correct_answer": 0,
+        "explanation": "Sustainability typically requires short-term costs for long-term gains, making it politically and economically difficult to implement."
     },
     {
         "id": 11,
         "type": "multiple_choice",
-        "question": "A university wants to reduce its carbon footprint and operating costs. Administrators incentivize installation of solar panels on academic buildings, promote green roofs, and implement energy-efficient HVAC systems. They monitor energy savings and reductions in CO₂ emissions while maintaining student services and economic viability. Which sustainability dimensions are being integrated in this scenario?",
+        "question": "Treating forests as economic assets encourages:",
         "options": [
-            "Environmental and economic",
-            "Environmental and social",
-            "Economic only",
-            "Social only",
-            "Market compliance only"
+            "Sustainable resource management",
+            "Unrestricted exploitation",
+            "Labor exploitation",
+            "Short-term profit only"
         ],
         "correct_answer": 0,
-        "explanation": "The university simultaneously pursues carbon footprint reduction (environmental) and operating cost reduction (economic) while monitoring both energy savings and economic viability."
+        "explanation": "When forests are valued as economic assets, there's incentive to manage them sustainably rather than clear-cut for immediate gain."
     },
     {
         "id": 12,
         "type": "multiple_choice",
-        "question": "A student wellness program evaluates the accessibility of mental health counseling, inclusivity of campus activities, and equal access to resources for all students. The program also tracks improvements in student satisfaction and engagement. Which sustainability dimension does this emphasize?",
+        "question": "Implementing solar panels across multiple factories addresses:",
         "options": [
-            "Environmental dimension",
-            "Economic dimension",
-            "Social dimension",
-            "Market-driven dimension",
-            "Resource management dimension"
+            "Environmental and economic pillars",
+            "Social pillar only",
+            "Economic pillar only",
+            "Market pillar only"
         ],
-        "correct_answer": 2,
-        "explanation": "The program focuses on mental health, inclusivity, equal access, student satisfaction, and engagement—all core components of social sustainability and human wellbeing."
+        "correct_answer": 0,
+        "explanation": "Solar panels reduce environmental impact (emissions) while providing economic benefits (long-term energy cost savings)."
     },
     {
         "id": 13,
         "type": "multiple_choice",
-        "question": "A manufacturing company conducts a lifecycle assessment of its products, measuring energy use, water consumption, and raw materials required from production to disposal. Management uses this data to optimize processes for minimal environmental impact while maintaining cost-effectiveness and profitability. Which sustainability practice is being implemented?",
+        "question": "High initial cost of renewable energy can be justified by:",
         "options": [
-            "Environmental management",
-            "Economic sustainability",
-            "Integrated sustainability assessment",
-            "Social equity analysis",
-            "Market expansion strategy"
+            "Long-term savings and environmental benefits",
+            "Zero investment",
+            "Subsidy guarantees",
+            "Immediate social gains"
         ],
-        "correct_answer": 2,
-        "explanation": "Lifecycle assessment that considers both environmental impacts and economic performance represents an integrated sustainability assessment, evaluating multiple dimensions simultaneously rather than in isolation."
+        "correct_answer": 0,
+        "explanation": "Renewable energy typically has high upfront costs but delivers long-term operational savings and environmental benefits over its lifetime."
     },
     {
         "id": 14,
         "type": "multiple_choice",
-        "question": "A student-led urban agriculture project encourages growing vegetables on rooftops to reduce transportation emissions and improve local food security. The initiative also tracks community engagement, social inclusion, and nutritional outcomes for residents. Which impacts are being addressed?",
+        "question": "A company produces biodegradable packaging but ignores worker safety. Which pillar is neglected?",
         "options": [
-            "Water and energy consumption",
-            "Food consumption and social sustainability",
-            "Mineral extraction and economic growth",
-            "Synthetic chemicals consumption only",
-            "Market opportunity only"
+            "Social",
+            "Environmental",
+            "Economic",
+            "Market"
         ],
-        "correct_answer": 1,
-        "explanation": "The project addresses food security through local vegetable production (food consumption) and tracks community engagement, social inclusion, and nutritional outcomes (social sustainability)."
+        "correct_answer": 0,
+        "explanation": "Worker safety falls under the social pillar of sustainability, concerning human rights, labor conditions, and human dignity."
     },
     {
         "id": 15,
         "type": "multiple_choice",
-        "question": "A beverage company evaluates switching to recycled and biodegradable packaging. They analyze environmental impact, production costs, and consumer perception to make a sustainable business decision that also strengthens market competitiveness. Which concept is being applied?",
+        "question": "A government enforces eco-taxes while subsidizing green startups. This approach shows:",
         "options": [
-            "Sustainability as a business opportunity",
-            "Environmental dimension only",
-            "Social dimension only",
-            "Market compliance only",
-            "Economic dimension only"
+            "Market-based sustainability",
+            "Labor exploitation",
+            "Ignoring environmental impact",
+            "Short-term profit focus"
         ],
         "correct_answer": 0,
-        "explanation": "The company integrates environmental considerations with production costs and consumer perception specifically to strengthen market competitiveness, viewing sustainability as a strategic business opportunity."
+        "explanation": "Using economic instruments (taxes, subsidies) to achieve environmental goals is a market-based approach to sustainability."
     },
     {
         "id": 16,
         "type": "multiple_choice",
-        "question": "A city implements smart electricity meters and promotes energy-efficient appliances. Households monitor their energy usage, reduce electricity bills, and lower overall emissions. This system also creates opportunities for local green jobs. Which sustainability dimensions does this scenario integrate?",
+        "question": "Reducing global hunger aligns with which SDG?",
         "options": [
-            "Environmental and economic",
-            "Environmental and social",
-            "Social and economic",
-            "Economic only",
-            "Environmental only"
+            "Zero Hunger",
+            "No Poverty",
+            "Good Health",
+            "Quality Education"
         ],
         "correct_answer": 0,
-        "explanation": "The scenario integrates environmental benefits (lower emissions) with economic benefits (reduced electricity bills, green jobs). The social dimension is not the primary focus here."
+        "explanation": "SDG 2 is 'Zero Hunger'—ending hunger, achieving food security, improving nutrition, and promoting sustainable agriculture."
     },
     {
         "id": 17,
         "type": "multiple_choice",
-        "question": "A corporation ensures that raw materials are sourced ethically, emissions are minimized, and employees in supplier regions are treated fairly with proper compensation. This improves environmental protection and supports social equity. Which sustainability dimensions are primarily considered?",
+        "question": "Access to clean water falls under:",
         "options": [
-            "Environmental and social",
-            "Economic and environmental",
-            "Social and economic",
-            "Market only",
-            "None of the above"
+            "Clean Water and Sanitation",
+            "Affordable Energy",
+            "Climate Action",
+            "Industry Innovation"
         ],
         "correct_answer": 0,
-        "explanation": "The corporation addresses ethical sourcing and emissions (environmental) alongside fair treatment and proper compensation of workers (social). This demonstrates integration of environmental and social dimensions."
+        "explanation": "SDG 6 is 'Clean Water and Sanitation'—ensuring availability and sustainable management of water and sanitation for all."
     },
     {
         "id": 18,
         "type": "multiple_choice",
-        "question": "A regional development project installs solar farms and trains local residents to maintain the installations. This creates local employment opportunities while providing clean energy and reducing greenhouse gas emissions. Which SDGs are directly addressed in this scenario?",
+        "question": "Gender equality programs in a company support:",
         "options": [
-            "SDG 7 – Affordable and Clean Energy & SDG 8 – Decent Work",
-            "SDG 12 – Responsible Consumption & Production",
-            "SDG 13 – Climate Action & SDG 3 – Health",
-            "SDG 11 – Sustainable Cities only",
-            "SDG 15 – Life on Land only"
+            "Equal opportunities",
+            "Resource depletion",
+            "Market efficiency only",
+            "Short-term profit"
         ],
         "correct_answer": 0,
-        "explanation": "The project directly addresses SDG 7 through solar farm installation and clean energy provision, and SDG 8 through training and local employment opportunities."
+        "explanation": "Gender equality programs support SDG 5 (Gender Equality) and the principle of equal opportunities regardless of gender."
     },
     {
         "id": 19,
         "type": "multiple_choice",
-        "question": "A company calculates the carbon footprint and energy use of its product line, identifying which stages of production are most resource-intensive. By redesigning processes, it reduces emissions, minimizes costs, and enhances sustainability while maintaining profitability. Which sustainability principle is applied?",
+        "question": "A city promotes affordable housing and green spaces. Which SDGs are addressed?",
         "options": [
-            "Environmental management and economic opportunity",
-            "Social equity and resource allocation",
-            "Market compliance only",
-            "Energy consumption only",
-            "Raw material extraction only"
+            "Sustainable Cities and Reduced Inequalities",
+            "Climate Action only",
+            "No Poverty only",
+            "Life on Land only"
         ],
         "correct_answer": 0,
-        "explanation": "The company uses carbon footprint analysis (environmental management) to identify cost reduction opportunities and maintain profitability (economic opportunity), demonstrating the principle that environmental improvements can create economic benefits."
+        "explanation": "Affordable housing addresses SDG 11 (Sustainable Cities) and SDG 10 (Reduced Inequalities); green spaces also support SDG 11."
     },
     {
         "id": 20,
         "type": "multiple_choice",
-        "question": "A student project at a university evaluates campus sustainability by implementing rainwater harvesting, solar panels, and composting programs. The project tracks environmental benefits, operational cost reductions, and student awareness. Which approach reflects this scenario?",
+        "question": "SDGs guide countries by:",
         "options": [
-            "Environmental, economic, and social sustainability",
-            "Environmental only",
-            "Economic only",
-            "Social only",
-            "Market opportunity only"
+            "Providing measurable targets across environmental, social, and economic areas",
+            "Ignoring social issues",
+            "Replacing national laws",
+            "Promoting industry only"
         ],
         "correct_answer": 0,
-        "explanation": "The project simultaneously addresses environmental benefits (rainwater, solar, composting), economic benefits (operational cost reductions), and social benefits (student awareness and education), representing the three pillars of sustainability."
+        "explanation": "The SDGs provide a comprehensive framework with 17 goals and 169 targets covering all three dimensions of sustainable development."
+    },
+    {
+        "id": 21,
+        "type": "multiple_choice",
+        "question": "Supporting innovation and infrastructure aligns with which SDG?",
+        "options": [
+            "Industry, Innovation, and Infrastructure",
+            "Quality Education",
+            "Zero Hunger",
+            "Life Below Water"
+        ],
+        "correct_answer": 0,
+        "explanation": "SDG 9 is 'Industry, Innovation, and Infrastructure'—building resilient infrastructure and fostering innovation."
+    },
+    {
+        "id": 22,
+        "type": "multiple_choice",
+        "question": "Peaceful, just societies are promoted by which SDG?",
+        "options": [
+            "Peace, Justice, and Strong Institutions",
+            "Life on Land",
+            "Reduced Inequalities",
+            "Climate Action"
+        ],
+        "correct_answer": 0,
+        "explanation": "SDG 16 is 'Peace, Justice, and Strong Institutions'—promoting peaceful and inclusive societies with access to justice for all."
+    },
+    {
+        "id": 23,
+        "type": "multiple_choice",
+        "question": "Implementing green taxes supports which SDG?",
+        "options": [
+            "Climate Action",
+            "Affordable Energy",
+            "Industry Innovation",
+            "No Poverty"
+        ],
+        "correct_answer": 0,
+        "explanation": "Green taxes incentivize emissions reduction, directly supporting SDG 13 (Climate Action) by addressing climate change drivers."
+    },
+    {
+        "id": 24,
+        "type": "multiple_choice",
+        "question": "SDGs aim to be achieved by:",
+        "options": [
+            "2030",
+            "2050",
+            "2025",
+            "2100"
+        ],
+        "correct_answer": 0,
+        "explanation": "The Sustainable Development Goals were adopted in 2015 with a target achievement date of 2030."
+    },
+    {
+        "id": 25,
+        "type": "multiple_choice",
+        "question": "Encouraging responsible consumption addresses:",
+        "options": [
+            "Responsible Consumption and Production",
+            "Climate Action",
+            "No Poverty",
+            "Sustainable Cities"
+        ],
+        "correct_answer": 0,
+        "explanation": "SDG 12 is 'Responsible Consumption and Production'—ensuring sustainable consumption and production patterns."
+    },
+    {
+        "id": 26,
+        "type": "multiple_choice",
+        "question": "Overuse of freshwater and oceans can lead to:",
+        "options": [
+            "Resource depletion and ecosystem damage",
+            "Increased economic growth",
+            "Labor rights improvement",
+            "Market efficiency"
+        ],
+        "correct_answer": 0,
+        "explanation": "Excessive water extraction depletes aquifers and damages aquatic ecosystems, threatening both water security and biodiversity."
+    },
+    {
+        "id": 27,
+        "type": "multiple_choice",
+        "question": "Deforestation for agriculture affects:",
+        "options": [
+            "Soil fertility and biodiversity",
+            "Market prices only",
+            "Labor laws only",
+            "Social welfare only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Deforestation removes tree cover that protects soil, leading to erosion, and destroys habitats, reducing biodiversity."
+    },
+    {
+        "id": 28,
+        "type": "multiple_choice",
+        "question": "Excessive energy consumption increases:",
+        "options": [
+            "Greenhouse gas emissions",
+            "Social equity",
+            "Worker training",
+            "Urban planning"
+        ],
+        "correct_answer": 0,
+        "explanation": "Most energy production, especially from fossil fuels, releases greenhouse gases—higher consumption means higher emissions."
+    },
+    {
+        "id": 29,
+        "type": "multiple_choice",
+        "question": "Pollution from synthetic chemicals impacts:",
+        "options": [
+            "Human health and ecosystems",
+            "Only profits",
+            "Economic growth automatically",
+            "Labor conditions"
+        ],
+        "correct_answer": 0,
+        "explanation": "Chemical pollution can cause health problems in humans and accumulate in ecosystems, harming wildlife and ecological functions."
+    },
+    {
+        "id": 30,
+        "type": "multiple_choice",
+        "question": "Recycling industrial waste supports:",
+        "options": [
+            "Environmental sustainability",
+            "Market exploitation",
+            "Short-term profit only",
+            "Labor rights"
+        ],
+        "correct_answer": 0,
+        "explanation": "Recycling reduces resource extraction and waste disposal, directly supporting environmental sustainability through circular economy principles."
+    },
+    {
+        "id": 31,
+        "type": "multiple_choice",
+        "question": "Urban green spaces improve:",
+        "options": [
+            "Air quality, well-being, and ecosystem protection",
+            "Only industrial efficiency",
+            "Social inequality",
+            "Short-term profit"
+        ],
+        "correct_answer": 0,
+        "explanation": "Green spaces filter air pollutants, provide recreation areas for mental health, and support urban biodiversity."
+    },
+    {
+        "id": 32,
+        "type": "multiple_choice",
+        "question": "Overfishing threatens:",
+        "options": [
+            "Food security and biodiversity",
+            "Economic growth only",
+            "Labor rights",
+            "Market efficiency"
+        ],
+        "correct_answer": 0,
+        "explanation": "Overfishing reduces fish populations, threatening food sources for communities and disrupting marine ecosystems."
+    },
+    {
+        "id": 33,
+        "type": "multiple_choice",
+        "question": "Soil erosion due to poor land use affects:",
+        "options": [
+            "Agricultural productivity and ecosystems",
+            "Only social welfare",
+            "Market prices",
+            "Worker salaries"
+        ],
+        "correct_answer": 0,
+        "explanation": "Erosion removes nutrient-rich topsoil, reducing crop yields, and can cause sedimentation in waterways harming aquatic life."
+    },
+    {
+        "id": 34,
+        "type": "multiple_choice",
+        "question": "Industrial emissions reduction programs primarily support:",
+        "options": [
+            "Environmental sustainability",
+            "Social sustainability only",
+            "Economic growth only",
+            "Labor rights only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Emissions reduction directly addresses environmental quality by reducing air pollution and greenhouse gases."
+    },
+    {
+        "id": 35,
+        "type": "multiple_choice",
+        "question": "Water pollution from factories reduces:",
+        "options": [
+            "Ecosystem health and human well-being",
+            "Market profit only",
+            "Economic efficiency automatically",
+            "Urban planning"
+        ],
+        "correct_answer": 0,
+        "explanation": "Factory pollution contaminates water sources, harming aquatic life and potentially affecting human communities that depend on those water sources."
+    },
+    {
+        "id": 36,
+        "type": "multiple_choice",
+        "question": "Sustainable agriculture includes:",
+        "options": [
+            "Crop rotation, minimal chemical use, and water management",
+            "Intensive chemical application",
+            "Deforestation",
+            "Short-term profit only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Sustainable agriculture uses practices that maintain soil health, reduce chemical inputs, and conserve water for long-term productivity."
+    },
+    {
+        "id": 37,
+        "type": "multiple_choice",
+        "question": "Protecting biodiversity helps:",
+        "options": [
+            "Maintain ecosystem resilience",
+            "Increase industrial output only",
+            "Labor rights",
+            "Market manipulation"
+        ],
+        "correct_answer": 0,
+        "explanation": "Biodiversity ensures ecosystems can recover from disturbances and continue providing services like pollination, water purification, and climate regulation."
+    },
+    {
+        "id": 38,
+        "type": "multiple_choice",
+        "question": "Climate action policies reduce:",
+        "options": [
+            "Greenhouse gas emissions",
+            "Social equity",
+            "Labor exploitation",
+            "Resource prices"
+        ],
+        "correct_answer": 0,
+        "explanation": "Climate action specifically targets reduction of greenhouse gas emissions to mitigate global warming."
+    },
+    {
+        "id": 39,
+        "type": "multiple_choice",
+        "question": "Overextraction of minerals threatens:",
+        "options": [
+            "Long-term resource availability",
+            "Worker productivity only",
+            "Market efficiency",
+            "Labor rights"
+        ],
+        "correct_answer": 0,
+        "explanation": "Minerals are finite resources—overextraction depletes reserves, reducing availability for future generations."
+    },
+    {
+        "id": 40,
+        "type": "multiple_choice",
+        "question": "Sustainable urban planning balances:",
+        "options": [
+            "Housing, transport, energy use, and green spaces",
+            "Only economic profit",
+            "Market efficiency only",
+            "Labor laws"
+        ],
+        "correct_answer": 0,
+        "explanation": "Sustainable urban planning integrates multiple factors to create livable, efficient, and environmentally responsible cities."
+    },
+    {
+        "id": 41,
+        "type": "multiple_choice",
+        "question": "Treating forests as commodities encourages:",
+        "options": [
+            "Sustainable resource management",
+            "Unrestricted exploitation",
+            "Short-term profit only",
+            "Labor neglect"
+        ],
+        "correct_answer": 0,
+        "explanation": "When forests have economic value, there's incentive to manage them sustainably for continued income rather than clear-cutting."
+    },
+    {
+        "id": 42,
+        "type": "multiple_choice",
+        "question": "Sustainability as a business opportunity allows:",
+        "options": [
+            "Cost reduction, improved reputation, and new markets",
+            "Increased waste",
+            "Short-term profit only",
+            "Ignoring environmental laws"
+        ],
+        "correct_answer": 0,
+        "explanation": "Sustainable business practices can reduce costs (efficiency), attract customers (reputation), and open new markets (green products)."
+    },
+    {
+        "id": 43,
+        "type": "multiple_choice",
+        "question": "Carbon trading is an example of:",
+        "options": [
+            "Market-based environmental sustainability",
+            "Ignoring climate goals",
+            "Social sustainability",
+            "Labor rights only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Carbon trading creates economic incentives for emissions reduction by putting a price on carbon—a market approach to environmental goals."
+    },
+    {
+        "id": 44,
+        "type": "multiple_choice",
+        "question": "Overuse of resources for profit demonstrates:",
+        "options": [
+            "Economic unsustainability",
+            "Market efficiency",
+            "Labor improvement",
+            "Environmental sustainability"
+        ],
+        "correct_answer": 0,
+        "explanation": "Resource overuse undermines long-term economic viability by depleting the resource base needed for future production."
+    },
+    {
+        "id": 45,
+        "type": "multiple_choice",
+        "question": "Green subsidies encourage:",
+        "options": [
+            "Sustainable production and innovation",
+            "Exploitation of resources",
+            "Pollution increase",
+            "Short-term profits only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Subsidies lower the cost of sustainable alternatives, encouraging adoption and driving innovation in green technologies."
+    },
+    {
+        "id": 46,
+        "type": "multiple_choice",
+        "question": "Long-term economic sustainability requires:",
+        "options": [
+            "Balancing profit with resource conservation",
+            "Ignoring environmental costs",
+            "Exploiting labor",
+            "Short-term expansion"
+        ],
+        "correct_answer": 0,
+        "explanation": "Economic sustainability depends on maintaining the natural and social capital that enables continued production over time."
+    },
+    {
+        "id": 47,
+        "type": "multiple_choice",
+        "question": "Businesses adopting sustainability gain:",
+        "options": [
+            "Competitive advantage",
+            "Increased waste",
+            "Legal penalties",
+            "Resource depletion"
+        ],
+        "correct_answer": 0,
+        "explanation": "Sustainability can differentiate businesses, attract customers and investors, and improve operational efficiency."
+    },
+    {
+        "id": 48,
+        "type": "multiple_choice",
+        "question": "Renewable energy investment in factories affects:",
+        "options": [
+            "Both economic and environmental pillars",
+            "Social pillar only",
+            "Market efficiency only",
+            "Labor rights only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Renewable energy reduces environmental impact while providing long-term economic benefits through energy cost savings."
+    },
+    {
+        "id": 49,
+        "type": "multiple_choice",
+        "question": "Market incentives like eco-labeling aim to:",
+        "options": [
+            "Promote sustainable consumption",
+            "Encourage overproduction",
+            "Ignore environmental impact",
+            "Reduce social equity"
+        ],
+        "correct_answer": 0,
+        "explanation": "Eco-labels inform consumers about environmental impacts, enabling them to choose more sustainable products and driving market transformation."
+    },
+    {
+        "id": 50,
+        "type": "multiple_choice",
+        "question": "Treating natural resources responsibly supports:",
+        "options": [
+            "Long-term economic sustainability",
+            "Short-term profit only",
+            "Market exploitation",
+            "Social inequality"
+        ],
+        "correct_answer": 0,
+        "explanation": "Responsible resource management ensures resources remain available for future economic activity, supporting long-term economic sustainability."
+    },
+    {
+        "id": 51,
+        "type": "multiple_choice",
+        "question": "Reducing poverty improves:",
+        "options": [
+            "Education, health, and quality of life",
+            "Industrial profits only",
+            "Resource depletion",
+            "Short-term growth"
+        ],
+        "correct_answer": 0,
+        "explanation": "Poverty reduction enables better access to education and healthcare, improving overall quality of life and human development."
+    },
+    {
+        "id": 52,
+        "type": "multiple_choice",
+        "question": "Safe human settlements require:",
+        "options": [
+            "Housing, clean water, and sanitation",
+            "Overcrowding and pollution",
+            "Ignoring urban planning",
+            "Market expansion"
+        ],
+        "correct_answer": 0,
+        "explanation": "Safe settlements meet basic needs for shelter, water, and sanitation—foundational elements of social sustainability."
+    },
+    {
+        "id": 53,
+        "type": "multiple_choice",
+        "question": "Labor rights ensure:",
+        "options": [
+            "Fair wages and safe conditions",
+            "Forced labor",
+            "Exploitation",
+            "Short-term profit only"
+        ],
+        "correct_answer": 0,
+        "explanation": "Labor rights protect workers through fair compensation, safe working conditions, and freedom from exploitation."
+    },
+    {
+        "id": 54,
+        "type": "multiple_choice",
+        "question": "Health sustainability includes:",
+        "options": [
+            "Physical, mental, and social well-being",
+            "Only physical health",
+            "Only economic health",
+            "Only labor efficiency"
+        ],
+        "correct_answer": 0,
+        "explanation": "The WHO defines health as complete physical, mental, and social well-being—not merely absence of disease."
+    },
+    {
+        "id": 55,
+        "type": "multiple_choice",
+        "question": "Peaceful societies support:",
+        "options": [
+            "Long-term social stability",
+            "Industrial dominance only",
+            "Resource depletion",
+            "Short-term profits"
+        ],
+        "correct_answer": 0,
+        "explanation": "Peace and stability enable social institutions to function, communities to thrive, and development to proceed."
+    },
+    {
+        "id": 56,
+        "type": "multiple_choice",
+        "question": "Social justice promotes:",
+        "options": [
+            "Fairness and equality",
+            "Discrimination",
+            "Labor abuse",
+            "Environmental damage"
+        ],
+        "correct_answer": 0,
+        "explanation": "Social justice ensures fair treatment, equal opportunities, and protection of rights for all members of society."
+    },
+    {
+        "id": 57,
+        "type": "multiple_choice",
+        "question": "Responsible human interaction with nature prevents:",
+        "options": [
+            "Community harm and environmental degradation",
+            "Market loss only",
+            "Industrial decline only",
+            "Labor inefficiency"
+        ],
+        "correct_answer": 0,
+        "explanation": "Environmental degradation often harms communities first—responsible interaction protects both ecosystems and the people who depend on them."
+    },
+    {
+        "id": 58,
+        "type": "multiple_choice",
+        "question": "Access to healthcare and nutrition supports:",
+        "options": [
+            "Human well-being",
+            "Resource exploitation",
+            "Urban sprawl",
+            "Market profits"
+        ],
+        "correct_answer": 0,
+        "explanation": "Healthcare and nutrition are fundamental to human well-being, enabling people to live healthy, productive lives."
+    },
+    {
+        "id": 59,
+        "type": "multiple_choice",
+        "question": "Social sustainability requires:",
+        "options": [
+            "Reducing inequality and promoting human rights",
+            "Ignoring communities",
+            "Short-term economic gain only",
+            "Labor exploitation"
+        ],
+        "correct_answer": 0,
+        "explanation": "Social sustainability focuses on equity, human rights, and community well-being—ensuring society can maintain these over time."
+    },
+    {
+        "id": 60,
+        "type": "multiple_choice",
+        "question": "A stable, safe society contributes to:",
+        "options": [
+            "Long-term sustainable development",
+            "Environmental damage",
+            "Resource depletion",
+            "Short-term industrial gain"
+        ],
+        "correct_answer": 0,
+        "explanation": "Social stability provides the foundation for all sustainable development—without peace and security, environmental and economic progress is difficult to sustain."
     }
 
 
