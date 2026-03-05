@@ -387,10 +387,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "A table needs a title describing its content. Which element is MOST appropriate?",
         "options": [
-            "<title>",
-            "<caption>",
-            "<thead>",
-            "<summary>"
+            " <title> ",
+            " <caption> ",
+            " <thead> ",
+            " <summary> "
         ],
         "correct_answer": 1,
         "explanation": "<caption> provides a title or description specifically for tables, appearing directly with the table content."
@@ -845,10 +845,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML element groups table rows that contain summary or total values?",
         "options": [
-            "<tbody>",
-            "<thead>",
-            "<tfoot>",
-            "<tr>"
+            " <tbody> ",
+            " <thead> ",
+            " <tfoot> ",
+            " <tr> "
         ],
         "correct_answer": 2,
         "explanation": "<tfoot> is specifically designed to contain footer rows in tables, often used for summaries or totals."
@@ -1069,10 +1069,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "The HTML element used to define the header section of a webpage is called ____.",
         "options": [
-            "<head>",
-            "<header>",
-            "<h1>",
-            "<top>"
+            " <head> ",
+            " <header> ",
+            " <h1> ",
+            " <top> "
         ],
         "correct_answer": 1,
         "explanation": "<header> is a semantic HTML5 element for introductory content or navigation links at the top of a page or section."
@@ -1082,10 +1082,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "The HTML element used to create an unordered list is ____.",
         "options": [
-            "<ol>",
-            "<ul>",
-            "<li>",
-            "<list>"
+            " <ol> ",
+            " <ul> ",
+            " <li> ",
+            " <list> "
         ],
         "correct_answer": 1,
         "explanation": "<ul> (unordered list) creates bulleted lists, with each item marked by <li> tags."
@@ -1803,10 +1803,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML5 element is used specifically for navigation links?",
         "options": [
-            "<navigation>",
-            "<nav>",
-            "<menu>",
-            "<links>"
+            " <navigation> ",
+            " <nav> ",
+            " <menu> ",
+            " <links> "
         ],
         "correct_answer": 1,
         "explanation": "<nav> is the semantic HTML5 element specifically designed for navigation sections containing menus and links."
@@ -1907,10 +1907,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML element contains metadata about the document?",
         "options": [
-            "<meta>",
-            "<head>",
-            "<body>",
-            "<footer>"
+            " <meta> ",
+            " <head> ",
+            " <body> ",
+            " <footer> "
         ],
         "correct_answer": 1,
         "explanation": "The <head> element contains metadata about the document, including title, links to CSS, meta tags, and scripts."
@@ -1959,10 +1959,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML tag is used to embed JavaScript code?",
         "options": [
-            "<js>",
-            "<javascript>",
-            "<script>",
-            "<code>"
+            " <js> ",
+            " <javascript> ",
+            " <script> ",
+            " <code> "
         ],
         "correct_answer": 2,
         "explanation": "The <script> tag is used to embed or reference JavaScript code within an HTML document."
