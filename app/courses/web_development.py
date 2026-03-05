@@ -1742,6 +1742,334 @@ web_development_quiz = {
         ],
         "correct_answer": 1,
         "explanation": "Server-side validation is the most critical security measure—unlike client-side validation, it cannot be bypassed and provides the final defense against malicious input."
+    },
+    
+    
+    
+    {
+        "id": 136,
+        "type": "multiple_choice",
+        "question": "Which HTTP method is typically used for submitting sensitive form data like passwords?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correct_answer": 1,
+        "explanation": "POST sends data in the request body rather than the URL, making it more secure for sensitive information like passwords."
+    },
+    {
+        "id": 137,
+        "type": "multiple_choice",
+        "question": "What is the purpose of the 'alt' attribute in images?",
+        "options": [
+            "To alternate between images",
+            "To provide alternative text for screen readers",
+            "To align the image",
+            "To alter image size"
+        ],
+        "correct_answer": 1,
+        "explanation": "The alt attribute provides descriptive text for screen readers and displays when images fail to load, improving accessibility."
+    },
+    {
+        "id": 138,
+        "type": "multiple_choice",
+        "question": "Which CSS property controls the space outside an element?",
+        "options": [
+            "spacing",
+            "margin",
+            "padding",
+            "border-spacing"
+        ],
+        "correct_answer": 1,
+        "explanation": "Margin controls the space outside an element's border, creating distance between elements."
+    },
+    {
+        "id": 139,
+        "type": "multiple_choice",
+        "question": "What does SQL injection attack target?",
+        "options": [
+            "CSS styling",
+            "Database queries",
+            "HTML structure",
+            "JavaScript functions"
+        ],
+        "correct_answer": 1,
+        "explanation": "SQL injection targets database queries by inserting malicious SQL code through user inputs to manipulate or steal data."
+    },
+    {
+        "id": 140,
+        "type": "multiple_choice",
+        "question": "Which HTML5 element is used specifically for navigation links?",
+        "options": [
+            "<navigation>",
+            "<nav>",
+            "<menu>",
+            "<links>"
+        ],
+        "correct_answer": 1,
+        "explanation": "<nav> is the semantic HTML5 element specifically designed for navigation sections containing menus and links."
+    },
+    {
+        "id": 141,
+        "type": "multiple_choice",
+        "question": "What is the purpose of CSS media queries?",
+        "options": [
+            "To query external media files",
+            "To apply styles based on device characteristics",
+            "To embed videos",
+            "To link to media websites"
+        ],
+        "correct_answer": 1,
+        "explanation": "Media queries allow CSS to apply different styles based on screen size, resolution, orientation, and other device features."
+    },
+    {
+        "id": 142,
+        "type": "multiple_choice",
+        "question": "Which PHP superglobal contains data from form submissions using the POST method?",
+        "options": [
+            "$_GET",
+            "$_POST",
+            "$_SESSION",
+            "$_SERVER"
+        ],
+        "correct_answer": 1,
+        "explanation": "$_POST is a PHP superglobal that contains data submitted through forms using the POST method."
+    },
+    {
+        "id": 143,
+        "type": "multiple_choice",
+        "question": "What does the 'typeof' operator do in JavaScript?",
+        "options": [
+            "Checks if a variable is defined",
+            "Returns the data type of a value",
+            "Creates a new data type",
+            "Converts data types"
+        ],
+        "correct_answer": 1,
+        "explanation": "The typeof operator returns a string indicating the data type of its operand (e.g., 'string', 'number', 'boolean', 'object')."
+    },
+    {
+        "id": 144,
+        "type": "multiple_choice",
+        "question": "Which HTML attribute makes a form field required before submission?",
+        "options": [
+            "mandatory",
+            "required",
+            "need",
+            "validate"
+        ],
+        "correct_answer": 1,
+        "explanation": "The 'required' attribute is a boolean attribute that specifies a form field must be filled before submission."
+    },
+    {
+        "id": 145,
+        "type": "multiple_choice",
+        "question": "What is the purpose of the 'viewport' meta tag?",
+        "options": [
+            "To set the page title",
+            "To control layout on mobile devices",
+            "To add images",
+            "To link CSS files"
+        ],
+        "correct_answer": 1,
+        "explanation": "The viewport meta tag controls how a webpage is displayed on mobile devices, enabling proper scaling and responsive design."
+    },
+    {
+        "id": 146,
+        "type": "multiple_choice",
+        "question": "Which CSS unit is relative to the parent element's font size?",
+        "options": [
+            "px",
+            "em",
+            "rem",
+            "pt"
+        ],
+        "correct_answer": 1,
+        "explanation": "em is relative to the font size of the parent element, making it useful for scalable and modular designs."
+    },
+    {
+        "id": 147,
+        "type": "multiple_choice",
+        "question": "What does the 'preventDefault()' method do in JavaScript?",
+        "options": [
+            "Stops event propagation",
+            "Prevents the default browser action",
+            "Prevents page reload",
+            "Stops all JavaScript execution"
+        ],
+        "correct_answer": 1,
+        "explanation": "preventDefault() cancels the default action of an event, like preventing form submission or link navigation."
+    },
+    {
+        "id": 148,
+        "type": "multiple_choice",
+        "question": "Which HTML element contains metadata about the document?",
+        "options": [
+            "<meta>",
+            "<head>",
+            "<body>",
+            "<footer>"
+        ],
+        "correct_answer": 1,
+        "explanation": "The <head> element contains metadata about the document, including title, links to CSS, meta tags, and scripts."
+    },
+    {
+        "id": 149,
+        "type": "multiple_choice",
+        "question": "What is the purpose of 'localStorage' in JavaScript?",
+        "options": [
+            "To store data temporarily in memory",
+            "To store data persistently in the browser",
+            "To store data on the server",
+            "To store data in cookies"
+        ],
+        "correct_answer": 1,
+        "explanation": "localStorage stores data persistently in the browser with no expiration date, even after the browser is closed."
+    },
+    {
+        "id": 150,
+        "type": "multiple_choice",
+        "question": "Which CSS display value makes an element behave like a block-level element?",
+        "options": [
+            "inline",
+            "block",
+            "inline-block",
+            "flex"
+        ],
+        "correct_answer": 1,
+        "explanation": "display: block makes an element take up the full width available and start on a new line."
+    },
+    {
+        "id": 151,
+        "type": "multiple_choice",
+        "question": "What does XSS (Cross-Site Scripting) attack exploit?",
+        "options": [
+            "Database vulnerabilities",
+            "Input validation weaknesses",
+            "Server configuration",
+            "Network protocols"
+        ],
+        "correct_answer": 1,
+        "explanation": "XSS attacks exploit weak input validation to inject malicious scripts into web pages viewed by other users."
+    },
+    {
+        "id": 152,
+        "type": "multiple_choice",
+        "question": "Which HTML tag is used to embed JavaScript code?",
+        "options": [
+            "<js>",
+            "<javascript>",
+            "<script>",
+            "<code>"
+        ],
+        "correct_answer": 2,
+        "explanation": "The <script> tag is used to embed or reference JavaScript code within an HTML document."
+    },
+    {
+        "id": 153,
+        "type": "multiple_choice",
+        "question": "What is the purpose of CSS 'z-index' property?",
+        "options": [
+            "To set zoom level",
+            "To control stack order of elements",
+            "To set font size",
+            "To align elements"
+        ],
+        "correct_answer": 1,
+        "explanation": "z-index controls the vertical stacking order of positioned elements, with higher values appearing on top."
+    },
+    {
+        "id": 154,
+        "type": "multiple_choice",
+        "question": "Which PHP function is used to connect to a MySQL database?",
+        "options": [
+            "mysql_connect()",
+            "mysqli_connect()",
+            "db_connect()",
+            "connect_mysql()"
+        ],
+        "correct_answer": 1,
+        "explanation": "mysqli_connect() is the modern PHP function for establishing a connection to a MySQL database."
+    },
+    {
+        "id": 155,
+        "type": "multiple_choice",
+        "question": "What does the 'async' attribute do in a script tag?",
+        "options": [
+            "Loads script synchronously",
+            "Loads script asynchronously while parsing continues",
+            "Executes script immediately",
+            "Prevents script loading"
+        ],
+        "correct_answer": 1,
+        "explanation": "The async attribute loads the script asynchronously, allowing HTML parsing to continue while the script downloads."
+    },
+    {
+        "id": 156,
+        "type": "multiple_choice",
+        "question": "Which CSS pseudo-class selects elements when hovered?",
+        "options": [
+            ":click",
+            ":hover",
+            ":active",
+            ":focus"
+        ],
+        "correct_answer": 1,
+        "explanation": ":hover selects elements when the user's mouse pointer hovers over them."
+    },
+    {
+        "id": 157,
+        "type": "multiple_choice",
+        "question": "What is the purpose of the 'PDO' extension in PHP?",
+        "options": [
+            "To process images",
+            "To provide a database abstraction layer",
+            "To validate forms",
+            "To handle sessions"
+        ],
+        "correct_answer": 1,
+        "explanation": "PDO (PHP Data Objects) provides a consistent interface for accessing different databases, improving security and portability."
+    },
+    {
+        "id": 158,
+        "type": "multiple_choice",
+        "question": "Which JavaScript method adds an element to the end of an array?",
+        "options": [
+            "push()",
+            "pop()",
+            "shift()",
+            "unshift()"
+        ],
+        "correct_answer": 0,
+        "explanation": "push() adds one or more elements to the end of an array and returns the new length."
+    },
+    {
+        "id": 159,
+        "type": "multiple_choice",
+        "question": "What does WCAG stand for in web accessibility?",
+        "options": [
+            "Web Content Accessibility Guidelines",
+            "Web Coding Accessibility Group",
+            "Worldwide Content Access Guide",
+            "Web Compliance Assessment Grid"
+        ],
+        "correct_answer": 0,
+        "explanation": "WCAG (Web Content Accessibility Guidelines) is the international standard for making web content accessible to people with disabilities."
+    },
+    {
+        "id": 160,
+        "type": "multiple_choice",
+        "question": "Which HTML attribute associates a label with a form input?",
+        "options": [
+            "name",
+            "id",
+            "for",
+            "class"
+        ],
+        "correct_answer": 2,
+        "explanation": "The 'for' attribute in a <label> tag associates it with an input element by matching the input's 'id' value."
     }
 
     
