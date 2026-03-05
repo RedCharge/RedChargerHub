@@ -1078,18 +1078,18 @@ web_development_quiz = {
         "explanation": "<header> is a semantic HTML5 element for introductory content or navigation links at the top of a page or section."
     },
     {
-        "id": 85,
-        "type": "multiple_choice",
-        "question": "The HTML element used to create an unordered list is ____.",
-        "options": [
-            " <ol> ",
-            " <ul> ",
-            " <li> ",
-            " <list> "
-        ],
-        "correct_answer": 1,
-        "explanation": "<ul> (unordered list) creates bulleted lists, with each item marked by <li> tags."
-    },
+    "id": 85,
+    "type": "multiple_choice",
+    "question": "The HTML element used to create an unordered list is:",
+    "options": [
+        "&lt;ol&gt;",
+        "&lt;ul&gt;",
+        "&lt;li&gt;",
+        "&lt;list&gt;"
+    ],
+    "correct_answer": 1,
+    "explanation": "&lt;ul&gt; (unordered list) creates bulleted lists, with each item marked by &lt;li&gt; tags."
+},
     {
         "id": 86,
         "type": "multiple_choice",
