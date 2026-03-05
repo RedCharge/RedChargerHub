@@ -1030,10 +1030,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "External CSS files are linked to HTML using the ____ tag.",
         "options": [
-            "<style>",
-            "<css>",
-            "<link>",
-            "<script>"
+            " <style> ",
+            " <css> ",
+            " <link> ",
+            " <script> "
         ],
         "correct_answer": 2,
         "explanation": "The <link> tag, typically in the <head> section, connects external CSS files to HTML documents."
