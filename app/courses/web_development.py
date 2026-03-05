@@ -468,10 +468,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "The HTML element used to create a table row is:",
         "options": [
-            "<tr>",
-            "<td>",
-            "<th>",
-            "<row>"
+            " <tr> ",
+            " <td> ",
+            " <th >",
+            " <row> "
         ],
         "correct_answer": 0,
         "explanation": "<tr> (table row) defines a row of cells in an HTML table."
