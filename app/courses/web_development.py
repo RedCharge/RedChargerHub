@@ -4,2606 +4,1747 @@ web_development_quiz = {
     "total_questions": 50,
     "questions": [
         
-        
+    
     {
         "id": 1,
         "type": "multiple_choice",
-        "question": "What is a web browser?",
+        "question": "A government portal must support screen readers and assistive technologies. Which HTML choice best fulfills this requirement?",
         "options": [
-            "A search engine",
-            "A software application for accessing the World Wide Web",
-            "A computer hardware component",
-            "A programming language"
+            "Non-semantic containers",
+            "Semantic structural elements",
+            "Inline styling",
+            "Image-based navigation"
         ],
         "correct_answer": 1,
-        "explanation": "A web browser is a software application used to access and view websites on the internet."
+        "explanation": "Semantic HTML elements (like <header>, <nav>, <main>, <article>) provide meaning to screen readers and assistive technologies, improving accessibility."
     },
     {
         "id": 2,
         "type": "multiple_choice",
-        "question": "Which of the following is NOT a form of web browser?",
+        "question": "A developer notices inconsistent rendering across browsers. Which HTML-related issue is MOST likely the cause?",
         "options": [
-            "Mobile browser",
-            "Desktop browser",
-            "Text-based browser",
-            "Database browser"
+            "Incorrect semantic tags",
+            "Improper tag nesting",
+            "External CSS usage",
+            "JavaScript execution order"
         ],
-        "correct_answer": 3,
-        "explanation": "Database browser is not a type of web browser. Web browsers are used to access the web, not databases directly."
+        "correct_answer": 1,
+        "explanation": "Improperly nested HTML tags can cause browsers to interpret the structure differently, leading to inconsistent rendering across browsers."
     },
     {
         "id": 3,
         "type": "multiple_choice",
-        "question": "Which component is NOT typically part of a web browser?",
+        "question": "Which CSS box model issue MOST commonly causes layout inconsistency?",
         "options": [
-            "Rendering engine",
-            "JavaScript interpreter",
-            "SQL database",
-            "User interface"
+            "Missing fonts",
+            "Incorrect box-sizing",
+            "Wrong selectors",
+            "JavaScript conflicts"
         ],
-        "correct_answer": 2,
-        "explanation": "SQL databases are not a standard component of web browsers. Browsers use rendering engines, JavaScript interpreters, and UIs."
+        "correct_answer": 1,
+        "explanation": "The box-sizing property determines how element dimensions are calculated. Inconsistent box-sizing values can cause unexpected layout differences."
     },
     {
         "id": 4,
         "type": "multiple_choice",
-        "question": "Which security feature is commonly found in modern browsers?",
+        "question": "Which CSS approach best supports future UI redesign without changing HTML?",
         "options": [
-            "Auto-complete passwords",
-            "Sandboxing",
-            "Built-in spreadsheet",
-            "Video editing tools"
+            "Inline styles",
+            "External modular CSS",
+            "Embedded styles",
+            "Table-based layouts"
         ],
         "correct_answer": 1,
-        "explanation": "Sandboxing isolates browser processes to prevent malicious code from affecting the system."
+        "explanation": "External modular CSS separates presentation from content, allowing complete redesigns by swapping or modifying CSS files without touching HTML structure."
     },
     {
         "id": 5,
         "type": "multiple_choice",
-        "question": "What does “browser reference architecture” refer to?",
+        "question": "Excessive DOM manipulation leads to:",
         "options": [
-            "A blueprint of how browser components interact",
-            "A list of popular browsers",
-            "A type of website layout",
-            "A programming framework"
+            "Faster rendering",
+            "Performance degradation",
+            "Improved accessibility",
+            "Smaller files"
         ],
-        "correct_answer": 0,
-        "explanation": "Browser reference architecture is a structured model showing how components like the UI, engine, and networking work together."
+        "correct_answer": 1,
+        "explanation": "Frequent or excessive DOM manipulations force the browser to recalculate layouts and repaint elements, causing performance degradation."
     },
     {
         "id": 6,
         "type": "multiple_choice",
-        "question": "What is a web server?",
+        "question": "A page freezes due to heavy JavaScript execution. Which optimization best resolves this?",
         "options": [
-            "A type of computer monitor",
-            "Software that serves web pages to clients",
-            "A browser plugin",
-            "A network cable"
+            "Inline scripts",
+            "Event delegation",
+            "Blocking scripts",
+            "Embedded CSS"
         ],
         "correct_answer": 1,
-        "explanation": "A web server is software that hosts and delivers web content over HTTP/HTTPS."
+        "explanation": "Event delegation reduces the number of event listeners by attaching a single listener to a parent element, improving performance with fewer DOM operations."
     },
     {
         "id": 7,
         "type": "multiple_choice",
-        "question": "Which is a key function of a web server?",
+        "question": "Why is PHP input validation critical even when JavaScript validation exists?",
         "options": [
-            "Compiling code",
-            "Hosting and delivering web content",
-            "Creating graphic designs",
-            "Writing HTML manually"
+            "JavaScript is faster",
+            "Users can bypass client-side checks",
+            "PHP improves UI",
+            "HTML prevents errors"
         ],
         "correct_answer": 1,
-        "explanation": "The primary function of a web server is to store, process, and deliver web pages to clients."
+        "explanation": "Client-side validation can be bypassed by disabling JavaScript or manipulating the browser. Server-side validation in PHP is the final security barrier."
     },
     {
         "id": 8,
         "type": "multiple_choice",
-        "question": "What is the first stage of the web design process?",
+        "question": "A site is difficult to debug. Which design flaw is MOST likely?",
         "options": [
-            "Site testing",
-            "Planning/requirement analysis",
-            "Launch",
-            "Marketing"
+            "External files",
+            "Mixed responsibilities across layers",
+            "Semantic HTML",
+            "Modular CSS"
         ],
         "correct_answer": 1,
-        "explanation": "Planning and requirement analysis is the initial phase where goals, audience, and content are defined."
+        "explanation": "When HTML, CSS, and JavaScript responsibilities are mixed together, it becomes difficult to isolate and fix bugs in specific layers."
     },
     {
         "id": 9,
         "type": "multiple_choice",
-        "question": "Site testing in web design ensures:",
+        "question": "Which technology combination best supports dynamic form processing?",
         "options": [
-            "The website is visually pretty",
-            "The website works correctly across devices and browsers",
-            "The website has many ads",
-            "The website loads slowly"
+            "HTML + CSS",
+            "HTML + JavaScript + PHP",
+            "CSS + PHP",
+            "JavaScript only"
         ],
         "correct_answer": 1,
-        "explanation": "Testing validates functionality, usability, compatibility, and performance before launch."
+        "explanation": "HTML provides structure, JavaScript handles client-side interaction, and PHP processes data server-side—a complete stack for dynamic forms."
     },
     {
         "id": 10,
         "type": "multiple_choice",
-        "question": "Which is NOT a common web server software?",
+        "question": "A web application must adapt to future technologies. Which principle best supports this?",
         "options": [
-            "Apache",
-            "Nginx",
-            "Microsoft Word",
-            "IIS"
+            "Rigid design",
+            "Standards-compliant development",
+            "Inline CSS",
+            "Table layouts"
         ],
-        "correct_answer": 2,
-        "explanation": "Microsoft Word is a word processor, not web server software."
+        "correct_answer": 1,
+        "explanation": "Following W3C web standards ensures compatibility with current and future browsers and devices, making applications more adaptable."
     },
     {
         "id": 11,
         "type": "multiple_choice",
-        "question": "A functional requirement for a responsive website is:",
+        "question": "Which decision MOST improves cross-browser compatibility?",
         "options": [
-            "It must use only black and white colors",
-            "It must adjust layout based on screen size",
-            "It must contain at least 10 videos",
-            "It must be built in one day"
+            "Inline CSS",
+            "W3C-compliant standards",
+            "JavaScript-only UI",
+            "Fixed layouts"
         ],
         "correct_answer": 1,
-        "explanation": "Responsive design requires the layout to adapt to different screen sizes and devices."
+        "explanation": "W3C standards ensure consistent interpretation of code across different browsers, reducing compatibility issues."
     },
     {
         "id": 12,
         "type": "multiple_choice",
-        "question": "Which is a non-functional requirement?",
+        "question": "A form accepts invalid data despite client checks. Which improvement is required?",
         "options": [
-            "User login system",
-            "Fast loading speed",
-            "Contact form",
-            "Image gallery"
+            "Better CSS",
+            "Stronger server-side validation",
+            "Inline scripts",
+            "HTML comments"
         ],
         "correct_answer": 1,
-        "explanation": "Non-functional requirements define system qualities like performance, security, and speed."
+        "explanation": "Client-side validation is easily bypassed. Server-side validation is essential for data integrity and security."
     },
     {
         "id": 13,
         "type": "multiple_choice",
-        "question": "Which tool is commonly used to test website responsiveness?",
+        "question": "A website redesign requires minimal HTML changes. Which prior decision enabled this?",
         "options": [
-            "Microsoft Excel",
-            "Browser DevTools",
-            "Notepad",
-            "Command Prompt"
+            "Inline styles",
+            "External CSS usage",
+            "Hard-coded JavaScript",
+            "Embedded PHP"
         ],
         "correct_answer": 1,
-        "explanation": "Browser DevTools allow developers to simulate different screen sizes and test responsive layouts."
+        "explanation": "External CSS separates presentation from content, allowing visual redesigns without altering HTML structure."
     },
     {
         "id": 14,
         "type": "multiple_choice",
-        "question": "A responsive website is designed to work on:",
+        "question": "Which design principle BEST supports collaborative development?",
         "options": [
-            "Desktops only",
-            "Mobile devices only",
-            "Multiple screen sizes",
-            "Printers only"
+            "Individual coding styles",
+            "Standardized structure",
+            "Inline scripting",
+            "Table layouts"
         ],
-        "correct_answer": 2,
-        "explanation": "Responsive websites adapt to desktops, tablets, smartphones, and other screen sizes."
+        "correct_answer": 1,
+        "explanation": "Standardized code structure and conventions enable multiple developers to work together efficiently and understand each other's code."
     },
     {
         "id": 15,
         "type": "multiple_choice",
-        "question": "Which is NOT a part of website functionality?",
+        "question": "Which approach ensures adaptability to new devices?",
         "options": [
-            "Navigation menu",
-            "Color palette",
-            "Form submission",
-            "Search bar"
+            "Fixed layouts",
+            "Responsive design",
+            "Absolute positioning",
+            "Inline CSS"
         ],
         "correct_answer": 1,
-        "explanation": "Color palette is part of design/aesthetics, not core functionality."
+        "explanation": "Responsive design uses flexible layouts and media queries to adapt content to any screen size or device."
     },
     {
         "id": 16,
         "type": "multiple_choice",
-        "question": "A web server’s primary role is to:",
+        "question": "Which design flaw MOST affects accessibility?",
         "options": [
-            "Design websites",
-            "Store and deliver web pages",
-            "Edit photos",
-            "Run antivirus scans"
+            "Missing JavaScript",
+            "Non-semantic HTML",
+            "External CSS",
+            "PHP includes"
         ],
         "correct_answer": 1,
-        "explanation": "Web servers host files and serve them to clients upon request."
+        "explanation": "Non-semantic HTML (like excessive <div> tags) provides no structural meaning to assistive technologies, severely impacting accessibility."
     },
     {
         "id": 17,
         "type": "multiple_choice",
-        "question": "Which of these can run a web server?",
+        "question": "Why should frontend and backend be loosely coupled?",
         "options": [
-            "A smartphone",
-            "A printer",
-            "A microwave",
-            "A keyboard"
+            "To slow execution",
+            "To allow independent evolution",
+            "To reduce security",
+            "To simplify CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "Any device with a processor, storage, and network capabilities can run web server software."
+        "correct_answer": 1,
+        "explanation": "Loose coupling allows frontend and backend to be developed, updated, and maintained independently without breaking each other."
     },
     {
         "id": 18,
         "type": "multiple_choice",
-        "question": "To run a web server on a computer, you need:",
+        "question": "Which layer MOST affects data integrity?",
         "options": [
-            "A gaming GPU",
-            "Server software (like Apache) and an internet connection",
-            "A TV tuner card",
-            "Microsoft Paint"
+            "CSS",
+            "Backend processing",
+            "HTML semantics",
+            "JavaScript events"
         ],
         "correct_answer": 1,
-        "explanation": "Web server software and network access are essential to host and serve web content."
+        "explanation": "Backend processing handles validation, sanitization, and database operations that ensure data remains accurate and consistent."
     },
     {
         "id": 19,
         "type": "multiple_choice",
-        "question": "Which port is commonly used by web servers?",
+        "question": "Why should web development follow W3C standards?",
         "options": [
-            "Port 21",
-            "Port 80",
-            "Port 25",
-            "Port 443 (HTTPS)"
+            "To limit creativity",
+            "To ensure interoperability",
+            "To improve branding",
+            "To reduce hosting cost"
         ],
         "correct_answer": 1,
-        "explanation": "Port 80 is the default for HTTP traffic. Port 443 is for HTTPS."
+        "explanation": "W3C standards ensure websites work consistently across different browsers, devices, and platforms."
     },
     {
         "id": 20,
         "type": "multiple_choice",
-        "question": "Which OS is commonly used for web servers?",
+        "question": "Which web layer MOST affects scalability?",
         "options": [
-            "Linux",
-            "iOS",
-            "Windows Mobile",
-            "DOS"
+            "CSS",
+            "Backend processing",
+            "HTML semantics",
+            "Images"
         ],
-        "correct_answer": 0,
-        "explanation": "Linux is widely used for web servers due to its stability, security, and open-source nature."
+        "correct_answer": 1,
+        "explanation": "Backend architecture, including server logic and database design, determines how well a system handles increased load and users."
     },
     {
         "id": 21,
         "type": "multiple_choice",
-        "question": "Apache HTTP Server is:",
+        "question": "A table displaying students' results becomes difficult to read on small screens. Which design decision BEST improves usability without removing the table?",
         "options": [
-            "A web browser",
-            "Open-source web server software",
-            "A programming language",
-            "A database system"
+            "Converting the table into images",
+            "Adding CSS for responsive table styling",
+            "Removing table headers",
+            "Using inline styles only"
         ],
         "correct_answer": 1,
-        "explanation": "Apache is a popular open-source web server software used to serve websites."
+        "explanation": "Responsive CSS techniques (like horizontal scrolling or reformatting) can make tables usable on small screens while preserving data structure."
     },
     {
         "id": 22,
         "type": "multiple_choice",
-        "question": "The main role of Apache is to:",
+        "question": "Why is the <th> element preferred over <td> for table headings?",
         "options": [
-            "Edit videos",
-            "Serve web pages over HTTP/HTTPS",
-            "Compress files",
-            "Manage emails"
+            "It reduces file size",
+            "It improves accessibility and semantics",
+            "It applies automatic borders",
+            "It increases table speed"
         ],
         "correct_answer": 1,
-        "explanation": "Apache processes HTTP requests and delivers web content to clients."
+        "explanation": "<th> semantically identifies header cells, helping screen readers understand table structure and improving accessibility."
     },
     {
         "id": 23,
         "type": "multiple_choice",
-        "question": "Which command is used to install Apache on Windows?",
+        "question": "A developer forgets to include <thead> and <tbody> in a large table. What is the MOST likely consequence?",
         "options": [
-            "brew install apache",
-            "Download installer from Apache website",
-            "apt-get install apache",
-            "npm install apache"
+            "The table will not display",
+            "Reduced structure and accessibility",
+            "JavaScript will fail",
+            "CSS cannot be applied"
         ],
         "correct_answer": 1,
-        "explanation": "On Windows, Apache is typically installed via a downloaded installer from the official site."
+        "explanation": "While the table still displays, missing these structural elements reduces semantic meaning and can complicate styling and accessibility."
     },
     {
         "id": 24,
         "type": "multiple_choice",
-        "question": "Apache runs as a:",
+        "question": "Which scenario BEST justifies the use of an HTML table?",
         "options": [
-            "Background service",
-            "Screensaver",
-            "Browser tab",
-            "Mouse driver"
+            "Page layout design",
+            "Navigation menus",
+            "Displaying structured tabular data",
+            "Image galleries"
         ],
-        "correct_answer": 0,
-        "explanation": "Apache runs as a background service/daemon, listening for incoming HTTP requests."
+        "correct_answer": 2,
+        "explanation": "Tables are specifically designed for displaying data that naturally fits in rows and columns, not for layout or navigation."
     },
     {
         "id": 25,
         "type": "multiple_choice",
-        "question": "Which file extension is commonly used for Apache configuration?",
+        "question": "Why are tables discouraged for page layout in modern web development?",
         "options": [
-            ".exe",
-            ".conf",
-            ".jpg",
-            ".mp3"
+            "They increase accessibility",
+            "They limit responsiveness and flexibility",
+            "They load faster",
+            "They improve SEO"
         ],
         "correct_answer": 1,
-        "explanation": "Apache configuration files typically use the .conf extension."
+        "explanation": "Table-based layouts are rigid, difficult to make responsive, and mix presentation with content, violating modern web design principles."
     },
     {
         "id": 26,
         "type": "multiple_choice",
-        "question": "XHTML stands for:",
+        "question": "Which table attribute BEST improves readability by grouping related rows?",
         "options": [
-            "Extended HyperText Markup Language",
-            "Extra HTML",
-            "XML HyperText Modeling Language",
-            "Xtreme HTML"
+            "border",
+            "cellpadding",
+            "rowspan",
+            "<tbody>"
         ],
-        "correct_answer": 0,
-        "explanation": "XHTML stands for Extensible HyperText Markup Language."
+        "correct_answer": 3,
+        "explanation": "<tbody> groups rows into logical sections, improving both visual organization and semantic structure of tables."
     },
     {
         "id": 27,
         "type": "multiple_choice",
-        "question": "How does XHTML differ from HTML?",
+        "question": "A table header should be associated with its data cells to improve accessibility. Which attribute supports this?",
         "options": [
-            "XHTML is stricter and XML-based",
-            "XHTML allows sloppy coding",
-            "XHTML is only for mobile sites",
-            "XHTML does not support tags"
+            "class",
+            "headers",
+            "id",
+            "style"
         ],
-        "correct_answer": 0,
-        "explanation": "XHTML follows XML rules: it must be well-formed, with closed tags and lowercase elements."
+        "correct_answer": 1,
+        "explanation": "The headers attribute associates data cells with their corresponding header cells by referencing header IDs, crucial for screen readers."
     },
     {
         "id": 28,
         "type": "multiple_choice",
-        "question": "Responsive web design ensures:",
+        "question": "When a table cell spans multiple columns, which attribute is used?",
         "options": [
-            "Websites look good on all devices",
-            "Websites use only one font",
-            "Websites load in 0.1 seconds",
-            "Websites have no images"
+            "rowspan",
+            "colspan",
+            "merge",
+            "span"
         ],
-        "correct_answer": 0,
-        "explanation": "Responsive design adapts layout, images, and content to fit different screen sizes."
+        "correct_answer": 1,
+        "explanation": "colspan specifies how many columns a cell should occupy, useful for merging cells horizontally."
     },
     {
         "id": 29,
         "type": "multiple_choice",
-        "question": "Which technology is key to responsive design?",
+        "question": "Which practice MOST improves the accessibility of large data tables?",
         "options": [
-            "CSS Media Queries",
-            "Java Applets",
-            "Flash",
-            "ASCII art"
+            "Using colors only",
+            "Adding captions and headers",
+            "Increasing font size only",
+            "Removing borders"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS Media Queries allow styles to adapt based on device characteristics like width and orientation."
+        "correct_answer": 1,
+        "explanation": "Captions describe table purpose while headers provide structure—both are essential for screen reader users navigating large tables."
     },
     {
         "id": 30,
         "type": "multiple_choice",
-        "question": "Responsive design was popularized by:",
+        "question": "A table needs a title describing its content. Which element is MOST appropriate?",
         "options": [
-            "Ethan Marcotte",
-            "Tim Berners-Lee",
-            "Bill Gates",
-            "Steve Jobs"
+            "<title>",
+            "<caption>",
+            "<thead>",
+            "<summary>"
         ],
-        "correct_answer": 0,
-        "explanation": "Ethan Marcotte coined the term “responsive web design” in 2010."
+        "correct_answer": 1,
+        "explanation": "<caption> provides a title or description specifically for tables, appearing directly with the table content."
     },
     {
         "id": 31,
         "type": "multiple_choice",
-        "question": "CSS is used in web design to:",
+        "question": "A student builds a login page where PHP processes the credentials before sending the page back to the browser. This means PHP scripts are executed on the server before the page is sent to the browser.",
         "options": [
-            "Structure content",
-            "Style and layout web pages",
-            "Store data",
-            "Run server scripts"
+            "True",
+            "False"
         ],
-        "correct_answer": 1,
-        "explanation": "CSS controls the visual presentation: colors, fonts, spacing, and layout."
+        "correct_answer": 0,
+        "explanation": "PHP is server-side, meaning it executes on the server and only the resulting HTML is sent to the browser."
     },
     {
         "id": 32,
         "type": "multiple_choice",
-        "question": "Semantic HTML means:",
+        "question": "During testing, a developer views the page source in the browser and cannot see any PHP code. This indicates that PHP code is hidden from users after server execution.",
         "options": [
-            "Using tags that describe content meaning",
-            "Writing code in Spanish",
-            "Using only <div> tags",
-            "Making websites faster"
+            "True",
+            "False"
         ],
         "correct_answer": 0,
-        "explanation": "Semantic HTML uses meaningful tags like <header>, <article>, and <footer> to describe content."
+        "explanation": "PHP executes on the server, so users only see the HTML output, never the underlying PHP code."
     },
     {
         "id": 33,
         "type": "multiple_choice",
-        "question": "Which is a semantic HTML tag?",
+        "question": "A student uses CSS to change text color, font size, and page layout without modifying the HTML structure. This shows that CSS controls the presentation of web pages.",
         "options": [
-            "<span>",
-            "<div>",
-            "<header>",
-            "<blink>"
+            "True",
+            "False"
         ],
-        "correct_answer": 2,
-        "explanation": "<header> is a semantic tag indicating a header section. <span> and <div> are non-semantic."
+        "correct_answer": 0,
+        "explanation": "CSS is specifically designed to handle presentation, separating visual styling from HTML content structure."
     },
     {
         "id": 34,
         "type": "multiple_choice",
-        "question": "CSS can control:",
+        "question": "A developer styles a large website using inline CSS on every HTML element. This approach improves long-term maintainability.",
         "options": [
-            "Color, layout, fonts",
-            "Server logic",
-            "Database queries",
-            "User passwords"
+            "True",
+            "False"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS handles styling, not functionality or server-side logic."
+        "correct_answer": 1,
+        "explanation": "Inline CSS mixes presentation with content, making sites extremely difficult to maintain and update consistently."
     },
     {
         "id": 35,
         "type": "multiple_choice",
-        "question": "Which CSS feature helps with responsiveness?",
+        "question": "A developer assumes JavaScript code runs on the web server before the page is sent to the browser. This assumption is correct.",
         "options": [
-            "Flexbox",
-            "Cookies",
-            "PHP includes",
-            "SQL joins"
+            "True",
+            "False"
         ],
-        "correct_answer": 0,
-        "explanation": "Flexbox is a CSS layout model that helps create flexible and responsive designs."
+        "correct_answer": 1,
+        "explanation": "JavaScript is client-side and runs in the browser after the page is received, not on the server before sending."
     },
     {
         "id": 36,
         "type": "multiple_choice",
-        "question": "Semantic HTML benefits accessibility by:",
+        "question": "The CSS property used to change the background color of an element is:",
         "options": [
-            "Making sites prettier",
-            "Helping screen readers understand structure",
-            "Increasing site speed",
-            "Adding more ads"
+            "color",
+            "background-color",
+            "bgcolor",
+            "background"
         ],
         "correct_answer": 1,
-        "explanation": "Screen readers use semantic tags to navigate and announce content structure."
+        "explanation": "background-color is the standard CSS property for setting an element's background color."
     },
     {
         "id": 37,
         "type": "multiple_choice",
-        "question": "Semantic HTML helps SEO because:",
+        "question": "The HTML element used to create a table row is:",
         "options": [
-            "Search engines understand content better",
-            "It hides content from users",
-            "It uses more JavaScript",
-            "It reduces server load"
+            "<tr>",
+            "<td>",
+            "<th>",
+            "<row>"
         ],
         "correct_answer": 0,
-        "explanation": "Semantic markup helps search engines index content more accurately, improving rankings."
+        "explanation": "<tr> (table row) defines a row of cells in an HTML table."
     },
     {
         "id": 38,
         "type": "multiple_choice",
-        "question": "Which tag is NOT semantic?",
+        "question": "The HTML attribute that specifies the destination of a hyperlink is:",
         "options": [
-            "<article>",
-            "<nav>",
-            "<section>",
-            "<div> (when used generically)"
+            "src",
+            "link",
+            "href",
+            "url"
         ],
-        "correct_answer": 3,
-        "explanation": "<div> is a generic container with no semantic meaning unless used with ARIA roles."
+        "correct_answer": 2,
+        "explanation": "The href attribute in an <a> tag specifies the URL or destination of the hyperlink."
     },
     {
         "id": 39,
         "type": "multiple_choice",
-        "question": "Accessibility in web design refers to:",
+        "question": "The PHP function used to start a session is:",
         "options": [
-            "Making sites usable for people with disabilities",
-            "Making sites free",
-            "Adding more graphics",
-            "Using only black text"
+            "session_open()",
+            "session_start()",
+            "begin_session()",
+            "init_session()"
         ],
-        "correct_answer": 0,
-        "explanation": "Web accessibility ensures people with disabilities can perceive, navigate, and interact with websites."
+        "correct_answer": 1,
+        "explanation": "session_start() initializes a new or resumes an existing PHP session for maintaining user state across pages."
     },
     {
         "id": 40,
         "type": "multiple_choice",
-        "question": "SEO stands for:",
+        "question": "A website that adjusts automatically to different screen sizes is described as:",
         "options": [
-            "Search Engine Optimization",
-            "Secure Electronic Office",
-            "System Exit Operation",
-            "Software Engineering Object"
+            "Adaptive",
+            "Responsive",
+            "Flexible",
+            "Dynamic"
         ],
-        "correct_answer": 0,
-        "explanation": "SEO is the practice of improving a website's visibility in search engine results."
+        "correct_answer": 1,
+        "explanation": "Responsive web design uses fluid grids and media queries to automatically adapt layouts to different screen sizes."
     },
     {
         "id": 41,
         "type": "multiple_choice",
-        "question": "Key components of a web-based system include:",
+        "question": "A university website is failing accessibility audits and ranking poorly on search engines. Which HTML redesign decision would MOST effectively address both issues?",
         "options": [
-            "Client, server, database",
-            "Mouse, keyboard, monitor",
-            "Router, modem, cable",
-            "HTML, CSS, JavaScript (as parts of front-end)"
+            "Replacing <div> tags with semantic elements",
+            "Increasing font sizes using inline styles",
+            "Embedding JavaScript inside HTML",
+            "Using tables for page layout"
         ],
         "correct_answer": 0,
-        "explanation": "A typical web system consists of a client (browser), server, and database."
+        "explanation": "Semantic HTML improves both accessibility (screen readers understand structure) and SEO (search engines better interpret content)."
     },
     {
         "id": 42,
         "type": "multiple_choice",
-        "question": "How do web application components interact?",
+        "question": "A large web project involves multiple developers. Which HTML practice best supports collaboration and long-term maintenance?",
         "options": [
-            "Client sends requests, server processes, database stores data",
-            "Server designs the UI, client stores data",
-            "Database renders the webpage",
-            "Browser runs server-side code"
+            "Using deeply nested <div> elements",
+            "Writing inline HTML styles",
+            "Applying semantic HTML structure",
+            "Embedding PHP directly in HTML"
         ],
-        "correct_answer": 0,
-        "explanation": "The client requests resources, the server processes requests and queries the database, then returns a response."
+        "correct_answer": 2,
+        "explanation": "Semantic HTML creates clear, self-documenting structure that all developers can understand and maintain consistently."
     },
     {
         "id": 43,
         "type": "multiple_choice",
-        "question": "Which is a server-side scripting language?",
+        "question": "A multilingual website struggles with search indexing. Which HTML attribute strategy best resolves this?",
         "options": [
-            "PHP",
-            "HTML",
-            "CSS",
-            "XML"
+            "lang attribute usage",
+            "id attribute consistency",
+            "class naming",
+            "Inline metadata"
         ],
         "correct_answer": 0,
-        "explanation": "PHP runs on the server to generate dynamic content. HTML/CSS/XML are client-side or markup languages."
+        "explanation": "The lang attribute tells search engines and browsers which language content is in, improving international SEO and accessibility."
     },
     {
         "id": 44,
         "type": "multiple_choice",
-        "question": "Which is a client-side technology?",
+        "question": "A website breaks on tablets but works on desktops. Which CSS strategy best fixes this issue?",
         "options": [
-            "JavaScript",
-            "Python (server-side)",
-            "SQL",
-            "Apache"
+            "Fixed widths",
+            "Media queries",
+            "Inline styling",
+            "Absolute positioning"
         ],
-        "correct_answer": 0,
-        "explanation": "JavaScript runs in the browser, making it a client-side language."
+        "correct_answer": 1,
+        "explanation": "Media queries apply different styles based on device characteristics like screen width, enabling responsive design."
     },
     {
         "id": 45,
         "type": "multiple_choice",
-        "question": "A database in a web system is used to:",
+        "question": "Why is Flexbox preferred over floats for modern layouts?",
         "options": [
-            "Store and retrieve data",
-            "Style web pages",
-            "Send emails",
-            "Play videos"
+            "Floats load faster",
+            "Flexbox handles alignment dynamically",
+            "Floats support responsiveness better",
+            "Flexbox removes the need for HTML"
         ],
-        "correct_answer": 0,
-        "explanation": "Databases manage persistent data like user accounts, content, and transactions."
+        "correct_answer": 1,
+        "explanation": "Flexbox provides powerful alignment, distribution, and dynamic sizing capabilities that floats cannot easily achieve."
     },
     {
         "id": 46,
         "type": "multiple_choice",
-        "question": "HTML was created by:",
+        "question": "Absolute positioning negatively impacts responsiveness because it:",
         "options": [
-            "Tim Berners-Lee",
-            "Mark Zuckerberg",
-            "Linus Torvalds",
-            "Larry Page"
+            "Ignores screen size changes",
+            "Breaks JavaScript",
+            "Disables HTML semantics",
+            "Removes accessibility"
         ],
         "correct_answer": 0,
-        "explanation": "Tim Berners-Lee invented HTML in 1991 while working at CERN."
+        "explanation": "Absolutely positioned elements are removed from normal document flow and don't adapt well to different screen sizes."
     },
     {
         "id": 47,
         "type": "multiple_choice",
-        "question": "Which came first?",
+        "question": "A form submits invalid data repeatedly. Which JavaScript strategy best prevents this?",
         "options": [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "React"
+            "Server-side validation only",
+            "Client-side validation before submission",
+            "Removing form constraints",
+            "Using CSS validation"
         ],
-        "correct_answer": 0,
-        "explanation": "HTML (1991) came before CSS (1996), JavaScript (1995), and React (2013)."
+        "correct_answer": 1,
+        "explanation": "Client-side validation provides immediate feedback to users before submission, preventing invalid data from being sent unnecessarily."
     },
     {
         "id": 48,
         "type": "multiple_choice",
-        "question": "Modern frameworks like React and Angular are used for:",
+        "question": "Why is event-driven programming essential in modern web apps?",
         "options": [
-            "Building dynamic single-page applications",
-            "Editing photos",
-            "Writing server config files",
-            "Creating word documents"
+            "It reduces HTML size",
+            "It responds dynamically to user actions",
+            "It replaces CSS",
+            "It improves database speed"
         ],
-        "correct_answer": 0,
-        "explanation": "React and Angular are front-end frameworks for building interactive, component-based UIs."
+        "correct_answer": 1,
+        "explanation": "Event-driven programming allows web apps to react to user interactions (clicks, typing, etc.) in real-time, creating dynamic experiences."
     },
     {
         "id": 49,
         "type": "multiple_choice",
-        "question": "Advancements in web technologies have led to:",
+        "question": "Why is PHP classified as server-side scripting?",
         "options": [
-            "More interactive and faster web apps",
-            "Slower websites",
-            "Less use of JavaScript",
-            "More reliance on Flash"
+            "It runs in the browser",
+            "It executes before content reaches the client",
+            "It styles pages",
+            "It handles CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "Modern frameworks, APIs, and standards have improved performance, interactivity, and user experience."
+        "correct_answer": 1,
+        "explanation": "PHP executes on the web server, generating HTML that is then sent to the client's browser."
     },
     {
         "id": 50,
         "type": "multiple_choice",
-        "question": "Which is a JavaScript framework?",
+        "question": "A login system works locally but fails online. Which PHP issue is MOST likely?",
         "options": [
-            "Angular",
-            "Apache",
-            "MySQL",
-            "Photoshop"
+            "HTML validation",
+            "Server configuration",
+            "CSS conflicts",
+            "JavaScript errors"
         ],
-        "correct_answer": 0,
-        "explanation": "Angular is a JavaScript-based front-end framework developed by Google."
+        "correct_answer": 1,
+        "explanation": "Server configuration differences (PHP version, extensions, settings) between local and production environments often cause failures."
     },
     {
         "id": 51,
         "type": "multiple_choice",
-        "question": "Which of these is NOT a common web browser?",
+        "question": "Why should PHP files not expose logic to users?",
         "options": [
-            "Chrome",
-            "Firefox",
-            "MySQL",
-            "Safari"
+            "PHP runs client-side",
+            "PHP executes before response",
+            "PHP improves accessibility",
+            "PHP handles CSS"
         ],
-        "correct_answer": 2,
-        "explanation": "MySQL is a database system, not a web browser."
+        "correct_answer": 1,
+        "explanation": "PHP executes on the server, so only its output (HTML) is sent—users never see the actual PHP code logic."
     },
     {
         "id": 52,
         "type": "multiple_choice",
-        "question": "Which part of a browser is responsible for parsing HTML and CSS?",
+        "question": "A dynamic website fails when JavaScript is disabled. Which design principle was ignored?",
         "options": [
-            "Rendering engine",
-            "JavaScript engine",
-            "Network layer",
-            "UI backend"
+            "Graceful degradation",
+            "Inline styling",
+            "Server caching",
+            "Fixed layout"
         ],
         "correct_answer": 0,
-        "explanation": "The rendering engine (like Blink or Gecko) parses HTML/CSS and renders the page."
+        "explanation": "Graceful degradation ensures core functionality remains available even when advanced features (like JavaScript) are disabled."
     },
     {
         "id": 53,
         "type": "multiple_choice",
-        "question": "Which browser security feature prevents malicious scripts from accessing system resources?",
+        "question": "Why is separation of concerns important in web development?",
         "options": [
-            "Sandboxing",
-            "Cookies",
-            "Bookmarks",
-            "History"
+            "It reduces browser compatibility",
+            "It improves maintainability and scalability",
+            "It increases page size",
+            "It limits functionality"
         ],
-        "correct_answer": 0,
-        "explanation": "Sandboxing isolates browser tabs/processes to limit damage from malicious code."
+        "correct_answer": 1,
+        "explanation": "Separating HTML (structure), CSS (presentation), and JavaScript (behavior) makes code more organized, maintainable, and scalable."
     },
     {
         "id": 54,
         "type": "multiple_choice",
-        "question": "A “headless browser” is used for:",
+        "question": "A university portal redesign focuses on accessibility, performance, and scalability. Which combined approach best meets these goals?",
         "options": [
-            "Automated testing",
-            "Video editing",
-            "Gaming",
-            "File compression"
+            "Table layouts and inline CSS",
+            "Semantic HTML, external CSS, modular JS, server-side PHP",
+            "JavaScript-only rendering",
+            "Embedded styles and scripts"
         ],
-        "correct_answer": 0,
-        "explanation": "Headless browsers run without a UI, useful for automated testing, scraping, and server-side rendering."
+        "correct_answer": 1,
+        "explanation": "This combination addresses all goals: semantic HTML for accessibility, external CSS for performance, modular JS for maintainability, and server-side PHP for scalability."
     },
     {
         "id": 55,
         "type": "multiple_choice",
-        "question": "Which is a component of browser reference architecture?",
+        "question": "A site works visually but fails usability testing. Which area was MOST neglected?",
         "options": [
-            "User interface",
-            "Monitor",
-            "Keyboard",
-            "Printer"
+            "Backend logic",
+            "User experience and accessibility",
+            "Database structure",
+            "Server hosting"
         ],
-        "correct_answer": 0,
-        "explanation": "UI is a core component; monitor/keyboard/printer are hardware, not browser architecture."
+        "correct_answer": 1,
+        "explanation": "Visual design alone doesn't ensure usability—user experience design and accessibility considerations are crucial for real-world use."
     },
     {
         "id": 56,
         "type": "multiple_choice",
-        "question": "Which stage comes after “planning” in web design?",
+        "question": "Why is accessibility a core quality metric in web development?",
         "options": [
-            "Design",
-            "Testing",
-            "Launch",
-            "Maintenance"
+            "It improves aesthetics",
+            "It ensures inclusivity and legal compliance",
+            "It reduces server load",
+            "It replaces usability"
         ],
-        "correct_answer": 0,
-        "explanation": "After planning, the design phase involves creating wireframes, mockups, and visual designs."
+        "correct_answer": 1,
+        "explanation": "Accessibility ensures websites are usable by people with disabilities, which is both ethically important and legally required in many contexts."
     },
     {
         "id": 57,
         "type": "multiple_choice",
-        "question": "Which is NOT a key function of a web server?",
+        "question": "Which development choice MOST improves maintainability?",
         "options": [
-            "Processing HTTP requests",
-            "Storing website files",
-            "Editing photos",
-            "Serving web pages"
+            "Inline styling",
+            "Clear separation of technologies",
+            "Embedded scripts",
+            "Table layouts"
         ],
-        "correct_answer": 2,
-        "explanation": "Web servers serve content, not edit photos. That's done by graphic software."
+        "correct_answer": 1,
+        "explanation": "Separating HTML, CSS, and JavaScript into distinct files and layers makes each part easier to understand and modify independently."
     },
     {
         "id": 58,
         "type": "multiple_choice",
-        "question": "Which tool is used for website testing?",
+        "question": "Which practice BEST ensures long-term project success?",
         "options": [
-            "Selenium",
-            "Photoshop",
-            "Word",
-            "Excel"
+            "Rapid coding",
+            "Standards-based development",
+            "Hard-coded solutions",
+            "Minimal documentation"
         ],
-        "correct_answer": 0,
-        "explanation": "Selenium is a popular tool for automated web testing."
+        "correct_answer": 1,
+        "explanation": "Following web standards ensures compatibility, maintainability, and future-proofing as technologies evolve."
     },
     {
         "id": 59,
         "type": "multiple_choice",
-        "question": "The term “hosting” refers to:",
+        "question": "A poorly structured project MOST affects which phase?",
         "options": [
-            "Storing website files on a server",
-            "Designing a website",
-            "Writing content",
-            "Buying a domain"
+            "Deployment",
+            "Maintenance",
+            "Hosting",
+            "Rendering"
         ],
-        "correct_answer": 0,
-        "explanation": "Hosting involves storing site files on a server so they're accessible online."
+        "correct_answer": 1,
+        "explanation": "Poor structure makes maintenance difficult and costly—fixing bugs, adding features, and understanding code become time-consuming."
     },
     {
         "id": 60,
         "type": "multiple_choice",
-        "question": "Which protocol do web servers primarily use?",
+        "question": "Which technology combination BEST supports interactive, secure websites?",
         "options": [
-            "HTTP/HTTPS",
-            "FTP",
-            "SMTP",
-            "TCP only"
+            "HTML + CSS",
+            "HTML + CSS + JavaScript + PHP",
+            "CSS + PHP",
+            "JavaScript only"
         ],
-        "correct_answer": 0,
-        "explanation": "Web servers use HTTP (port 80) and HTTPS (port 443) to communicate with clients."
+        "correct_answer": 1,
+        "explanation": "This full stack provides structure (HTML), presentation (CSS), client-side interaction (JavaScript), and server-side security/processing (PHP)."
     },
     {
         "id": 61,
         "type": "multiple_choice",
-        "question": "Which is a functional requirement for a website?",
+        "question": "A website fails compliance audits. Which aspect was MOST likely ignored?",
         "options": [
-            "User registration system",
-            "Fast server response time",
-            "High uptime",
-            "Secure data transmission"
+            "Color schemes",
+            "Accessibility standards",
+            "Image resolution",
+            "Fonts"
         ],
-        "correct_answer": 0,
-        "explanation": "Functional requirements define what the system does (e.g., user registration)."
+        "correct_answer": 1,
+        "explanation": "Accessibility standards (like WCAG) are common compliance requirements that are frequently overlooked in web development."
     },
     {
         "id": 62,
         "type": "multiple_choice",
-        "question": "Which helps in making a website responsive?",
+        "question": "Which design practice MOST improves scalability?",
         "options": [
-            "Fluid grids",
-            "Fixed-width layouts",
-            "Flash content",
-            "Large images"
+            "Fixed layouts",
+            "Modular codebase",
+            "Inline styles",
+            "Embedded scripts"
         ],
-        "correct_answer": 0,
-        "explanation": "Fluid grids use relative units like percentages to adapt to screen sizes."
+        "correct_answer": 1,
+        "explanation": "Modular code can be easily extended, reused, and optimized, making it easier to scale applications as requirements grow."
     },
     {
         "id": 63,
         "type": "multiple_choice",
-        "question": "A functional requirement defines:",
+        "question": "Why is testing across devices essential?",
         "options": [
-            "What the system should do",
-            "How fast it should run",
-            "What it looks like",
-            "Who will use it"
+            "Devices are similar",
+            "User contexts vary",
+            "It reduces CSS",
+            "It removes JavaScript"
         ],
-        "correct_answer": 0,
-        "explanation": "Functional requirements describe the system's behaviors and features."
+        "correct_answer": 1,
+        "explanation": "Users access websites on diverse devices with different screen sizes, capabilities, and contexts—testing ensures quality across all."
     },
     {
         "id": 64,
         "type": "multiple_choice",
-        "question": "Which is NOT part of responsive design?",
+        "question": "Which principle MOST supports future maintenance?",
         "options": [
-            "Flexible images",
-            "Media queries",
-            "Static layouts",
-            "Mobile-first approach"
+            "Fast coding",
+            "Clean architecture",
+            "Inline scripts",
+            "Fixed designs"
         ],
-        "correct_answer": 2,
-        "explanation": "Static layouts do not adapt to screen size, contrary to responsive design."
+        "correct_answer": 1,
+        "explanation": "Clean, well-organized architecture makes code understandable and modifiable, reducing the cost and effort of future maintenance."
     },
     {
         "id": 65,
         "type": "multiple_choice",
-        "question": "Which device is NOT typically considered in responsive design?",
+        "question": "Which factor MOST improves security posture?",
         "options": [
-            "Smartphone",
-            "Tablet",
-            "Desktop",
-            "Refrigerator"
+            "Styling",
+            "Server-side validation",
+            "Fonts",
+            "Layout"
         ],
-        "correct_answer": 3,
-        "explanation": "Responsive design targets screens, not appliances like refrigerators."
+        "correct_answer": 1,
+        "explanation": "Server-side validation is critical for security—it cannot be bypassed by users and provides the final check on all submitted data."
     },
     {
         "id": 66,
         "type": "multiple_choice",
-        "question": "Which is a popular web server software?",
+        "question": "Which HTML element groups table rows that contain summary or total values?",
         "options": [
-            "Nginx",
-            "Photoshop",
-            "Word",
-            "Excel"
+            "<tbody>",
+            "<thead>",
+            "<tfoot>",
+            "<tr>"
         ],
-        "correct_answer": 0,
-        "explanation": "Nginx is a high-performance web server and reverse proxy."
+        "correct_answer": 2,
+        "explanation": "<tfoot> is specifically designed to contain footer rows in tables, often used for summaries or totals."
     },
     {
         "id": 67,
         "type": "multiple_choice",
-        "question": "A web server can run on:",
+        "question": "A table looks cluttered and unreadable. Which solution is BEST?",
         "options": [
-            "Windows, Linux, macOS",
-            "Only Windows",
-            "Only Linux",
-            "Only macOS"
+            "Adding more columns",
+            "Applying CSS spacing and borders",
+            "Removing table headers",
+            "Using inline HTML formatting"
         ],
-        "correct_answer": 0,
-        "explanation": "Web server software is cross-platform and can run on multiple operating systems."
+        "correct_answer": 1,
+        "explanation": "CSS can improve table readability through proper spacing, borders, alternating row colors, and other visual enhancements."
     },
     {
         "id": 68,
         "type": "multiple_choice",
-        "question": "Which is NOT a role of a web server?",
+        "question": "Why should CSS be used instead of HTML attributes for table styling?",
         "options": [
-            "Running client-side scripts",
-            "Logging requests",
-            "Handling HTTP requests",
-            "Serving static files"
+            "HTML attributes are faster",
+            "CSS improves separation of concerns",
+            "CSS prevents table rendering",
+            "HTML styling is mandatory"
         ],
-        "correct_answer": 0,
-        "explanation": "Client-side scripts (like JavaScript) run in the browser, not on the server."
+        "correct_answer": 1,
+        "explanation": "Using CSS for styling maintains separation between content (HTML) and presentation, following modern web development best practices."
     },
     {
         "id": 69,
         "type": "multiple_choice",
-        "question": "Which command starts Apache on Linux?",
+        "question": "Which error MOST affects table semantics?",
         "options": [
-            "sudo systemctl start apache2",
-            "start apache",
-            "run server",
-            "launch httpd"
+            "Missing borders",
+            "Using <td> instead of <th> for headers",
+            "Small font size",
+            "Light background color"
         ],
-        "correct_answer": 0,
-        "explanation": "On modern Linux systems, systemctl is used to control services like Apache."
+        "correct_answer": 1,
+        "explanation": "Using <td> for headers loses semantic meaning—<th> properly identifies header cells for screen readers and browsers."
     },
     {
         "id": 70,
         "type": "multiple_choice",
-        "question": "Port 443 is used for:",
+        "question": "Which statement BEST describes modern table usage?",
         "options": [
-            "HTTPS",
-            "HTTP",
-            "FTP",
-            "Email"
+            "Tables are obsolete",
+            "Tables should be used only for tabular data",
+            "Tables are best for layouts",
+            "Tables replace CSS Grid"
         ],
-        "correct_answer": 0,
-        "explanation": "Port 443 is the default for HTTPS (secure HTTP)."
+        "correct_answer": 1,
+        "explanation": "Tables remain essential for tabular data but should not be used for page layout—that's what CSS Grid and Flexbox are for."
     },
     {
         "id": 71,
         "type": "multiple_choice",
-        "question": "Apache is developed by:",
+        "question": "What is the advantage of using relative links within a website?",
         "options": [
-            "Apache Software Foundation",
-            "Microsoft",
-            "Google",
-            "Apple"
+            "They load faster",
+            "They are easier to maintain when files move",
+            "They prevent hacking",
+            "They replace absolute links"
         ],
-        "correct_answer": 0,
-        "explanation": "The Apache Software Foundation maintains the Apache HTTP Server project."
+        "correct_answer": 1,
+        "explanation": "Relative links reference files based on current location, making sites portable and easier to maintain when directories change."
     },
     {
         "id": 72,
         "type": "multiple_choice",
-        "question": "Which file is Apache’s main configuration file?",
+        "question": "Which link type connects to another website?",
         "options": [
-            "httpd.conf",
-            "config.ini",
-            "apache.exe",
-            "server.xml"
+            "Internal link",
+            "Anchor link",
+            "External link",
+            "Bookmark link"
         ],
-        "correct_answer": 0,
-        "explanation": "httpd.conf is the primary configuration file for Apache."
+        "correct_answer": 2,
+        "explanation": "External links point to resources on different domains or websites, using absolute URLs."
     },
     {
         "id": 73,
         "type": "multiple_choice",
-        "question": "Apache uses ______ to host multiple websites on one server.",
+        "question": "Why is the title attribute useful in links?",
         "options": [
-            "Virtual hosts",
-            "Multiple IPs only",
-            "Different browsers",
-            "Separate computers"
+            "It styles the link",
+            "It provides additional context on hover",
+            "It changes link color",
+            "It improves loading speed"
         ],
-        "correct_answer": 0,
-        "explanation": "Virtual hosts allow one Apache instance to serve multiple domains."
+        "correct_answer": 1,
+        "explanation": "The title attribute provides supplementary information about a link, typically displayed as a tooltip on hover."
     },
     {
         "id": 74,
         "type": "multiple_choice",
-        "question": "Which is NOT an alternative to Apache?",
+        "question": "Which design choice MOST improves accessibility for users relying on screen readers?",
         "options": [
-            "IIS",
-            "Nginx",
-            "MySQL",
-            "LiteSpeed"
+            "Using icons only",
+            "Meaningful link text",
+            "Removing underlines",
+            "Using images without text"
         ],
-        "correct_answer": 2,
-        "explanation": "MySQL is a database, not a web server."
+        "correct_answer": 1,
+        "explanation": "Descriptive link text tells screen reader users where links go, unlike vague text like 'click here'."
     },
     {
         "id": 75,
         "type": "multiple_choice",
-        "question": "Apache is written in:",
+        "question": "Which statement BEST reflects good link design practice?",
         "options": [
-            "C",
-            "Java",
-            "Python",
-            "HTML"
+            "Links should open in new tabs always",
+            "Links should clearly indicate their destination",
+            "All links should be images",
+            "Links should replace buttons"
         ],
-        "correct_answer": 0,
-        "explanation": "Apache HTTP Server is primarily written in C."
+        "correct_answer": 1,
+        "explanation": "Clear, descriptive link text helps users understand where they'll go before clicking, improving usability and accessibility."
     },
     {
         "id": 76,
         "type": "multiple_choice",
-        "question": "XHTML documents must be:",
+        "question": "A user disables JavaScript and successfully submits invalid data to the server. This shows JavaScript validation can be bypassed.",
         "options": [
-            "Well-formed XML",
-            "Written in English only",
-            "Only used for mobile",
-            "Built with JavaScript"
+            "True",
+            "False"
         ],
         "correct_answer": 0,
-        "explanation": "XHTML must follow XML syntax rules, including proper nesting and closing tags."
+        "explanation": "JavaScript runs client-side and can be disabled or bypassed—never rely on it alone for security or validation."
     },
     {
         "id": 77,
         "type": "multiple_choice",
-        "question": "Which is true about XHTML?",
+        "question": "JavaScript validation prevents all security threats in web applications.",
         "options": [
-            "Tags must be closed",
-            "Tags can be uppercase or lowercase",
-            "Attributes don’t need quotes",
-            "It’s older than HTML"
+            "True",
+            "False"
         ],
-        "correct_answer": 0,
-        "explanation": "XHTML requires all tags to be properly closed, unlike HTML which is more forgiving."
+        "correct_answer": 1,
+        "explanation": "JavaScript only provides client-side validation and cannot prevent server-side attacks or data manipulation."
     },
     {
         "id": 78,
         "type": "multiple_choice",
-        "question": "Which is a benefit of responsive design?",
+        "question": "Poorly written CSS increases debugging and maintenance effort.",
         "options": [
-            "Better user experience",
-            "Faster server processing",
-            "Less HTML code",
-            "No need for CSS"
+            "True",
+            "False"
         ],
         "correct_answer": 0,
-        "explanation": "Responsive design improves UX by adapting to the user's device and screen size."
+        "explanation": "Disorganized CSS with high specificity, duplication, or !important overrides becomes difficult to debug and maintain."
     },
     {
         "id": 79,
         "type": "multiple_choice",
-        "question": "Responsive design often uses:",
+        "question": "A website uses absolute positioning for all elements and still adapts well to screen size changes. This approach supports responsive design.",
         "options": [
-            "Flexible images",
-            "Fixed-width layouts",
-            "Flash",
-            "Java applets"
+            "True",
+            "False"
         ],
-        "correct_answer": 0,
-        "explanation": "Flexible images scale within their containers to fit different screens."
+        "correct_answer": 1,
+        "explanation": "Absolute positioning removes elements from normal flow and typically doesn't adapt well to different screen sizes."
     },
     {
         "id": 80,
         "type": "multiple_choice",
-        "question": "Which CSS unit is useful in responsive design?",
+        "question": "A developer expects JavaScript code to run without any user action or browser event. This expectation is always correct.",
         "options": [
-            "%",
-            "px only",
-            "in",
-            "pt"
+            "True",
+            "False"
         ],
-        "correct_answer": 0,
-        "explanation": "Percentages allow elements to scale relative to their parent container."
+        "correct_answer": 1,
+        "explanation": "JavaScript runs in response to events or when scripts load—it doesn't execute without some trigger."
     },
     {
         "id": 81,
         "type": "multiple_choice",
-        "question": "CSS stands for:",
+        "question": "External CSS files are linked to HTML using the ____ tag.",
         "options": [
-            "Cascading Style Sheets",
-            "Computer Style System",
-            "Creative Style Software",
-            "Cascading Script Sheets"
+            "<style>",
+            "<css>",
+            "<link>",
+            "<script>"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS = Cascading Style Sheets, used for styling web pages."
+        "correct_answer": 2,
+        "explanation": "The <link> tag, typically in the <head> section, connects external CSS files to HTML documents."
     },
     {
         "id": 82,
         "type": "multiple_choice",
-        "question": "Which HTML tag is used to link CSS?",
+        "question": "PHP is commonly used together with ____ to store and retrieve data.",
         "options": [
-            "<link>",
-            "<style>",
-            "<script>",
-            "<css>"
+            "HTML",
+            "MySQL",
+            "CSS",
+            "JavaScript"
         ],
-        "correct_answer": 0,
-        "explanation": "<link rel=\"stylesheet\" href=\"style.css\"> is used to link external CSS."
+        "correct_answer": 1,
+        "explanation": "PHP frequently pairs with MySQL databases for dynamic data storage and retrieval in web applications."
     },
     {
         "id": 83,
         "type": "multiple_choice",
-        "question": "Semantic HTML helps with:",
+        "question": "Separating HTML, CSS, JavaScript, and PHP into different files follows the principle of ____.",
         "options": [
-            "SEO and accessibility",
-            "Faster loading",
-            "Better colors",
-            "Server security"
+            "Modular design",
+            "Separation of Concerns",
+            "Layered architecture",
+            "Component isolation"
         ],
-        "correct_answer": 0,
-        "explanation": "Semantic tags improve SEO and accessibility by providing meaningful structure."
+        "correct_answer": 1,
+        "explanation": "Separation of Concerns divides a program into distinct sections, each handling a specific aspect (structure, presentation, behavior)."
     },
     {
         "id": 84,
         "type": "multiple_choice",
-        "question": "Which is NOT a semantic tag?",
+        "question": "The HTML element used to define the header section of a webpage is called ____.",
         "options": [
-            "<div> (when used for layout only)",
-            "<footer>",
-            "<main>",
-            "<aside>"
+            "<head>",
+            "<header>",
+            "<h1>",
+            "<top>"
         ],
-        "correct_answer": 0,
-        "explanation": "<div> is generic and non-semantic unless paired with ARIA attributes."
+        "correct_answer": 1,
+        "explanation": "<header> is a semantic HTML5 element for introductory content or navigation links at the top of a page or section."
     },
     {
         "id": 85,
         "type": "multiple_choice",
-        "question": "Which CSS property controls layout responsiveness?",
+        "question": "The HTML element used to create an unordered list is ____.",
         "options": [
-            "display: flex",
-            "color",
-            "font-size",
-            "border"
+            "<ol>",
+            "<ul>",
+            "<li>",
+            "<list>"
         ],
-        "correct_answer": 0,
-        "explanation": "Flexbox (display: flex) helps create flexible, responsive layouts."
+        "correct_answer": 1,
+        "explanation": "<ul> (unordered list) creates bulleted lists, with each item marked by <li> tags."
     },
     {
         "id": 86,
         "type": "multiple_choice",
-        "question": "Semantic HTML improves:",
+        "question": "Why should JavaScript be placed at the bottom of pages or deferred?",
         "options": [
-            "Code readability",
-            "Server speed",
-            "Image quality",
-            "Video playback"
+            "To improve accessibility",
+            "To prevent blocking rendering",
+            "To reduce HTML size",
+            "To enhance CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "Semantic markup makes HTML easier to read and maintain."
+        "correct_answer": 1,
+        "explanation": "JavaScript at the bottom or deferred prevents blocking HTML parsing and rendering, improving perceived page load speed."
     },
     {
         "id": 87,
         "type": "multiple_choice",
-        "question": "Which tag defines navigation links?",
+        "question": "PHP improves security by:",
         "options": [
-            "<nav>",
-            "<menu>",
-            "<links>",
-            "<guide>"
+            "Styling forms",
+            "Sanitizing server-side input",
+            "Managing CSS",
+            "Controlling layouts"
         ],
-        "correct_answer": 0,
-        "explanation": "<nav> is the semantic HTML5 tag for navigation sections."
+        "correct_answer": 1,
+        "explanation": "Server-side input sanitization in PHP prevents SQL injection, XSS attacks, and other security vulnerabilities."
     },
     {
         "id": 88,
         "type": "multiple_choice",
-        "question": "SEO helps websites:",
+        "question": "Which PHP role is essential in form handling?",
         "options": [
-            "Rank higher in search results",
-            "Load faster",
-            "Use less bandwidth",
-            "Look prettier"
+            "Styling inputs",
+            "Processing submitted data",
+            "Validating HTML",
+            "Executing JavaScript"
         ],
-        "correct_answer": 0,
-        "explanation": "SEO improves visibility and ranking on search engines like Google."
+        "correct_answer": 1,
+        "explanation": "PHP receives, validates, and processes form data sent from browsers, making it essential for form handling."
     },
     {
         "id": 89,
         "type": "multiple_choice",
-        "question": "Which semantic tag is for independent content?",
+        "question": "Which design choice best supports long-term system upgrades?",
         "options": [
-            "<article>",
-            "<div>",
-            "<span>",
-            "<bold>"
+            "Inline code",
+            "Modular architecture",
+            "Hard-coded logic",
+            "Embedded styles"
         ],
-        "correct_answer": 0,
-        "explanation": "<article> represents self-contained content like blog posts or news articles."
+        "correct_answer": 1,
+        "explanation": "Modular architecture allows components to be updated or replaced independently without breaking the entire system."
     },
     {
         "id": 90,
         "type": "multiple_choice",
-        "question": "Screen readers benefit from:",
+        "question": "A system fails under heavy user load. Which layer is MOST responsible?",
         "options": [
-            "Semantic structure",
-            "Bright colors",
-            "Auto-playing videos",
-            "Complex animations"
+            "HTML structure",
+            "Backend processing",
+            "CSS styling",
+            "Browser cache"
         ],
-        "correct_answer": 0,
-        "explanation": "Semantic tags help screen readers interpret page structure and content."
+        "correct_answer": 1,
+        "explanation": "Backend processing handles concurrent requests—poor architecture here leads to failures under heavy load."
     },
     {
         "id": 91,
         "type": "multiple_choice",
-        "question": "The “client” in web systems refers to:",
+        "question": "Which layer MOST affects first-time user experience?",
         "options": [
-            "The user’s browser",
-            "The web server",
-            "The database",
-            "The router"
+            "Database",
+            "Frontend design",
+            "Server configuration",
+            "Hosting provider"
         ],
-        "correct_answer": 0,
-        "explanation": "The client is typically the browser or device making requests to the server."
+        "correct_answer": 1,
+        "explanation": "First impressions come from visual design, layout, and initial interactions—all part of frontend experience."
     },
     {
         "id": 92,
         "type": "multiple_choice",
-        "question": "Which is a backend component?",
+        "question": "Which practice MOST reduces technical debt?",
         "options": [
-            "Database",
-            "HTML",
-            "CSS",
-            "Browser"
+            "Copy-paste coding",
+            "Modular and reusable components",
+            "Inline scripts",
+            "Fixed layouts"
         ],
-        "correct_answer": 0,
-        "explanation": "The database is part of the backend, storing and managing data."
+        "correct_answer": 1,
+        "explanation": "Modular, reusable code prevents duplication and makes future changes easier, reducing technical debt accumulation."
     },
     {
         "id": 93,
         "type": "multiple_choice",
-        "question": "Web applications often use:",
+        "question": "A system must scale to thousands of users. Which factor is MOST critical?",
         "options": [
-            "Three-tier architecture",
-            "One-tier architecture",
-            "No architecture",
-            "Only front-end"
+            "CSS animations",
+            "Backend efficiency",
+            "HTML comments",
+            "Image sizes only"
         ],
-        "correct_answer": 0,
-        "explanation": "Three-tier architecture separates presentation (front-end), logic (back-end), and data (database)."
+        "correct_answer": 1,
+        "explanation": "Efficient backend processing, database queries, and server architecture determine how well a system scales to many users."
     },
     {
         "id": 94,
         "type": "multiple_choice",
-        "question": "Which protocol do clients and servers use to communicate?",
+        "question": "Which strategy MOST improves usability testing results?",
         "options": [
-            "HTTP",
-            "SMTP",
-            "FTP",
-            "SSH"
+            "Complex UI",
+            "User-centered design",
+            "Fixed layouts",
+            "Inline scripts"
         ],
-        "correct_answer": 0,
-        "explanation": "HTTP is the primary protocol for web communication between clients and servers."
+        "correct_answer": 1,
+        "explanation": "User-centered design focuses on real user needs and behaviors, leading to better usability testing outcomes."
     },
     {
         "id": 95,
         "type": "multiple_choice",
-        "question": "Which is a database management system?",
+        "question": "Why should backend logic remain hidden from users?",
         "options": [
-            "MySQL",
-            "Apache",
-            "React",
-            "CSS"
+            "To improve styling",
+            "To protect security and integrity",
+            "To enhance UI",
+            "To reduce load time"
         ],
-        "correct_answer": 0,
-        "explanation": "MySQL is a relational database management system (RDBMS)."
+        "correct_answer": 1,
+        "explanation": "Exposed backend logic reveals vulnerabilities, database structures, and implementation details that attackers could exploit."
     },
     {
         "id": 96,
         "type": "multiple_choice",
-        "question": "JavaScript was created by:",
+        "question": "When designing a scalable academic website, which HTML structure best supports future expansion?",
         "options": [
-            "Brendan Eich",
-            "Tim Berners-Lee",
-            "Bill Gates",
-            "Steve Jobs"
+            "Table-based layout",
+            "Flat document structure",
+            "Semantic and modular structure",
+            "Inline elements only"
         ],
-        "correct_answer": 0,
-        "explanation": "Brendan Eich created JavaScript in 1995 while at Netscape."
+        "correct_answer": 2,
+        "explanation": "Semantic, modular HTML provides clear structure that can be easily extended and maintained as the site grows."
     },
     {
         "id": 97,
         "type": "multiple_choice",
-        "question": "Which is a modern front-end framework?",
+        "question": "A form-based system frequently submits incomplete data. Which HTML design decision would best support reliable backend processing?",
         "options": [
-            "Vue.js",
-            "Apache",
-            "PHP",
-            "SQL"
+            "Using GET instead of POST",
+            "Adding proper name attributes",
+            "Styling inputs with CSS",
+            "Embedding JavaScript alerts"
         ],
-        "correct_answer": 0,
-        "explanation": "Vue.js is a progressive JavaScript framework for building UIs."
+        "correct_answer": 1,
+        "explanation": "Name attributes identify form fields on the server—without them, submitted data cannot be properly processed."
     },
     {
         "id": 98,
         "type": "multiple_choice",
-        "question": "Which technology replaced Flash for web animations?",
+        "question": "A large project's CSS becomes difficult to maintain. Which architectural approach prevents this?",
         "options": [
-            "HTML5 Canvas & CSS3",
-            "Java applets",
-            "Silverlight",
-            "ActiveX"
+            "Inline styles",
+            "Modular CSS structure",
+            "Duplicate selectors",
+            "Embedded CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "HTML5 and CSS3 provide native animation and multimedia support, making Flash obsolete."
+        "correct_answer": 1,
+        "explanation": "Modular CSS (like BEM, SMACSS) organizes styles into manageable, reusable components that are easier to maintain."
     },
     {
         "id": 99,
         "type": "multiple_choice",
-        "question": "Single-page applications (SPAs) are built with:",
+        "question": "Why does separating layout and typography styles improve scalability?",
         "options": [
-            "React, Angular, Vue",
-            "PHP, ASP, Ruby",
-            "HTML only",
-            "CSS only"
+            "It reduces file size",
+            "It simplifies redesigns",
+            "It improves HTML parsing",
+            "It disables JavaScript"
         ],
-        "correct_answer": 0,
-        "explanation": "SPAs use JavaScript frameworks like React, Angular, or Vue to update content dynamically."
+        "correct_answer": 1,
+        "explanation": "Separated concerns allow redesigns to change typography or layout independently without rewriting everything."
     },
     {
         "id": 100,
         "type": "multiple_choice",
-        "question": "RESTful APIs are commonly used for:",
+        "question": "JavaScript improves user experience primarily by:",
         "options": [
-            "Client-server communication",
-            "Styling web pages",
-            "Writing HTML",
-            "Editing images"
+            "Styling pages",
+            "Enabling dynamic interaction",
+            "Connecting databases",
+            "Creating layouts"
         ],
-        "correct_answer": 0,
-        "explanation": "RESTful APIs enable communication between client and server using HTTP methods."
+        "correct_answer": 1,
+        "explanation": "JavaScript enables real-time updates, interactive features, and dynamic content that responds to user actions."
     },
     {
         "id": 101,
         "type": "multiple_choice",
-        "question": "Which is NOT a web browser engine?",
+        "question": "Why should JavaScript validation complement PHP validation?",
         "options": [
-            "Blink",
-            "Gecko",
-            "V8",
-            "SQLite"
+            "JavaScript replaces PHP",
+            "PHP runs in the browser",
+            "JavaScript provides immediate feedback",
+            "PHP handles client-side validation"
         ],
-        "correct_answer": 3,
-        "explanation": "SQLite is a database engine, not a browser rendering engine."
+        "correct_answer": 2,
+        "explanation": "JavaScript gives instant feedback without server round-trips, improving user experience while PHP ensures final security."
     },
     {
         "id": 102,
         "type": "multiple_choice",
-        "question": "Which tag defines a hyperlink?",
+        "question": "Which principle guides ethical web development?",
         "options": [
-            "<a>",
-            "<link>",
-            "<href>",
-            "<url>"
+            "Performance only",
+            "Accessibility and inclusivity",
+            "Styling consistency",
+            "Browser exclusivity"
         ],
-        "correct_answer": 0,
-        "explanation": "<a href=\"...\"> defines a hyperlink in HTML."
+        "correct_answer": 1,
+        "explanation": "Ethical web development ensures websites are accessible to all users regardless of abilities, devices, or circumstances."
     },
     {
         "id": 103,
         "type": "multiple_choice",
-        "question": "Which is a server-side language?",
+        "question": "Why is documentation critical in web projects?",
         "options": [
-            "Node.js",
-            "HTML",
-            "CSS",
-            "XML"
+            "It replaces code",
+            "It supports maintenance and onboarding",
+            "It improves CSS",
+            "It reduces HTML"
         ],
-        "correct_answer": 0,
-        "explanation": "Node.js allows JavaScript to run on the server side."
+        "correct_answer": 1,
+        "explanation": "Documentation helps new developers understand the project and enables efficient maintenance over time."
     },
     {
         "id": 104,
         "type": "multiple_choice",
-        "question": "Which is used for styling?",
+        "question": "Which factor MOST affects future upgrades?",
         "options": [
-            "CSS",
-            "HTML",
-            "SQL",
-            "FTP"
+            "Inline code",
+            "Flexible architecture",
+            "Hard-coded logic",
+            "Fixed layouts"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS is used exclusively for styling web pages."
+        "correct_answer": 1,
+        "explanation": "Flexible architecture accommodates changes and new requirements without requiring complete rewrites."
     },
     {
         "id": 105,
         "type": "multiple_choice",
-        "question": "Which port does HTTP use?",
+        "question": "Which development approach MOST aligns with professional practice?",
         "options": [
-            "80",
-            "21",
-            "25",
-            "110"
+            "Trial-and-error coding",
+            "Structured, standards-based development",
+            "Inline scripting",
+            "Minimal testing"
         ],
-        "correct_answer": 0,
-        "explanation": "HTTP uses port 80 by default."
+        "correct_answer": 1,
+        "explanation": "Professional development follows structured processes, standards, and testing to ensure quality and reliability."
     },
     {
         "id": 106,
         "type": "multiple_choice",
-        "question": "Which is a NoSQL database?",
+        "question": "Which approach BEST supports collaborative assessment?",
         "options": [
-            "MongoDB",
-            "MySQL",
-            "PostgreSQL",
-            "SQLite"
+            "Individual coding styles",
+            "Standardized structure",
+            "Inline scripts",
+            "Hard-coded logic"
         ],
-        "correct_answer": 0,
-        "explanation": "MongoDB is a popular NoSQL database that uses JSON-like documents."
+        "correct_answer": 1,
+        "explanation": "Standardized code structure enables team members to review, understand, and assess each other's work effectively."
     },
     {
         "id": 107,
         "type": "multiple_choice",
-        "question": "Which tag is for images?",
+        "question": "A project scales poorly. Which factor was MOST neglected?",
         "options": [
-            "<img>",
-            "<picture>",
-            "<src>",
-            "<image>"
+            "CSS animations",
+            "Backend architecture",
+            "HTML comments",
+            "Fonts"
         ],
-        "correct_answer": 0,
-        "explanation": "<img src=\"...\"> is the standard HTML tag for embedding images."
+        "correct_answer": 1,
+        "explanation": "Scalability issues typically stem from backend architecture decisions—database design, server logic, and infrastructure."
     },
     {
         "id": 108,
         "type": "multiple_choice",
-        "question": "Which is a version control system?",
+        "question": "Which design approach BEST supports real-world deployment?",
         "options": [
-            "Git",
-            "Apache",
-            "MySQL",
-            "PHP"
+            "Experimental coding",
+            "Standards-compliant architecture",
+            "Inline styling",
+            "Hard-coded logic"
         ],
-        "correct_answer": 0,
-        "explanation": "Git is a distributed version control system used to track code changes."
+        "correct_answer": 1,
+        "explanation": "Standards compliance ensures compatibility with diverse real-world environments, browsers, and devices."
     },
     {
         "id": 109,
         "type": "multiple_choice",
-        "question": "Which is a CSS framework?",
+        "question": "Why should presentation logic be separated from data logic?",
         "options": [
-            "Bootstrap",
-            "React",
-            "Django",
-            "Laravel"
+            "To increase file size",
+            "To improve maintainability",
+            "To reduce accessibility",
+            "To slow execution"
         ],
-        "correct_answer": 0,
-        "explanation": "Bootstrap is a CSS framework for responsive, mobile-first design."
+        "correct_answer": 1,
+        "explanation": "Separation allows each layer to be modified independently without affecting the other, improving maintainability."
     },
     {
         "id": 110,
         "type": "multiple_choice",
-        "question": "Which is a JavaScript runtime?",
+        "question": "Which development mindset MOST aligns with professional web engineering?",
         "options": [
-            "Node.js",
-            "Apache",
-            "IIS",
-            "Nginx"
+            "Quick fixes",
+            "Long-term maintainability",
+            "Inline scripting",
+            "Minimal documentation"
         ],
-        "correct_answer": 0,
-        "explanation": "Node.js is a JavaScript runtime built on Chrome's V8 engine."
+        "correct_answer": 1,
+        "explanation": "Professional engineering prioritizes sustainable, maintainable solutions over quick fixes that create technical debt."
     },
+    
+    
+    
     {
         "id": 111,
         "type": "multiple_choice",
-        "question": "Which is NOT a valid HTTP method?",
+        "question": "A university website is failing accessibility audits and ranking poorly on search engines. Which HTML redesign decision would MOST effectively address both issues?",
         "options": [
-            "GET",
-            "POST",
-            "FETCH",
-            "DELETE"
+            "Replacing <div> tags with semantic elements",
+            "Increasing font sizes using inline styles",
+            "Embedding JavaScript inside HTML",
+            "Using tables for page layout"
         ],
-        "correct_answer": 2,
-        "explanation": "FETCH is not an HTTP method; it's a JavaScript API. Standard methods include GET, POST, PUT, DELETE, etc."
+        "correct_answer": 0,
+        "explanation": "Semantic HTML (like <header>, <nav>, <main>, <article>) improves accessibility for screen readers and helps search engines better understand content structure, improving both accessibility and SEO simultaneously."
     },
     {
         "id": 112,
         "type": "multiple_choice",
-        "question": "Which is used for responsive images?",
+        "question": "A large web project involves multiple developers. Which HTML practice best supports collaboration and long-term maintenance?",
         "options": [
-            "<picture>",
-            "<div>",
-            "<table>",
-            "<form>"
+            "Using deeply nested <div> elements",
+            "Writing inline HTML styles",
+            "Applying semantic HTML structure",
+            "Embedding PHP directly in HTML"
         ],
-        "correct_answer": 0,
-        "explanation": "<picture> allows multiple image sources for different screen sizes/resolutions."
+        "correct_answer": 2,
+        "explanation": "Semantic HTML creates self-documenting code that all developers can understand intuitively, reducing confusion and making maintenance easier across team members."
     },
     {
         "id": 113,
         "type": "multiple_choice",
-        "question": "Which is a front-end framework?",
+        "question": "A multilingual website struggles with search indexing. Which HTML attribute strategy best resolves this?",
         "options": [
-            "Angular",
-            "Django",
-            "Flask",
-            "Spring"
+            "lang attribute usage",
+            "id attribute consistency",
+            "class naming",
+            "Inline metadata"
         ],
         "correct_answer": 0,
-        "explanation": "Angular is a front-end framework; Django, Flask, and Spring are back-end frameworks."
+        "explanation": "The lang attribute tells search engines and browsers which language content is written in, improving international SEO and enabling proper pronunciation by screen readers."
     },
     {
         "id": 114,
         "type": "multiple_choice",
-        "question": "Which is a semantic HTML5 tag?",
+        "question": "A website breaks on tablets but works on desktops. Which CSS strategy best fixes this issue?",
         "options": [
-            "<section>",
-            "<div>",
-            "<span>",
-            "<bold>"
+            "Fixed widths",
+            "Media queries",
+            "Inline styling",
+            "Absolute positioning"
         ],
-        "correct_answer": 0,
-        "explanation": "<section> is a semantic tag representing a thematic grouping of content."
+        "correct_answer": 1,
+        "explanation": "Media queries allow CSS to apply different styles based on device characteristics like screen width, enabling proper display across tablets, phones, and desktops."
     },
     {
         "id": 115,
         "type": "multiple_choice",
-        "question": "Which is a unit of CSS measurement?",
+        "question": "Why is Flexbox preferred over floats for modern layouts?",
         "options": [
-            "em",
-            "px",
-            "%",
-            "All of the above"
+            "Floats load faster",
+            "Flexbox handles alignment dynamically",
+            "Floats support responsiveness better",
+            "Flexbox removes the need for HTML"
         ],
-        "correct_answer": 3,
-        "explanation": "CSS supports multiple units: em (relative), px (pixels), % (percentage), and more."
+        "correct_answer": 1,
+        "explanation": "Flexbox provides powerful, dynamic alignment and distribution capabilities that adapt to content size and screen dimensions, unlike floats which were designed for text wrapping."
     },
     {
         "id": 116,
         "type": "multiple_choice",
-        "question": "Which is a web security protocol?",
+        "question": "Absolute positioning negatively impacts responsiveness because it:",
         "options": [
-            "HTTPS",
-            "HTTP",
-            "FTP",
-            "SMTP"
+            "Ignores screen size changes",
+            "Breaks JavaScript",
+            "Disables HTML semantics",
+            "Removes accessibility"
         ],
         "correct_answer": 0,
-        "explanation": "HTTPS encrypts data between client and server, providing security."
+        "explanation": "Absolutely positioned elements are removed from normal document flow and positioned relative to their nearest positioned ancestor, making them unresponsive to screen size changes."
     },
     {
         "id": 117,
         "type": "multiple_choice",
-        "question": "Which is a database query language?",
+        "question": "A form submits invalid data repeatedly. Which JavaScript strategy best prevents this?",
         "options": [
-            "SQL",
-            "HTML",
-            "CSS",
-            "JavaScript"
+            "Server-side validation only",
+            "Client-side validation before submission",
+            "Removing form constraints",
+            "Using CSS validation"
         ],
-        "correct_answer": 0,
-        "explanation": "SQL (Structured Query Language) is used to query and manage databases."
+        "correct_answer": 1,
+        "explanation": "Client-side validation provides immediate feedback to users before submission, preventing unnecessary server requests and improving user experience by catching errors instantly."
     },
     {
         "id": 118,
         "type": "multiple_choice",
-        "question": "Which is a static site generator?",
+        "question": "Why is event-driven programming essential in modern web apps?",
         "options": [
-            "Jekyll",
-            "React",
-            "Angular",
-            "Vue"
+            "It reduces HTML size",
+            "It responds dynamically to user actions",
+            "It replaces CSS",
+            "It improves database speed"
         ],
-        "correct_answer": 0,
-        "explanation": "Jekyll is a popular static site generator often used with GitHub Pages."
+        "correct_answer": 1,
+        "explanation": "Event-driven programming allows web applications to react to user interactions (clicks, keystrokes, form submissions) in real-time, creating dynamic and interactive experiences."
     },
     {
         "id": 119,
         "type": "multiple_choice",
-        "question": "Which is used for web animations?",
+        "question": "Why is PHP classified as server-side scripting?",
         "options": [
-            "CSS3",
-            "HTML",
-            "SQL",
-            "FTP"
+            "It runs in the browser",
+            "It executes before content reaches the client",
+            "It styles pages",
+            "It handles CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS3 includes animations and transitions for creating motion effects."
+        "correct_answer": 1,
+        "explanation": "PHP executes on the web server before any content is sent to the browser, generating HTML dynamically and handling server-side operations like database access."
     },
     {
         "id": 120,
         "type": "multiple_choice",
-        "question": "Which is a browser DevTools feature?",
+        "question": "A login system works locally but fails online. Which PHP issue is MOST likely?",
         "options": [
-            "Inspect element",
-            "Compile code",
-            "Run server",
-            "Edit database"
+            "HTML validation",
+            "Server configuration",
+            "CSS conflicts",
+            "JavaScript errors"
         ],
-        "correct_answer": 0,
-        "explanation": "Inspect element allows developers to view and edit HTML/CSS in real-time."
+        "correct_answer": 1,
+        "explanation": "Differences in PHP versions, enabled extensions, error reporting settings, or database configurations between local and production servers commonly cause login failures."
     },
     {
         "id": 121,
         "type": "multiple_choice",
-        "question": "Which is a mobile browser?",
+        "question": "Why should PHP files not expose logic to users?",
         "options": [
-            "Chrome Mobile",
-            "Apache",
-            "MySQL",
-            "PHP"
+            "PHP runs client-side",
+            "PHP executes before response",
+            "PHP improves accessibility",
+            "PHP handles CSS"
         ],
-        "correct_answer": 0,
-        "explanation": "Chrome Mobile is the mobile version of Google Chrome."
+        "correct_answer": 1,
+        "explanation": "PHP executes entirely on the server, so only its output (HTML) reaches the browser—the actual PHP code remains hidden from users, protecting application logic and security."
     },
     {
         "id": 122,
         "type": "multiple_choice",
-        "question": "Which is a web server function?",
+        "question": "A dynamic website fails when JavaScript is disabled. Which design principle was ignored?",
         "options": [
-            "Handle requests",
-            "Style pages",
-            "Animate buttons",
-            "Write content"
+            "Graceful degradation",
+            "Inline styling",
+            "Server caching",
+            "Fixed layout"
         ],
         "correct_answer": 0,
-        "explanation": "Handling HTTP requests is a core function of a web server."
+        "explanation": "Graceful degradation ensures core functionality works even when advanced features fail—without it, sites become completely unusable when JavaScript is disabled."
     },
     {
         "id": 123,
         "type": "multiple_choice",
-        "question": "Which is a functional requirement?",
+        "question": "Why is separation of concerns important in web development?",
         "options": [
-            "User login",
-            "Fast loading",
-            "High security",
-            "Pretty design"
+            "It reduces browser compatibility",
+            "It improves maintainability and scalability",
+            "It increases page size",
+            "It limits functionality"
         ],
-        "correct_answer": 0,
-        "explanation": "User login is a functional requirement; the others are non-functional."
+        "correct_answer": 1,
+        "explanation": "Separating HTML (structure), CSS (presentation), and JavaScript (behavior) makes code easier to understand, debug, and modify independently, improving long-term maintainability."
     },
     {
         "id": 124,
         "type": "multiple_choice",
-        "question": "Which runs a web server?",
+        "question": "A university portal redesign focuses on accessibility, performance, and scalability. Which combined approach best meets these goals?",
         "options": [
-            "Computer with server software",
-            "Browser only",
-            "HTML file",
-            "CSS file"
+            "Table layouts and inline CSS",
+            "Semantic HTML, external CSS, modular JS, server-side PHP",
+            "JavaScript-only rendering",
+            "Embedded styles and scripts"
         ],
-        "correct_answer": 0,
-        "explanation": "A computer with server software (like Apache) can run a web server."
+        "correct_answer": 1,
+        "explanation": "Semantic HTML aids accessibility, external CSS improves performance, modular JavaScript enables scalability, and server-side PHP ensures reliable processing—a comprehensive approach."
     },
     {
         "id": 125,
         "type": "multiple_choice",
-        "question": "Apache is a:",
+        "question": "A site works visually but fails usability testing. Which area was MOST neglected?",
         "options": [
-            "Web server",
-            "Browser",
-            "Database",
-            "Language"
+            "Backend logic",
+            "User experience and accessibility",
+            "Database structure",
+            "Server hosting"
         ],
-        "correct_answer": 0,
-        "explanation": "Apache is a web server, not a browser, database, or programming language."
+        "correct_answer": 1,
+        "explanation": "Visual design alone doesn't guarantee usability—factors like intuitive navigation, clear feedback, and accessibility for all users determine real-world usability."
     },
     {
         "id": 126,
         "type": "multiple_choice",
-        "question": "XHTML is:",
+        "question": "Why is accessibility a core quality metric in web development?",
         "options": [
-            "Stricter than HTML",
-            "A programming language",
-            "A database",
-            "A browser"
+            "It improves aesthetics",
+            "It ensures inclusivity and legal compliance",
+            "It reduces server load",
+            "It replaces usability"
         ],
-        "correct_answer": 0,
-        "explanation": "XHTML has stricter syntax rules compared to HTML."
+        "correct_answer": 1,
+        "explanation": "Accessibility ensures people with disabilities can use websites, which is both ethically important and legally required in many jurisdictions (like Section 508, ADA, WCAG)."
     },
     {
         "id": 127,
         "type": "multiple_choice",
-        "question": "CSS is used for:",
+        "question": "Which development choice MOST improves maintainability?",
         "options": [
-            "Styling",
-            "Storing data",
-            "Server logic",
-            "Database queries"
+            "Inline styling",
+            "Clear separation of technologies",
+            "Embedded scripts",
+            "Table layouts"
         ],
-        "correct_answer": 0,
-        "explanation": "CSS is used solely for styling web pages."
+        "correct_answer": 1,
+        "explanation": "Clear separation of HTML, CSS, and JavaScript allows each layer to be modified independently without unintended side effects, making maintenance significantly easier."
     },
     {
         "id": 128,
         "type": "multiple_choice",
-        "question": "Semantic HTML helps:",
+        "question": "Which practice BEST ensures long-term project success?",
         "options": [
-            "Accessibility",
-            "Speed only",
-            "Server security",
-            "Image compression"
+            "Rapid coding",
+            "Standards-based development",
+            "Hard-coded solutions",
+            "Minimal documentation"
         ],
-        "correct_answer": 0,
-        "explanation": "Semantic HTML improves accessibility for screen readers and assistive technologies."
+        "correct_answer": 1,
+        "explanation": "Following web standards ensures compatibility with future browsers and devices, making projects more sustainable and adaptable over the long term."
     },
     {
         "id": 129,
         "type": "multiple_choice",
-        "question": "Web system components include:",
+        "question": "A poorly structured project MOST affects which phase?",
         "options": [
-            "Client, server, database",
-            "Mouse, screen, keyboard",
-            "Router, modem, cable",
-            "HTML, CSS, JS (only)"
+            "Deployment",
+            "Maintenance",
+            "Hosting",
+            "Rendering"
         ],
-        "correct_answer": 0,
-        "explanation": "A web system typically includes client (UI), server (logic), and database (storage)."
+        "correct_answer": 1,
+        "explanation": "Poor structure makes maintenance extremely difficult and costly—fixing bugs, adding features, and understanding code become time-consuming and error-prone."
     },
     {
         "id": 130,
         "type": "multiple_choice",
-        "question": "Modern web frameworks include:",
+        "question": "Which technology combination BEST supports interactive, secure websites?",
         "options": [
-            "React",
-            "Apache",
-            "MySQL",
-            "PHP"
+            "HTML + CSS",
+            "HTML + CSS + JavaScript + PHP",
+            "CSS + PHP",
+            "JavaScript only"
         ],
-        "correct_answer": 0,
-        "explanation": "React is a modern JavaScript framework for building user interfaces."
+        "correct_answer": 1,
+        "explanation": "This full stack provides structure (HTML), presentation (CSS), client-side interaction (JavaScript), and server-side security/processing (PHP)—all essential for modern web apps."
     },
     {
         "id": 131,
         "type": "multiple_choice",
-        "question": "Which is NOT a browser?",
+        "question": "A website fails compliance audits. Which aspect was MOST likely ignored?",
         "options": [
-            "MongoDB",
-            "Edge",
-            "Opera",
-            "Brave"
+            "Color schemes",
+            "Accessibility standards",
+            "Image resolution",
+            "Fonts"
         ],
-        "correct_answer": 0,
-        "explanation": "MongoDB is a NoSQL database, not a web browser."
+        "correct_answer": 1,
+        "explanation": "Accessibility standards (like WCAG 2.1) are common compliance requirements that are frequently overlooked, leading to failed audits and potential legal issues."
     },
     {
         "id": 132,
         "type": "multiple_choice",
-        "question": "Which is a web server?",
+        "question": "Which design practice MOST improves scalability?",
         "options": [
-            "Nginx",
-            "Chrome",
-            "Firefox",
-            "Safari"
+            "Fixed layouts",
+            "Modular codebase",
+            "Inline styles",
+            "Embedded scripts"
         ],
-        "correct_answer": 0,
-        "explanation": "Nginx is a web server; the others are browsers."
+        "correct_answer": 1,
+        "explanation": "A modular codebase allows components to be developed, tested, and scaled independently, making it easier to handle growth in features and user traffic."
     },
     {
         "id": 133,
         "type": "multiple_choice",
-        "question": "Which is a responsive design tool?",
+        "question": "Why is testing across devices essential?",
         "options": [
-            "Media queries",
-            "Java",
-            "SQL",
-            "FTP"
+            "Devices are similar",
+            "User contexts vary",
+            "It reduces CSS",
+            "It removes JavaScript"
         ],
-        "correct_answer": 0,
-        "explanation": "Media queries are a CSS feature used to create responsive designs."
+        "correct_answer": 1,
+        "explanation": "Users access websites on diverse devices with different screen sizes, capabilities, and contexts—testing ensures quality experiences across this variety."
     },
     {
         "id": 134,
         "type": "multiple_choice",
-        "question": "Which is a backend language?",
+        "question": "Which principle MOST supports future maintenance?",
         "options": [
-            "Python",
-            "HTML",
-            "CSS",
-            "XML"
+            "Fast coding",
+            "Clean architecture",
+            "Inline scripts",
+            "Fixed designs"
         ],
-        "correct_answer": 0,
-        "explanation": "Python is commonly used for backend development; HTML/CSS/XML are front-end/markup."
+        "correct_answer": 1,
+        "explanation": "Clean architecture with well-organized, loosely coupled components makes future maintenance significantly easier by reducing complexity and dependencies."
     },
     {
         "id": 135,
         "type": "multiple_choice",
-        "question": "Which is a front-end language?",
-        "options": [
-            "JavaScript",
-            "PHP",
-            "SQL",
-            "Java"
-        ],
-        "correct_answer": 0,
-        "explanation": "JavaScript is the primary language for front-end web development."
-    },
-    {
-        "id": 136,
-        "type": "multiple_choice",
-        "question": "Which is a version control platform?",
-        "options": [
-            "GitHub",
-            "Apache",
-            "MySQL",
-            "IIS"
-        ],
-        "correct_answer": 0,
-        "explanation": "GitHub is a platform for hosting Git repositories and version control."
-    },
-    {
-        "id": 137,
-        "type": "multiple_choice",
-        "question": "Which is a CSS preprocessor?",
-        "options": [
-            "Sass",
-            "React",
-            "Node.js",
-            "MongoDB"
-        ],
-        "correct_answer": 0,
-        "explanation": "Sass is a CSS preprocessor that adds features like variables and nesting."
-    },
-    {
-        "id": 138,
-        "type": "multiple_choice",
-        "question": "Which is a JavaScript library?",
-        "options": [
-            "jQuery",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "jQuery is a JavaScript library that simplifies DOM manipulation and events."
-    },
-    {
-        "id": 139,
-        "type": "multiple_choice",
-        "question": "Which is an API type?",
-        "options": [
-            "REST",
-            "CSS",
-            "HTML",
-            "FTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "REST (Representational State Transfer) is an architectural style for APIs."
-    },
-    {
-        "id": 140,
-        "type": "multiple_choice",
-        "question": "Which is a hosting service?",
-        "options": [
-            "AWS",
-            "Photoshop",
-            "Word",
-            "Excel"
-        ],
-        "correct_answer": 0,
-        "explanation": "AWS (Amazon Web Services) provides cloud hosting and infrastructure."
-    },
-    {
-        "id": 141,
-        "type": "multiple_choice",
-        "question": "Which is a web standard organization?",
-        "options": [
-            "W3C",
-            "WHO",
-            "NASA",
-            "UN"
-        ],
-        "correct_answer": 0,
-        "explanation": "W3C (World Wide Web Consortium) develops web standards like HTML and CSS."
-    },
-    {
-        "id": 142,
-        "type": "multiple_choice",
-        "question": "Which HTML tag is for a list?",
-        "options": [
-            "<ul>",
-            "<list>",
-            "<ol>",
-            "Both A & C"
-        ],
-        "correct_answer": 3,
-        "explanation": "<ul> (unordered list) and <ol> (ordered list) are both used for lists."
-    },
-    {
-        "id": 143,
-        "type": "multiple_choice",
-        "question": "Which is a meta tag attribute?",
-        "options": [
-            "charset",
-            "color",
-            "size",
-            "width"
-        ],
-        "correct_answer": 0,
-        "explanation": "<meta charset=\"UTF-8\"> defines the character encoding for an HTML document."
-    },
-    {
-        "id": 144,
-        "type": "multiple_choice",
-        "question": "Which is a CSS selector?",
-        "options": [
-            ".class",
-            "#id",
-            "tag",
-            "All of the above"
-        ],
-        "correct_answer": 3,
-        "explanation": "CSS supports class selectors (.class), ID selectors (#id), and tag selectors (e.g., div)."
-    },
-    {
-        "id": 145,
-        "type": "multiple_choice",
-        "question": "Which HTTP status means “Not Found”?",
-        "options": [
-            "404",
-            "200",
-            "500",
-            "301"
-        ],
-        "correct_answer": 0,
-        "explanation": "404 is the HTTP status code for “Not Found.”"
-    },
-    {
-        "id": 146,
-        "type": "multiple_choice",
-        "question": "Which is a JavaScript framework?",
-        "options": [
-            "React",
-            "Django",
-            "Rails",
-            "Laravel"
-        ],
-        "correct_answer": 0,
-        "explanation": "React is a JavaScript framework; Django, Rails, and Laravel are back-end frameworks."
-    },
-    {
-        "id": 147,
-        "type": "multiple_choice",
-        "question": "Which is a NoSQL DB?",
-        "options": [
-            "MongoDB",
-            "PostgreSQL",
-            "MySQL",
-            "SQLite"
-        ],
-        "correct_answer": 0,
-        "explanation": "MongoDB is a NoSQL document database."
-    },
-    {
-        "id": 148,
-        "type": "multiple_choice",
-        "question": "Which is a web security risk?",
-        "options": [
-            "XSS",
-            "CSS",
-            "HTML",
-            "FTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "XSS (Cross-Site Scripting) is a common web security vulnerability."
-    },
-    {
-        "id": 149,
-        "type": "multiple_choice",
-        "question": "Which is a responsive CSS framework?",
-        "options": [
-            "Bootstrap",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Bootstrap is a CSS framework designed for responsive, mobile-first development."
-    },
-    {
-        "id": 150,
-        "type": "multiple_choice",
-        "question": "Which is a build tool?",
-        "options": [
-            "Webpack",
-            "Chrome",
-            "Apache",
-            "MySQL"
-        ],
-        "correct_answer": 0,
-        "explanation": "Webpack is a module bundler and build tool for JavaScript applications."
-    },
-    {
-        "id": 151,
-        "type": "multiple_choice",
-        "question": "Which is a CMS?",
-        "options": [
-            "WordPress",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "WordPress is a popular Content Management System (CMS)."
-    },
-    {
-        "id": 152,
-        "type": "multiple_choice",
-        "question": "Which is a web socket protocol?",
-        "options": [
-            "WS",
-            "HTTP",
-            "FTP",
-            "SMTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "WS (WebSocket) enables full-duplex communication between client and server."
-    },
-    {
-        "id": 153,
-        "type": "multiple_choice",
-        "question": "Which is a browser storage option?",
-        "options": [
-            "LocalStorage",
-            "ServerStorage",
-            "CSSStorage",
-            "HTMLStorage"
-        ],
-        "correct_answer": 0,
-        "explanation": "LocalStorage is a web API for storing key-value pairs in the browser."
-    },
-    {
-        "id": 154,
-        "type": "multiple_choice",
-        "question": "Which is a DevOps tool?",
-        "options": [
-            "Docker",
-            "Photoshop",
-            "Word",
-            "Excel"
-        ],
-        "correct_answer": 0,
-        "explanation": "Docker is a containerization platform used in DevOps for deployment and scaling."
-    },
-    {
-        "id": 155,
-        "type": "multiple_choice",
-        "question": "Which is a testing framework?",
-        "options": [
-            "Jest",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Jest is a JavaScript testing framework often used with React."
-    },
-    {
-        "id": 156,
-        "type": "multiple_choice",
-        "question": "Which is a web performance metric?",
-        "options": [
-            "Page load time",
-            "Image size",
-            "Color depth",
-            "Font style"
-        ],
-        "correct_answer": 0,
-        "explanation": "Page load time is a key performance metric affecting user experience and SEO."
-    },
-    {
-        "id": 157,
-        "type": "multiple_choice",
-        "question": "Which is a CDN?",
-        "options": [
-            "Cloudflare",
-            "Photoshop",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Cloudflare is a Content Delivery Network (CDN) that speeds up content delivery."
-    },
-    {
-        "id": 158,
-        "type": "multiple_choice",
-        "question": "Which is a web authentication method?",
-        "options": [
-            "OAuth",
-            "CSS",
-            "HTML",
-            "FTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "OAuth is an open standard for access delegation, commonly used for authentication."
-    },
-    {
-        "id": 159,
-        "type": "multiple_choice",
-        "question": "Which is a web animation library?",
-        "options": [
-            "GreenSock (GSAP)",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "GreenSock Animation Platform (GSAP) is a JavaScript library for high-performance animations."
-    },
-    {
-        "id": 160,
-        "type": "multiple_choice",
-        "question": "Which is a static typing language for web?",
-        "options": [
-            "TypeScript",
-            "JavaScript",
-            "HTML",
-            "CSS"
-        ],
-        "correct_answer": 0,
-        "explanation": "TypeScript is a superset of JavaScript that adds static typing."
-    },
-    {
-        "id": 161,
-        "type": "multiple_choice",
-        "question": "Which is a module bundler?",
-        "options": [
-            "Webpack",
-            "Git",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Webpack bundles JavaScript modules and assets for deployment."
-    },
-    {
-        "id": 162,
-        "type": "multiple_choice",
-        "question": "Which is a task runner?",
-        "options": [
-            "Gulp",
-            "Chrome",
-            "Apache",
-            "MySQL"
-        ],
-        "correct_answer": 0,
-        "explanation": "Gulp is a task runner that automates tasks like minification and compilation."
-    },
-    {
-        "id": 163,
-        "type": "multiple_choice",
-        "question": "Which is a CSS naming methodology?",
-        "options": [
-            "BEM",
-            "SEO",
-            "HTTP",
-            "FTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "BEM (Block Element Modifier) is a CSS naming convention for scalable and maintainable code."
-    },
-    {
-        "id": 164,
-        "type": "multiple_choice",
-        "question": "Which is a web accessibility guideline?",
-        "options": [
-            "WCAG",
-            "GDPR",
-            "HTML5",
-            "CSS3"
-        ],
-        "correct_answer": 0,
-        "explanation": "WCAG (Web Content Accessibility Guidelines) provides standards for accessible web content."
-    },
-    {
-        "id": 165,
-        "type": "multiple_choice",
-        "question": "Which is a web crawler?",
-        "options": [
-            "Googlebot",
-            "Chrome",
-            "Firefox",
-            "Safari"
-        ],
-        "correct_answer": 0,
-        "explanation": "Googlebot is Google's web crawler that indexes web pages for search."
-    },
-    {
-        "id": 166,
-        "type": "multiple_choice",
-        "question": "Which is a real-time database?",
-        "options": [
-            "Firebase",
-            "MySQL",
-            "PostgreSQL",
-            "SQLite"
-        ],
-        "correct_answer": 0,
-        "explanation": "Firebase offers a real-time NoSQL database that syncs data across clients."
-    },
-    {
-        "id": 167,
-        "type": "multiple_choice",
-        "question": "Which is a serverless platform?",
-        "options": [
-            "AWS Lambda",
-            "Apache",
-            "IIS",
-            "Nginx"
-        ],
-        "correct_answer": 0,
-        "explanation": "AWS Lambda allows running code without provisioning servers (serverless computing)."
-    },
-    {
-        "id": 168,
-        "type": "multiple_choice",
-        "question": "Which is a web assembly language?",
-        "options": [
-            "WebAssembly (Wasm)",
-            "HTML",
-            "CSS",
-            "JavaScript"
-        ],
-        "correct_answer": 0,
-        "explanation": "WebAssembly is a binary instruction format for running code on the web at near-native speed."
-    },
-    {
-        "id": 169,
-        "type": "multiple_choice",
-        "question": "Which is a graph-based query language?",
-        "options": [
-            "GraphQL",
-            "SQL",
-            "HTML",
-            "CSS"
-        ],
-        "correct_answer": 0,
-        "explanation": "GraphQL is a query language for APIs that allows clients to request specific data."
-    },
-    {
-        "id": 170,
-        "type": "multiple_choice",
-        "question": "Which is a mobile-first framework?",
-        "options": [
-            "Bootstrap",
-            "jQuery",
-            "Angular",
-            "React"
-        ],
-        "correct_answer": 0,
-        "explanation": "Bootstrap is designed with a mobile-first approach to responsive design."
-    },
-    {
-        "id": 171,
-        "type": "multiple_choice",
-        "question": "Which is a CSS grid property?",
-        "options": [
-            "grid-template-columns",
-            "flex-direction",
-            "float",
-            "position"
-        ],
-        "correct_answer": 0,
-        "explanation": "grid-template-columns is a CSS Grid property that defines the columns in a grid layout."
-    },
-    {
-        "id": 172,
-        "type": "multiple_choice",
-        "question": "Which is a pseudo-class?",
-        "options": [
-            ":hover",
-            "::before",
-            "#id",
-            ".class"
-        ],
-        "correct_answer": 0,
-        "explanation": ":hover is a CSS pseudo-class that applies styles when an element is hovered over."
-    },
-    {
-        "id": 173,
-        "type": "multiple_choice",
-        "question": "Which is an HTML5 API?",
-        "options": [
-            "Geolocation API",
-            "CSS API",
-            "SQL API",
-            "FTP API"
-        ],
-        "correct_answer": 0,
-        "explanation": "The Geolocation API allows websites to access the user's geographic location."
-    },
-    {
-        "id": 174,
-        "type": "multiple_choice",
-        "question": "Which is a web worker?",
-        "options": [
-            "JavaScript running in background",
-            "HTML tag",
-            "CSS property",
-            "Server script"
-        ],
-        "correct_answer": 0,
-        "explanation": "Web Workers run JavaScript in background threads to avoid blocking the main thread."
-    },
-    {
-        "id": 175,
-        "type": "multiple_choice",
-        "question": "Which is a web storage type?",
-        "options": [
-            "SessionStorage",
-            "ServerStorage",
-            "SQLStorage",
-            "CSSStorage"
-        ],
-        "correct_answer": 0,
-        "explanation": "SessionStorage stores data for the duration of a page session."
-    },
-    {
-        "id": 176,
-        "type": "multiple_choice",
-        "question": "Which is a CSS framework for utilities?",
-        "options": [
-            "Tailwind CSS",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Tailwind CSS is a utility-first CSS framework for rapid UI development."
-    },
-    {
-        "id": 177,
-        "type": "multiple_choice",
-        "question": "Which is a state management library?",
-        "options": [
-            "Redux",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Redux is a state management library commonly used with React."
-    },
-    {
-        "id": 178,
-        "type": "multiple_choice",
-        "question": "Which is a webpack loader?",
-        "options": [
-            "babel-loader",
-            "html-loader",
-            "css-loader",
-            "All of the above"
-        ],
-        "correct_answer": 3,
-        "explanation": "Webpack uses loaders like babel-loader, html-loader, and css-loader to process different file types."
-    },
-    {
-        "id": 179,
-        "type": "multiple_choice",
-        "question": "Which is a testing library for React?",
-        "options": [
-            "React Testing Library",
-            "Jest",
-            "Mocha",
-            "All can be used"
-        ],
-        "correct_answer": 3,
-        "explanation": "React can be tested with React Testing Library, Jest, Mocha, and other tools."
-    },
-    {
-        "id": 180,
-        "type": "multiple_choice",
-        "question": "Which is a package manager for JavaScript?",
-        "options": [
-            "npm",
-            "pip",
-            "apt",
-            "yum"
-        ],
-        "correct_answer": 0,
-        "explanation": "npm (Node Package Manager) is the default package manager for JavaScript and Node.js."
-    },
-    {
-        "id": 181,
-        "type": "multiple_choice",
-        "question": "Which is a mobile development framework?",
-        "options": [
-            "React Native",
-            "Angular",
-            "Vue",
-            "jQuery"
-        ],
-        "correct_answer": 0,
-        "explanation": "React Native is a framework for building native mobile apps using React."
-    },
-    {
-        "id": 182,
-        "type": "multiple_choice",
-        "question": "Which is a desktop app framework using web tech?",
-        "options": [
-            "Electron",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Electron allows building cross-platform desktop apps with HTML, CSS, and JavaScript."
-    },
-    {
-        "id": 183,
-        "type": "multiple_choice",
-        "question": "Which is a web performance optimization?",
-        "options": [
-            "Lazy loading",
-            "Increasing image size",
-            "Using more animations",
-            "Adding more HTTP requests"
-        ],
-        "correct_answer": 0,
-        "explanation": "Lazy loading delays loading of non-critical resources to improve performance."
-    },
-    {
-        "id": 184,
-        "type": "multiple_choice",
-        "question": "Which is a web security header?",
-        "options": [
-            "Content-Security-Policy",
-            "Color-Scheme",
-            "Font-Family",
-            "Background-Color"
-        ],
-        "correct_answer": 0,
-        "explanation": "Content-Security-Policy helps prevent XSS attacks by restricting resources."
-    },
-    {
-        "id": 185,
-        "type": "multiple_choice",
-        "question": "Which is a progressive web app (PWA) feature?",
-        "options": [
-            "Offline support",
-            "Server-side rendering only",
-            "No JavaScript",
-            "Flash required"
-        ],
-        "correct_answer": 0,
-        "explanation": "PWAs can work offline using service workers and cached resources."
-    },
-    {
-        "id": 186,
-        "type": "multiple_choice",
-        "question": "Which is a web authentication protocol?",
-        "options": [
-            "JWT",
-            "CSS",
-            "HTML",
-            "FTP"
-        ],
-        "correct_answer": 0,
-        "explanation": "JWT (JSON Web Tokens) is used for securely transmitting information between parties."
-    },
-    {
-        "id": 187,
-        "type": "multiple_choice",
-        "question": "Which is a web push notification service?",
-        "options": [
-            "Firebase Cloud Messaging",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Firebase Cloud Messaging (FCM) sends push notifications to web and mobile apps."
-    },
-    {
-        "id": 188,
-        "type": "multiple_choice",
-        "question": "Which is a web performance testing tool?",
-        "options": [
-            "Lighthouse",
-            "Photoshop",
-            "Word",
-            "Excel"
-        ],
-        "correct_answer": 0,
-        "explanation": "Lighthouse is an automated tool for auditing performance, accessibility, and SEO."
-    },
-    {
-        "id": 189,
-        "type": "multiple_choice",
-        "question": "Which is a CSS-in-JS library?",
-        "options": [
-            "Styled-components",
-            "Bootstrap",
-            "Tailwind",
-            "Sass"
-        ],
-        "correct_answer": 0,
-        "explanation": "Styled-components is a library for writing CSS in JavaScript."
-    },
-    {
-        "id": 190,
-        "type": "multiple_choice",
-        "question": "Which is a static site deployment platform?",
-        "options": [
-            "Netlify",
-            "Apache",
-            "IIS",
-            "Nginx"
-        ],
-        "correct_answer": 0,
-        "explanation": "Netlify is a platform for deploying static sites and serverless functions."
-    },
-    {
-        "id": 191,
-        "type": "multiple_choice",
-        "question": "Which is a web analytics tool?",
-        "options": [
-            "Google Analytics",
-            "Photoshop",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Google Analytics tracks and reports website traffic and user behavior."
-    },
-    {
-        "id": 192,
-        "type": "multiple_choice",
-        "question": "Which is a web design software?",
-        "options": [
-            "Figma",
-            "Apache",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Figma is a collaborative web-based design tool for UI/UX design."
-    },
-    {
-        "id": 193,
-        "type": "multiple_choice",
-        "question": "Which is a web accessibility tool?",
-        "options": [
-            "axe DevTools",
-            "Photoshop",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "axe DevTools is a browser extension for accessibility testing and audits."
-    },
-    {
-        "id": 194,
-        "type": "multiple_choice",
-        "question": "Which is a web scraping library?",
-        "options": [
-            "Puppeteer",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Puppeteer is a Node.js library for controlling headless Chrome and automating scraping."
-    },
-    {
-        "id": 195,
-        "type": "multiple_choice",
-        "question": "Which is a web game development framework?",
-        "options": [
-            "Phaser",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Phaser is a popular HTML5 game framework for building 2D games."
-    },
-    {
-        "id": 196,
-        "type": "multiple_choice",
-        "question": "Which is a web mapping library?",
-        "options": [
-            "Leaflet",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "Leaflet is a JavaScript library for interactive maps."
-    },
-    {
-        "id": 197,
-        "type": "multiple_choice",
-        "question": "Which is a web data visualization library?",
-        "options": [
-            "D3.js",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "D3.js is a powerful library for creating data visualizations with HTML, SVG, and CSS."
-    },
-    {
-        "id": 198,
-        "type": "multiple_choice",
-        "question": "Which is a web payment API?",
-        "options": [
-            "Payment Request API",
-            "CSS Payment",
-            "HTML Pay",
-            "FTP Pay"
-        ],
-        "correct_answer": 0,
-        "explanation": "Payment Request API is a web standard for streamlining online payments."
-    },
-    {
-        "id": 199,
-        "type": "multiple_choice",
-        "question": "Which is a web AR/VR library?",
-        "options": [
-            "A-Frame",
-            "React",
-            "Angular",
-            "Vue"
-        ],
-        "correct_answer": 0,
-        "explanation": "A-Frame is a web framework for building VR experiences using HTML."
-    },
-    {
-        "id": 200,
-        "type": "multiple_choice",
-        "question": "Which is a web automation tool?",
-        "options": [
-            "Selenium",
-            "Photoshop",
-            "MySQL",
-            "PHP"
-        ],
-        "correct_answer": 0,
-        "explanation": "Selenium is a tool for automating web browsers, used for testing and scraping."
+        "question": "Which factor MOST improves security posture?",
+        "options": [
+            "Styling",
+            "Server-side validation",
+            "Fonts",
+            "Layout"
+        ],
+        "correct_answer": 1,
+        "explanation": "Server-side validation is the most critical security measure—unlike client-side validation, it cannot be bypassed and provides the final defense against malicious input."
     }
+
+    
+
 ]
 }
