@@ -1803,10 +1803,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML5 element is used specifically for navigation links?",
         "options": [
-            " <navigation> ",
-            " <nav> ",
-            " <menu> ",
-            " <links> "
+            
+            "&lt;navigation&gt;",
+            "&lt;nav&gt;",
+            "&lt;menu&gt;",
+            "&lt;links&gt;"
         ],
         "correct_answer": 1,
         "explanation": "<nav> is the semantic HTML5 element specifically designed for navigation sections containing menus and links."
@@ -1907,10 +1908,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML element contains metadata about the document?",
         "options": [
-            " <meta> ",
-            " <head> ",
-            " <body> ",
-            " <footer> "
+            
+            "&lt;meta&gt; ",
+            "&lt;head&gt; ",
+            "&lt;body&gt; ",
+            "&lt;footer&gt; "
         ],
         "correct_answer": 1,
         "explanation": "The <head> element contains metadata about the document, including title, links to CSS, meta tags, and scripts."
@@ -1959,10 +1961,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML tag is used to embed JavaScript code?",
         "options": [
-            " <js> ",
-            " <javascript> ",
-            " <script> ",
-            " <code> "
+
+            "&lt;js&gt;",
+            "&lt;javascript&gt;",
+            "&lt;script&gt;",
+            "&lt;code&gt;"
         ],
         "correct_answer": 2,
         "explanation": "The <script> tag is used to embed or reference JavaScript code within an HTML document."
