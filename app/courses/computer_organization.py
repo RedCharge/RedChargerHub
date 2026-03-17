@@ -6,789 +6,1440 @@ computer_organization_quiz = {
         # Multiple Choice Questions (1-25)
         
     
+    
     {
         "id": 1,
         "type": "multiple_choice",
-        "question": "A computer where both program instructions and data share the same memory and bus is based on",
+        "question": "What is a stored-program computer?",
         "options": [
-            "Harvard architecture",
-            "Von Neumann architecture",
-            "Parallel architecture",
-            "Distributed architecture"
+            "A computer where programs are permanently wired into hardware",
+            "A computer that stores both instructions and data in the same memory",
+            "A computer that runs only one program at a time",
+            "A computer that stores programs only in external storage"
         ],
         "correct_answer": 1,
-        "explanation": "The Von Neumann architecture is characterized by a single shared memory space and bus for both instructions and data."
+        "explanation": "A stored-program computer is defined by its ability to store both the program instructions and the data they operate on in the same memory space."
     },
     {
         "id": 2,
         "type": "multiple_choice",
-        "question": "The main performance limitation in Von Neumann architecture occurs because",
+        "question": "Which statement best describes the Von Neumann architecture?",
         "options": [
-            "memory is too large",
-            "instructions are too small",
-            "data and instructions share one bus",
-            "there is no cache"
+            "Separate memory for data and instructions",
+            "Uses two processors simultaneously",
+            "Data and instructions share the same memory and bus",
+            "Programs cannot be modified once stored"
         ],
         "correct_answer": 2,
-        "explanation": "The shared bus creates a bottleneck, often called the Von Neumann bottleneck, as instructions and data compete for the same pathway, limiting throughput."
+        "explanation": "The Von Neumann architecture is characterized by a single, shared memory space and a single bus for transferring both instructions and data."
     },
     {
         "id": 3,
         "type": "multiple_choice",
-        "question": "Harvard architecture improves performance mainly because",
+        "question": "What is the main feature of Harvard architecture?",
         "options": [
-            "it removes RAM",
-            "it separates data and instruction paths",
-            "it increases voltage",
-            "it reduces registers"
+            "Instructions and data share the same memory",
+            "Instructions and data use separate memory systems",
+            "Programs run only in cache memory",
+            "Programs are hardwired"
         ],
         "correct_answer": 1,
-        "explanation": "By using separate memory and buses for instructions and data, the CPU can fetch both simultaneously, reducing wait times and improving performance."
+        "explanation": "The Harvard architecture's defining feature is the use of physically separate storage and signal pathways for instructions and data."
     },
     {
         "id": 4,
         "type": "multiple_choice",
-        "question": "Moore's Law predicts that over time",
+        "question": "Moore’s Law states that:",
         "options": [
-            "transistor count decreases",
-            "processor speed remains constant",
-            "transistor count doubles about every two years",
-            "memory disappears"
+            "Processor speed doubles every year",
+            "The number of transistors on a chip roughly doubles every two years",
+            "Memory size doubles every month",
+            "Computers become slower as they get smaller"
         ],
-        "correct_answer": 2,
-        "explanation": "Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, though it's more of a trend than a physical law."
+        "correct_answer": 1,
+        "explanation": "Moore's Law is the observation that the number of transistors in a dense integrated circuit doubles about every two years."
     },
     {
         "id": 5,
         "type": "multiple_choice",
-        "question": "According to Amdahl's Law, if only 30 percent of a system is improved, the overall speed gain will",
+        "question": "According to Amdahl’s Law:",
         "options": [
-            "be unlimited",
-            "depend on the unimproved portion",
-            "double automatically",
-            "ignore slow components"
+            "Overall system performance depends on the slowest component",
+            "System speed improvement is limited by the portion that cannot be improved",
+            "Memory capacity limits processor speed",
+            "Performance depends only on processor frequency"
         ],
         "correct_answer": 1,
-        "explanation": "Amdahl's Law states that the overall speedup is limited by the portion of the system that cannot be improved. The unimproved part becomes the bottleneck."
+        "explanation": "Amdahl's Law is used to find the maximum expected improvement to an overall system when only part of the system is improved. It highlights the diminishing returns of optimizing a portion of a workload."
     },
     {
         "id": 6,
         "type": "multiple_choice",
-        "question": "Little's Law shows that system performance depends on",
+        "question": "Little’s Law in computing systems relates:",
         "options": [
-            "temperature and voltage",
-            "number of tasks and time spent in system",
-            "transistor size only",
-            "clock speed only"
+            "Processing speed and power consumption",
+            "System throughput, number of tasks, and response time",
+            "Cache size and memory size",
+            "CPU frequency and instruction set"
         ],
         "correct_answer": 1,
-        "explanation": "Little's Law (L = λW) states that the average number of tasks in a system (L) is equal to the average arrival rate (λ) multiplied by the average time a task spends in the system (W)."
+        "explanation": "Little's Law describes the relationship between the average number of items in a system (L), the average arrival rate of items (λ), and the average time an item spends in the system (W), expressed as L = λW."
     },
     {
         "id": 7,
         "type": "multiple_choice",
-        "question": "An embedded system is best described as a computer that",
+        "question": "What is an embedded system?",
         "options": [
-            "runs many operating systems",
-            "performs a dedicated function inside a larger device",
-            "stores unlimited data",
-            "replaces servers"
+            "A computer designed for general-purpose computing",
+            "A computer system built to perform a specific dedicated function",
+            "A computer with multiple processors",
+            "A computer used only for networking"
         ],
         "correct_answer": 1,
-        "explanation": "Embedded systems are specialized computing systems designed for specific control functions within larger systems, often with real-time computing constraints."
+        "explanation": "An embedded system is a specialized computer system designed for a dedicated function, often with real-time computing constraints, and is embedded as part of a complete device."
     },
     {
         "id": 8,
         "type": "multiple_choice",
-        "question": "ARM processors are widely used in embedded systems because they",
+        "question": "Which processor type is most commonly used in embedded systems?",
         "options": [
-            "consume high power",
-            "are designed for low power and efficiency",
-            "are magnetic",
-            "are mechanical"
+            "ARM processors",
+            "Quantum processors",
+            "Mainframe processors",
+            "GPU processors"
         ],
-        "correct_answer": 1,
-        "explanation": "ARM processors utilize a RISC architecture known for its low power consumption and high energy efficiency, making them ideal for battery-powered and heat-sensitive embedded devices."
+        "correct_answer": 0,
+        "explanation": "ARM processors are the most widely used architecture in embedded systems due to their low power consumption and high performance for mobile and dedicated applications."
     },
     {
         "id": 9,
         "type": "multiple_choice",
-        "question": "Registers are implemented using flip flops because flip flops",
+        "question": "A register in a processor is primarily made up of:",
         "options": [
-            "store analog signals",
-            "store binary values reliably and quickly",
-            "reduce disk space",
-            "generate clock pulses"
+            "Magnetic disks",
+            "Flip-flops",
+            "Capacitors",
+            "Optical cells"
         ],
         "correct_answer": 1,
-        "explanation": "Flip-flops are bistable circuits that can hold a binary state (0 or 1) indefinitely until changed, making them the fundamental building blocks for fast, reliable storage in registers."
+        "explanation": "Registers are small, fast storage locations within the CPU, typically implemented using flip-flops, which are circuits that can store a single bit of data."
     },
     {
         "id": 10,
         "type": "multiple_choice",
-        "question": "During instruction execution, the Program Counter contains",
+        "question": "Why are registers used in a CPU?",
         "options": [
-            "the result of arithmetic",
-            "the next instruction address",
-            "memory data",
-            "parity bits"
+            "To permanently store programs",
+            "To provide high-speed temporary storage for instructions and data",
+            "To replace RAM",
+            "To store operating systems"
         ],
         "correct_answer": 1,
-        "explanation": "The Program Counter (PC) is a special-purpose register that holds the memory address of the next instruction to be fetched and executed."
+        "explanation": "Registers are the top of the memory hierarchy, providing the fastest possible access to data and instructions that the CPU is currently processing."
     },
     {
         "id": 11,
         "type": "multiple_choice",
-        "question": "The Instruction Register holds the instruction that is",
+        "question": "Which register holds the address of the next instruction?",
         "options": [
-            "about to be written to disk",
-            "currently being decoded or executed",
-            "stored in cache permanently",
-            "erased from memory"
+            "Instruction Register",
+            "Memory Address Register",
+            "Program Counter",
+            "Accumulator"
         ],
-        "correct_answer": 1,
-        "explanation": "The Instruction Register (IR) stores the current instruction fetched from memory while it is being decoded and executed by the control unit."
+        "correct_answer": 2,
+        "explanation": "The Program Counter (PC), also called the instruction pointer, contains the memory address of the next instruction to be fetched and executed."
     },
     {
         "id": 12,
         "type": "multiple_choice",
-        "question": "The MAR is directly connected to the",
+        "question": "Which register stores the current instruction being executed?",
         "options": [
-            "data bus only",
-            "control bus only",
-            "address bus",
-            "printer"
+            "Instruction Register",
+            "Memory Buffer Register",
+            "Program Counter",
+            "Status Register"
         ],
-        "correct_answer": 2,
-        "explanation": "The Memory Address Register (MAR) holds the address of a memory location to be accessed. It is directly connected to the address bus, which carries this address to memory."
+        "correct_answer": 0,
+        "explanation": "The Instruction Register (IR) holds the current instruction that has been fetched from memory and is being decoded and executed by the control unit."
     },
     {
         "id": 13,
         "type": "multiple_choice",
-        "question": "The MDR temporarily holds",
+        "question": "The accumulator register is mainly used for:",
         "options": [
-            "memory addresses",
-            "data read from or written to memory",
-            "control signals",
-            "CPU temperature"
+            "Storing addresses",
+            "Storing intermediate arithmetic and logical results",
+            "Storing programs permanently",
+            "Managing interrupts"
         ],
         "correct_answer": 1,
-        "explanation": "The Memory Data Register (MDR), also called the Memory Buffer Register (MBR), acts as a temporary buffer for data being transferred to or from memory via the data bus."
+        "explanation": "The accumulator is a register in which intermediate arithmetic and logic results are stored. It is a default destination for many operation results."
     },
     {
         "id": 14,
         "type": "multiple_choice",
-        "question": "The first step in the fetch decode execute cycle is",
+        "question": "Which register holds the address of a memory location being accessed?",
         "options": [
-            "execute",
-            "fetch instruction from memory",
-            "store result",
-            "decode instruction"
+            "MAR",
+            "MBR",
+            "IR",
+            "PC"
         ],
-        "correct_answer": 1,
-        "explanation": "The instruction cycle begins with the fetch phase, where the CPU retrieves the next instruction from the memory address pointed to by the Program Counter."
+        "correct_answer": 0,
+        "explanation": "The Memory Address Register (MAR) holds the address of the memory location that the CPU is about to read from or write to."
     },
     {
         "id": 15,
         "type": "multiple_choice",
-        "question": "The system bus acts as",
+        "question": "Which register stores data read from or written to memory?",
         "options": [
-            "permanent storage",
-            "communication pathway between CPU, memory, and I O",
-            "backup memory",
-            "arithmetic unit"
+            "MAR",
+            "MBR",
+            "IR",
+            "PC"
         ],
         "correct_answer": 1,
-        "explanation": "The system bus is a set of parallel wires or communication pathways that connect the major components of a computer: the CPU, main memory, and I/O modules."
+        "explanation": "The Memory Buffer Register (MBR), also known as the Memory Data Register (MDR), acts as a buffer, holding the data that is being transferred to or from the memory."
     },
     {
         "id": 16,
         "type": "multiple_choice",
-        "question": "The data bus width determines",
+        "question": "Interconnection structures allow communication between:",
         "options": [
-            "how many addresses exist",
-            "how many bits move at once",
-            "disk rotation speed",
-            "number of monitors"
+            "CPU, memory, and input/output devices",
+            "Only processors",
+            "Only storage devices",
+            "Only input devices"
         ],
-        "correct_answer": 1,
-        "explanation": "The width of the data bus (in bits) determines how much data can be transferred simultaneously between components in a single bus cycle."
+        "correct_answer": 0,
+        "explanation": "The interconnection structure, such as a system bus, provides the communication pathways that link the CPU, main memory, and all I/O modules."
     },
     {
         "id": 17,
         "type": "multiple_choice",
-        "question": "Increasing address bus width increases",
+        "question": "Which transfer occurs when the CPU sends data to memory?",
         "options": [
-            "memory capacity",
-            "clock speed",
-            "voltage",
-            "cache size"
+            "Memory Read",
+            "Memory Write",
+            "I/O Read",
+            "I/O Write"
         ],
-        "correct_answer": 0,
-        "explanation": "The address bus width determines the maximum number of unique memory addresses the CPU can reference, directly limiting the system's maximum addressable memory capacity."
+        "correct_answer": 1,
+        "explanation": "A memory write operation is performed when the CPU sends data to be stored in a specific memory location."
     },
     {
         "id": 18,
         "type": "multiple_choice",
-        "question": "SRAM is faster than DRAM because SRAM",
+        "question": "Which transfer occurs when data moves from memory to the CPU?",
         "options": [
-            "uses capacitors",
-            "requires refreshing",
-            "uses flip flop circuits and no refresh",
-            "is magnetic"
+            "Memory Read",
+            "Memory Write",
+            "I/O Write",
+            "Interrupt Transfer"
         ],
-        "correct_answer": 2,
-        "explanation": "SRAM uses flip-flops (typically 4-6 transistors per cell) to store data, which does not require constant refreshing and provides faster access times than DRAM's capacitor-based storage."
+        "correct_answer": 0,
+        "explanation": "A memory read operation is performed when the CPU fetches instructions or data from a specific memory location."
     },
     {
         "id": 19,
         "type": "multiple_choice",
-        "question": "DRAM is cheaper per bit because",
+        "question": "A program is said to be hardwired when:",
         "options": [
-            "its cells are simpler and smaller",
-            "it uses glass",
-            "it has no refresh",
-            "it is external"
+            "It is stored in RAM",
+            "It is implemented directly in hardware circuits",
+            "It is stored in external memory",
+            "It runs through software"
         ],
-        "correct_answer": 0,
-        "explanation": "DRAM cells consist of only one transistor and one capacitor, making them physically smaller and simpler to manufacture than SRAM cells, leading to higher density and lower cost per bit."
+        "correct_answer": 1,
+        "explanation": "A hardwired program is one where the control logic is implemented as a permanent part of the computer's circuitry, as opposed to being stored in memory as software instructions."
     },
     {
         "id": 20,
         "type": "multiple_choice",
-        "question": "Cache memory improves performance by",
+        "question": "The first step in executing a program is:",
         "options": [
-            "increasing disk size",
-            "storing frequently used data close to CPU",
-            "slowing memory",
-            "reducing bus lines"
+            "Decode instruction",
+            "Fetch instruction from memory",
+            "Execute instruction",
+            "Store result"
         ],
         "correct_answer": 1,
-        "explanation": "Cache is a small, fast memory located close to the CPU that holds copies of frequently accessed data and instructions, reducing the average time to access data from main memory."
+        "explanation": "The instruction cycle begins with the fetch phase, where the CPU retrieves the next instruction from memory using the address in the Program Counter."
     },
     {
         "id": 21,
         "type": "multiple_choice",
-        "question": "DDR4 differs from DDR3 mainly in",
+        "question": "The instruction cycle typically follows which sequence?",
         "options": [
-            "having no banks",
-            "using lower voltage and higher speeds",
-            "using UV light",
-            "being magnetic"
+            "Execute → Decode → Fetch",
+            "Fetch → Decode → Execute",
+            "Decode → Fetch → Execute",
+            "Execute → Fetch → Decode"
         ],
         "correct_answer": 1,
-        "explanation": "DDR4 SDRAM provides improvements over DDR3, including higher module densities, higher data transfer rates, and lower operating voltages (typically 1.2V compared to 1.5V for DDR3)."
+        "explanation": "The classic instruction cycle is a loop of three main stages: Fetch the instruction, Decode what it does, and then Execute it."
     },
     {
         "id": 22,
         "type": "multiple_choice",
-        "question": "EPROM differs from EEPROM because EPROM",
+        "question": "The system bus is best described as:",
         "options": [
-            "is erased electrically",
-            "is erased using ultraviolet light",
-            "cannot be erased",
-            "is volatile"
+            "A communication pathway connecting computer components",
+            "A storage device",
+            "A processor component",
+            "A network cable"
         ],
-        "correct_answer": 1,
-        "explanation": "EPROM (Erasable Programmable Read-Only Memory) chips have a quartz window and are erased by exposing the die to intense ultraviolet light, whereas EEPROM (Electrically Erasable PROM) can be erased electrically."
+        "correct_answer": 0,
+        "explanation": "The system bus is a single computer bus that connects the major components of a computer system, combining the functions of a data bus, address bus, and control bus."
     },
     {
         "id": 23,
         "type": "multiple_choice",
-        "question": "Flash memory improves on EEPROM by",
+        "question": "Which bus carries actual data between components?",
         "options": [
-            "erasing entire blocks at once",
-            "using UV light",
-            "being volatile",
-            "using parity disks"
+            "Address Bus",
+            "Control Bus",
+            "Data Bus",
+            "System Clock"
         ],
-        "correct_answer": 0,
-        "explanation": "Flash memory is a type of EEPROM that allows data to be written or erased in blocks, which is much faster than the byte-by-byte erasure and writing of traditional EEPROM."
+        "correct_answer": 2,
+        "explanation": "The data bus is a bidirectional pathway that carries the actual data being transferred between the CPU, memory, and I/O devices."
     },
     {
         "id": 24,
         "type": "multiple_choice",
-        "question": "An SSD is faster than a magnetic drive mainly because it",
+        "question": "Which bus carries memory addresses from the CPU?",
         "options": [
-            "spins faster",
-            "has no moving mechanical parts",
-            "uses glass substrate",
-            "uses parity"
+            "Data Bus",
+            "Address Bus",
+            "Control Bus",
+            "Expansion Bus"
         ],
         "correct_answer": 1,
-        "explanation": "Solid State Drives (SSDs) use flash memory with no moving parts, allowing for near-instantaneous data access. This eliminates the mechanical seek time and rotational latency inherent in HDDs."
+        "explanation": "The address bus is a unidirectional bus that carries memory addresses from the CPU to other components like memory, specifying where data should be read from or written to."
     },
     {
         "id": 25,
         "type": "multiple_choice",
-        "question": "Magnetic hard drives store data by",
+        "question": "Which bus carries control signals like read/write commands?",
         "options": [
-            "electrical charge only",
-            "magnetic orientation on spinning platters",
-            "laser reflection",
-            "flip flops"
+            "Data Bus",
+            "Address Bus",
+            "Control Bus",
+            "Processor Bus"
         ],
-        "correct_answer": 1,
-        "explanation": "HDDs store data by magnetizing tiny regions (domains) on the surface of spinning magnetic platters in one of two directions, representing binary 0s and 1s."
+        "correct_answer": 2,
+        "explanation": "The control bus carries command, timing, and status signals (like read, write, interrupt requests) to coordinate and manage the activities of all system components."
     },
     {
         "id": 26,
         "type": "multiple_choice",
-        "question": "Using glass substrate in disks improves",
+        "question": "Which of the following is an example of a memory module?",
         "options": [
-            "fragility",
-            "surface smoothness and rigidity",
-            "voltage",
-            "refresh rate"
+            "RAM",
+            "ROM",
+            "Cache",
+            "All of the above"
         ],
-        "correct_answer": 1,
-        "explanation": "Glass substrates for hard drive platters are smoother, more rigid, and more thermally stable than aluminum, allowing for higher data densities and more reliable performance."
+        "correct_answer": 3,
+        "explanation": "RAM (Random Access Memory), ROM (Read-Only Memory), and Cache memory are all distinct types of memory modules or technologies within a computer's memory hierarchy."
     },
     {
         "id": 27,
         "type": "multiple_choice",
-        "question": "RAID 0 increases performance by",
+        "question": "Which of the following is NOT a memory module?",
         "options": [
-            "mirroring data",
-            "adding parity",
-            "striping data across disks without redundancy",
-            "duplicating disks"
+            "RAM",
+            "ROM",
+            "Hard Disk",
+            "Monitor"
         ],
-        "correct_answer": 2,
-        "explanation": "RAID 0 (striping) splits data across multiple disks, allowing for parallel reads and writes which increases performance. However, it provides no fault tolerance."
+        "correct_answer": 3,
+        "explanation": "A monitor is an output device, not a memory module. RAM, ROM, and Hard Disks (as storage) are all part of the memory/storage system."
     },
     {
         "id": 28,
         "type": "multiple_choice",
-        "question": "RAID 1 protects data by",
+        "question": "Memory is considered internal when it is:",
         "options": [
-            "striping",
-            "mirroring identical copies",
-            "compression",
-            "caching"
+            "Located inside the CPU or motherboard and directly accessible",
+            "Stored outside the computer",
+            "Stored in cloud servers",
+            "Connected via network"
         ],
-        "correct_answer": 1,
-        "explanation": "RAID 1 (mirroring) writes identical data to two or more drives simultaneously. If one drive fails, the data is still available from the other mirrored drive(s)."
+        "correct_answer": 0,
+        "explanation": "Internal memory, such as RAM and cache, is located on the motherboard and is directly accessible by the CPU via high-speed buses."
     },
     {
         "id": 29,
         "type": "multiple_choice",
-        "question": "RAID 5 achieves fault tolerance by",
+        "question": "Memory is considered external when it is:",
         "options": [
-            "no redundancy",
-            "storing distributed parity across disks",
-            "single disk storage",
-            "UV erasing"
+            "Built into the CPU",
+            "Used for temporary storage only",
+            "Located outside the main system memory like disks",
+            "Used only by the operating system"
         ],
-        "correct_answer": 1,
-        "explanation": "RAID 5 stripes data and parity information across all disks in the array. If one disk fails, the missing data can be calculated from the remaining data and parity."
+        "correct_answer": 2,
+        "explanation": "External memory, or secondary storage, refers to storage devices that are not directly accessible by the CPU and must be accessed via I/O modules, such as hard drives and SSDs."
     },
     {
         "id": 30,
         "type": "multiple_choice",
-        "question": "RAID 6 can tolerate",
+        "question": "Cache memory is:",
         "options": [
-            "zero failures",
-            "one disk failure",
-            "two disk failures",
-            "unlimited failures"
+            "Slow secondary storage",
+            "A small high-speed memory between CPU and RAM",
+            "External storage",
+            "Permanent memory"
         ],
-        "correct_answer": 2,
-        "explanation": "RAID 6 uses double distributed parity, allowing the array to continue functioning and rebuild data even if two disks fail simultaneously."
+        "correct_answer": 1,
+        "explanation": "Cache memory is a small, fast memory component located between the CPU and main memory (RAM) to store frequently accessed data and instructions, reducing average access time."
     },
     {
         "id": 31,
         "type": "multiple_choice",
-        "question": "Internal memory is directly accessible by",
+        "question": "Disk cache refers to:",
         "options": [
-            "printer",
-            "CPU",
-            "monitor",
-            "network switch"
+            "A reserved portion of RAM used to store frequently accessed disk data",
+            "Data stored permanently on disk",
+            "CPU registers",
+            "A backup storage system"
         ],
-        "correct_answer": 1,
-        "explanation": "Internal memory, primarily RAM, is directly addressable and accessible by the CPU via the memory bus, allowing for fast read and write operations during program execution."
+        "correct_answer": 0,
+        "explanation": "Disk cache is a technique where a portion of main memory (RAM) is used to temporarily store data that has been recently read from or written to a disk, speeding up future access to that data."
     },
     {
         "id": 32,
         "type": "multiple_choice",
-        "question": "External memory is mainly used for",
+        "question": "Virtual memory is:",
         "options": [
-            "temporary CPU storage",
-            "long term data storage",
-            "arithmetic",
-            "decoding"
+            "Physical memory installed on the motherboard",
+            "A technique that uses disk space to simulate additional RAM",
+            "A type of cache memory",
+            "Processor memory"
         ],
         "correct_answer": 1,
-        "explanation": "External memory, such as HDDs and SSDs, provides non-volatile, long-term storage for data and programs, even when the power is turned off."
+        "explanation": "Virtual memory is a memory management technique that uses a portion of the hard drive or SSD to act as an extension of RAM, allowing the system to run larger applications or multiple applications simultaneously than physical memory alone would allow."
     },
     {
         "id": 33,
         "type": "multiple_choice",
-        "question": "Virtual memory allows",
+        "question": "What does the “diminishing returns” concept in Amdahl’s Law imply?",
         "options": [
-            "RAM to shrink",
-            "programs larger than physical RAM to run",
-            "cache removal",
-            "no storage"
+            "Increasing processors always increases performance proportionally",
+            "Speed improvement decreases as more parts of the system are optimized",
+            "Performance always doubles with optimization",
+            "System speed depends only on memory"
         ],
         "correct_answer": 1,
-        "explanation": "Virtual memory uses a portion of the hard drive (or SSD) as an extension of physical RAM, enabling a system to run programs that require more memory than is physically available."
+        "explanation": "Diminishing returns in the context of Amdahl's Law means that as you continue to optimize a portion of a system, the overall performance gain from each additional unit of optimization becomes smaller and smaller."
     },
     {
         "id": 34,
         "type": "multiple_choice",
-        "question": "Disk cache reduces access time by",
+        "question": "According to Amdahl’s Law, the main focus of optimization should be on:",
         "options": [
-            "deleting data",
-            "storing recently accessed disk data temporarily",
-            "slowing rotation",
-            "compressing files"
+            "The part of the system already very fast",
+            "The portion of the system executed most frequently",
+            "Random system components",
+            "External storage devices"
         ],
         "correct_answer": 1,
-        "explanation": "A disk cache is a small amount of fast memory (often DRAM) on the disk controller or in main memory that stores recently accessed data, anticipating future requests and avoiding slow disk accesses."
+        "explanation": "Amdahl's Law dictates that the greatest overall performance improvement comes from optimizing the part of the system that accounts for the largest proportion of the execution time—the most frequent bottleneck."
     },
     {
         "id": 35,
         "type": "multiple_choice",
-        "question": "A hardwired program means control signals are generated by",
+        "question": "Amdahl’s Law shows that improving only a small part of a system will:",
         "options": [
-            "software only",
-            "hardware circuits",
-            "operating system",
-            "disk"
+            "Produce massive performance gains",
+            "Have little effect on overall system performance",
+            "Double system speed",
+            "Eliminate bottlenecks"
         ],
         "correct_answer": 1,
-        "explanation": "In a hardwired control unit, the control signals are generated directly by fixed logic circuits (gates, flip-flops, etc.) based on the current instruction and state."
+        "explanation": "If the part of the system being improved is only a small fraction of the total workload, the overall performance improvement will be minimal, as dictated by the law."
     },
     {
         "id": 36,
         "type": "multiple_choice",
-        "question": "DMA improves performance because it",
+        "question": "The primary implication of Amdahl’s Law for system designers is:",
         "options": [
-            "removes RAM",
-            "allows I O to transfer data without constant CPU involvement",
-            "reduces registers",
-            "erases memory"
+            "Optimize every part equally",
+            "Focus optimization on the largest performance bottleneck",
+            "Ignore slow components",
+            "Increase memory only"
         ],
         "correct_answer": 1,
-        "explanation": "Direct Memory Access (DMA) allows I/O devices to transfer data directly to or from memory without continuous intervention from the CPU, freeing the CPU to perform other tasks."
+        "explanation": "Amdahl's Law guides designers to identify and focus their efforts on the most significant performance bottlenecks to achieve the best overall speedup for their investment."
     },
     {
         "id": 37,
         "type": "multiple_choice",
-        "question": "The accumulator is mainly used for",
+        "question": "Which term best describes the relationship between workload and performance measurement?",
         "options": [
-            "storing addresses",
-            "holding intermediate arithmetic results",
-            "parity storage",
-            "disk buffering"
+            "Matrix relationship",
+            "Random relationship",
+            "Non-measurable relationship",
+            "Hardware-only relationship"
         ],
-        "correct_answer": 1,
-        "explanation": "The accumulator is a register in the CPU that temporarily stores the results of arithmetic and logical operations performed by the ALU."
+        "correct_answer": 0,
+        "explanation": "The relationship between workload and performance is complex and can be thought of as a matrix or multidimensional relationship, where different performance metrics (throughput, response time) are affected differently by various workload characteristics."
     },
     {
         "id": 38,
         "type": "multiple_choice",
-        "question": "In DRAM, information is stored as",
+        "question": "In performance evaluation, metrics are used to:",
         "options": [
-            "magnetic field",
-            "electrical charge in capacitors",
-            "light",
-            "mechanical position"
+            "Decorate system documentation",
+            "Measure and compare system performance",
+            "Store programs in memory",
+            "Control processors"
         ],
         "correct_answer": 1,
-        "explanation": "Dynamic RAM (DRAM) stores each bit of data as an electrical charge in a tiny capacitor. The presence or absence of charge represents a 1 or 0."
+        "explanation": "Performance metrics provide quantifiable measures that allow engineers and users to evaluate, compare, and predict the performance of different systems or configurations."
     },
     {
         "id": 39,
         "type": "multiple_choice",
-        "question": "The control bus carries signals such as",
+        "question": "Little’s Law relates which three quantities?",
         "options": [
-            "read and write commands",
-            "memory addresses",
-            "arithmetic data",
-            "transistor count"
+            "CPU speed, RAM size, and disk capacity",
+            "Throughput, response time, and number of tasks in the system",
+            "Processor frequency, voltage, and temperature",
+            "Data bus, address bus, and control bus"
         ],
-        "correct_answer": 0,
-        "explanation": "The control bus carries command and timing signals from the control unit to coordinate activities. Common signals include Memory Read, Memory Write, I/O Read, and I/O Write."
+        "correct_answer": 1,
+        "explanation": "Little's Law establishes a fundamental relationship between the average number of items in a system (tasks), the average arrival rate of items (throughput), and the average time an item spends in the system (response time)."
     },
     {
         "id": 40,
         "type": "multiple_choice",
-        "question": "Increasing cache size generally",
+        "question": "Little’s Law can be expressed as:",
         "options": [
-            "increases access time drastically",
-            "reduces hit rate",
-            "increases hit rate and performance",
-            "removes RAM"
+            "Performance = Time × Speed",
+            "L = λ × W",
+            "Speed = Instructions × Time",
+            "Memory = Data × Address"
         ],
-        "correct_answer": 2,
-        "explanation": "A larger cache can hold more data, increasing the probability (hit rate) that requested data is found in the cache. This generally improves performance, though with diminishing returns."
+        "correct_answer": 1,
+        "explanation": "The standard mathematical expression of Little's Law is L = λW, where L is the average number of items, λ is the average arrival rate, and W is the average time an item spends in the system."
     },
     {
         "id": 41,
         "type": "multiple_choice",
-        "question": "In a stored program computer, instructions are",
+        "question": "In Little’s Law, **L** represents:",
         "options": [
-            "stored only in CPU",
-            "stored in main memory with data",
-            "stored in hard disk only",
-            "executed directly from keyboard"
+            "System latency",
+            "Average number of items in the system",
+            "Processor load",
+            "Program size"
         ],
         "correct_answer": 1,
-        "explanation": "The fundamental concept of the stored-program computer (Von Neumann architecture) is that both program instructions and data are stored together in main memory."
+        "explanation": "In the formula L = λW, 'L' stands for the average number of items or tasks currently present in the queuing system."
     },
     {
         "id": 42,
         "type": "multiple_choice",
-        "question": "The Von Neumann bottleneck refers to",
+        "question": "In Little’s Law, **λ (lambda)** represents:",
         "options": [
-            "limited disk space",
-            "shared path between CPU and memory",
-            "low transistor count",
-            "slow monitor refresh rate"
+            "System clock speed",
+            "Arrival rate or throughput",
+            "Memory capacity",
+            "Instruction length"
         ],
         "correct_answer": 1,
-        "explanation": "The Von Neumann bottleneck describes the limitation of throughput caused by the single shared bus between the CPU and memory, which must be used for both instruction fetches and data transfers."
+        "explanation": "In the formula L = λW, 'λ' (lambda) represents the average arrival rate of new items into the system, which, under steady-state conditions, is equal to the throughput."
     },
     {
         "id": 43,
         "type": "multiple_choice",
-        "question": "If the address bus is 32 bits wide, the maximum addressable memory is",
+        "question": "In Little’s Law, **W** represents:",
         "options": [
-            "2^16 locations",
-            "2^32 locations",
-            "32 bytes",
-            "32 KB"
+            "Waiting time in the system",
+            "Memory width",
+            "CPU frequency",
+            "Instruction size"
         ],
-        "correct_answer": 1,
-        "explanation": "A 32-bit address bus can generate 2^32 unique addresses, allowing the CPU to directly address up to 4 GiB of memory (if each address points to a byte)."
+        "correct_answer": 0,
+        "explanation": "In the formula L = λW, 'W' stands for the average time an item spends waiting in the system, also known as the average response time or sojourn time."
     },
     {
         "id": 44,
         "type": "multiple_choice",
-        "question": "Increasing the data bus width mainly increases",
+        "question": "One major use of Little’s Law in computer systems is to:",
         "options": [
-            "memory capacity",
-            "number of I O devices",
-            "amount of data transferred per cycle",
-            "disk speed"
+            "Design processor circuits",
+            "Predict system performance under workload",
+            "Build memory chips",
+            "Replace operating systems"
         ],
-        "correct_answer": 2,
-        "explanation": "A wider data bus allows more bits to be transferred in a single bus cycle, directly increasing the data transfer rate between the CPU, memory, and I/O devices."
+        "correct_answer": 1,
+        "explanation": "Little's Law is a powerful tool for performance modeling and prediction, allowing engineers to estimate metrics like response time based on observed throughput and queue lengths, and vice-versa."
     },
     {
         "id": 45,
         "type": "multiple_choice",
-        "question": "The purpose of refresh in DRAM is to",
+        "question": "Performance prediction in computer systems helps engineers to:",
         "options": [
-            "increase speed",
-            "restore lost electrical charge",
-            "reduce voltage",
-            "increase parity"
+            "Guess system speed randomly",
+            "Estimate system behavior before implementation",
+            "Eliminate hardware",
+            "Remove software"
         ],
         "correct_answer": 1,
-        "explanation": "DRAM cells store data as charge on a capacitor, which leaks over time. The memory controller periodically reads and rewrites (refreshes) each cell to restore the charge and prevent data loss."
+        "explanation": "Performance prediction uses models and laws like Amdahl's and Little's to anticipate how a system will behave under various conditions before it is built or deployed, aiding in design and capacity planning."
     },
     {
         "id": 46,
         "type": "multiple_choice",
-        "question": "SRAM consumes more power than DRAM because it",
+        "question": "System metrics commonly used to measure performance include:",
         "options": [
-            "uses magnetic storage",
-            "uses more transistors per cell",
-            "refreshes constantly",
-            "uses UV light"
+            "Throughput and response time",
+            "Keyboard type",
+            "Monitor resolution",
+            "Printer speed"
         ],
-        "correct_answer": 1,
-        "explanation": "SRAM cells typically use 4-6 transistors to form a flip-flop, which draws continuous leakage current. In contrast, a DRAM cell uses only one transistor and one capacitor."
+        "correct_answer": 0,
+        "explanation": "Throughput (work done per unit time) and response time (time to complete a task) are two of the most fundamental and common metrics for evaluating computer system performance."
     },
     {
         "id": 47,
         "type": "multiple_choice",
-        "question": "A key advantage of SSD over HDD is",
+        "question": "Which of the following best defines throughput?",
         "options": [
-            "higher noise",
-            "mechanical parts",
-            "faster access time",
-            "spinning disks"
+            "Number of tasks completed per unit time",
+            "Time taken for a single instruction",
+            "Size of memory",
+            "Processor voltage"
         ],
-        "correct_answer": 2,
-        "explanation": "SSDs have no moving parts, resulting in significantly faster access times (low latency) and much higher random I/O performance compared to HDDs."
+        "correct_answer": 0,
+        "explanation": "Throughput is a measure of the rate at which a system can complete work, such as the number of jobs, transactions, or requests processed per second."
     },
     {
         "id": 48,
         "type": "multiple_choice",
-        "question": "RAID redundancy ensures that",
+        "question": "Response time refers to:",
         "options": [
-            "data cannot be deleted",
-            "system never fails",
-            "data can be recovered after disk failure",
-            "storage capacity doubles automatically"
+            "Time taken to complete a task from start to finish",
+            "CPU temperature",
+            "Memory size",
+            "Number of registers"
         ],
-        "correct_answer": 2,
-        "explanation": "RAID (Redundant Array of Independent Disks) uses techniques like mirroring or parity to provide fault tolerance, allowing data to be reconstructed if a disk in the array fails."
+        "correct_answer": 0,
+        "explanation": "Response time, or latency, is the total elapsed time between submitting a request to a system and receiving the complete response."
     },
+    
     {
         "id": 49,
         "type": "multiple_choice",
-        "question": "RAID 3 uses",
+        "question": "Semiconductor memory is primarily built using:",
         "options": [
-            "block level striping with distributed parity",
-            "byte level striping with dedicated parity disk",
-            "mirroring only",
-            "no redundancy"
+            "Magnetic materials",
+            "Optical storage",
+            "Semiconductor integrated circuits",
+            "Mechanical components"
         ],
-        "correct_answer": 1,
-        "explanation": "RAID 3 stripes data at the byte level across multiple data disks and uses a single, dedicated parity disk to store parity information for error recovery."
+        "correct_answer": 2,
+        "explanation": "Semiconductor memory uses integrated circuits based on semiconductor technology (typically silicon) to store data electronically."
     },
     {
         "id": 50,
         "type": "multiple_choice",
-        "question": "RAID 4 differs from RAID 5 because RAID 4",
+        "question": "One key property of semiconductor memory is:",
         "options": [
-            "uses distributed parity",
-            "uses dedicated parity disk",
-            "uses mirroring",
-            "has no parity"
+            "Very slow access time",
+            "Electronic data storage using transistors",
+            "Mechanical read/write heads",
+            "Magnetic data storage"
         ],
         "correct_answer": 1,
-        "explanation": "RAID 4 uses block-level striping with a dedicated parity disk. RAID 5 also uses block-level striping but distributes the parity information across all disks in the array, avoiding the dedicated parity disk bottleneck."
+        "explanation": "Semiconductor memory stores data using electronic circuits such as transistors and capacitors, without any moving parts."
     },
     {
         "id": 51,
         "type": "multiple_choice",
-        "question": "The main role of cache memory is to reduce",
+        "question": "Semiconductor memory is commonly used for:",
         "options": [
-            "disk size",
-            "memory access time",
-            "voltage",
-            "CPU registers"
+            "Main memory and cache",
+            "Optical drives",
+            "Magnetic disks",
+            "Printers"
         ],
-        "correct_answer": 1,
-        "explanation": "Cache memory reduces the average time (latency) for the CPU to access data and instructions by providing a small, fast storage layer close to the CPU core."
+        "correct_answer": 0,
+        "explanation": "Semiconductor memory like RAM and cache are essential components of a computer's main memory hierarchy."
     },
     {
         "id": 52,
         "type": "multiple_choice",
-        "question": "Virtual memory works by",
+        "question": "Another important feature of semiconductor memory is:",
         "options": [
-            "replacing RAM",
-            "using part of secondary storage as extension of RAM",
-            "deleting unused files",
-            "compressing cache"
+            "High reliability and fast access speed",
+            "Very large mechanical parts",
+            "Moving storage components",
+            "Permanent magnetic coating"
         ],
-        "correct_answer": 1,
-        "explanation": "Virtual memory maps virtual addresses used by a program to physical addresses in RAM or to addresses on secondary storage (like a hard drive), using the disk as an extension of RAM."
+        "correct_answer": 0,
+        "explanation": "Semiconductor memory offers high reliability due to no moving parts and provides very fast access speeds compared to mechanical storage."
     },
     {
         "id": 53,
         "type": "multiple_choice",
-        "question": "EPROM must be erased",
+        "question": "SRAM stands for:",
         "options": [
-            "electrically inside the system",
-            "by ultraviolet light after removing chip",
-            "by magnetic field",
-            "automatically"
+            "Static Random Access Memory",
+            "Sequential Random Access Memory",
+            "Static Read Access Memory",
+            "Serial Random Access Memory"
         ],
-        "correct_answer": 1,
-        "explanation": "EPROM chips have a transparent quartz window. To erase the data, the chip must be removed from the circuit and exposed to intense ultraviolet light for a period of time."
+        "correct_answer": 0,
+        "explanation": "SRAM (Static Random Access Memory) is a type of semiconductor memory that uses flip-flops to store each bit and retains data as long as power is supplied."
     },
     {
         "id": 54,
         "type": "multiple_choice",
-        "question": "EEPROM differs from Flash because EEPROM",
+        "question": "DRAM stands for:",
         "options": [
-            "erases entire blocks at once",
-            "erases byte by byte",
-            "uses UV light",
-            "is volatile"
+            "Dynamic Random Access Memory",
+            "Digital Random Access Memory",
+            "Dynamic Read Access Memory",
+            "Direct Random Access Memory"
         ],
-        "correct_answer": 1,
-        "explanation": "Traditional EEPROM allows erasing and writing of individual bytes, whereas Flash memory, a faster and denser type of EEPROM, operates on larger blocks of data."
+        "correct_answer": 0,
+        "explanation": "DRAM (Dynamic Random Access Memory) stores each bit in a separate capacitor within an integrated circuit, which requires periodic refreshing."
     },
     {
         "id": 55,
         "type": "multiple_choice",
-        "question": "During execution, after an instruction is executed, the CPU",
+        "question": "SRAM is typically used in:",
         "options": [
-            "shuts down",
-            "clears memory",
-            "updates the Program Counter",
-            "erases cache"
+            "Cache memory",
+            "Hard disks",
+            "Optical storage",
+            "Secondary storage"
         ],
-        "correct_answer": 2,
-        "explanation": "After executing an instruction, the CPU typically updates the Program Counter (PC) to point to the next instruction in the sequence, unless a jump or branch occurred."
+        "correct_answer": 0,
+        "explanation": "SRAM is faster and more expensive, making it ideal for CPU cache memory where speed is critical."
     },
     {
         "id": 56,
         "type": "multiple_choice",
-        "question": "An interconnection structure allows transfer between",
+        "question": "DRAM is commonly used for:",
         "options": [
-            "CPU and CPU only",
-            "CPU, memory, and I O devices",
-            "monitor and keyboard only",
-            "disk and printer only"
+            "CPU registers",
+            "Main system memory",
+            "Flash storage",
+            "Magnetic storage"
         ],
         "correct_answer": 1,
-        "explanation": "The system's interconnection structure, typically one or more buses, provides the communication pathways for data and control signals to flow between the CPU, main memory, and I/O modules."
+        "explanation": "DRAM is denser and cheaper than SRAM, making it suitable for main system memory (RAM) where large capacity is needed."
     },
     {
         "id": 57,
         "type": "multiple_choice",
-        "question": "In Harvard architecture, simultaneous access to data and instructions",
+        "question": "In terms of speed:",
         "options": [
-            "is impossible",
-            "slows down CPU",
-            "improves performance",
-            "deletes memory"
+            "DRAM is faster than SRAM",
+            "SRAM is faster than DRAM",
+            "Both have equal speed",
+            "DRAM and SRAM are extremely slow"
         ],
-        "correct_answer": 2,
-        "explanation": "Because Harvard architecture uses separate memory and buses for instructions and data, the CPU can fetch an instruction and read/write data in the same clock cycle, improving throughput."
+        "correct_answer": 1,
+        "explanation": "SRAM is significantly faster than DRAM because it does not require refresh cycles and has lower access latency."
     },
     {
         "id": 58,
         "type": "multiple_choice",
-        "question": "Moore's Law mainly explains the growth of",
+        "question": "In terms of cost:",
         "options": [
-            "disk rotation speed",
-            "transistor density on chips",
-            "RAM voltage",
-            "bus width"
+            "SRAM is cheaper",
+            "DRAM is more expensive",
+            "SRAM is more expensive",
+            "Both cost the same"
         ],
-        "correct_answer": 1,
-        "explanation": "Moore's Law is an observation about the exponential increase in the number of transistors that can be placed on an integrated circuit, leading to improvements in performance and capability."
+        "correct_answer": 2,
+        "explanation": "SRAM is more expensive to manufacture because it requires more transistors per bit of storage (typically 6 transistors per bit) compared to DRAM (1 transistor and 1 capacitor per bit)."
     },
     {
         "id": 59,
         "type": "multiple_choice",
-        "question": "According to Amdahl's Law, to achieve large speed improvement you must",
+        "question": "In terms of size/density:",
         "options": [
-            "improve every part equally",
-            "focus on the part that consumes most execution time",
-            "increase voltage",
-            "reduce memory size"
+            "DRAM has higher density",
+            "SRAM has higher density",
+            "Both have equal density",
+            "SRAM uses less space per bit"
         ],
-        "correct_answer": 1,
-        "explanation": "Amdahl's Law implies that the greatest overall speedup is achieved by improving the component or part of a task that accounts for the largest portion of the execution time."
+        "correct_answer": 0,
+        "explanation": "DRAM has higher storage density because its simpler cell structure (one transistor and one capacitor) takes less space than SRAM's flip-flop design."
     },
     {
         "id": 60,
         "type": "multiple_choice",
-        "question": "According to Little's Law, if the average time tasks spend in a system increases and arrival rate stays constant",
+        "question": "DRAM requires periodic:",
         "options": [
-            "number of tasks in system increases",
-            "throughput decreases automatically",
-            "memory doubles",
-            "CPU stops"
+            "Rebooting",
+            "Refreshing",
+            "Formatting",
+            "Encryption"
+        ],
+        "correct_answer": 1,
+        "explanation": "DRAM cells leak charge over time and must be refreshed (read and rewritten) thousands of times per second to maintain data integrity."
+    },
+    {
+        "id": 61,
+        "type": "multiple_choice",
+        "question": "SRAM does NOT require:",
+        "options": [
+            "Refresh cycles",
+            "Transistors",
+            "Power supply",
+            "Addressing"
         ],
         "correct_answer": 0,
-        "explanation": "Based on Little's Law (L = λW), if the arrival rate (λ) remains constant and the average time spent (W) increases, the average number of tasks in the system (L) must also increase."
+        "explanation": "SRAM retains data without refresh cycles as long as power is supplied, unlike DRAM which requires constant refreshing."
+    },
+    {
+        "id": 62,
+        "type": "multiple_choice",
+        "question": "Which memory uses capacitors to store data?",
+        "options": [
+            "SRAM",
+            "DRAM",
+            "ROM",
+            "Cache"
+        ],
+        "correct_answer": 1,
+        "explanation": "DRAM stores each bit using a tiny capacitor and a transistor. The presence or absence of charge in the capacitor represents the bit value."
+    },
+    {
+        "id": 63,
+        "type": "multiple_choice",
+        "question": "DDR stands for:",
+        "options": [
+            "Double Data Rate",
+            "Digital Data Rate",
+            "Dynamic Data Register",
+            "Dual Disk Register"
+        ],
+        "correct_answer": 0,
+        "explanation": "DDR (Double Data Rate) memory transfers data on both the rising and falling edges of the clock signal, effectively doubling the data transfer rate."
+    },
+    {
+        "id": 64,
+        "type": "multiple_choice",
+        "question": "DDR4 provides:",
+        "options": [
+            "Lower speed than DDR3",
+            "Higher data transfer rate than DDR3",
+            "No performance improvement",
+            "Less memory capacity"
+        ],
+        "correct_answer": 1,
+        "explanation": "DDR4 offers higher data transfer rates, lower power consumption, and increased module density compared to DDR3."
+    },
+    {
+        "id": 65,
+        "type": "multiple_choice",
+        "question": "DDR4 operates at:",
+        "options": [
+            "Lower voltage than DDR3",
+            "Higher voltage than DDR3",
+            "Equal voltage",
+            "Random voltage"
+        ],
+        "correct_answer": 0,
+        "explanation": "DDR4 typically operates at 1.2V compared to DDR3's 1.5V, resulting in better power efficiency."
+    },
+    {
+        "id": 66,
+        "type": "multiple_choice",
+        "question": "DDR4 typically supports:",
+        "options": [
+            "Smaller memory capacity",
+            "Larger memory modules",
+            "No improvement",
+            "Only cache storage"
+        ],
+        "correct_answer": 1,
+        "explanation": "DDR4 supports larger capacity modules (up to 64GB per module compared to DDR3's 16GB limit) and higher overall system memory capacity."
+    },
+    {
+        "id": 67,
+        "type": "multiple_choice",
+        "question": "Which memory type is newer?",
+        "options": [
+            "DDR2",
+            "DDR3",
+            "DDR4",
+            "SDRAM"
+        ],
+        "correct_answer": 2,
+        "explanation": "DDR4 is the newer generation compared to DDR2, DDR3, and original SDRAM (which predates DDR)."
+    },
+    {
+        "id": 68,
+        "type": "multiple_choice",
+        "question": "EPROM stands for:",
+        "options": [
+            "Erasable Programmable Read Only Memory",
+            "Electronic Programmable RAM",
+            "Extended Programmable ROM",
+            "External Program ROM"
+        ],
+        "correct_answer": 0,
+        "explanation": "EPROM (Erasable Programmable Read-Only Memory) is a type of ROM that can be erased by exposure to ultraviolet light and reprogrammed."
+    },
+    {
+        "id": 69,
+        "type": "multiple_choice",
+        "question": "EPROM is erased using:",
+        "options": [
+            "Electrical signals",
+            "Magnetic fields",
+            "Ultraviolet light",
+            "Heat"
+        ],
+        "correct_answer": 2,
+        "explanation": "EPROM chips have a quartz window that allows ultraviolet light to erase the stored data by discharging the floating gates."
+    },
+    {
+        "id": 70,
+        "type": "multiple_choice",
+        "question": "EEPROM stands for:",
+        "options": [
+            "Electrically Erasable Programmable Read Only Memory",
+            "Extended Erasable Program Memory",
+            "Electronic External Program ROM",
+            "Erased Electrical Program Memory"
+        ],
+        "correct_answer": 0,
+        "explanation": "EEPROM (Electrically Erasable Programmable Read-Only Memory) can be erased and reprogrammed using electrical signals without removing it from the circuit."
+    },
+    {
+        "id": 71,
+        "type": "multiple_choice",
+        "question": "EEPROM can be erased using:",
+        "options": [
+            "Ultraviolet light",
+            "Electrical signals",
+            "Magnetic fields",
+            "Mechanical switches"
+        ],
+        "correct_answer": 1,
+        "explanation": "EEPROM uses electrical voltages to erase and reprogram data, allowing in-circuit modification without special erasing equipment."
+    },
+    {
+        "id": 72,
+        "type": "multiple_choice",
+        "question": "Flash memory is a type of:",
+        "options": [
+            "Magnetic memory",
+            "EEPROM memory",
+            "Optical storage",
+            "Mechanical storage"
+        ],
+        "correct_answer": 1,
+        "explanation": "Flash memory is a type of EEPROM that allows multiple memory locations to be erased or written in one programming operation."
+    },
+    {
+        "id": 73,
+        "type": "multiple_choice",
+        "question": "Flash memory is commonly used in:",
+        "options": [
+            "USB drives and SSDs",
+            "Printers",
+            "Optical disks",
+            "Magnetic tape"
+        ],
+        "correct_answer": 0,
+        "explanation": "Flash memory is the primary storage medium in USB drives, solid-state drives (SSDs), memory cards, and mobile devices."
+    },
+    {
+        "id": 74,
+        "type": "multiple_choice",
+        "question": "The main difference between EEPROM and Flash is:",
+        "options": [
+            "Flash erases data in blocks",
+            "EEPROM erases in blocks",
+            "Flash uses magnetic storage",
+            "EEPROM cannot be rewritten"
+        ],
+        "correct_answer": 0,
+        "explanation": "Flash memory erases data in larger blocks (typically kilobytes) while traditional EEPROM can erase individual bytes, making Flash faster for bulk operations but less flexible for byte-level updates."
+    },
+    {
+        "id": 75,
+        "type": "multiple_choice",
+        "question": "A Solid State Drive (SSD) stores data using:",
+        "options": [
+            "Magnetic disks",
+            "Flash memory chips",
+            "Optical lasers",
+            "Mechanical tapes"
+        ],
+        "correct_answer": 1,
+        "explanation": "SSDs use NAND flash memory chips to store data persistently with no moving parts."
+    },
+    {
+        "id": 76,
+        "type": "multiple_choice",
+        "question": "A magnetic drive stores data using:",
+        "options": [
+            "Flash memory",
+            "Semiconductor chips",
+            "Magnetized spinning disks",
+            "Optical sensors"
+        ],
+        "correct_answer": 2,
+        "explanation": "Magnetic hard disk drives (HDDs) store data by magnetizing thin films on rotating platters using read/write heads."
+    },
+    {
+        "id": 77,
+        "type": "multiple_choice",
+        "question": "Compared to HDDs, SSDs generally provide:",
+        "options": [
+            "Slower performance",
+            "Faster data access",
+            "More mechanical parts",
+            "Lower reliability"
+        ],
+        "correct_answer": 1,
+        "explanation": "SSDs provide significantly faster data access, higher read/write speeds, and lower latency than HDDs due to no mechanical seek time."
+    },
+    {
+        "id": 78,
+        "type": "multiple_choice",
+        "question": "Which storage device has moving mechanical parts?",
+        "options": [
+            "SSD",
+            "Magnetic hard disk",
+            "Flash drive",
+            "Cache memory"
+        ],
+        "correct_answer": 1,
+        "explanation": "Magnetic hard disks contain spinning platters and moving actuator arms with read/write heads, making them mechanical devices."
+    },
+    {
+        "id": 79,
+        "type": "multiple_choice",
+        "question": "Which storage type consumes less power?",
+        "options": [
+            "Magnetic disk",
+            "SSD",
+            "Optical disk",
+            "Tape storage"
+        ],
+        "correct_answer": 1,
+        "explanation": "SSDs consume significantly less power than HDDs because they have no moving parts to spin or move, improving battery life in portable devices."
+    },
+    {
+        "id": 80,
+        "type": "multiple_choice",
+        "question": "Using a glass substrate in magnetic disks improves:",
+        "options": [
+            "Mechanical fragility",
+            "Surface smoothness and stability",
+            "Electrical conductivity",
+            "Heat generation"
+        ],
+        "correct_answer": 1,
+        "explanation": "Glass substrates provide a smoother, more stable surface than aluminum, allowing for higher data density and more reliable operation."
+    },
+    {
+        "id": 81,
+        "type": "multiple_choice",
+        "question": "One advantage of glass substrate disks is:",
+        "options": [
+            "Better resistance to shock and temperature",
+            "Increased noise",
+            "Slower disk rotation",
+            "Reduced durability"
+        ],
+        "correct_answer": 0,
+        "explanation": "Glass substrates are more rigid and resistant to temperature changes and mechanical shock compared to aluminum substrates."
+    },
+    {
+        "id": 82,
+        "type": "multiple_choice",
+        "question": "RAID stands for:",
+        "options": [
+            "Redundant Array of Independent Disks",
+            "Random Access Integrated Disk",
+            "Rapid Access Input Disk",
+            "Remote Access Integrated Drive"
+        ],
+        "correct_answer": 0,
+        "explanation": "RAID (Redundant Array of Independent Disks) combines multiple physical disk drives into a single logical unit for data redundancy and/or performance improvement."
+    },
+    {
+        "id": 83,
+        "type": "multiple_choice",
+        "question": "Redundancy in RAID is mainly achieved using:",
+        "options": [
+            "Data replication or parity",
+            "Disk formatting",
+            "Increased processor speed",
+            "Cache memory"
+        ],
+        "correct_answer": 0,
+        "explanation": "RAID achieves redundancy through either mirroring (complete data replication across disks) or parity (error-calculated data that can reconstruct lost information)."
+    },
+    {
+        "id": 84,
+        "type": "multiple_choice",
+        "question": "Which statement correctly describes RAID 0?",
+        "options": [
+            "RAID 0 stores duplicate copies of data on two disks so one can replace the other if it fails.",
+            "RAID 0 divides data into blocks and stripes it across multiple disks to improve performance, but it provides no redundancy or fault tolerance, meaning if one disk fails all the data is lost.",
+            "RAID 0 stores parity information on a separate disk to recover lost data.",
+            "RAID 0 stores two copies of data and parity information together."
+        ],
+        "correct_answer": 1,
+        "explanation": "RAID 0 uses striping to improve performance but offers no redundancy. Failure of any disk results in complete data loss for the entire array."
+    },
+    {
+        "id": 85,
+        "type": "multiple_choice",
+        "question": "Which statement correctly explains RAID 1?",
+        "options": [
+            "RAID 1 splits data across disks without protection.",
+            "RAID 1 uses parity information stored on a single disk.",
+            "RAID 1 mirrors data by storing identical copies of the same data on two or more disks so that if one disk fails the system can continue operating using the duplicate copy.",
+            "RAID 1 distributes parity across several disks."
+        ],
+        "correct_answer": 2,
+        "explanation": "RAID 1 provides redundancy through mirroring. Data written to one disk is simultaneously written to another disk, creating an exact copy for fault tolerance."
+    },
+    {
+        "id": 86,
+        "type": "multiple_choice",
+        "question": "Which statement best defines RAID 2?",
+        "options": [
+            "RAID 2 uses bit-level striping across multiple disks and stores error correction codes (ECC) on additional disks to detect and correct data errors.",
+            "RAID 2 mirrors data across disks for redundancy.",
+            "RAID 2 stores parity information across multiple disks without striping.",
+            "RAID 2 splits data across disks without error correction."
+        ],
+        "correct_answer": 0,
+        "explanation": "RAID 2 stripes data at the bit level and uses Hamming code ECC disks for error correction, though it's rarely implemented in practice."
+    },
+    {
+        "id": 87,
+        "type": "multiple_choice",
+        "question": "Which description best explains RAID 3?",
+        "options": [
+            "RAID 3 stores duplicate copies of data on all disks.",
+            "RAID 3 uses byte-level striping across several disks and stores parity information on a dedicated disk, allowing the system to reconstruct lost data if one disk fails.",
+            "RAID 3 removes parity completely to improve speed.",
+            "RAID 3 distributes parity across all disks."
+        ],
+        "correct_answer": 1,
+        "explanation": "RAID 3 stripes data at the byte level across multiple disks and uses a dedicated parity disk for error recovery."
+    },
+    {
+        "id": 88,
+        "type": "multiple_choice",
+        "question": "Which statement best describes RAID 4?",
+        "options": [
+            "RAID 4 mirrors all data across disks.",
+            "RAID 4 uses block-level striping across multiple disks with one dedicated disk used to store parity information for data recovery.",
+            "RAID 4 removes redundancy completely.",
+            "RAID 4 stores three copies of every file."
+        ],
+        "correct_answer": 1,
+        "explanation": "RAID 4 uses block-level striping and a dedicated parity disk, similar to RAID 3 but with block-level rather than byte-level striping."
+    },
+    {
+        "id": 89,
+        "type": "multiple_choice",
+        "question": "Which option correctly explains RAID 5?",
+        "options": [
+            "RAID 5 mirrors data across all disks.",
+            "RAID 5 stores data on one disk only.",
+            "RAID 5 uses block-level striping and distributes parity information across all disks in the array, improving reliability and avoiding the single parity disk bottleneck.",
+            "RAID 5 uses only error correction codes."
+        ],
+        "correct_answer": 2,
+        "explanation": "RAID 5 stripes data and parity information across all disks, eliminating the dedicated parity disk bottleneck while maintaining single-disk fault tolerance."
+    },
+    {
+        "id": 90,
+        "type": "multiple_choice",
+        "question": "Which statement best defines RAID 6?",
+        "options": [
+            "RAID 6 removes parity and redundancy.",
+            "RAID 6 uses block-level striping with dual distributed parity, allowing the system to recover data even if two disks fail simultaneously.",
+            "RAID 6 mirrors data on only one disk.",
+            "RAID 6 stores data sequentially on a single disk."
+        ],
+        "correct_answer": 1,
+        "explanation": "RAID 6 provides fault tolerance for up to two disk failures by using two independent parity calculations distributed across all disks."
+    },
+    {
+        "id": 91,
+        "type": "multiple_choice",
+        "question": "What is the main purpose of external devices in a computer system?",
+        "options": [
+            "To increase CPU speed",
+            "To provide a means of exchanging data between the external environment and the computer",
+            "To replace memory modules",
+            "To perform arithmetic operations"
+        ],
+        "correct_answer": 1,
+        "explanation": "External devices (peripherals) allow the computer to interact with the outside world, receiving input and delivering output."
+    },
+    {
+        "id": 92,
+        "type": "multiple_choice",
+        "question": "External devices are also commonly referred to as:",
+        "options": [
+            "Processors",
+            "Peripheral devices",
+            "Memory controllers",
+            "Cache modules"
+        ],
+        "correct_answer": 1,
+        "explanation": "External devices are most commonly called peripherals, as they are auxiliary devices that connect to and work with the computer."
+    },
+    {
+        "id": 93,
+        "type": "multiple_choice",
+        "question": "Which category of external device is used for communication with users?",
+        "options": [
+            "Machine readable devices",
+            "Communication devices",
+            "Human readable devices",
+            "Network processors"
+        ],
+        "correct_answer": 2,
+        "explanation": "Human readable devices are designed to communicate information directly to or from a user, such as monitors, printers, and keyboards."
+    },
+    {
+        "id": 94,
+        "type": "multiple_choice",
+        "question": "Which of the following is an example of a machine-readable device?",
+        "options": [
+            "Printer",
+            "Keyboard",
+            "Magnetic disk",
+            "Monitor"
+        ],
+        "correct_answer": 2,
+        "explanation": "Machine-readable devices are designed to communicate with other machines or systems. A magnetic disk stores data for the computer to read, not directly for a human."
+    },
+    {
+        "id": 95,
+        "type": "multiple_choice",
+        "question": "Communication devices are used mainly for:",
+        "options": [
+            "Communicating with remote devices or systems",
+            "Displaying information to the user",
+            "Storing operating systems",
+            "Performing arithmetic calculations"
+        ],
+        "correct_answer": 0,
+        "explanation": "Communication devices, like network interface cards and modems, enable a computer to exchange data with other computer systems over a distance."
+    },
+    {
+        "id": 96,
+        "type": "multiple_choice",
+        "question": "Which signals determine the function an external device performs such as read or write?",
+        "options": [
+            "Status signals",
+            "Control signals",
+            "Data signals",
+            "Address signals"
+        ],
+        "correct_answer": 1,
+        "explanation": "Control signals from the I/O module specify the operation the external device should perform, such as a read, write, or seek operation."
+    },
+    {
+        "id": 97,
+        "type": "multiple_choice",
+        "question": "What do status signals indicate in an external device?",
+        "options": [
+            "The amount of stored data",
+            "The condition of the device such as READY, BUSY, or ERROR",
+            "The speed of the processor",
+            "The number of connected devices"
+        ],
+        "correct_answer": 1,
+        "explanation": "Status signals report the current state of the I/O device back to the I/O module, indicating whether it is ready for a new command, busy, or has encountered an error."
+    },
+    {
+        "id": 98,
+        "type": "multiple_choice",
+        "question": "Data exchanged between an I/O module and an external device is transmitted in the form of:",
+        "options": [
+            "Electrical waves",
+            "Bits",
+            "Packets",
+            "Characters only"
+        ],
+        "correct_answer": 1,
+        "explanation": "At its most fundamental level, all data exchanged between a computer and any device is transmitted as a stream of bits."
+    },
+    {
+        "id": 99,
+        "type": "multiple_choice",
+        "question": "The computer system's I/O architecture refers to:",
+        "options": [
+            "The structure of CPU instructions",
+            "The interface between the computer and the outside world",
+            "The design of memory modules",
+            "The layout of hard disks"
+        ],
+        "correct_answer": 1,
+        "explanation": "The I/O architecture is the totality of the hardware and software that provides the interface and manages the data flow between the computer system and the external environment."
+    },
+    {
+        "id": 100,
+        "type": "multiple_choice",
+        "question": "Which of the following is considered the third key element of a computer system besides the CPU and memory?",
+        "options": [
+            "Network interface",
+            "I/O modules",
+            "Cache controller",
+            "Power supply"
+        ],
+        "correct_answer": 1,
+        "explanation": "A computer system is fundamentally composed of three key interconnected components: the Central Processing Unit (CPU), memory, and Input/Output (I/O) modules."
+    },
+    {
+        "id": 101,
+        "type": "multiple_choice",
+        "question": "An I/O module mainly acts as:",
+        "options": [
+            "A bridge between the system bus and peripheral devices",
+            "A replacement for memory",
+            "A processor controller",
+            "A power regulator"
+        ],
+        "correct_answer": 0,
+        "explanation": "The I/O module is the interface that connects the internal high-speed system bus to the various external peripheral devices, handling the necessary data conversions and control signals."
+    },
+    {
+        "id": 102,
+        "type": "multiple_choice",
+        "question": "Which of the following is NOT one of the major functions of an I/O module?",
+        "options": [
+            "Control and timing",
+            "Device communication",
+            "Arithmetic processing",
+            "Error detection"
+        ],
+        "correct_answer": 2,
+        "explanation": "Arithmetic processing is the primary function of the CPU's ALU (Arithmetic Logic Unit), not the I/O module. I/O modules handle control, communication, buffering, and error detection."
+    },
+    {
+        "id": 103,
+        "type": "multiple_choice",
+        "question": "The function of data buffering in an I/O module is to:",
+        "options": [
+            "Increase processor speed",
+            "Temporarily store data before sending it to the device at its required data rate",
+            "Encrypt transmitted data",
+            "Replace system memory"
+        ],
+        "correct_answer": 1,
+        "explanation": "Data buffering compensates for the speed difference between the fast system bus and the slower peripheral device by temporarily storing data until the device is ready."
+    },
+    {
+        "id": 104,
+        "type": "multiple_choice",
+        "question": "Error detection in an I/O module helps to:",
+        "options": [
+            "Increase storage capacity",
+            "Detect mechanical or electrical malfunctions and data corruption",
+            "Improve processor instruction speed",
+            "Reduce device power consumption"
+        ],
+        "correct_answer": 1,
+        "explanation": "I/O modules often include error detection mechanisms, such as parity bits, to identify errors that may occur during data transmission due to device malfunctions or noise."
+    },
+    {
+        "id": 105,
+        "type": "multiple_choice",
+        "question": "In programmed I/O, the processor:",
+        "options": [
+            "Transfers data directly between memory and device without control",
+            "Has continuous control over the I/O operation and waits until it is complete",
+            "Never interacts with the I/O module",
+            "Uses another processor to handle the operation"
+        ],
+        "correct_answer": 1,
+        "explanation": "In programmed I/O, the CPU is in a loop, constantly checking the status of the I/O module and directly controlling every step of the data transfer, which wastes CPU time."
+    },
+    {
+        "id": 106,
+        "type": "multiple_choice",
+        "question": "In interrupt-driven I/O, the processor:",
+        "options": [
+            "Stops all tasks permanently during I/O operations",
+            "Continues executing other instructions and is interrupted when the I/O operation finishes",
+            "Transfers data directly without interruption",
+            "Disconnects from memory during I/O"
+        ],
+        "correct_answer": 1,
+        "explanation": "Interrupt-driven I/O improves efficiency. The CPU issues an I/O command and continues with other work. The I/O module sends an interrupt signal to the CPU when the operation is complete."
+    },
+    {
+        "id": 107,
+        "type": "multiple_choice",
+        "question": "In Direct Memory Access (DMA), data transfer occurs:",
+        "options": [
+            "Directly between the I/O module and main memory without continuous CPU involvement",
+            "Only between the CPU and registers",
+            "Between external devices and cache memory",
+            "Through manual CPU control"
+        ],
+        "correct_answer": 0,
+        "explanation": "DMA allows a specialized controller to handle data transfers directly between an I/O device and memory, freeing the CPU to perform other tasks concurrently."
+    },
+    {
+        "id": 108,
+        "type": "multiple_choice",
+        "question": "Which command from the CPU tells the I/O module what operation to perform?",
+        "options": [
+            "Test command",
+            "Control command",
+            "Read command",
+            "Write command"
+        ],
+        "correct_answer": 1,
+        "explanation": "A control command is used by the CPU to instruct the I/O module to perform a specific operation, such as rewinding a tape or seeking a track on a disk."
+    },
+    {
+        "id": 109,
+        "type": "multiple_choice",
+        "question": "Which CPU command checks whether the I/O device is ready, busy, or has errors?",
+        "options": [
+            "Write",
+            "Read",
+            "Test",
+            "Control"
+        ],
+        "correct_answer": 2,
+        "explanation": "The test command is used by the CPU to query the status of an I/O module and its associated devices, checking condition flags like 'ready', 'busy', or 'error'."
+    },
+    {
+        "id": 110,
+        "type": "multiple_choice",
+        "question": "An I/O processor differs from a simple I/O module because it:",
+        "options": [
+            "Has its own specialized instruction set and can execute I/O programs independently",
+            "Only sends signals to memory",
+            "Replaces the CPU entirely",
+            "Removes peripheral devices from the system"
+        ],
+        "correct_answer": 0,
+        "explanation": "An I/O processor is a more sophisticated controller with its own local memory and instruction set, capable of executing entire I/O programs without direct intervention from the main CPU."
     }
 
 
-        
         
     ]
 }
