@@ -81,8 +81,10 @@ def verify_written_answer(user_answer, correct_answer, keywords=None, min_simila
     user_clean = clean_text(user_answer)
     correct_clean = clean_text(correct_answer)
     
+    # Text similarity
     similarity = SequenceMatcher(None, user_clean, correct_clean).ratio()
     
+    # Keyword matching
     keyword_score = 0
     found_keywords = []
     
@@ -97,6 +99,7 @@ def verify_written_answer(user_answer, correct_answer, keywords=None, min_simila
     else:
         keyword_percentage = 0
     
+    # Consider answer correct if similarity is high OR keywords are found
     is_correct = similarity >= min_similarity or (keywords and keyword_percentage >= 0.5)
     
     return {
@@ -127,8 +130,10 @@ def load_quiz_data_from_module(quiz_slug):
     try:
         print(f"Attempting to load quiz data for: {quiz_slug}")
         
+        # Convert slug to module name
         module_name = quiz_slug.replace('-', '_')
         
+        # Add current directory to Python path
         current_dir = os.path.dirname(os.path.abspath(__file__))
         app_dir = os.path.dirname(current_dir)
         
@@ -136,6 +141,7 @@ def load_quiz_data_from_module(quiz_slug):
             sys.path.insert(0, app_dir)
         
         try:
+            # Try direct import from courses folder
             module_path = f"app.courses.{module_name}"
             print(f"Trying import from: {module_path}")
             module = importlib.import_module(module_path)
@@ -143,19 +149,30 @@ def load_quiz_data_from_module(quiz_slug):
             
         except ImportError as e:
             print(f"Failed to import {module_path}: {e}")
+            print("Checking current directory structure...")
+            
+            # Check if module exists in current directory
             module_file = f"{module_name}.py"
             current_files = os.listdir(current_dir)
+            print(f"Files in current directory: {current_files}")
             
             if module_file in current_files:
+                print(f"Found {module_file} in current directory")
                 module = importlib.import_module(module_name)
             else:
+                # Try parent directory
                 parent_dir = os.path.dirname(current_dir)
-                if module_file in parent_dir:
+                parent_files = os.listdir(parent_dir)
+                print(f"Files in parent directory: {parent_files}")
+                
+                if module_file in parent_files:
+                    print(f"Found {module_file} in parent directory")
                     sys.path.insert(0, parent_dir)
                     module = importlib.import_module(module_name)
                 else:
-                    raise ImportError(f"Could not find module {module_name}")
+                    raise ImportError(f"Could not find module {module_name} in any expected location")
         
+        # Look for quiz data in the module
         possible_names = [
             f"{module_name.upper()}_QUIZ",
             "QUIZ_DATA",
@@ -172,6 +189,8 @@ def load_quiz_data_from_module(quiz_slug):
                 break
         
         if quiz_data is None:
+            # Look for any variable that might contain questions
+            print(f"Searching for quiz data in module attributes...")
             for attr_name in dir(module):
                 attr_value = getattr(module, attr_name)
                 if isinstance(attr_value, dict) and 'questions' in attr_value:
@@ -193,40 +212,53 @@ def load_quiz_data_from_module(quiz_slug):
 def get_course_questions_api(quiz_slug, count=20):
     """Get questions for a specific course"""
     try:
+        # Load quiz data from module
         quiz_data = load_quiz_data_from_module(quiz_slug)
         
         if not quiz_data:
+            print(f"No quiz data returned for {quiz_slug}")
             return {
                 'success': False,
                 'message': 'Could not load quiz data from module'
             }
         
         if 'questions' not in quiz_data:
+            print(f"No 'questions' key in quiz data for {quiz_slug}")
             return {
                 'success': False,
                 'message': 'No questions found in quiz data'
             }
         
         all_questions = quiz_data['questions']
+        print(f"Found {len(all_questions)} total questions for {quiz_slug}")
         
+        # Check if we have enough questions
         if len(all_questions) < count:
+            print(f"Warning: Only {len(all_questions)} questions available, requested {count}")
             count = len(all_questions)
         
+        # Select random questions
         if len(all_questions) > count:
             quiz_questions = random.sample(all_questions, count)
         else:
             quiz_questions = all_questions.copy()
         
+        print(f"Selected {len(quiz_questions)} questions for quiz")
+        
+        # Randomize answer positions for multiple choice questions
         for question in quiz_questions:
             if 'options' in question and 'correct_answer' in question:
                 try:
+                    # Store the correct answer text
                     correct_index = question['correct_answer']
                     if isinstance(correct_index, int) and 0 <= correct_index < len(question['options']):
                         correct_answer_text = question['options'][correct_index]
+                        # Shuffle options
                         random.shuffle(question['options'])
+                        # Find new position of correct answer
                         question['correct_answer'] = question['options'].index(correct_answer_text)
                 except Exception as e:
-                    print(f"Error shuffling options: {e}")
+                    print(f"Error shuffling options for question {question.get('id')}: {e}")
         
         return {
             'success': True,
@@ -253,16 +285,20 @@ def get_course_questions_api(quiz_slug, count=20):
 @quizzes_bp.route('/')
 @login_required
 def index():
+    """Redirect to quizzes main page"""
     return redirect(url_for('quizzes.quizzes'))
 
 @quizzes_bp.route('/quiz-results')
 @login_required
 def quiz_results():
+    """Show comprehensive quiz results page"""
     return render_template('/quizzes/quiz_result.html')
 
 @quizzes_bp.route('/quizzes')
 @login_required
 def quizzes():
+    """Main quizzes page - shows all available quiz courses"""
+    # Get user's quiz attempts to show progress
     user_attempts = {}
     attempts = QuizAttempt.query.filter_by(user_id=current_user.id).all()
     for attempt in attempts:
@@ -274,6 +310,7 @@ def quizzes():
             'quiz_name': attempt.quiz_name
         }
     
+    # Prepare course data for template
     courses_data = []
     for slug, quiz_info in QUIZ_COURSES.items():
         course_info = {
@@ -286,11 +323,13 @@ def quizzes():
             'has_attempt': slug in user_attempts
         }
         
+        # Add user attempt data if exists
         if slug in user_attempts:
             course_info.update(user_attempts[slug])
         
         courses_data.append(course_info)
     
+    # Calculate stats
     total_courses = len(QUIZ_COURSES)
     total_questions = sum(quiz['questions'] for quiz in QUIZ_COURSES.values())
     
@@ -302,7 +341,7 @@ def quizzes():
 @quizzes_bp.route('/take/<quiz_slug>')
 @login_required
 def take_quiz(quiz_slug):
-    """Take an interactive quiz - supports cyclic mode"""
+    """Take an interactive quiz"""
     print(f"take_quiz called with slug: {quiz_slug}")
     
     if quiz_slug not in QUIZ_COURSES:
@@ -310,13 +349,18 @@ def take_quiz(quiz_slug):
         return redirect(url_for('quizzes.quizzes'))
     
     quiz_info = QUIZ_COURSES[quiz_slug]
+    print(f"Quiz info loaded: {quiz_info['name']}")
     
+    # Try to load quiz data from module
     quiz_data = load_quiz_data_from_module(quiz_slug)
     
     if not quiz_data:
-        flash('Could not load quiz questions from course module.', 'error')
+        flash('Could not load quiz questions from course module. Please contact administrator.', 'error')
         return redirect(url_for('quizzes.quizzes'))
     
+    print(f"Quiz data loaded successfully. Questions found: {len(quiz_data.get('questions', []))}")
+    
+    # Add defaults if not present
     if 'passing_score' not in quiz_data:
         quiz_data['passing_score'] = 60
     
@@ -326,41 +370,17 @@ def take_quiz(quiz_slug):
     if 'course_name' not in quiz_data:
         quiz_data['course_name'] = quiz_info['name']
     
+    # Calculate question counts for template
     questions = quiz_data.get('questions', [])
     total_questions = len(questions)
     mc_questions = len([q for q in questions if q.get('type') == 'multiple_choice'])
     written_questions = len([q for q in questions if q.get('type') == 'written'])
     
+    # Get the last attempt for this quiz
     last_attempt = QuizAttempt.query.filter_by(
         user_id=current_user.id, 
         quiz_type=quiz_slug
     ).order_by(QuizAttempt.attempt_date.desc()).first()
-    
-    # NEW: Initialize cyclic quiz session if not exists
-    if f'cyclic_quiz_{quiz_slug}' not in session:
-        # Select random questions for this session
-        question_count = min(20, len(questions))
-        if len(questions) > question_count:
-            session_questions = random.sample(questions, question_count)
-        else:
-            session_questions = questions.copy()
-        
-        # Create pending queue (questions that need to be answered correctly)
-        pending_questions = []
-        for q in session_questions:
-            pending_questions.append({
-                'question_data': q,
-                'attempts': 0,
-                'last_answer': None
-            })
-        
-        session[f'cyclic_quiz_{quiz_slug}'] = {
-            'pending': pending_questions,
-            'completed': [],
-            'total_questions': len(session_questions),
-            'original_questions': session_questions
-        }
-        session.modified = True
     
     return render_template('quizzes/quiz_template.html',
                          quiz_data=quiz_data,
@@ -373,228 +393,10 @@ def take_quiz(quiz_slug):
                          mc_questions=mc_questions,
                          written_questions=written_questions,
                          passing_score=quiz_data['passing_score'],
-                         last_attempt=last_attempt,
-                         cyclic_mode=True)  # Flag for frontend
+                         last_attempt=last_attempt)
 
 # ==============================================
-# CYCLIC QUIZ API (NEW)
-# ==============================================
-
-@quizzes_bp.route('/api/cyclic-submit', methods=['POST'])
-@login_required
-def cyclic_submit():
-    """Submit one answer in cyclic mode - wrong answers go back to queue"""
-    try:
-        data = request.json
-        quiz_slug = data.get('quiz_type')
-        question_id = data.get('question_id')
-        user_answer = data.get('user_answer', '')
-        
-        if not quiz_slug or question_id is None:
-            return jsonify({'success': False, 'error': 'Missing required fields'}), 400
-        
-        # Get session data
-        session_key = f'cyclic_quiz_{quiz_slug}'
-        if session_key not in session:
-            return jsonify({'success': False, 'error': 'Quiz session expired. Please restart.'}), 400
-        
-        quiz_session = session[session_key]
-        pending = quiz_session.get('pending', [])
-        
-        # Find the question in pending queue
-        question_index = None
-        question_data = None
-        for idx, item in enumerate(pending):
-            q_data = item['question_data']
-            q_id = str(q_data.get('id', idx))
-            if str(question_id) == q_id:
-                question_index = idx
-                question_data = q_data
-                break
-        
-        if question_data is None:
-            return jsonify({'success': False, 'error': 'Question not found in pending queue'}), 404
-        
-        # Grade the answer
-        is_correct = False
-        explanation = question_data.get('explanation', '')
-        correct_answer_display = ''
-        
-        question_type = question_data.get('type', 'multiple_choice')
-        
-        if question_type == 'multiple_choice':
-            correct_answer = question_data.get('correct_answer')
-            options = question_data.get('options', [])
-            
-            if correct_answer is None:
-                is_correct = False
-                correct_answer_display = 'Not specified'
-            else:
-                user_ans_str = str(user_answer).strip().upper()
-                correct_ans_str = str(correct_answer).strip().upper()
-                
-                # Normalize true/false
-                if user_ans_str in ['TRUE', 'T', 'YES', 'Y']:
-                    user_normalized = '1'
-                elif user_ans_str in ['FALSE', 'F', 'NO', 'N']:
-                    user_normalized = '0'
-                else:
-                    user_normalized = user_ans_str
-                
-                if correct_ans_str in ['TRUE', 'T', 'YES', 'Y']:
-                    correct_normalized = '1'
-                elif correct_ans_str in ['FALSE', 'F', 'NO', 'N']:
-                    correct_normalized = '0'
-                elif isinstance(correct_answer, bool):
-                    correct_normalized = '1' if correct_answer else '0'
-                else:
-                    correct_normalized = correct_ans_str
-                
-                # Compare
-                if user_normalized == correct_normalized:
-                    is_correct = True
-                elif user_normalized in ['A', 'B', 'C', 'D'] and correct_normalized in ['0', '1', '2', '3']:
-                    letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-                    if letter_to_index.get(user_normalized) == int(correct_normalized):
-                        is_correct = True
-                elif user_normalized in ['0', '1', '2', '3'] and user_normalized == correct_normalized:
-                    is_correct = True
-                
-                # Format correct answer for display
-                try:
-                    if isinstance(correct_answer, int) and options:
-                        correct_answer_display = options[correct_answer]
-                    else:
-                        correct_answer_display = str(correct_answer)
-                except:
-                    correct_answer_display = str(correct_answer)
-        
-        elif question_type == 'written':
-            verification = verify_written_answer(
-                user_answer,
-                question_data.get('correct_answer', ''),
-                question_data.get('keywords', []),
-                question_data.get('min_similarity', 0.6)
-            )
-            is_correct = verification['is_correct']
-            correct_answer_display = question_data.get('correct_answer', '')
-        
-        # Update pending queue
-        if is_correct:
-            # Move to completed
-            completed_item = pending.pop(question_index)
-            completed_item['completed_at'] = datetime.now().isoformat()
-            quiz_session['completed'].append(completed_item)
-        else:
-            # Increment attempts and keep in pending
-            pending[question_index]['attempts'] += 1
-            pending[question_index]['last_answer'] = user_answer
-        
-        # Check if quiz is complete
-        is_complete = len(pending) == 0
-        quiz_session['pending'] = pending
-        session[session_key] = quiz_session
-        session.modified = True
-        
-        # Prepare next question if any
-        next_question = None
-        if not is_complete and len(pending) > 0:
-            next_item = pending[0]
-            next_q = next_item['question_data'].copy()
-            # Don't send correct answer in next question
-            if 'correct_answer' in next_q:
-                del next_q['correct_answer']
-            next_question = next_q
-        
-        # If complete, save to database
-        attempt_id = None
-        if is_complete:
-            total_questions = quiz_session['total_questions']
-            correct_count = len(quiz_session['completed'])
-            percentage = (correct_count / total_questions) * 100 if total_questions > 0 else 0
-            grade_letter, grade_message = calculate_grade(percentage)
-            quiz_info = QUIZ_COURSES.get(quiz_slug, {})
-            
-            # Build results for storage
-            results = []
-            for item in quiz_session['completed']:
-                q = item['question_data']
-                results.append({
-                    'id': q.get('id'),
-                    'question': q.get('question'),
-                    'user_answer': item.get('last_answer', ''),
-                    'is_correct': True,
-                    'attempts': item.get('attempts', 1)
-                })
-            
-            combined_data = {
-                'quiz_data': {
-                    'correct_answers': correct_count,
-                    'incorrect_answers': 0,
-                    'passing_score': 60,
-                    'course_name': quiz_info.get('name', ''),
-                    'course_code': quiz_info.get('course_code', ''),
-                    'cyclic_mode': True,
-                    'total_attempts_per_question': [
-                        {'id': q['question_data'].get('id'), 'attempts': q.get('attempts', 1)}
-                        for q in quiz_session['completed']
-                    ]
-                },
-                'results_summary': {
-                    'total_questions': total_questions,
-                    'correct_answers': correct_count,
-                    'score': correct_count,
-                    'percentage': percentage
-                }
-            }
-            
-            try:
-                quiz_attempt = QuizAttempt(
-                    user_id=current_user.id,
-                    quiz_type=quiz_slug,
-                    quiz_name=quiz_info.get('name', ''),
-                    score=correct_count,
-                    total_questions=total_questions,
-                    percentage=round(percentage, 2),
-                    grade=grade_letter,
-                    answers=json.dumps(combined_data),
-                    results=json.dumps(results),
-                    attempt_date=datetime.now()
-                )
-                db.session.add(quiz_attempt)
-                db.session.commit()
-                attempt_id = quiz_attempt.id
-            except Exception as db_error:
-                print(f"Database error: {db_error}")
-                db.session.rollback()
-            
-            # Clear session
-            del session[session_key]
-            session.modified = True
-        
-        return jsonify({
-            'success': True,
-            'is_correct': is_correct,
-            'is_complete': is_complete,
-            'correct_answer': correct_answer_display if not is_correct else None,
-            'explanation': explanation if not is_correct else None,
-            'next_question': next_question,
-            'progress': {
-                'completed': len(quiz_session['completed']),
-                'remaining': len(pending),
-                'total': quiz_session['total_questions']
-            },
-            'attempt_id': attempt_id,
-            'percentage': (len(quiz_session['completed']) / quiz_session['total_questions']) * 100 if quiz_session['total_questions'] > 0 else 0
-        })
-        
-    except Exception as e:
-        print(f"Error in cyclic_submit: {e}")
-        traceback.print_exc()
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-# ==============================================
-# EXISTING API ROUTES (UNCHANGED)
+# API ROUTES
 # ==============================================
 
 @quizzes_bp.route('/api/submit', methods=['POST'])
@@ -621,6 +423,7 @@ def submit_quiz():
         
         quiz_info = QUIZ_COURSES[quiz_type]
         
+        # Load quiz data from module
         quiz_data = load_quiz_data_from_module(quiz_type)
         
         if not quiz_data:
@@ -631,42 +434,63 @@ def submit_quiz():
         
         all_questions = quiz_data.get('questions', [])
         
+        # Create a mapping of question IDs to questions
         question_map = {}
         for i, question in enumerate(all_questions):
             q_id = str(question.get('id', i+1))
             question_map[q_id] = question
         
+        print(f"DEBUG: Loaded {len(all_questions)} questions")
+        print(f"DEBUG: Answers received: {list(answers.keys())}")
+        
+        # Find questions that were answered
         questions_asked = []
         answered_ids = []
         
+        # First, try to match by exact question ID
         for q_id, user_answer in answers.items():
             if q_id in question_map:
                 questions_asked.append(question_map[q_id])
                 answered_ids.append(q_id)
+                print(f"DEBUG: Matched answer for question ID {q_id}")
             else:
+                # Try to find by index if ID is numeric
                 try:
                     idx = int(q_id) - 1
                     if 0 <= idx < len(all_questions):
                         questions_asked.append(all_questions[idx])
                         answered_ids.append(q_id)
+                        print(f"DEBUG: Matched answer for numeric index {q_id}")
                 except:
-                    pass
+                    print(f"DEBUG: Could not match answer for {q_id}")
         
+        # If we don't have enough questions, use the first N questions
         if len(questions_asked) < len(answers):
+            print(f"DEBUG: Only matched {len(questions_asked)} questions, using first {len(answers)} questions")
             questions_asked = all_questions[:min(len(answers), len(all_questions))]
         
+        # Grade the quiz
         results = []
         total_score = 0
         total_questions = len(questions_asked)
         correct_answers = 0
         incorrect_answers = 0
         
+        print(f"=== GRADING START ===")
+        print(f"Total questions to grade: {total_questions}")
+        
         for i, question in enumerate(questions_asked):
             q_id = str(question.get('id', i+1))
             user_answer = answers.get(q_id, '')
             
+            # If q_id not found, try with index
             if user_answer == '':
                 user_answer = answers.get(str(i+1), '')
+            
+            print(f"\nQ{i+1} (ID: {q_id}):")
+            print(f"  Question: {question.get('question', '')[:50]}...")
+            print(f"  User answer: '{user_answer}' (type: {type(user_answer)})")
+            print(f"  Correct answer (stored): {question.get('correct_answer')} (type: {type(question.get('correct_answer'))})")
             
             result = {
                 'id': question.get('id', i+1),
@@ -684,57 +508,112 @@ def submit_quiz():
                 correct_answer = question.get('correct_answer')
                 options = question.get('options', [])
                 
+                # Handle case where correct_answer is None
                 if correct_answer is None:
+                    print(f"  WARNING: No correct answer specified")
                     result['correct_answer'] = 'Not specified'
                     result['is_correct'] = False
+                    result['points'] = 0
                     incorrect_answers += 1
+                    print(f"  RESULT: ✗ INCORRECT (No correct answer in database)")
+                
                 else:
+                    # Handle empty answer
                     if user_answer is None or str(user_answer).strip() == '':
                         result['is_correct'] = False
+                        result['points'] = 0
                         incorrect_answers += 1
+                        print(f"  EMPTY ANSWER - Marked as incorrect")
+                        
                     else:
-                        user_ans_str = str(user_answer).strip().upper()
-                        correct_ans_str = str(correct_answer).strip().upper()
+                        # SIMPLE COMPARISON - treat ALL questions the same way
+                        user_ans_str = str(user_answer).strip()
+                        correct_ans_str = str(correct_answer).strip()
                         
-                        user_normalized = user_ans_str
-                        correct_normalized = correct_ans_str
+                        # Convert to uppercase for case-insensitive comparison
+                        user_upper = user_ans_str.upper()
+                        correct_upper = correct_ans_str.upper()
                         
-                        if user_normalized in ['TRUE', 'T', 'YES', 'Y']:
+                        # SPECIAL HANDLING FOR TRUE/FALSE VARIATIONS
+                        # Map common true/false variations to '1' and '0'
+                        
+                        # Normalize user answer
+                        if user_upper in ['TRUE', 'T', 'YES', 'Y']:
                             user_normalized = '1'
-                        elif user_normalized in ['FALSE', 'F', 'NO', 'N']:
+                        elif user_upper in ['FALSE', 'F', 'NO', 'N']:
                             user_normalized = '0'
+                        else:
+                            user_normalized = user_ans_str  # Keep original
                         
-                        if correct_normalized in ['TRUE', 'T', 'YES', 'Y']:
+                        # Normalize correct answer
+                        if correct_upper in ['TRUE', 'T', 'YES', 'Y']:
                             correct_normalized = '1'
-                        elif correct_normalized in ['FALSE', 'F', 'NO', 'N']:
+                        elif correct_upper in ['FALSE', 'F', 'NO', 'N']:
                             correct_normalized = '0'
                         elif isinstance(correct_answer, bool):
                             correct_normalized = '1' if correct_answer else '0'
+                        else:
+                            correct_normalized = correct_ans_str  # Keep original
                         
+                        # Now compare the normalized values
+                        # First try direct string comparison
                         if user_normalized == correct_normalized:
                             is_correct = True
+                            print(f"  Direct match: '{user_normalized}' == '{correct_normalized}': True")
+                        
+                        # Handle letter answers (A, B, C, D) for multiple choice
                         elif user_normalized in ['A', 'B', 'C', 'D'] and correct_normalized in ['0', '1', '2', '3']:
                             letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-                            is_correct = (letter_to_index.get(user_normalized) == int(correct_normalized))
-                        elif user_normalized in ['0', '1', '2', '3'] and user_normalized == correct_normalized:
-                            is_correct = True
-                        else:
-                            is_correct = False
+                            user_index = letter_to_index.get(user_normalized)
+                            is_correct = (user_index == int(correct_normalized))
+                            print(f"  Letter to index: '{user_normalized}' (index {user_index}) == '{correct_normalized}': {is_correct}")
                         
+                        # Handle numeric string comparison
+                        elif user_normalized in ['0', '1', '2', '3'] and correct_normalized in ['0', '1', '2', '3']:
+                            is_correct = (user_normalized == correct_normalized)
+                            print(f"  Numeric comparison: '{user_normalized}' == '{correct_normalized}': {is_correct}")
+                        
+                        # Last resort: case-insensitive string comparison
+                        else:
+                            is_correct = (user_upper == correct_upper)
+                            print(f"  Case-insensitive: '{user_upper}' == '{correct_upper}': {is_correct}")
+                        
+                        # Update counters
                         if is_correct:
                             result['is_correct'] = True
                             result['points'] = 1
                             total_score += 1
                             correct_answers += 1
+                            print(f"  RESULT: ✓ CORRECT! Total correct: {correct_answers}")
                         else:
+                            result['is_correct'] = False
+                            result['points'] = 0
                             incorrect_answers += 1
+                            print(f"  RESULT: ✗ INCORRECT")
                     
+                    # Store correct answer text for display
                     try:
-                        if isinstance(correct_answer, int) and options:
-                            result['correct_answer'] = options[correct_answer]
+                        if isinstance(correct_answer, bool):
+                            result['correct_answer'] = 'True' if correct_answer else 'False'
+                        elif str(correct_answer).upper() in ['TRUE', 'T', '1']:
+                            result['correct_answer'] = 'True'
+                        elif str(correct_answer).upper() in ['FALSE', 'F', '0']:
+                            result['correct_answer'] = 'False'
+                        elif len(options) > 0:
+                            if isinstance(correct_answer, int) and 0 <= correct_answer < len(options):
+                                result['correct_answer'] = options[correct_answer]
+                            elif isinstance(correct_answer, str) and correct_answer.isdigit():
+                                idx = int(correct_answer)
+                                if 0 <= idx < len(options):
+                                    result['correct_answer'] = options[idx]
+                                else:
+                                    result['correct_answer'] = str(correct_answer)
+                            else:
+                                result['correct_answer'] = str(correct_answer)
                         else:
                             result['correct_answer'] = str(correct_answer)
-                    except:
+                    except Exception as e:
+                        print(f"  Error formatting correct answer: {e}")
                         result['correct_answer'] = str(correct_answer)
             
             elif question_type == 'written':
@@ -750,8 +629,12 @@ def submit_quiz():
                     result['points'] = 1
                     total_score += 1
                     correct_answers += 1
+                    print(f"  Written answer: ✓ CORRECT! Similarity: {verification['similarity']:.2f}")
                 else:
+                    result['is_correct'] = False
+                    result['points'] = 0
                     incorrect_answers += 1
+                    print(f"  Written answer: ✗ INCORRECT! Similarity: {verification['similarity']:.2f}")
                 
                 result['similarity'] = verification['similarity']
                 result['found_keywords'] = verification['found_keywords']
@@ -760,12 +643,35 @@ def submit_quiz():
             
             results.append(result)
         
+        # Final validation
+        print(f"\n=== GRADING COMPLETE ===")
+        print(f"Total Questions: {total_questions}")
+        print(f"Total Score: {total_score}")
+        print(f"Correct Answers: {correct_answers}")
+        print(f"Incorrect Answers: {incorrect_answers}")
+        
+        # Validate that totals match
+        if (correct_answers + incorrect_answers) != total_questions:
+            print(f"WARNING: Numbers don't match! {correct_answers} + {incorrect_answers} != {total_questions}")
+            print(f"Fixing discrepancy...")
+            incorrect_answers = total_questions - correct_answers
+            print(f"Adjusted: Correct={correct_answers}, Incorrect={incorrect_answers}")
+        
+        # Calculate percentage and grade
         percentage = (total_score / total_questions) * 100 if total_questions > 0 else 0
         grade_letter, grade_message = calculate_grade(percentage)
         
+        # Get time taken from request if available
         time_taken = data.get('time_taken', 0)
         passing_score = quiz_data.get('passing_score', 60)
         
+        print(f"\n=== FINAL RESULTS ===")
+        print(f"Percentage: {percentage:.1f}%")
+        print(f"Grade: {grade_letter}")
+        print(f"Passing Score: {passing_score}%")
+        print(f"Passed: {percentage >= passing_score}")
+        
+        # Create metadata for JSON storage
         metadata = {
             'correct_answers': correct_answers,
             'incorrect_answers': incorrect_answers,
@@ -779,6 +685,7 @@ def submit_quiz():
             'total_questions': total_questions
         }
         
+        # Combine all data for JSON storage
         combined_data = {
             'quiz_data': metadata,
             'user_answers': answers,
@@ -791,6 +698,7 @@ def submit_quiz():
             }
         }
         
+        # Save to database
         try:
             quiz_attempt = QuizAttempt(
                 user_id=current_user.id,
@@ -808,8 +716,14 @@ def submit_quiz():
             db.session.add(quiz_attempt)
             db.session.commit()
             attempt_id = quiz_attempt.id
+            print(f"SUCCESS: Quiz attempt saved to database with ID {attempt_id}")
+            print(f"  Correct answers: {correct_answers}")
+            print(f"  Incorrect answers: {incorrect_answers}")
+            print(f"  Total questions: {total_questions}")
+            
         except Exception as db_error:
             print(f"DATABASE ERROR: {db_error}")
+            traceback.print_exc()
             attempt_id = None
             db.session.rollback()
         
@@ -825,10 +739,18 @@ def submit_quiz():
             'results': results,
             'quiz_name': quiz_info['name'],
             'course_code': quiz_info['course_code'],
+            'course_name': quiz_info['name'],
             'correct_answers': correct_answers,
             'incorrect_answers': incorrect_answers,
             'time_taken': time_taken,
-            'attempt_id': attempt_id
+            'adaptive_metrics': adaptive_metrics,
+            'attempt_id': attempt_id,
+            'debug_info': {
+                'score_match': total_score == correct_answers,
+                'correct_plus_incorrect': f"{correct_answers} + {incorrect_answers} = {correct_answers + incorrect_answers}",
+                'total_questions_graded': total_questions,
+                'answers_received': len(answers)
+            }
         })
         
     except Exception as e:
@@ -843,6 +765,7 @@ def submit_quiz():
 @quizzes_bp.route('/api/<quiz_slug>/questions')
 @login_required
 def get_quiz_questions_api(quiz_slug):
+    """API endpoint to get questions for a specific quiz"""
     if quiz_slug not in QUIZ_COURSES:
         return jsonify({'success': False, 'error': 'Quiz not found'}), 404
     
@@ -860,28 +783,37 @@ def get_quiz_questions_api(quiz_slug):
             }), 500
             
     except Exception as e:
+        print(f"Error in get_quiz_questions_api: {str(e)}")
         return jsonify({
             'success': False,
             'message': f'Error retrieving questions: {str(e)}'
         }), 500
 
 # ==============================================
-# RESULTS API ENDPOINTS (UNCHANGED)
+# RESULTS API ENDPOINTS
 # ==============================================
 
 @quizzes_bp.route('/api/results')
 @login_required
 def get_all_results():
+    """Get all quiz results for the current user"""
     try:
+        print(f"DEBUG: Getting results for user_id={current_user.id}")
+        
+        # Get all attempts for the user
         attempts = QuizAttempt.query.filter_by(
             user_id=current_user.id
         ).order_by(QuizAttempt.attempt_date.desc()).all()
         
+        print(f"DEBUG: Found {len(attempts)} attempts in database")
+        
         results = []
         for attempt in attempts:
+            # Get course information from QUIZ_COURSES mapping
             course_info = QUIZ_COURSES.get(attempt.quiz_type, {})
             
-            correct_answers = attempt.score
+            # Initialize with defaults
+            correct_answers = attempt.score  # Use score as correct answers
             incorrect_answers = attempt.total_questions - correct_answers if attempt.total_questions else 0
             time_taken = 0
             passing_score = 60
@@ -890,11 +822,13 @@ def get_all_results():
             course_code = course_info.get('course_code', '')
             passed = attempt.percentage >= passing_score
             
+            # Try to extract from JSON answers
             try:
                 if attempt.answers:
                     answers_data = json.loads(attempt.answers)
                     if isinstance(answers_data, dict) and 'quiz_data' in answers_data:
                         quiz_metadata = answers_data['quiz_data']
+                        
                         correct_answers = quiz_metadata.get('correct_answers', attempt.score)
                         incorrect_answers = quiz_metadata.get('incorrect_answers', incorrect_answers)
                         time_taken = quiz_metadata.get('time_taken', 0)
@@ -903,8 +837,8 @@ def get_all_results():
                         course_name = quiz_metadata.get('course_name', attempt.quiz_name)
                         course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
                         passed = quiz_metadata.get('passed', attempt.percentage >= passing_score)
-            except:
-                pass
+            except Exception as e:
+                print(f"Error parsing JSON for attempt {attempt.id}: {e}")
             
             results.append({
                 'id': attempt.id,
@@ -925,12 +859,16 @@ def get_all_results():
                 'adaptive_metrics': adaptive_metrics
             })
         
+        print(f"DEBUG: Returning {len(results)} results")
+        
         return jsonify({
             'success': True,
             'results': results
         })
         
     except Exception as e:
+        print(f"ERROR in get_all_results: {e}")
+        traceback.print_exc()
         return jsonify({
             'success': False,
             'message': f'Error retrieving results: {str(e)}'
@@ -939,6 +877,7 @@ def get_all_results():
 @quizzes_bp.route('/api/results/<int:attempt_id>')
 @login_required
 def get_quiz_attempt_details(attempt_id):
+    """Get detailed results for a specific quiz attempt"""
     try:
         attempt = QuizAttempt.query.filter_by(
             id=attempt_id,
@@ -951,8 +890,10 @@ def get_quiz_attempt_details(attempt_id):
                 'message': 'Attempt not found'
             }), 404
         
+        # Get course information
         course_info = QUIZ_COURSES.get(attempt.quiz_type, {})
         
+        # Extract data
         correct_answers = attempt.score
         incorrect_answers = attempt.total_questions - correct_answers if attempt.total_questions else 0
         time_taken = 0
@@ -962,11 +903,13 @@ def get_quiz_attempt_details(attempt_id):
         course_code = course_info.get('course_code', '')
         passed = attempt.percentage >= passing_score
         
+        # Try to extract from JSON
         try:
             if attempt.answers:
                 answers_data = json.loads(attempt.answers)
                 if isinstance(answers_data, dict) and 'quiz_data' in answers_data:
                     quiz_metadata = answers_data['quiz_data']
+                    
                     correct_answers = quiz_metadata.get('correct_answers', attempt.score)
                     incorrect_answers = quiz_metadata.get('incorrect_answers', incorrect_answers)
                     time_taken = quiz_metadata.get('time_taken', 0)
@@ -978,6 +921,7 @@ def get_quiz_attempt_details(attempt_id):
         except:
             pass
         
+        # Get questions data
         questions_data = []
         try:
             if attempt.results:
@@ -1012,19 +956,22 @@ def get_quiz_attempt_details(attempt_id):
         })
         
     except Exception as e:
+        print(f"Error getting attempt details: {e}")
         return jsonify({
             'success': False,
             'message': f'Error retrieving attempt details: {str(e)}'
         }), 500
 
 # ==============================================
-# DEBUG ROUTES (UNCHANGED)
+# DEBUG ROUTES
 # ==============================================
 
 @quizzes_bp.route('/api/debug-latest-attempt')
 @login_required
 def debug_latest_attempt():
+    """Debug the latest quiz attempt"""
     try:
+        # Get latest attempt
         attempt = QuizAttempt.query.filter_by(
             user_id=current_user.id
         ).order_by(QuizAttempt.attempt_date.desc()).first()
@@ -1032,6 +979,7 @@ def debug_latest_attempt():
         if not attempt:
             return jsonify({'success': False, 'message': 'No attempts found'})
         
+        # Show RAW data
         raw_data = {
             'id': attempt.id,
             'quiz_type': attempt.quiz_type,
@@ -1044,12 +992,14 @@ def debug_latest_attempt():
             'results_raw': attempt.results[:500] + '...' if attempt.results and len(attempt.results) > 500 else attempt.results
         }
         
+        # Parse and show JSON structure
         parsed_data = {}
         if attempt.answers:
             try:
                 parsed = json.loads(attempt.answers)
                 parsed_data['parsed_answers_keys'] = list(parsed.keys()) if isinstance(parsed, dict) else type(parsed)
                 
+                # Show what's in quiz_data
                 if isinstance(parsed, dict):
                     if 'quiz_data' in parsed:
                         quiz_data = parsed['quiz_data']
@@ -1062,6 +1012,7 @@ def debug_latest_attempt():
                     else:
                         parsed_data['warning'] = 'NO quiz_data key found!'
                         parsed_data['full_structure'] = parsed
+                        
             except Exception as e:
                 parsed_data['parse_error'] = str(e)
         
@@ -1074,82 +1025,97 @@ def debug_latest_attempt():
     except Exception as e:
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': str(e),
+            'traceback': traceback.format_exc()
         })
 
 @quizzes_bp.route('/api/debug-answer-matching')
 @login_required
 def debug_answer_matching():
-    test_cases = [
-        {'user': 'A', 'correct': 0, 'expected': True, 'desc': 'Letter A -> index 0'},
-        {'user': 'B', 'correct': 1, 'expected': True, 'desc': 'Letter B -> index 1'},
-        {'user': 'C', 'correct': 2, 'expected': True, 'desc': 'Letter C -> index 2'},
-        {'user': 'D', 'correct': 3, 'expected': True, 'desc': 'Letter D -> index 3'},
-        {'user': '0', 'correct': 0, 'expected': True, 'desc': 'String 0 -> index 0'},
-        {'user': '1', 'correct': 1, 'expected': True, 'desc': 'String 1 -> index 1'},
-        {'user': '2', 'correct': 2, 'expected': True, 'desc': 'String 2 -> index 2'},
-        {'user': '3', 'correct': 3, 'expected': True, 'desc': 'String 3 -> index 3'},
-        {'user': 'a', 'correct': 0, 'expected': True, 'desc': 'Lowercase a -> index 0'},
-        {'user': 'Option A', 'correct': 0, 'expected': False, 'desc': 'Full option text'},
-        {'user': 'True', 'correct': 'True', 'expected': True, 'desc': 'True string match'},
-        {'user': 'true', 'correct': 'True', 'expected': True, 'desc': 'Lowercase true -> True'},
-        {'user': 'T', 'correct': 'True', 'expected': True, 'desc': 'T -> True'},
-        {'user': 'False', 'correct': 'False', 'expected': True, 'desc': 'False string match'},
-        {'user': 'false', 'correct': 'False', 'expected': True, 'desc': 'Lowercase false -> False'},
-        {'user': 'F', 'correct': 'False', 'expected': True, 'desc': 'F -> False'},
-    ]
-    
-    results = []
-    for test in test_cases:
-        user_ans_str = str(test['user']).strip().upper()
-        correct_ans_str = str(test['correct'])
-        is_correct = False
+    """Test answer matching logic"""
+    try:
+        # Test cases for answer matching
+        test_cases = [
+            {'user': 'A', 'correct': 0, 'expected': True, 'desc': 'Letter A -> index 0'},
+            {'user': 'B', 'correct': 1, 'expected': True, 'desc': 'Letter B -> index 1'},
+            {'user': 'C', 'correct': 2, 'expected': True, 'desc': 'Letter C -> index 2'},
+            {'user': 'D', 'correct': 3, 'expected': True, 'desc': 'Letter D -> index 3'},
+            {'user': '0', 'correct': 0, 'expected': True, 'desc': 'String 0 -> index 0'},
+            {'user': '1', 'correct': 1, 'expected': True, 'desc': 'String 1 -> index 1'},
+            {'user': '2', 'correct': 2, 'expected': True, 'desc': 'String 2 -> index 2'},
+            {'user': '3', 'correct': 3, 'expected': True, 'desc': 'String 3 -> index 3'},
+            {'user': 'a', 'correct': 0, 'expected': True, 'desc': 'Lowercase a -> index 0'},
+            {'user': 'Option A', 'correct': 0, 'expected': False, 'desc': 'Full option text'},
+            {'user': 'True', 'correct': 'True', 'expected': True, 'desc': 'True string match'},
+            {'user': 'true', 'correct': 'True', 'expected': True, 'desc': 'Lowercase true -> True'},
+            {'user': 'T', 'correct': 'True', 'expected': True, 'desc': 'T -> True'},
+            {'user': 'False', 'correct': 'False', 'expected': True, 'desc': 'False string match'},
+            {'user': 'false', 'correct': 'False', 'expected': True, 'desc': 'Lowercase false -> False'},
+            {'user': 'F', 'correct': 'False', 'expected': True, 'desc': 'F -> False'},
+        ]
         
-        if user_ans_str in ['A', 'B', 'C', 'D']:
-            letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
-            user_index = letter_to_index.get(user_ans_str)
-            is_correct = user_index == int(correct_ans_str)
-        elif user_ans_str == correct_ans_str:
-            is_correct = True
-        elif user_ans_str in ['0', '1', '2', '3'] and user_ans_str == correct_ans_str:
-            is_correct = True
-        else:
-            user_normalized = user_ans_str
-            correct_normalized = correct_ans_str
+        results = []
+        for test in test_cases:
+            user_ans_str = str(test['user']).strip().upper()
+            correct_ans_str = str(test['correct'])
+            is_correct = False
             
-            if user_normalized in ['TRUE', 'T', '1']:
-                user_normalized = 'TRUE'
-            elif user_normalized in ['FALSE', 'F', '0']:
-                user_normalized = 'FALSE'
+            # Test the matching logic
+            if user_ans_str in ['A', 'B', 'C', 'D']:
+                letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
+                user_index = letter_to_index.get(user_ans_str)
+                is_correct = user_index == int(correct_ans_str)
+            elif user_ans_str == correct_ans_str:
+                is_correct = True
+            elif user_ans_str in ['0', '1', '2', '3'] and user_ans_str == correct_ans_str:
+                is_correct = True
+            else:
+                # Normalize true/false answers
+                user_normalized = user_ans_str
+                correct_normalized = correct_ans_str
+                
+                if user_normalized in ['TRUE', 'T', '1']:
+                    user_normalized = 'TRUE'
+                elif user_normalized in ['FALSE', 'F', '0']:
+                    user_normalized = 'FALSE'
+                
+                if correct_normalized in ['TRUE', 'T', '1']:
+                    correct_normalized = 'TRUE'
+                elif correct_normalized in ['FALSE', 'F', '0']:
+                    correct_normalized = 'FALSE'
+                
+                is_correct = (user_normalized == correct_normalized)
             
-            if correct_normalized in ['TRUE', 'T', '1']:
-                correct_normalized = 'TRUE'
-            elif correct_normalized in ['FALSE', 'F', '0']:
-                correct_normalized = 'FALSE'
-            
-            is_correct = (user_normalized == correct_normalized)
+            results.append({
+                'test': test['desc'],
+                'user_input': test['user'],
+                'correct_answer': test['correct'],
+                'result': is_correct,
+                'expected': test['expected'],
+                'match': is_correct == test['expected']
+            })
         
-        results.append({
-            'test': test['desc'],
-            'user_input': test['user'],
-            'correct_answer': test['correct'],
-            'result': is_correct,
-            'expected': test['expected'],
-            'match': is_correct == test['expected']
+        return jsonify({
+            'success': True,
+            'tests': results,
+            'note': 'This tests the answer matching logic including true/false questions.'
         })
-    
-    return jsonify({
-        'success': True,
-        'tests': results,
-        'note': 'This tests the answer matching logic including true/false questions.'
-    })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
 
 @quizzes_bp.route('/api/debug-db-state')
 @login_required
 def debug_db_state():
+    """Debug endpoint to check database state"""
     try:
+        # Count all quiz attempts for this user
         total_attempts = QuizAttempt.query.filter_by(user_id=current_user.id).count()
         
+        # Get all attempts
         attempts = QuizAttempt.query.filter_by(user_id=current_user.id).all()
         
         attempts_data = []
@@ -1186,12 +1152,14 @@ def debug_db_state():
 
 @quizzes_bp.errorhandler(404)
 def not_found_error(error):
+    print(f"404 error handler called: {error}")
     if request.path.startswith('/api/'):
         return jsonify({'success': False, 'error': 'Not found'}), 404
     return f"<h1>Page Not Found</h1><p>The page you requested could not be found.</p>", 404
 
 @quizzes_bp.errorhandler(500)
 def internal_error(error):
+    print(f"500 error handler called: {error}")
     traceback.print_exc()
     if request.path.startswith('/api/'):
         return jsonify({'success': False, 'error': 'Internal server error', 'details': str(error)}), 500

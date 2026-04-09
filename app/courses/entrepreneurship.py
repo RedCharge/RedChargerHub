@@ -1,6 +1,6 @@
 enterpreneurship_quiz = {
-    "course_code": "BCP 105",
-    "course_name": "Data Communica",
+    "course_code": "ATU 201",
+    "course_name": "Enterprenuship",
     "total_questions": 50,
     "questions": [
         
