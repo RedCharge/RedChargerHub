@@ -338,7 +338,7 @@ web_development_quiz = {
             "border",
             "cellpadding",
             "rowspan",
-            "<tbody>"
+            "&lt;tbody&gt;"
         ],
         "correct_answer": 3,
         "explanation": "<tbody> groups rows into logical sections, improving both visual organization and semantic structure of tables."
@@ -387,10 +387,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "A table needs a title describing its content. Which element is MOST appropriate?",
         "options": [
-            " <title> ",
-            " <caption> ",
-            " <thead> ",
-            " <summary> "
+            
+            "&lt;title&gt;",
+            "&lt;caption&gt;",
+            "&lt;thead&gt;",
+            "&lt;summary&gt;"
         ],
         "correct_answer": 1,
         "explanation": "<caption> provides a title or description specifically for tables, appearing directly with the table content."
@@ -468,10 +469,10 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "The HTML element used to create a table row is:",
         "options": [
-            " <tr> ",
-            " <td> ",
-            " <th >",
-            " <row> "
+            "&lt;tr&gt;",
+            "&lt;td&gt;",
+            "&lt;th&gt;",
+            "&lt;row&gt;"
         ],
         "correct_answer": 0,
         "explanation": "<tr> (table row) defines a row of cells in an HTML table."
@@ -845,10 +846,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "Which HTML element groups table rows that contain summary or total values?",
         "options": [
-            " <tbody> ",
-            " <thead> ",
-            " <tfoot> ",
-            " <tr> "
+            
+            "&lt;tbody&gt;",
+            "&lt;thead&gt;",
+            "&lt;tfoot&gt;",
+            "&lt;tr&gt;"
         ],
         "correct_answer": 2,
         "explanation": "<tfoot> is specifically designed to contain footer rows in tables, often used for summaries or totals."
@@ -1030,10 +1032,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "External CSS files are linked to HTML using the ____ tag.",
         "options": [
-            " <style> ",
-            " <css> ",
-            " <link> ",
-            " <script> "
+           
+            "&lt;style&gt;",
+            " &lt;css&gt; ",
+            " &lt;link&gt; ",
+            " &lt;script&gt; "
         ],
         "correct_answer": 2,
         "explanation": "The <link> tag, typically in the <head> section, connects external CSS files to HTML documents."
@@ -1069,10 +1072,11 @@ web_development_quiz = {
         "type": "multiple_choice",
         "question": "The HTML element used to define the header section of a webpage is called ____.",
         "options": [
-            " <head> ",
-            " <header> ",
-            " <h1> ",
-            " <top> "
+            
+            "&lt;head&gt;",
+            " &lt;header&gt; ",
+            " &lt;h1&gt; ",
+            " &lt;top&gt; "
         ],
         "correct_answer": 1,
         "explanation": "<header> is a semantic HTML5 element for introductory content or navigation links at the top of a page or section."
@@ -1088,7 +1092,7 @@ web_development_quiz = {
         "&lt;list&gt;"
     ],
     "correct_answer": 1,
-    "explanation": "&lt;ul&gt; (unordered list) creates bulleted lists, with each item marked by &lt;li&gt; tags."
+    "explanation": "<ul>; (unordered list) creates bulleted lists, with each item marked by &lt;li&gt; tags."
 },
     {
         "id": 86,
