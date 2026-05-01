@@ -1,4 +1,4 @@
-computer_organization_quiz = {
+data_structure_algorithm_quiz = {
     "course_code": "ATU 203",
     "course_name": "logic and critical thinking",
     "total_questions": 50,

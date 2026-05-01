@@ -546,11 +546,11 @@ creative_thinking_quiz = {
         "options": [
             "Cost reduction, improved reputation, and new markets",
             "Increased waste",
-            "Short-term profit only",
-            "Ignoring environmental laws"
+            "Legal penalties",
+            "Resource depletion"
         ],
         "correct_answer": 0,
-        "explanation": "Sustainable business practices can reduce costs (efficiency), attract customers (reputation), and open new markets (green products)."
+        "explanation": "Sustainable business practices can differentiate businesses, attract customers and investors, and improve operational efficiency."
     },
     {
         "id": 43,
