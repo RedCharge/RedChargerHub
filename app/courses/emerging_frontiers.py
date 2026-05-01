@@ -1,6 +1,6 @@
-computer_organization_quiz = {
+emerging_frontiers_quiz = {
     "course_code": "BCP 203",
-    "course_name": "Computer Organization Architecture",
+    "course_name": "Emergigng Frontiers in Technology",
     "total_questions": 50,
     "questions": [
         # Multiple Choice Questions (1-25)

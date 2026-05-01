@@ -1,4 +1,4 @@
-sustainability_quiz = {
+grid_computing_quiz = {
     "course_code": "ATU 203",
     "course_name": "Sustainability and Sustainable Development",
     "total_questions": 50,

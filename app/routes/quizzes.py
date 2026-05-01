@@ -18,51 +18,58 @@ quizzes_bp = Blueprint('quizzes', __name__)
 # ==============================================
 
 QUIZ_COURSES = {
-    'computer-organization': {
+    'emerging-frontiers': {
         'course_code': 'BCP 203',
-        'name': 'Computer Organization Architecture',
+        'name': 'Emergigng Frontiers in Technology',
         'image': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
-    'logic-critical-thinking': {
+    'database-system': {
         'course_code': 'ATU 203',
-        'name': 'Logic and Critical Thinking',
+        'name': 'Database System Design',
         'image': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
-    'data-communication': {
+    'creative-thinking': {
         'course_code': 'BCP 105',
-        'name': 'Data Communication and Computer Networks',
+        'name': 'Creative Thinking and Problem Solving',
         'image': 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
-    'entrepreneurship': {
+    'entrepreneurship-new-venture': {
         'course_code': 'ATU 201',
-        'name': 'Introduction to Principles of Entrepreneurship',
+        'name': 'Enterpreneurship and New venture Creation',
         'image': 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
-    'sustainability': {
+    'grid-computing': {
         'course_code': 'BCB 209',
-        'name': 'Principles and Applications in Sustainability',
+        'name': 'Grid Computing',
         'image': 'https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
     'web-development': {
         'course_code': 'BCP 207',
-        'name': 'Web Development Technologies',
+        'name': 'Web Development Technologies II',
         'image': 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
-    'cpp-programming': {
+    'java-programming': {
         'course_code': 'BCP 201',
-        'name': 'Programming with C++',
+        'name': 'Programming with Java',
+        'image': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'questions': 50,
+        'duration': '60 minutes'
+    },
+    'data-structure-algorithm': {
+        'course_code': 'BCP 201',
+        'name': 'Data Structure and Algorithm',
         'image': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
         'questions': 50,
         'duration': '60 minutes'

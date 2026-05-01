@@ -1,4 +1,4 @@
-enterpreneurship_quiz = {
+entrepreneurship_new_venture_quiz = {
     "course_code": "ATU 201",
     "course_name": "Enterprenuship",
     "total_questions": 50,

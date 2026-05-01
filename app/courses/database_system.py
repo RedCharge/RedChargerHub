@@ -1,4 +1,4 @@
-data_communication_quiz = {
+database_system_quiz = {
     "course_code": "BCP 105",
     "course_name": "Data Communication",
     "total_questions": 50,

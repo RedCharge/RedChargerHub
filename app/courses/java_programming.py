@@ -1,6 +1,6 @@
-cpp_programming_quiz = {
+java_programming_quiz = {
     "course_code": "BCP 203",
-    "course_name": "Computer Organization Architecture",
+    "course_name": "Programmimg with java",
     "total_questions": 80,
     "questions": [
     
