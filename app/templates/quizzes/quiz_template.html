@@ -975,13 +975,20 @@ function showQuestion() {
     }
     
     currentQuestionNumber.textContent = currentQuestion + 1;
+    // Set question text safely (escape any HTML in source)
     questionText.textContent = question.question;
     
-    // Show difficulty indicator if available
+    // Show difficulty indicator if available (append as separate element)
+    // This avoids inserting untrusted HTML into the DOM
+    const existingDifficulty = questionText.querySelector('.difficulty-span');
+    if (existingDifficulty) existingDifficulty.remove();
     if (question.adaptiveData && question.adaptiveData.difficulty) {
         const difficultyText = ['Easy', 'Medium', 'Hard'][question.adaptiveData.difficulty - 1];
         const difficultyColor = ['text-green-600', 'text-yellow-600', 'text-red-600'][question.adaptiveData.difficulty - 1];
-        questionText.innerHTML = `${question.question} <span class="text-sm ${difficultyColor} ml-2">(${difficultyText})</span>`;
+        const span = document.createElement('span');
+        span.className = `text-sm ${difficultyColor} ml-2 difficulty-span`;
+        span.textContent = `(${difficultyText})`;
+        questionText.appendChild(span);
     }
     
     optionsContainer.innerHTML = '';
@@ -992,15 +999,19 @@ function showQuestion() {
         options.forEach((option, index) => {
             const button = document.createElement('button');
             button.className = 'option-button py-3 sm:py-4 px-4 sm:px-6 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 font-medium text-left hover:bg-gray-100 transition duration-300 text-sm sm:text-base';
-            button.innerHTML = `
-                <span class="font-bold mr-3 text-gray-700">${option}</span>
-            `;
-            
+
+            // Letter label
+            const labelSpan = document.createElement('span');
+            labelSpan.className = 'font-bold mr-3 text-gray-700';
+            labelSpan.textContent = option; // for true/false branch this is the option itself
+
+            button.appendChild(labelSpan);
+
             button.addEventListener('click', () => {
                 console.log(`Selected ${option} (index: ${index})`);
                 selectOption(index);
             });
-            
+
             optionsContainer.appendChild(button);
         });
     } else if (question.options && Array.isArray(question.options)) {
@@ -1009,16 +1020,25 @@ function showQuestion() {
         question.options.forEach((option, index) => {
             const button = document.createElement('button');
             button.className = 'option-button py-3 sm:py-4 px-4 sm:px-6 rounded-lg bg-gray-50 text-gray-800 border border-gray-300 font-medium text-left hover:bg-gray-100 transition duration-300 text-sm sm:text-base';
-            button.innerHTML = `
-                <span class="font-bold mr-3 text-gray-700">${letters[index]}.</span> 
-                <span class="break-words">${option}</span>
-            `;
-            
+
+            // Letter label
+            const letterSpan = document.createElement('span');
+            letterSpan.className = 'font-bold mr-3 text-gray-700';
+            letterSpan.textContent = `${letters[index]}.`;
+
+            // Option text (use textContent to avoid injecting HTML)
+            const textSpan = document.createElement('span');
+            textSpan.className = 'break-words';
+            textSpan.textContent = option;
+
+            button.appendChild(letterSpan);
+            button.appendChild(textSpan);
+
             button.addEventListener('click', () => {
                 console.log(`Selected option ${letters[index]} (index: ${index})`);
                 selectOption(index);
             });
-            
+
             optionsContainer.appendChild(button);
         });
     } else {

@@ -21,35 +21,35 @@ QUIZ_COURSES = {
     'emerging-frontiers': {
         'course_code': 'BCP 203',
         'name': 'Emergigng Frontiers in Technology',
-        'image': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+        'image': 'https://images.ctfassets.net/mrbo2ykgx5lt/5wwL0gvQpNnFvqDe5wF2Sg/205cccfa608e8da290c6993bf84739f0/Horizontal-Arabic_Female_Future_Engineer_Looks_At_Work_of_Skilful_Developer._Asian_Man_Explains_Core_Principles_and_Examins_.png?&w=912&fm=webp&q=80',
         'questions': 50,
         'duration': '60 minutes'
     },
     'database-system': {
         'course_code': 'ATU 203',
         'name': 'Database System Design',
-        'image': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'image': 'https://everconnectds.com/wp-content/uploads/2022/02/what-connections-do-databases-have-to-business-intelligence-700x350.jpg',
         'questions': 50,
         'duration': '60 minutes'
     },
     'creative-thinking': {
         'course_code': 'BCP 105',
         'name': 'Creative Thinking and Problem Solving',
-        'image': 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'image': 'https://previews.123rf.com/images/rawpixel/rawpixel1609/rawpixel160954833/62638073-problem-solving-creative-thinking-brainstorm-people-concept.jpg',
         'questions': 50,
         'duration': '60 minutes'
     },
     'entrepreneurship-new-venture': {
         'course_code': 'ATU 201',
         'name': 'Enterpreneurship and New venture Creation',
-        'image': 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'image': 'https://unctad.org/sites/default/files/2024-04/2024-04-02_South-Africa-entrepreneurship_1200x675.jpg',
         'questions': 50,
         'duration': '60 minutes'
     },
     'grid-computing': {
         'course_code': 'BCB 209',
         'name': 'Grid Computing',
-        'image': 'https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+        'image': 'https://assets.enterprisenetworkingplanet.com/uploads/2021/05/Grid-Computing-vs-Cloud-Computing.jpeg?f=jpeg',
         'questions': 50,
         'duration': '60 minutes'
     },
@@ -63,14 +63,14 @@ QUIZ_COURSES = {
     'java-programming': {
         'course_code': 'BCP 201',
         'name': 'Programming with Java',
-        'image': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'image': 'https://miro.medium.com/1*fOdb_ET1sOd4uZStK4E8HA.jpeg',
         'questions': 50,
         'duration': '60 minutes'
     },
     'data-structure-algorithm': {
         'course_code': 'BCP 201',
         'name': 'Data Structure and Algorithm',
-        'image': 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+        'image': 'https://d3sujgifhk94se.cloudfront.net/wp-content/uploads/2023/10/23125043/coding_algorithm.jpg',
         'questions': 50,
         'duration': '60 minutes'
     }

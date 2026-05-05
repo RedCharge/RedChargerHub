@@ -350,12 +350,13 @@
         }
 
         try {
-            // Load recent attempts only (no stats)
-            const attemptsResponse = await fetch('/api/quizzes/attempts');
+            // Load recent attempts using the quizzes blueprint API
+            const attemptsResponse = await fetch('/quizzes/api/results');
 
             // Load recent attempts
             if (attemptsResponse.ok) {
-                const attempts = await attemptsResponse.json();
+                const attemptsData = await attemptsResponse.json();
+                const attempts = attemptsData.results || [];
                 updateRecentAttempts(attempts);
             }
 
@@ -409,10 +410,11 @@
     function createCourseCard(course) {
         const card = document.createElement('div');
         card.className = 'course-card';
-        card.setAttribute('data-course', course.code);
-        
-        // Get quiz slug from course code
-        const quizSlug = getQuizSlug(course.code);
+        // Prefer explicit slug from Flask; fallback to code-derived slug
+        card.setAttribute('data-course', course.slug || course.code);
+
+        // Get quiz slug from course data or derive from course code
+        const quizSlug = course.slug || getQuizSlug(course.code);
         
         // Build card content - IMMEDIATELY
         let cardContent = `
@@ -434,6 +436,7 @@
             e.stopPropagation();
             
             console.log('Course card clicked:', {
+                slug: course.slug,
                 courseCode: course.code,
                 courseName: course.name,
                 quizSlug: quizSlug
@@ -459,21 +462,37 @@
         try {
             const coursesData = {{ courses|tojson|safe }};
             
-            // Load all progress at once
-            const response = await fetch('/api/quizzes/progress');
+            // Load all progress from the results endpoint and compute latest per-course progress
+            const response = await fetch('/quizzes/api/results');
             if (!response.ok) {
                 console.error('Failed to fetch progress data');
                 return;
             }
-            
-            const progressData = await response.json();
-            
+
+            const data = await response.json();
+            const results = data.results || [];
+
+            // Build a mapping of latest attempt per quiz_type
+            const db_progress = {};
+            results.forEach(attempt => {
+                const key = attempt.quiz_type;
+                const existing = db_progress[key];
+                const attemptDate = attempt.completed_at ? new Date(attempt.completed_at) : null;
+
+                if (!existing) {
+                    db_progress[key] = attempt;
+                } else if (attemptDate && new Date(existing.completed_at) < attemptDate) {
+                    db_progress[key] = attempt;
+                }
+            });
+
+            const progressData = { db_progress, session_progress: {} };
+
             // Update each course card with progress
             coursesData.forEach(course => {
                 const quizSlug = getQuizSlug(course.code);
-                const userAttempt = progressData.db_progress?.[quizSlug] || 
-                                  progressData.session_progress?.[quizSlug];
-                
+                const userAttempt = progressData.db_progress?.[quizSlug] || progressData.session_progress?.[quizSlug];
+
                 if (userAttempt) {
                     const progressElement = document.getElementById(`progress-${quizSlug}`);
                     if (progressElement) {
@@ -484,7 +503,7 @@
                                 </span>
                             </div>
                         `;
-                        
+
                         // Remove the questions/duration text
                         const card = progressElement.closest('.course-card');
                         const durationText = card.querySelector('.mt-2.text-sm.opacity-75');
