@@ -637,6 +637,657 @@ emerging_frontiers_quiz = {
             ],
             "correct_answer": 1,
             "explanation": "Regulation (e.g., EU AI Act) targets risks like bias, privacy, safety, and accountability, without banning innovation."
-        }
+        },
+                {
+            "id": 51,
+            "type": "multiple_choice",
+            "question": "Which algorithm is best suited for detecting unusual transactions?",
+            "options": [
+                "Linear Regression",
+                "Anomaly Detection",
+                "K-Means",
+                "Decision Tree"
+            ],
+            "correct_answer": 1,
+            "explanation": "Anomaly detection algorithms identify rare events or outliers, making them ideal for fraud detection in transactions."
+        },
+        {
+            "id": 52,
+            "type": "multiple_choice",
+            "question": "What does a confusion matrix show?",
+            "options": [
+                "Model speed",
+                "Correct and incorrect predictions by class",
+                "Data size",
+                "Algorithm complexity"
+            ],
+            "correct_answer": 1,
+            "explanation": "A confusion matrix displays true positives, false positives, true negatives, and false negatives for classification evaluation."
+        },
+        {
+            "id": 53,
+            "type": "multiple_choice",
+            "question": "Which technique reduces overfitting by penalizing large coefficients?",
+            "options": [
+                "Cross-validation",
+                "Regularization",
+                "Normalization",
+                "Standardization"
+            ],
+            "correct_answer": 1,
+            "explanation": "Regularization (L1/L2) adds a penalty term to the loss function, discouraging overly complex models."
+        },
+        {
+            "id": 54,
+            "type": "multiple_choice",
+            "question": "What is the purpose of a learning curve?",
+            "options": [
+                "Store data",
+                "Diagnose bias/variance trade-off",
+                "Print results",
+                "Speed up training"
+            ],
+            "correct_answer": 1,
+            "explanation": "Learning curves plot training vs validation performance against dataset size to identify underfitting or overfitting."
+        },
+        {
+            "id": 55,
+            "type": "multiple_choice",
+            "question": "Which metric is insensitive to class imbalance?",
+            "options": [
+                "Accuracy",
+                "F1 Score",
+                "MSE",
+                "RMSE"
+            ],
+            "correct_answer": 1,
+            "explanation": "F1 Score (harmonic mean of precision and recall) handles imbalanced classes better than raw accuracy."
+        },
+        {
+            "id": 56,
+            "type": "multiple_choice",
+            "question": "What does PCA do?",
+            "options": [
+                "Increases features",
+                "Reduces dimensionality while preserving variance",
+                "Deletes data",
+                "Adds noise"
+            ],
+            "correct_answer": 1,
+            "explanation": "Principal Component Analysis transforms features into uncorrelated components, reducing dimensionality."
+        },
+        {
+            "id": 57,
+            "type": "multiple_choice",
+            "question": "Which algorithm uses a tree of if-else decisions?",
+            "options": [
+                "Linear Regression",
+                "Random Forest",
+                "Decision Tree",
+                "KNN"
+            ],
+            "correct_answer": 2,
+            "explanation": "Decision Trees split data recursively based on feature thresholds, forming an interpretable tree structure."
+        },
+        {
+            "id": 58,
+            "type": "multiple_choice",
+            "question": "What is the main advantage of gradient boosting over random forest?",
+            "options": [
+                "Faster training",
+                "Often higher accuracy with careful tuning",
+                "Uses less memory",
+                "No parameters"
+            ],
+            "correct_answer": 1,
+            "explanation": "Gradient boosting builds trees sequentially, correcting previous errors, often achieving higher accuracy than random forests."
+        },
+        {
+            "id": 59,
+            "type": "multiple_choice",
+            "question": "Which problem requires time series forecasting?",
+            "options": [
+                "Spam detection",
+                "Stock price prediction",
+                "Image classification",
+                "Customer segmentation"
+            ],
+            "correct_answer": 1,
+            "explanation": "Time series forecasting uses temporal dependencies (e.g., ARIMA, LSTM) for sequence prediction like stock prices."
+        },
+        {
+            "id": 60,
+            "type": "multiple_choice",
+            "question": "What is the role of a loss function?",
+            "options": [
+                "Measure model error during training",
+                "Store data",
+                "Display output",
+                "Speed computation"
+            ],
+            "correct_answer": 0,
+            "explanation": "A loss function quantifies the difference between predictions and actual values, guiding optimization."
+        },
+        {
+            "id": 61,
+            "type": "multiple_choice",
+            "question": "Which activation function outputs values between 0 and 1?",
+            "options": [
+                "ReLU",
+                "Sigmoid",
+                "Tanh",
+                "Linear"
+            ],
+            "correct_answer": 1,
+            "explanation": "Sigmoid squashes inputs to [0,1], making it suitable for binary classification output layers."
+        },
+        {
+            "id": 62,
+            "type": "multiple_choice",
+            "question": "What is the purpose of dropout in neural networks?",
+            "options": [
+                "Speed up training",
+                "Prevent overfitting",
+                "Add more layers",
+                "Reduce data"
+            ],
+            "correct_answer": 1,
+            "explanation": "Dropout randomly deactivates neurons during training, forcing the network to learn redundant representations."
+        },
+        {
+            "id": 63,
+            "type": "multiple_choice",
+            "question": "Which library is most commonly used for deep learning in Python?",
+            "options": [
+                "Scikit-learn",
+                "TensorFlow/PyTorch",
+                "Pandas",
+                "Matplotlib"
+            ],
+            "correct_answer": 1,
+            "explanation": "TensorFlow and PyTorch provide automatic differentiation and GPU acceleration for deep neural networks."
+        },
+        {
+            "id": 64,
+            "type": "multiple_choice",
+            "question": "What does a CNN specialize in?",
+            "options": [
+                "Text processing",
+                "Image processing",
+                "Time series",
+                "Audio only"
+            ],
+            "correct_answer": 1,
+            "explanation": "Convolutional Neural Networks use spatial hierarchies (filters, pooling) to efficiently process grid-like data such as images."
+        },
+        {
+            "id": 65,
+            "type": "multiple_choice",
+            "question": "Which algorithm is best for sequence data like sentences?",
+            "options": [
+                "CNN",
+                "RNN/LSTM",
+                "Decision Tree",
+                "K-Means"
+            ],
+            "correct_answer": 1,
+            "explanation": "Recurrent Neural Networks (RNNs) and LSTMs maintain hidden states to capture temporal dependencies in sequences."
+        },
+        {
+            "id": 66,
+            "type": "multiple_choice",
+            "question": "What is the main challenge with RNNs?",
+            "options": [
+                "Too fast",
+                "Vanishing/exploding gradients",
+                "No memory",
+                "Not trainable"
+            ],
+            "correct_answer": 1,
+            "explanation": "RNNs suffer from gradients shrinking or growing exponentially over long sequences, addressed by LSTMs/GRUs."
+        },
+        {
+            "id": 67,
+            "type": "multiple_choice",
+            "question": "What does transfer learning do?",
+            "options": [
+                "Deletes old models",
+                "Reuses a pre-trained model on a new task",
+                "Trains from scratch",
+                "Avoids learning"
+            ],
+            "correct_answer": 1,
+            "explanation": "Transfer learning fine-tunes a model trained on a large dataset (e.g., ImageNet) for a smaller, related task."
+        },
+        {
+            "id": 68,
+            "type": "multiple_choice",
+            "question": "Which technique generates new synthetic data similar to training data?",
+            "options": [
+                "PCA",
+                "GANs",
+                "SVM",
+                "K-Means"
+            ],
+            "correct_answer": 1,
+            "explanation": "Generative Adversarial Networks (GANs) pit a generator against a discriminator to create realistic synthetic samples."
+        },
+        {
+            "id": 69,
+            "type": "multiple_choice",
+            "question": "What does the bias term in a linear model do?",
+            "options": [
+                "Increase variance",
+                "Shift the decision boundary",
+                "Delete features",
+                "Add noise"
+            ],
+            "correct_answer": 1,
+            "explanation": "The bias (intercept) allows the model to fit data that doesn't pass through the origin, shifting the decision boundary."
+        },
+        {
+            "id": 70,
+            "type": "multiple_choice",
+            "question": "Which metric measures the proportion of true positives among actual positives?",
+            "options": [
+                "Precision",
+                "Recall",
+                "Accuracy",
+                "Specificity"
+            ],
+            "correct_answer": 1,
+            "explanation": "Recall = TP / (TP + FN), also known as sensitivity or true positive rate."
+        },
+        {
+            "id": 71,
+            "type": "multiple_choice",
+            "question": "What is the purpose of batch normalization?",
+            "options": [
+                "Reduce data size",
+                "Stabilize and speed up training",
+                "Add more parameters",
+                "Slow convergence"
+            ],
+            "correct_answer": 1,
+            "explanation": "Batch normalization normalizes layer inputs, reducing internal covariate shift and allowing higher learning rates."
+        },
+        {
+            "id": 72,
+            "type": "multiple_choice",
+            "question": "Which algorithm is most robust to outliers?",
+            "options": [
+                "Linear Regression",
+                "Decision Tree",
+                "KNN",
+                "Logistic Regression"
+            ],
+            "correct_answer": 1,
+            "explanation": "Decision Trees split based on quantiles or thresholds, making them less sensitive to outliers than distance-based methods."
+        },
+        {
+            "id": 73,
+            "type": "multiple_choice",
+            "question": "What does embedding layer do in NLP?",
+            "options": [
+                "Stores text",
+                "Maps words to dense vectors",
+                "Deletes stop words",
+                "Counts frequency"
+            ],
+            "correct_answer": 1,
+            "explanation": "Embeddings represent words as continuous vectors where semantic similarity corresponds to vector similarity."
+        },
+        {
+            "id": 74,
+            "type": "multiple_choice",
+            "question": "What is the attention mechanism used for?",
+            "options": [
+                "Ignore input",
+                "Focus on relevant parts of input",
+                "Reduce model size",
+                "Speed up only"
+            ],
+            "correct_answer": 1,
+            "explanation": "Attention computes weighted sums over input elements, allowing models to focus on important information dynamically."
+        },
+        {
+            "id": 75,
+            "type": "multiple_choice",
+            "question": "Which architecture powers models like GPT and BERT?",
+            "options": [
+                "CNN",
+                "Transformer",
+                "RNN",
+                "LSTM"
+            ],
+            "correct_answer": 1,
+            "explanation": "Transformers use self-attention and feed-forward layers without recurrence, enabling parallel processing and long-range dependencies."
+        },
+        {
+            "id": 76,
+            "type": "multiple_choice",
+            "question": "What is the main purpose of hyperparameter tuning?",
+            "options": [
+                "Delete data",
+                "Optimize model performance",
+                "Slow training",
+                "Reduce accuracy"
+            ],
+            "correct_answer": 1,
+            "explanation": "Hyperparameter tuning (grid search, random search, Bayesian optimization) finds optimal settings for learning rate, depth, etc."
+        },
+        {
+            "id": 77,
+            "type": "multiple_choice",
+            "question": "Which technique partitions data into k subsets for validation?",
+            "options": [
+                "Holdout",
+                "K-fold cross-validation",
+                "Bootstrapping",
+                "Random sampling"
+            ],
+            "correct_answer": 1,
+            "explanation": "K-fold cross-validation rotates the validation set across k partitions, reducing evaluation variance."
+        },
+        {
+            "id": 78,
+            "type": "multiple_choice",
+            "question": "What does the elbow method determine in K-Means?",
+            "options": [
+                "Number of clusters",
+                "Learning rate",
+                "Batch size",
+                "Number of epochs"
+            ],
+            "correct_answer": 0,
+            "explanation": "The elbow method plots inertia vs. k; the 'elbow' point indicates the optimal cluster count."
+        },
+        {
+            "id": 79,
+            "type": "multiple_choice",
+            "question": "Which similarity metric is commonly used in KNN?",
+            "options": [
+                "Manhattan distance",
+                "Euclidean distance",
+                "Cosine similarity",
+                "All of the above"
+            ],
+            "correct_answer": 3,
+            "explanation": "KNN can use Euclidean (continuous), Manhattan (L1), or cosine (sparse/high-dim) distances depending on data."
+        },
+        {
+            "id": 80,
+            "type": "multiple_choice",
+            "question": "What does the kernel trick do in SVM?",
+            "options": [
+                "Reduce data",
+                "Map data to higher dimensions without explicit computation",
+                "Speed up training",
+                "Delete outliers"
+            ],
+            "correct_answer": 1,
+            "explanation": "Kernels (RBF, polynomial) compute inner products in transformed space efficiently, enabling non-linear boundaries."
+        },
+        {
+            "id": 81,
+            "type": "multiple_choice",
+            "question": "Which ensemble method builds models sequentially, correcting previous errors?",
+            "options": [
+                "Bagging",
+                "Boosting",
+                "Stacking",
+                "Voting"
+            ],
+            "correct_answer": 1,
+            "explanation": "Boosting (AdaBoost, Gradient Boosting, XGBoost) trains weak learners sequentially, each focusing on prior mistakes."
+        },
+        {
+            "id": 82,
+            "type": "multiple_choice",
+            "question": "What is the main benefit of bagging?",
+            "options": [
+                "Reduce bias",
+                "Reduce variance",
+                "Faster training",
+                "Simple implementation"
+            ],
+            "correct_answer": 1,
+            "explanation": "Bagging (Bootstrap Aggregating) averages multiple models trained on bootstrapped data, reducing overfitting (variance)."
+        },
+        {
+            "id": 83,
+            "type": "multiple_choice",
+            "question": "Which algorithm is based on the concept of margin maximization?",
+            "options": [
+                "Decision Tree",
+                "SVM",
+                "KNN",
+                "Naïve Bayes"
+            ],
+            "correct_answer": 1,
+            "explanation": "Support Vector Machines find the hyperplane that maximizes distance (margin) to nearest points of each class."
+        },
+        {
+            "id": 84,
+            "type": "multiple_choice",
+            "question": "What problem does the curse of dimensionality describe?",
+            "options": [
+                "Too little data",
+                "Distance metrics fail in high dimensions",
+                "Models train too fast",
+                "Data is always sparse"
+            ],
+            "correct_answer": 1,
+            "explanation": "As dimensions increase, data becomes sparse and distances behave poorly, requiring exponential data to maintain density."
+        },
+        {
+            "id": 85,
+            "type": "multiple_choice",
+            "question": "Which technique addresses class imbalance?",
+            "options": [
+                "Dropout",
+                "SMOTE",
+                "Batch norm",
+                "PCA"
+            ],
+            "correct_answer": 1,
+            "explanation": "SMOTE (Synthetic Minority Over-sampling) creates synthetic samples of the minority class by interpolating neighbors."
+        },
+        {
+            "id": 86,
+            "type": "multiple_choice",
+            "question": "What is the difference between L1 and L2 regularization?",
+            "options": [
+                "L1 shrinks coefficients to zero (sparse), L2 shrinks but not to zero",
+                "L2 is slower",
+                "L1 is for classification only",
+                "No difference"
+            ],
+            "correct_answer": 0,
+            "explanation": "L1 (LASSO) produces sparse models via absolute value penalty; L2 (Ridge) uses squared penalty without sparsity."
+        },
+        {
+            "id": 87,
+            "type": "multiple_choice",
+            "question": "Which metric is appropriate for regression problems?",
+            "options": [
+                "Accuracy",
+                "Mean Absolute Error (MAE)",
+                "F1 Score",
+                "Precision"
+            ],
+            "correct_answer": 1,
+            "explanation": "MAE, MSE, RMSE, and R-squared are regression metrics; classification metrics like accuracy, F1 are inappropriate."
+        },
+        {
+            "id": 88,
+            "type": "multiple_choice",
+            "question": "What is a common problem with maximum likelihood estimation?",
+            "options": [
+                "Too slow",
+                "Overfitting on small datasets",
+                "No gradient",
+                "Not interpretable"
+            ],
+            "correct_answer": 1,
+            "explanation": "MLE can overfit with limited data; Bayesian methods (priors) or regularization mitigate this."
+        },
+        {
+            "id": 89,
+            "type": "multiple_choice",
+            "question": "Which algorithm uses a hash trick for feature hashing?",
+            "options": [
+                "Decision Tree",
+                "Vowpal Wabbit / FastText",
+                "K-Means",
+                "SVM"
+            ],
+            "correct_answer": 1,
+            "explanation": "Feature hashing maps features to fixed-length vectors without storing a vocabulary, useful for large-scale sparse data."
+        },
+        {
+            "id": 90,
+            "type": "multiple_choice",
+            "question": "What is model drift?",
+            "options": [
+                "Model deletion",
+                "Performance degradation over time due to data changes",
+                "Training speed variation",
+                "Memory leak"
+            ],
+            "correct_answer": 1,
+            "explanation": "Concept drift occurs when statistical properties of target variable change; data drift when input distribution changes."
+        },
+        {
+            "id": 91,
+            "type": "multiple_choice",
+            "question": "Which technique helps with online learning?",
+            "options": [
+                "Batch gradient descent",
+                "Stochastic gradient descent (SGD)",
+                "Grid search",
+                "Cross-validation"
+            ],
+            "correct_answer": 1,
+            "explanation": "SGD updates model incrementally per sample or mini-batch, enabling learning from streaming data."
+        },
+        {
+            "id": 92,
+            "type": "multiple_choice",
+            "question": "What does the F1 score combine?",
+            "options": [
+                "Accuracy and loss",
+                "Precision and recall",
+                "TP and TN",
+                "FP and FN"
+            ],
+            "correct_answer": 1,
+            "explanation": "F1 = 2 * (Precision * Recall) / (Precision + Recall), balancing both metrics harmonically."
+        },
+        {
+            "id": 93,
+            "type": "multiple_choice",
+            "question": "Which activation function helps with vanishing gradient in deep networks?",
+            "options": [
+                "Sigmoid",
+                "ReLU",
+                "Tanh",
+                "Linear"
+            ],
+            "correct_answer": 1,
+            "explanation": "ReLU (max(0,x)) has gradient 1 for positive activations, avoiding saturation that causes vanishing gradients."
+        },
+        {
+            "id": 94,
+            "type": "multiple_choice",
+            "question": "What does the ROC curve plot?",
+            "options": [
+                "Precision vs recall",
+                "TPR vs FPR",
+                "Accuracy vs loss",
+                "Bias vs variance"
+            ],
+            "correct_answer": 1,
+            "explanation": "Receiver Operating Characteristic plots True Positive Rate against False Positive Rate at various thresholds."
+        },
+        {
+            "id": 95,
+            "type": "multiple_choice",
+            "question": "What does AUC represent?",
+            "options": [
+                "Model speed",
+                "Probability model ranks positive instance higher than negative",
+                "Training time",
+                "Data size"
+            ],
+            "correct_answer": 1,
+            "explanation": "Area Under the ROC Curve (AUC) = probability a random positive is ranked above a random negative."
+        },
+        {
+            "id": 96,
+            "type": "multiple_choice",
+            "question": "Which is NOT a valid distance metric for K-Means?",
+            "options": [
+                "Euclidean",
+                "Manhattan",
+                "Minkowski",
+                "KL divergence"
+            ],
+            "correct_answer": 3,
+            "explanation": "KL divergence is asymmetric and not a metric; K-Means typically uses Euclidean squared distance."
+        },
+        {
+            "id": 97,
+            "type": "multiple_choice",
+            "question": "What is the purpose of learning rate scheduling?",
+            "options": [
+                "Increase overfitting",
+                "Adjust learning rate during training for better convergence",
+                "Delete data",
+                "Slow training"
+            ],
+            "correct_answer": 1,
+            "explanation": "Scheduling (step decay, cosine annealing, etc.) reduces learning rate over epochs to fine-tune parameters."
+        },
+        {
+            "id": 98,
+            "type": "multiple_choice",
+            "question": "Which algorithm is most sensitive to feature scaling?",
+            "options": [
+                "Decision Tree",
+                "KNN",
+                "Random Forest",
+                "Naïve Bayes"
+            ],
+            "correct_answer": 1,
+            "explanation": "Distance-based algorithms like KNN and SVM are sensitive to scale; trees and Naïve Bayes are invariant."
+        },
+        {
+            "id": 99,
+            "type": "multiple_choice",
+            "question": "What is the primary goal of explainable AI (XAI)?",
+            "options": [
+                "Increase accuracy",
+                "Make model decisions interpretable to humans",
+                "Reduce training time",
+                "Store more data"
+            ],
+            "correct_answer": 1,
+            "explanation": "XAI methods (LIME, SHAP, attention visualization) help understand feature importance and decision rationale."
+        },
+        {
+            "id": 100,
+            "type": "multiple_choice",
+            "question": "Which trend focuses on training models without centralized data?",
+            "options": [
+                "Edge AI",
+                "Federated Learning",
+                "Transfer Learning",
+                "AutoML"
+            ],
+            "correct_answer": 1,
+            "explanation": "Federated Learning trains models across decentralized devices while keeping data local, preserving privacy."
+        }   
+        
     ]
 }

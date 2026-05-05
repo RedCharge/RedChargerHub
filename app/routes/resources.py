@@ -9,8 +9,8 @@ resources_bp = Blueprint('resources', __name__)
 
 # Course data for each individual course
 COURSE_DATA = {
-    'computer-organization-architecture': {
-        'title': 'Computer Organization & Architecture',
+    'cemerging-frontiers': {
+        'title': 'Emergigng Frontiers in Technology',
         'code': 'BCP 203',
         'image_url': 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80',
         'videos': [
