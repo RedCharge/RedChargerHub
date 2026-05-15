@@ -786,7 +786,790 @@ database_system_quiz = {
     ],
     "correct_answer": 2,
     "explanation": "The slides classify end users into only two categories: naive users and sophisticated users. 'Power users' is not mentioned."
-  }
+  },
+  
+  
+    {
+        "id": 61,
+        "type": "multiple_choice",
+        "question": "The three-schema architecture separates the database system into which three schemas?",
+        "options": [
+            "Physical, logical, view",
+            "External, conceptual, internal",
+            "Primary, secondary, tertiary",
+            "User, program, system"
+        ],
+        "correct_answer": 1,
+        "explanation": "The three-schema architecture consists of the external level (user views), conceptual level (logical structure), and internal level (physical storage)."
+    },
+    {
+        "id": 62,
+        "type": "multiple_choice",
+        "question": "According to the slides, which level shows only the data relevant to each user and hides the rest?",
+        "options": [
+            "Internal level",
+            "Conceptual level",
+            "Physical level",
+            "External level"
+        ],
+        "correct_answer": 3,
+        "explanation": "The external level provides user-specific views of the database, showing only the data relevant to each user and hiding the rest."
+    },
+    {
+        "id": 63,
+        "type": "multiple_choice",
+        "question": "The way the DBMS and the operating system perceive the data is called:",
+        "options": [
+            "External level",
+            "User level",
+            "Conceptual level",
+            "Internal level"
+        ],
+        "correct_answer": 3,
+        "explanation": "The internal level is how the DBMS and operating system perceive the data, dealing with physical storage structures."
+    },
+    {
+        "id": 64,
+        "type": "multiple_choice",
+        "question": "The conceptual level provides both mapping and the desired independence between which two levels?",
+        "options": [
+            "Logical and physical",
+            "User and system",
+            "External and internal",
+            "Program and data"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual level provides mapping and independence between the external level (user views) and the internal level (physical storage)."
+    },
+    {
+        "id": 65,
+        "type": "multiple_choice",
+        "question": "At the external level, some views may include calculated data that isn't stored in the database. This is created:",
+        "options": [
+            "During backup",
+            "When needed",
+            "Only at system startup",
+            "By the operating system"
+        ],
+        "correct_answer": 1,
+        "explanation": "Calculated data not stored in the database (like a student seeing their grades) is created when needed, not permanently stored."
+    },
+    {
+        "id": 66,
+        "type": "multiple_choice",
+        "question": "The conceptual level is also known as the:",
+        "options": [
+            "Physical storage view",
+            "User view",
+            "Community view of the database",
+            "Operating system view"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual level is described as the 'community view' of the database, showing the entire logical structure as seen by DBAs and designers."
+    },
+    {
+        "id": 67,
+        "type": "multiple_choice",
+        "question": "Which level defines all entities, attributes, relationships, constraints, and security rules?",
+        "options": [
+            "External level",
+            "File level",
+            "Internal level",
+            "Conceptual level"
+        ],
+        "correct_answer": 3,
+        "explanation": "The conceptual level defines all entities, attributes, relationships, constraints, and security rules, independent of storage details."
+    },
+    {
+        "id": 68,
+        "type": "multiple_choice",
+        "question": "The internal level deals with all of the following EXCEPT:",
+        "options": [
+            "Indexing",
+            "File structures",
+            "User login credentials",
+            "Space optimization for performance"
+        ],
+        "correct_answer": 2,
+        "explanation": "User login credentials are related to security and authentication, not physical storage structures like file structures, indexing, or space optimization."
+    },
+    {
+        "id": 69,
+        "type": "multiple_choice",
+        "question": "Below the internal level, the physical level is often handled by:",
+        "options": [
+            "The DBMS",
+            "The operating system",
+            "The application program",
+            "The end user"
+        ],
+        "correct_answer": 1,
+        "explanation": "Below the internal level, the physical level is often handled by the operating system, though the boundary between DBMS and OS varies across systems."
+    },
+    {
+        "id": 70,
+        "type": "multiple_choice",
+        "question": "The overall description of the database divided into three levels is called the:",
+        "options": [
+            "Database instance",
+            "Data dictionary",
+            "Database schema",
+            "Data model"
+        ],
+        "correct_answer": 2,
+        "explanation": "The database schema is the overall description of the database, divided into external, conceptual, and internal schemas."
+    },
+    {
+        "id": 71,
+        "type": "multiple_choice",
+        "question": "Which mapping connects the logical view with physical storage, allowing differences in names, order, or data types?",
+        "options": [
+            "External/internal mapping",
+            "External/conceptual mapping",
+            "Conceptual/internal mapping",
+            "Logical/physical mapping"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual/internal mapping connects the logical view with physical storage, allowing differences in names, order, or data types."
+    },
+    {
+        "id": 72,
+        "type": "multiple_choice",
+        "question": "The data in the database at any particular point in time is called a:",
+        "options": [
+            "Database schema",
+            "Data model",
+            "Database instance",
+            "Data dictionary"
+        ],
+        "correct_answer": 2,
+        "explanation": "The data in the database at any particular point in time is called a database instance. Many instances can correspond to the same schema."
+    },
+    {
+        "id": 73,
+        "type": "multiple_choice",
+        "question": "The schema is sometimes called the intension of the database, while an instance is called the:",
+        "options": [
+            "Snapshot",
+            "Backup",
+            "Extension or state",
+            "Transaction log"
+        ],
+        "correct_answer": 2,
+        "explanation": "The schema is called the intension; an instance is called the extension (or state) of the database."
+    },
+    {
+        "id": 74,
+        "type": "multiple_choice",
+        "question": "Which type of data independence allows changes to the internal schema without affecting the conceptual schema?",
+        "options": [
+            "Logical data independence",
+            "External data independence",
+            "Structural data independence",
+            "Physical data independence"
+        ],
+        "correct_answer": 3,
+        "explanation": "Physical data independence is the ability to change the internal schema (e.g., file structures, indexing) without affecting the conceptual schema."
+    },
+    {
+        "id": 75,
+        "type": "multiple_choice",
+        "question": "Physical data independence changes are usually made to:",
+        "options": [
+            "Add new users",
+            "Change business rules",
+            "Improve performance or efficiency",
+            "Modify external views"
+        ],
+        "correct_answer": 2,
+        "explanation": "Changes under physical data independence (e.g., new file structures, indexing methods) are usually made to improve performance or efficiency."
+    },
+    {
+        "id": 76,
+        "type": "multiple_choice",
+        "question": "Which of the following is an example of a change possible under physical data independence?",
+        "options": [
+            "Adding a new entity",
+            "Using a new indexing method",
+            "Changing a user's view",
+            "Modifying a relationship"
+        ],
+        "correct_answer": 1,
+        "explanation": "Using a new indexing method is a physical change that does not affect the conceptual schema, demonstrating physical data independence."
+    },
+    {
+        "id": 77,
+        "type": "multiple_choice",
+        "question": "A data sublanguage includes DDL and DML. Why are they called sublanguages?",
+        "options": [
+            "They are spoken languages",
+            "They lack full programming features like loops or conditionals",
+            "They can only be used by administrators",
+            "They are not stored in the database"
+        ],
+        "correct_answer": 1,
+        "explanation": "DDL and DML are called sublanguages because they lack full programming features like loops or conditionals."
+    },
+    {
+        "id": 78,
+        "type": "multiple_choice",
+        "question": "When DDL statements are compiled, they generate metadata stored in the:",
+        "options": [
+            "User directory",
+            "Transaction log",
+            "System catalog (data dictionary)",
+            "Buffer pool"
+        ],
+        "correct_answer": 2,
+        "explanation": "DDL compilation generates metadata stored in the system catalog (also called data dictionary or data director), which describes all database objects."
+    },
+    {
+        "id": 79,
+        "type": "multiple_choice",
+        "question": "Which language can create or modify the database schema but cannot manipulate data?",
+        "options": [
+            "DML",
+            "4GL",
+            "DDL",
+            "SQL (all forms)"
+        ],
+        "correct_answer": 2,
+        "explanation": "DDL (Data Definition Language) is used to define and modify the database schema but cannot manipulate data. DML handles data manipulation."
+    },
+    {
+        "id": 80,
+        "type": "multiple_choice",
+        "question": "Procedural DML tells the system:",
+        "options": [
+            "What data is needed",
+            "How to get the data step by step",
+            "Only to insert data",
+            "Only to delete data"
+        ],
+        "correct_answer": 1,
+        "explanation": "Procedural DML tells the system how to get the data step by step, often embedded in host languages like C or Java."
+    },
+    {
+        "id": 81,
+        "type": "multiple_choice",
+        "question": "Nonprocedural DML tells the system:",
+        "options": [
+            "How to get the data step by step",
+            "What data is needed, not how to get it",
+            "To ignore performance",
+            "To use only indexes"
+        ],
+        "correct_answer": 1,
+        "explanation": "Nonprocedural DML tells the system what data is needed, not how to get it. SQL and QBE are examples."
+    },
+    {
+        "id": 82,
+        "type": "multiple_choice",
+        "question": "Which type of DML offers better data independence and is easier to learn?",
+        "options": [
+            "Procedural DML",
+            "Embedded DML",
+            "Nonprocedural DML",
+            "Host language DML"
+        ],
+        "correct_answer": 2,
+        "explanation": "Nonprocedural DMLs are easier to learn and offer better data independence compared to procedural DML."
+    },
+    {
+        "id": 83,
+        "type": "multiple_choice",
+        "question": "Fourth-Generation Languages (4GLs) are:",
+        "options": [
+            "Procedural languages like C",
+            "Machine languages",
+            "Nonprocedural languages designed for quick application development",
+            "Assembly languages"
+        ],
+        "correct_answer": 2,
+        "explanation": "4GLs are high-level, nonprocedural languages designed to help users develop applications more quickly and easily than 3GLs like C or COBOL."
+    },
+    {
+        "id": 84,
+        "type": "multiple_choice",
+        "question": "4GLs aim to boost productivity especially for:",
+        "options": [
+            "Operating system development",
+            "Compiler design",
+            "Database and business applications",
+            "Device drivers"
+        ],
+        "correct_answer": 2,
+        "explanation": "4GLs aim to boost productivity especially for database and business applications, not low-level systems programming."
+    },
+    {
+        "id": 85,
+        "type": "multiple_choice",
+        "question": "Which of the following is listed as a type of 4GL tool?",
+        "options": [
+            "Debugger",
+            "Query & Report Generators",
+            "Assembler",
+            "Linker"
+        ],
+        "correct_answer": 1,
+        "explanation": "Query and Report Generators are listed as a type of 4GL tool, allowing users to ask questions and format output from data."
+    },
+    {
+        "id": 86,
+        "type": "multiple_choice",
+        "question": "According to the slides, which of these is NOT listed as a 4GL tool?",
+        "options": [
+            "Forms Generators",
+            "Graphics Generators",
+            "Compiler Generators",
+            "Application Generators"
+        ],
+        "correct_answer": 2,
+        "explanation": "Forms Generators, Graphics Generators, and Application Generators are listed. Compiler Generators are not mentioned as a 4GL tool."
+    },
+    {
+        "id": 87,
+        "type": "multiple_choice",
+        "question": "A data model is described as a high-level abstract description that acts like a:",
+        "options": [
+            "Compiler",
+            "Blueprint",
+            "Operating system",
+            "File system"
+        ],
+        "correct_answer": 1,
+        "explanation": "A data model is like a blueprint that helps people understand and communicate the structure and rules of the data."
+    },
+    {
+        "id": 88,
+        "type": "multiple_choice",
+        "question": "Which of the following is a main component of a data model according to the slides?",
+        "options": [
+            "Compilation rules",
+            "Integrity constraints",
+            "Memory allocation",
+            "Network protocols"
+        ],
+        "correct_answer": 1,
+        "explanation": "The main components of a data model are Structure, Manipulation, and Integrity Constraints."
+    },
+    {
+        "id": 89,
+        "type": "multiple_choice",
+        "question": "The three broad categories of data models mentioned are:",
+        "options": [
+            "Physical, logical, abstract",
+            "Object-based, record-based, and physical",
+            "Hierarchical, network, relational",
+            "Conceptual, logical, internal"
+        ],
+        "correct_answer": 1,
+        "explanation": "The three broad categories of data models are object-based, record-based, and physical data models."
+    },
+    {
+        "id": 90,
+        "type": "multiple_choice",
+        "question": "In object-based data models, a real-world object like a person or product is called an:",
+        "options": [
+            "Attribute",
+            "Relationship",
+            "Entity",
+            "Record"
+        ],
+        "correct_answer": 2,
+        "explanation": "An entity is a real-world object (e.g., a person, product, or place) that you want to store data about."
+    },
+    {
+        "id": 91,
+        "type": "multiple_choice",
+        "question": "A property of an entity, such as a person's name or age, is called an:",
+        "options": [
+            "Entity",
+            "Relationship",
+            "Instance",
+            "Attribute"
+        ],
+        "correct_answer": 3,
+        "explanation": "An attribute is a property of an entity, such as a person's name, age, or ID."
+    },
+    {
+        "id": 92,
+        "type": "multiple_choice",
+        "question": "Which of the following is a type of object-based data model listed in the slides?",
+        "options": [
+            "Relational",
+            "Network",
+            "Entity-Relationship (ER)",
+            "Hierarchical"
+        ],
+        "correct_answer": 2,
+        "explanation": "Entity-Relationship (ER) is listed as a type of object-based data model, along with Semantic, Functional, and Object-oriented."
+    },
+    {
+        "id": 93,
+        "type": "multiple_choice",
+        "question": "Record-based data models organize data as:",
+        "options": [
+            "Objects with methods",
+            "Fixed-format structures with fields",
+            "Free text",
+            "Unstructured files"
+        ],
+        "correct_answer": 1,
+        "explanation": "Record-based data models organize data as records — fixed-format structures with fields. Each record type defines what fields exist and their format."
+    },
+    {
+        "id": 94,
+        "type": "multiple_choice",
+        "question": "Which of the following is a type of record-based data model?",
+        "options": [
+            "Object-oriented",
+            "Functional",
+            "Relational",
+            "Semantic"
+        ],
+        "correct_answer": 2,
+        "explanation": "The Relational data model is a type of record-based model, along with Network and Hierarchical models."
+    },
+    {
+        "id": 95,
+        "type": "multiple_choice",
+        "question": "Physical data models focus on:",
+        "options": [
+            "What data looks like",
+            "Business rules",
+            "How data is stored and accessed for performance",
+            "User views only"
+        ],
+        "correct_answer": 2,
+        "explanation": "Physical data models describe how data is actually stored, structured, organized, and accessed for performance and storage efficiency."
+    },
+    {
+        "id": 96,
+        "type": "multiple_choice",
+        "question": "Which of the following is a key aspect of physical data models?",
+        "options": [
+            "Entity definitions",
+            "Access paths like indexes and pointers",
+            "User permissions",
+            "Forms and reports"
+        ],
+        "correct_answer": 1,
+        "explanation": "Access paths such as indexes, pointers, and links are key aspects of physical data models used to find and retrieve data quickly."
+    },
+    {
+        "id": 97,
+        "type": "multiple_choice",
+        "question": "Conceptual modeling is the process of creating a model:",
+        "options": [
+            "Dependent on a specific DBMS",
+            "Without worrying about how data is stored or processed by a specific system",
+            "Focused only on indexes",
+            "That includes all programming details"
+        ],
+        "correct_answer": 1,
+        "explanation": "Conceptual modeling creates a high-level abstract model without worrying about storage or processing by a specific system."
+    },
+    {
+        "id": 98,
+        "type": "multiple_choice",
+        "question": "The conceptual schema connects:",
+        "options": [
+            "Two external schemas",
+            "User views (external schemas) to physical storage (internal schema)",
+            "Two internal schemas",
+            "Only the DDL and DML"
+        ],
+        "correct_answer": 1,
+        "explanation": "The conceptual schema is the core that connects user views (external schemas) to physical storage (internal schema)."
+    },
+    {
+        "id": 99,
+        "type": "multiple_choice",
+        "question": "According to the conceptual vs. logical model table, the conceptual model focuses on:",
+        "options": [
+            "Tables and keys",
+            "Normalization rules",
+            "Business data requirements",
+            "DBMS-specific features"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual model focuses on business data requirements, while the logical model focuses on data structure in a specific DBMS."
+    },
+    {
+        "id": 100,
+        "type": "multiple_choice",
+        "question": "In the conceptual vs. logical model table, which model depends on a specific DBMS (e.g., relational model)?",
+        "options": [
+            "Conceptual model",
+            "Physical model",
+            "Logical model",
+            "External model"
+        ],
+        "correct_answer": 2,
+        "explanation": "The logical model depends on a specific DBMS (e.g., relational model), while the conceptual model is independent of any system."
+    },
+    {
+        "id": 101,
+        "type": "multiple_choice",
+        "question": "The logical model is described as having a level of abstraction that is:",
+        "options": [
+            "Highest-level",
+            "Independent of any system",
+            "Intermediate (between conceptual and physical)",
+            "Lowest-level"
+        ],
+        "correct_answer": 2,
+        "explanation": "The logical model has an intermediate level of abstraction, sitting between the conceptual and physical models."
+    },
+    {
+        "id": 102,
+        "type": "multiple_choice",
+        "question": "Which of the following is included in a conceptual model but NOT typically in a logical model according to the table?",
+        "options": [
+            "Tables",
+            "Entities and relationships",
+            "Normalization rules",
+            "Keys"
+        ],
+        "correct_answer": 1,
+        "explanation": "Entities and relationships are included in the conceptual model. Tables, keys, and normalization rules are features of the logical model."
+    },
+    {
+        "id": 103,
+        "type": "multiple_choice",
+        "question": "A good conceptual model ensures:",
+        "options": [
+            "Fast query performance",
+            "Nothing is left out or wrongly defined",
+            "Storage is minimized",
+            "Indexes are created"
+        ],
+        "correct_answer": 1,
+        "explanation": "A good conceptual model ensures nothing is left out or wrongly defined, accurately representing the enterprise's data requirements."
+    },
+    {
+        "id": 104,
+        "type": "multiple_choice",
+        "question": "The internal schema details include all of the following EXCEPT:",
+        "options": [
+            "Record structures",
+            "Indexes",
+            "User passwords",
+            "Storage methods"
+        ],
+        "correct_answer": 2,
+        "explanation": "User passwords are security-related and belong to external or conceptual level concerns, not physical storage details like record structures, indexes, or storage methods."
+    },
+    {
+        "id": 105,
+        "type": "multiple_choice",
+        "question": "The slide titled 'Three-level architecture Diagram' appears between which two topics?",
+        "options": [
+            "Introduction and External Level",
+            "Conceptual Level and Internal Level",
+            "External Level and Conceptual Level",
+            "Schemas and Data Independence"
+        ],
+        "correct_answer": 0,
+        "explanation": "The three-level architecture diagram appears between the introduction of the three-schema architecture and the detailed explanation of the External Level."
+    },
+    {
+        "id": 106,
+        "type": "multiple_choice",
+        "question": "According to the slides, many database instances can correspond to:",
+        "options": [
+            "Many different schemas",
+            "Only one external schema",
+            "The same database schema",
+            "No schema"
+        ],
+        "correct_answer": 2,
+        "explanation": "Many database instances can correspond to the same database schema. The schema is the intension; instances are extensions."
+    },
+    {
+        "id": 107,
+        "type": "multiple_choice",
+        "question": "The boundary between DBMS and OS responsibilities at the physical level can:",
+        "options": [
+            "Never change",
+            "Only be set by the user",
+            "Vary across systems",
+            "Be ignored"
+        ],
+        "correct_answer": 2,
+        "explanation": "The boundary between DBMS and OS responsibilities at the physical level can vary across different systems."
+    },
+    {
+        "id": 108,
+        "type": "multiple_choice",
+        "question": "DML operates at all schema levels but focuses on ease of use at:",
+        "options": [
+            "Internal level",
+            "Lower levels",
+            "Higher levels",
+            "Physical level"
+        ],
+        "correct_answer": 2,
+        "explanation": "DML operates at all schema levels but focuses on ease of use at higher levels (external and conceptual)."
+    },
+    {
+        "id": 109,
+        "type": "multiple_choice",
+        "question": "The query language is the part of DML used for:",
+        "options": [
+            "Defining tables",
+            "Inserting data",
+            "Retrieving data",
+            "Deleting data"
+        ],
+        "correct_answer": 2,
+        "explanation": "The query language is the part of DML used specifically for retrieving data from the database."
+    },
+    {
+        "id": 110,
+        "type": "multiple_choice",
+        "question": "Which of the following is an example of a nonprocedural DML mentioned in the slides?",
+        "options": [
+            "C with embedded SQL",
+            "COBOL",
+            "QBE (Query by Example)",
+            "Assembly"
+        ],
+        "correct_answer": 2,
+        "explanation": "QBE (Query by Example) is explicitly mentioned as an example of a nonprocedural DML alongside SQL."
+    },
+    {
+        "id": 111,
+        "type": "multiple_choice",
+        "question": "4GLs are much shorter and faster to use than:",
+        "options": [
+            "SQL",
+            "3GLs like COBOL",
+            "Query generators",
+            "Spreadsheets"
+        ],
+        "correct_answer": 1,
+        "explanation": "4GLs are much shorter and faster to use than 3GLs like COBOL, aiming to boost productivity for database and business applications."
+    },
+    {
+        "id": 112,
+        "type": "multiple_choice",
+        "question": "Which of the following is listed as a 'Very High-Level Language' under 4GL tools?",
+        "options": [
+            "C++",
+            "Java",
+            "Abstract tools for generating applications",
+            "Assembly"
+        ],
+        "correct_answer": 2,
+        "explanation": "Under 4GL tools, 'Very High-Level Languages' are described as abstract tools for generating applications with minimal input."
+    },
+    {
+        "id": 113,
+        "type": "multiple_choice",
+        "question": "According to the slides, which data model category includes the Relational, Network, and Hierarchical models?",
+        "options": [
+            "Object-based",
+            "Physical",
+            "Record-based",
+            "Conceptual"
+        ],
+        "correct_answer": 2,
+        "explanation": "The Relational, Network, and Hierarchical models are all types of record-based data models."
+    },
+    {
+        "id": 114,
+        "type": "multiple_choice",
+        "question": "In the three-schema architecture, which level avoids storage details like memory size or file format?",
+        "options": [
+            "Internal level",
+            "External level",
+            "Conceptual level",
+            "Physical level"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual level avoids any storage details like memory size or file format, focusing only on logical structure."
+    },
+    {
+        "id": 115,
+        "type": "multiple_choice",
+        "question": "The slide 'Differences between the three levels' appears immediately before which topic?",
+        "options": [
+            "Schemas, Mappings, and Instances",
+            "Data Independence",
+            "Physical data independence",
+            "Conceptual Modeling"
+        ],
+        "correct_answer": 1,
+        "explanation": "The slide 'Differences between the three levels' appears immediately before the topic 'Data Independence'."
+    },
+    {
+        "id": 116,
+        "type": "multiple_choice",
+        "question": "Which mapping connects user views to the conceptual schema?",
+        "options": [
+            "Conceptual/internal mapping",
+            "External/internal mapping",
+            "External/conceptual mapping",
+            "Logical/physical mapping"
+        ],
+        "correct_answer": 2,
+        "explanation": "The external/conceptual mapping connects user views (external schemas) to the conceptual schema."
+    },
+    {
+        "id": 117,
+        "type": "multiple_choice",
+        "question": "When DDL statements are compiled, the resulting metadata is sometimes called a:",
+        "options": [
+            "Transaction log",
+            "Data dictionary or data director",
+            "Query plan",
+            "Buffer manager"
+        ],
+        "correct_answer": 1,
+        "explanation": "The metadata generated by DDL compilation is stored in the system catalog, sometimes called a data dictionary or data director."
+    },
+    {
+        "id": 118,
+        "type": "multiple_choice",
+        "question": "Procedural DML is often embedded in which types of languages?",
+        "options": [
+            "4GLs only",
+            "SQL only",
+            "High-level host languages like C or Java",
+            "HTML"
+        ],
+        "correct_answer": 2,
+        "explanation": "Procedural DML is often embedded in high-level programming languages (like C, C++, Java, or Python) which act as host languages."
+    },
+    {
+        "id": 119,
+        "type": "multiple_choice",
+        "question": "The conceptual model is independent of:",
+        "options": [
+            "Business rules",
+            "Entities and relationships",
+            "DBMS and physical storage details",
+            "Integrity constraints"
+        ],
+        "correct_answer": 2,
+        "explanation": "The conceptual model is independent of DBMS, programming languages, and any physical storage details."
+    },
+    {
+        "id": 120,
+        "type": "multiple_choice",
+        "question": "The slide 'Data independence Diagram' comes after the explanation of:",
+        "options": [
+            "Logical data independence",
+            "Both logical and physical data independence",
+            "Physical data independence",
+            "Schemas and mappings"
+        ],
+        "correct_answer": 1,
+        "explanation": "The 'Data independence Diagram' appears after the explanation of both logical and physical data independence."
+    }
+
 
 
 
