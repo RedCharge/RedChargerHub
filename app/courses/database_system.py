@@ -6,7 +6,7 @@ database_system_quiz = {
         
   
   
-  [
+  
   {
     "id": 1,
     "type": "multiple_choice",
@@ -787,7 +787,7 @@ database_system_quiz = {
     "correct_answer": 2,
     "explanation": "The slides classify end users into only two categories: naive users and sophisticated users. 'Power users' is not mentioned."
   }
-]
+
 
 
 
