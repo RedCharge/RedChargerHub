@@ -6,1046 +6,788 @@ database_system_quiz = {
         
   
   
+  [
   {
     "id": 1,
     "type": "multiple_choice",
-    "question": "Which of the following cannot be used as a medium for 802.3 Ethernet?",
+    "question": "Raw facts such as numbers, characters, or symbols without context are called:",
     "options": [
-      "A thin coaxial cable",
-      "A twisted pair cable",
-      "A microwave link",
-      "A fiber-optic cable"
+      "Information",
+      "Metadata",
+      "Data",
+      "Queries"
     ],
     "correct_answer": 2,
-    "explanation": "Standard 802.3 Ethernet defines wired protocols; microwave links are used for wireless point-to-point transmission and typically fall under different standards."
+    "explanation": "Data is defined as raw, unprocessed facts without intrinsic meaning. Information is processed data, metadata is data about data, and queries are requests for data."
   },
   {
     "id": 2,
     "type": "multiple_choice",
-    "question": "What is the size of an IPv6 address?",
+    "question": "When data is organized, contextualized, and made meaningful, it becomes:",
     "options": [
-      "64 bits",
-      "16 bits",
-      "128 bits",
-      "32 bits"
+      "A file",
+      "Information",
+      "A primary key",
+      "Redundancy"
     ],
-    "correct_answer": 2,
-    "explanation": "IPv6 uses 128-bit addresses, providing a vastly larger address space compared to IPv4's 32-bit addresses."
+    "correct_answer": 1,
+    "explanation": "Information is processed data that is organized, contextualized, and presented in a meaningful way, such as 'Student ID 45020 belongs to James Owusu'."
   },
   {
     "id": 3,
     "type": "multiple_choice",
-    "question": "This type of topology has a central controller or hub.",
+    "question": "Which of the following best describes the transformation process from data to information?",
     "options": [
-      "Bus",
-      "Mesh",
-      "Ring",
-      "Star"
+      "Deleting duplicate entries",
+      "Processing and adding context",
+      "Storing in multiple files",
+      "Encrypting the data"
     ],
-    "correct_answer": 3,
-    "explanation": "In a star topology, all devices are connected to a central hub or controller which manages communication between devices."
+    "correct_answer": 1,
+    "explanation": "Data becomes information when it is processed, organized, and given context, making it meaningful and useful for decision-making."
   },
   {
     "id": 4,
     "type": "multiple_choice",
-    "question": "What is the use of the Ping command?",
+    "question": "A student ID number alone is considered data, but 'Student ID 45020 belongs to James Owusu' is an example of:",
     "options": [
-      "To test if a device on the network is reachable",
-      "To test if a hard disk is faulty",
-      "To test the quality of a computer",
-      "To test the quality of a printer"
+      "A database constraint",
+      "Information",
+      "A flat file",
+      "A secondary key"
     ],
-    "correct_answer": 0,
-    "explanation": "Ping uses ICMP echo requests and replies to verify if a network device is reachable and measure round-trip time."
+    "correct_answer": 1,
+    "explanation": "The statement provides context and meaning to the raw number, transforming it from data into information."
   },
   {
     "id": 5,
     "type": "multiple_choice",
-    "question": "Which one of the following protocols delivers/stores mail to the receiver server?",
+    "question": "File-based systems stored data primarily in:",
     "options": [
-      "Hypertext transfer protocol",
-      "Internet mail access protocol",
-      "Post office protocol",
-      "Simple mail transfer protocol"
+      "Relational tables",
+      "Flat files like .txt, .csv, or .dat",
+      "XML documents only",
+      "Object-oriented databases"
     ],
-    "correct_answer": 3,
-    "explanation": "SMTP (Simple Mail Transfer Protocol) is used for sending and relaying email messages between mail servers."
+    "correct_answer": 1,
+    "explanation": "File-based systems stored data in flat files, typically in formats such as .txt, .csv, or .dat, not in relational or object-oriented structures."
   },
   {
     "id": 6,
     "type": "multiple_choice",
-    "question": "Which of the following applications will effectively run on UDP?",
+    "question": "In a file-based system, if the same customer address appears in both a billing file and a shipping file, this is an example of:",
     "options": [
-      "Email",
-      "File transfer",
-      "Multimedia streaming",
-      "Web"
+      "Data independence",
+      "Data redundancy",
+      "Referential integrity",
+      "Concurrency"
     ],
-    "correct_answer": 2,
-    "explanation": "UDP is connectionless and does not guarantee delivery, making it suitable for streaming where speed is prioritized over reliability."
+    "correct_answer": 1,
+    "explanation": "Data redundancy means duplicate data entries are stored in multiple files, which was common in file-based systems."
   },
   {
     "id": 7,
     "type": "multiple_choice",
-    "question": "What is the unit of antenna gain?",
+    "question": "Data inconsistency in file-based systems often results directly from:",
     "options": [
-      "Watt",
-      "Decibel (dB)",
-      "Henry (H)",
-      "Sierens (S)"
+      "Too many indexes",
+      "Lack of encryption",
+      "Redundant data that is updated in one file but not others",
+      "Excessive use of SQL"
     ],
-    "correct_answer": 1,
-    "explanation": "Antenna gain is measured in decibels (dB), typically dBi for isotropic reference or dBd for dipole reference."
+    "correct_answer": 2,
+    "explanation": "When the same data is stored redundantly across multiple files and an update occurs in only one file, inconsistency arises because other files still contain the old value."
   },
   {
     "id": 8,
     "type": "multiple_choice",
-    "question": "The radiation pattern of an ideal isotropic antenna is:",
+    "question": "Which of the following is a limitation of file-based systems mentioned in the slides?",
     "options": [
-      "Directional",
-      "Hemispherical",
-      "Omnidirectional",
-      "None of the above"
+      "High scalability",
+      "Excellent data sharing",
+      "Limited security",
+      "Built-in concurrency control"
     ],
     "correct_answer": 2,
-    "explanation": "An ideal isotropic antenna radiates power equally in all directions, making it omnidirectional."
+    "explanation": "Limited security is explicitly listed as a critical limitation of file-based systems, which offered minimal access control mechanisms."
   },
   {
     "id": 9,
     "type": "multiple_choice",
-    "question": "What type of antenna is typically used for satellite communication?",
+    "question": "In file-based systems, accessing data from multiple files is difficult because:",
     "options": [
-      "Dipole antenna",
-      "Parabolic reflector",
-      "Log parabolic reflector",
-      "Yagi-Uda antenna"
+      "Files are always encrypted",
+      "The application developer must manually synchronize processing",
+      "SQL is not available",
+      "There is no storage space"
     ],
     "correct_answer": 1,
-    "explanation": "Parabolic reflector antennas provide high gain and narrow beamwidth, making them ideal for long-distance satellite communication."
+    "explanation": "The application developer must synchronize processing of multiple files manually, and this difficulty compounds when more than two files are involved."
   },
   {
     "id": 10,
     "type": "multiple_choice",
-    "question": "Which parameter of an antenna is defined as the ratio of radiated power to input power?",
+    "question": "File-based systems were an early attempt to computerize:",
     "options": [
-      "Directivity",
-      "Efficiency",
-      "Impedance",
-      "Polarization"
+      "Network databases",
+      "Manual filing systems",
+      "Object-oriented storage",
+      "Cloud storage"
     ],
     "correct_answer": 1,
-    "explanation": "Antenna efficiency is the ratio of power actually radiated to the total input power delivered to the antenna."
+    "explanation": "File-based systems were an early attempt to computerize the manual filing systems that organizations traditionally used to store correspondence and records."
   },
   {
     "id": 11,
     "type": "multiple_choice",
-    "question": "The bandwidth of an antenna is the range of frequencies over which:",
+    "question": "A major problem with file-based systems is that updates in one file are not automatically reflected in other files, leading to:",
     "options": [
-      "It operates without distortion",
-      "Gains remain constant",
-      "Radiation pattern remains constant",
-      "All of the above"
+      "Faster access",
+      "Data inconsistency",
+      "Better security",
+      "Less redundancy"
     ],
-    "correct_answer": 3,
-    "explanation": "Antenna bandwidth is defined as the frequency range where the antenna maintains acceptable performance in all parameters including gain, pattern, and distortion."
+    "correct_answer": 1,
+    "explanation": "When an update occurs in only one file but the same data exists elsewhere, the files become inconsistent with each other."
   },
   {
     "id": 12,
     "type": "multiple_choice",
-    "question": "The commonly used multiple technique that has very stringent timing and synchronization requirements for the earth station is the:",
+    "question": "Which of the following is NOT a characteristic of a database according to the slides?",
     "options": [
-      "CCDMA",
-      "TDMA",
-      "FDMA",
-      "Both CDMA and TDMA"
+      "Multiple departments may access it concurrently",
+      "Data items are combined with little duplication",
+      "It belongs to a single department only",
+      "It includes operational data and its description"
     ],
-    "correct_answer": 1,
-    "explanation": "TDMA (Time Division Multiple Access) requires precise timing synchronization because users share the same frequency but transmit in different time slots."
+    "correct_answer": 2,
+    "explanation": "The slides state that the database is a common company resource rather than belonging to a single department."
   },
   {
     "id": 13,
     "type": "multiple_choice",
-    "question": "........is a type of transmission impairment in which the signal loses strength due to the difference propagation speed of each frequency that makes up the signal.",
+    "question": "A database is defined as a collection of interconnected records that:",
     "options": [
-      "Attenuation",
-      "Distortion",
-      "Noise",
-      "Decibel"
+      "Require no maintenance",
+      "Describe themselves",
+      "Cannot be shared",
+      "Are stored in flat files"
     ],
     "correct_answer": 1,
-    "explanation": "Distortion occurs when different frequency components of a signal travel at different speeds, causing phase shifts and waveform deformation."
+    "explanation": "The slides define a database as a collection of interconnected records that describe themselves, separating data definitions from application code."
   },
   {
     "id": 14,
     "type": "multiple_choice",
-    "question": "A network point that provides entrance into another network is called:",
+    "question": "The separation of data definitions from application code in a database is comparable to:",
     "options": [
-      "Gateway",
-      "Node",
-      "Switch",
-      "Router"
+      "File-based system indexing",
+      "Current software development providing internal and external definitions for objects",
+      "Manual filing cabinets",
+      "Hard-coded data in programs"
     ],
-    "correct_answer": 0,
-    "explanation": "A gateway serves as an entry point between networks, often performing protocol conversion between different network architectures."
+    "correct_answer": 1,
+    "explanation": "Database systems separate data definitions from application code, similar to how modern software development provides both internal and external definitions for objects."
   },
   {
     "id": 15,
     "type": "multiple_choice",
-    "question": "A router operates in which layer of the OSI reference model?",
+    "question": "Which language allows users to specify data types, structures, and constraints on data?",
     "options": [
-      "Layer 1 (Physical Layer)",
-      "Layer 3 (Network Layer)",
-      "Layer 4 (Transport Layer)",
-      "Layer 7 (Application Layer)"
+      "DML",
+      "DDL",
+      "SQL (only for queries)",
+      "Python"
     ],
     "correct_answer": 1,
-    "explanation": "Routers operate at Layer 3 (Network Layer), making forwarding decisions based on logical IP addresses."
+    "explanation": "Data Definition Language (DDL) allows users to specify data types, structures, and constraints on the data to be stored in the database."
   },
   {
     "id": 16,
     "type": "multiple_choice",
-    "question": "Which of the following is not a component of data communication?",
+    "question": "The DML (Data Manipulation Language) is primarily used for:",
     "options": [
-      "Sender",
-      "Receiver",
-      "Transmission medium",
-      "Compiler"
+      "Defining tables",
+      "Inserting, updating, deleting, and retrieving data",
+      "Setting hardware requirements",
+      "Managing user logins"
     ],
-    "correct_answer": 3,
-    "explanation": "A compiler is a software that translates program code, not a component of data communication systems."
+    "correct_answer": 1,
+    "explanation": "DML allows users to insert, update, delete, and retrieve data from the database."
   },
   {
     "id": 17,
     "type": "multiple_choice",
-    "question": "In the OSI model, which layer is responsible for end-to-end communication?",
+    "question": "The general inquiry facility provided by DML is called a:",
     "options": [
-      "Transport layer",
-      "Physical layer",
-      "Network layer",
-      "Data link layer"
+      "Data dictionary",
+      "Query language",
+      "Compiler",
+      "Transaction manager"
     ],
-    "correct_answer": 0,
-    "explanation": "The Transport layer provides end-to-end communication services, including segmentation, flow control, and error recovery."
+    "correct_answer": 1,
+    "explanation": "Having a central repository allows the DML to provide a general inquiry facility called a query language, with SQL being the most common example."
   },
   {
     "id": 18,
     "type": "multiple_choice",
-    "question": "What is the primary function of a router in a network?",
+    "question": "Which language is both the formal and de facto standard for relational DBMSs?",
     "options": [
-      "Connect different networks and route packets",
-      "Amplify the signal",
-      "Convert analog signals to digital",
-      "Secure the network"
+      "Java",
+      "C++",
+      "SQL",
+      "HTML"
     ],
-    "correct_answer": 0,
-    "explanation": "Routers connect different networks and forward packets between them based on IP addresses and routing tables."
+    "correct_answer": 2,
+    "explanation": "SQL (Structured Query Language) is both the formal and de facto standard language for relational DBMSs."
   },
   {
     "id": 19,
     "type": "multiple_choice",
-    "question": "In a star topology, all devices are connected to:",
+    "question": "The DBMS advantage that ensures accuracy and consistency across the system is:",
     "options": [
-      "A central node",
-      "A neighboring node",
-      "A single cable",
-      "None of the above"
+      "Scalability",
+      "Concurrency",
+      "Data integrity",
+      "Data redundancy"
     ],
-    "correct_answer": 0,
-    "explanation": "Star topology uses a central hub or switch that connects all devices directly, with no device-to-device connections."
+    "correct_answer": 2,
+    "explanation": "Data integrity ensures accuracy and consistency of data across the entire database system."
   },
   {
     "id": 20,
     "type": "multiple_choice",
-    "question": "What does the acronym 'IP' in 'IP address' stand for?",
+    "question": "Role-based access control and authentication are features of which DBMS advantage?",
     "options": [
-      "Internet Protocol",
-      "Internal Protocol",
-      "Interconnection Port",
-      "Information Protocol"
+      "Scalability",
+      "Security",
+      "Data independence",
+      "Concurrency"
     ],
-    "correct_answer": 0,
-    "explanation": "IP stands for Internet Protocol, the principal communications protocol in the Internet protocol suite."
+    "correct_answer": 1,
+    "explanation": "Security in DBMS includes role-based access control and authentication mechanisms."
   },
   {
     "id": 21,
     "type": "multiple_choice",
-    "question": "Which type of transmission uses a single channel for both sending and receiving data?",
+    "question": "The ability of a DBMS to allow simultaneous access without conflict is called:",
     "options": [
-      "Simplex",
-      "Duplex",
-      "Half-duplex",
-      "Multiplex"
+      "Data integrity",
+      "Concurrency",
+      "Security",
+      "Scalability"
     ],
-    "correct_answer": 2,
-    "explanation": "Half-duplex transmission allows communication in both directions but not simultaneously, using a single channel alternately."
+    "correct_answer": 1,
+    "explanation": "Concurrency allows multiple users to access the database simultaneously without interfering with each other."
   },
   {
     "id": 22,
     "type": "multiple_choice",
-    "question": "What is the primary purpose of the Domain Name System (DNS)?",
+    "question": "The DBMS advantage that supports large volumes of data and many users is:",
     "options": [
-      "To provide secure connections",
-      "To translate domain names into IP addresses",
-      "To store web pages",
-      "To manage email routing"
+      "Data independence",
+      "Concurrency",
+      "Scalability",
+      "Integrity"
     ],
-    "correct_answer": 1,
-    "explanation": "DNS translates human-readable domain names into machine-readable IP addresses, enabling users to access websites using memorable names."
+    "correct_answer": 2,
+    "explanation": "Scalability refers to the DBMS's ability to handle growing amounts of data and increasing numbers of users."
   },
   {
     "id": 23,
     "type": "multiple_choice",
-    "question": "Which of the following is a connection-oriented protocol?",
+    "question": "Insulation between application programs and data is known as:",
     "options": [
-      "UDP",
-      "TCP",
-      "IP",
-      "ICMP"
+      "Data redundancy",
+      "Data independence",
+      "Concurrency",
+      "Security"
     ],
     "correct_answer": 1,
-    "explanation": "TCP is connection-oriented, establishing a virtual connection with handshaking before data transfer and ensuring reliable delivery."
+    "explanation": "Data independence provides insulation between application programs and the data, allowing changes to data storage without affecting applications."
   },
   {
     "id": 24,
     "type": "multiple_choice",
-    "question": "Which device operates at the data link layer of the OSI model?",
+    "question": "Which of the following is NOT one of the five major components in a DBMS environment?",
     "options": [
-      "Hub",
-      "Switch",
-      "Router",
-      "Gateway"
+      "Hardware",
+      "Software",
+      "Compiler",
+      "Procedures"
     ],
-    "correct_answer": 1,
-    "explanation": "Switches operate at Layer 2, forwarding frames based on MAC addresses and maintaining MAC address tables."
+    "correct_answer": 2,
+    "explanation": "The five major components are hardware, software, data, procedures, and people. Compiler is not listed as a separate component."
   },
   {
     "id": 25,
     "type": "multiple_choice",
-    "question": "In wireless communication, what does latency refer to?",
+    "question": "In the DBMS environment, hardware can range from:",
     "options": [
-      "The time it takes for the signal to travel from one end to the other.",
-      "The time it takes for the signal to travel from one antenna to another.",
-      "The time it takes for the signal to travel from one antenna to the other.",
-      "None of the above."
+      "Only mainframes",
+      "Personal computers to mainframes or networks",
+      "Only personal computers",
+      "Only mobile devices"
     ],
-    "correct_answer": 0,
-    "explanation": "Latency is the total time delay for data to travel from source to destination, including propagation, processing, and queuing delays."
+    "correct_answer": 1,
+    "explanation": "Hardware requirements depend on the organization and DBMS used, ranging from personal computers to mainframes or networks."
   },
   {
     "id": 26,
     "type": "multiple_choice",
-    "question": "Which of the following is primarily used for high-speed data transmission in fiber-optic communication?",
+    "question": "Which component of the DBMS environment includes instructions on how to log on, start/stop the DBMS, and make backups?",
     "options": [
-      "Time division Multiplexing (TDM)",
-      "Frequency Division Multiplexing (FDM)",
-      "Dense Wavelength Division Multiplexing (DWDM)",
-      "Code Division Multiple Access (CDMA)"
+      "Hardware",
+      "Software",
+      "Data",
+      "Procedures"
     ],
-    "correct_answer": 2,
-    "explanation": "DWDM combines multiple optical signals on different wavelengths on a single fiber, dramatically increasing data capacity."
+    "correct_answer": 3,
+    "explanation": "Procedures refer to the instructions and rules governing database design and use, including login, startup/shutdown, and backup procedures."
   },
   {
     "id": 27,
     "type": "multiple_choice",
-    "question": "Which type of communication uses multiple Access Points (APs)?",
+    "question": "Who is responsible for database planning, standards, policies, and conceptual/logical database design?",
     "options": [
-      "Satellite Communication",
-      "Fiber Optic Communication",
-      "Microwave Radio Transmission (MRT)",
-      "None of the above."
+      "Database Administrator (DBA)",
+      "Data Administrator (DA)",
+      "Application Developer",
+      "End User"
     ],
-    "correct_answer": 2,
-    "explanation": "Microwave Radio Transmission often uses multiple access points to provide coverage and handoff capabilities in wireless networks."
+    "correct_answer": 1,
+    "explanation": "The Data Administrator (DA) is responsible for management of the data resource, including database planning, standards, policies, and conceptual/logical design."
   },
   {
     "id": 28,
     "type": "multiple_choice",
-    "question": "What does the term 'latency' mean in mobile networks?",
+    "question": "The Database Administrator (DBA) is primarily responsible for:",
     "options": [
-      "Speed of data transmission",
-      "Delay in data transmission",
-      "Bandwidth capacity",
-      "Signal interference"
+      "Writing application programs",
+      "Physical database design, security, and performance",
+      "Only logical design",
+      "Using the database via menus"
     ],
     "correct_answer": 1,
-    "explanation": "Latency in mobile networks refers to the delay between sending a request and receiving a response, critical for real-time applications."
+    "explanation": "The DBA is responsible for physical database design and implementation, security, integrity control, maintenance, and ensuring satisfactory performance."
   },
   {
     "id": 29,
     "type": "multiple_choice",
-    "question": "Which transmission medium is commonly used in modern data centers for ultra-fast data access?",
+    "question": "Which role is concerned with identifying entities, attributes, relationships, and business rules?",
     "options": [
-      "Coaxial cable",
-      "Twisted pair",
-      "Optical fiber",
-      "Satellite link"
+      "Physical database designer",
+      "Logical database designer",
+      "Systems analyst",
+      "Naive user"
     ],
-    "correct_answer": 2,
-    "explanation": "Optical fiber provides high bandwidth, low latency, and immunity to electromagnetic interference, making it ideal for data centers."
+    "correct_answer": 1,
+    "explanation": "The logical database designer identifies entities, attributes, relationships, and constraints (business rules) on the data to be stored."
   },
   {
     "id": 30,
     "type": "multiple_choice",
-    "question": "Which of the following is a key characteristic of analogue signal?",
+    "question": "Constraints on data in logical database design are sometimes called:",
     "options": [
-      "Discrete values",
-      "Continuous signals",
-      "Binary Values",
-      "Pulse based signal"
+      "Storage rules",
+      "Access paths",
+      "Business rules",
+      "Index definitions"
     ],
-    "correct_answer": 1,
-    "explanation": "Analog signals are continuous waveforms that vary smoothly over time, representing physical measurements."
+    "correct_answer": 2,
+    "explanation": "Constraints on data in logical database design are sometimes called business rules."
   },
   {
     "id": 31,
     "type": "multiple_choice",
-    "question": "Digital signals are represented by:",
+    "question": "Conceptual database design is:",
     "options": [
-      "Waveforms",
-      "Continuous signals",
-      "Binary numbers (0s and 1s)",
-      "Frequency Modulation"
+      "Dependent on the target DBMS",
+      "Independent of implementation details",
+      "Concerned with storage structures only",
+      "The same as physical design"
     ],
-    "correct_answer": 2,
-    "explanation": "Digital signals use discrete binary values (0 and 1) to represent information in computer systems."
+    "correct_answer": 1,
+    "explanation": "Conceptual database design is independent of implementation details such as the target DBMS, application programs, or programming languages."
   },
   {
     "id": 32,
     "type": "multiple_choice",
-    "question": "Which of the following is a disadvantage of analogue system?",
+    "question": "Logical database design targets a specific data model such as:",
     "options": [
-      "They are simpler to design",
-      "They are highly resistance to noise",
-      "They are prone to distortion and noise interference",
-      "They use binary coding"
+      "Only relational",
+      "Relational, network, hierarchical, or object-oriented",
+      "Only object-oriented",
+      "Only flat files"
     ],
-    "correct_answer": 2,
-    "explanation": "Analog systems are susceptible to noise and signal degradation during transmission and processing."
+    "correct_answer": 1,
+    "explanation": "Logical database design targets a specific data model, including relational, network, hierarchical, or object-oriented."
   },
   {
     "id": 33,
     "type": "multiple_choice",
-    "question": "__________ assigns a unique number to each IP network adapter called Mac address.",
+    "question": "The physical database designer maps the logical design into:",
     "options": [
-      "Media Access Control",
-      "Metro Access Control",
-      "Metropolitan Access Control",
-      "Both B and C above"
+      "User interfaces",
+      "A set of tables and integrity constraints",
+      "Application source code",
+      "Backup scripts"
     ],
-    "correct_answer": 0,
-    "explanation": "Media Access Control (MAC) addressing is a sublayer of the data link layer that assigns unique hardware addresses to network interfaces."
+    "correct_answer": 1,
+    "explanation": "Physical database design involves mapping the logical database design into a set of tables and integrity constraints."
   },
   {
     "id": 34,
     "type": "multiple_choice",
-    "question": "The transport layer of OSI model lies between Network and __________ layer.",
+    "question": "Selecting specific storage structures and access methods to achieve good performance is the job of:",
     "options": [
-      "Transport",
-      "Datalink",
-      "Session",
-      "Presentation"
+      "Logical database designer",
+      "Physical database designer",
+      "End user",
+      "Data Administrator"
     ],
-    "correct_answer": 2,
-    "explanation": "In the OSI model, the Transport layer (Layer 4) is between the Network layer (Layer 3) and Session layer (Layer 5)."
+    "correct_answer": 1,
+    "explanation": "The physical database designer selects specific storage structures and access methods for the data to achieve good performance."
   },
   {
     "id": 35,
     "type": "multiple_choice",
-    "question": "What does PoE stand for in Ethernet technology?",
+    "question": "Application developers typically work from a specification produced by:",
     "options": [
-      "Power Over Ethernet",
-      "Port of entry",
-      "Protocol Over Ethernet",
-      "Power of Energy"
+      "End users",
+      "Systems analysts",
+      "Database Administrator",
+      "Hardware engineers"
     ],
-    "correct_answer": 0,
-    "explanation": "Power over Ethernet (PoE) allows electrical power to be transmitted along with data on Ethernet cabling."
+    "correct_answer": 1,
+    "explanation": "Application developers typically work from a specification produced by systems analysts."
   },
   {
     "id": 36,
     "type": "multiple_choice",
-    "question": "_________ is used to validate the identity of the message sender to the recipient.",
+    "question": "Application programs contain statements that request the DBMS to perform operations including:",
     "options": [
-      "Encryption",
-      "Decryption",
-      "None of the above",
-      "Digital certificate"
+      "Only data retrieval",
+      "Only data insertion",
+      "Retrieval, insertion, updating, and deletion",
+      "Only data deletion"
     ],
-    "correct_answer": 3,
-    "explanation": "Digital certificates authenticate the identity of senders and enable encrypted communications using public key infrastructure."
+    "correct_answer": 2,
+    "explanation": "Each program contains statements requesting the DBMS to retrieve, insert, update, and delete data."
   },
   {
     "id": 37,
     "type": "multiple_choice",
-    "question": "What is the main purpose of an antenna?",
+    "question": "End users who are unaware of the DBMS and use simple commands or menus are called:",
     "options": [
-      "Signing amplification",
-      "Impedance matching",
-      "Noise filtering",
-      "Signal radiation and reception"
+      "Sophisticated users",
+      "Naive users",
+      "Database designers",
+      "Systems analysts"
     ],
-    "correct_answer": 3,
-    "explanation": "Antennas convert electrical signals into electromagnetic waves for transmission and vice versa for reception."
+    "correct_answer": 1,
+    "explanation": "Naive users are typically unaware of the DBMS and access the database through specially written application programs with simple commands or menus."
   },
   {
     "id": 38,
     "type": "multiple_choice",
-    "question": "Which of the following is not a guided transmission medium?",
+    "question": "Which type of end user is familiar with the database structure and may write SQL queries?",
     "options": [
-      "Coaxial cable",
-      "Twisted pair cable",
-      "Fiber optic cable",
-      "Radio waves"
+      "Naive user",
+      "Sophisticated user",
+      "Application developer",
+      "Data Administrator"
     ],
-    "correct_answer": 3,
-    "explanation": "Radio waves are unguided (wireless) media that propagate through free space, unlike guided media that use physical conductors."
+    "correct_answer": 1,
+    "explanation": "Sophisticated end users are familiar with the database structure and DBMS facilities, and may use high-level query languages like SQL."
   },
   {
     "id": 39,
     "type": "multiple_choice",
-    "question": "What is the primary advantage of fiber optic cables over copper cables?",
+    "question": "Sophisticated end users may even write:",
     "options": [
-      "Lower cost",
-      "Higher bandwidth and longer distance transmission",
-      "Simplicity of installation",
-      "Resistance to physical damage"
+      "Operating systems",
+      "Application programs for their own use",
+      "Database backup software",
+      "Hardware drivers"
     ],
     "correct_answer": 1,
-    "explanation": "Fiber optics offer significantly higher bandwidth and can transmit data over much longer distances without signal degradation."
+    "explanation": "Some sophisticated end users may write application programs for their own use."
   },
   {
     "id": 40,
     "type": "multiple_choice",
-    "question": "The two types of twisted pair cables are:",
+    "question": "Naive users invoke database operations by:",
     "options": [
-      "Shielded and unshielded",
-      "Solid and stranded",
-      "Coaxial and optical",
-      "Multimode and single mode"
+      "Writing complex joins",
+      "Entering simple commands or choosing menu options",
+      "Designing table schemas",
+      "Managing transactions"
     ],
-    "correct_answer": 0,
-    "explanation": "Twisted pair cables come in Shielded Twisted Pair (STP) with electromagnetic shielding and Unshielded Twisted Pair (UTP)."
+    "correct_answer": 1,
+    "explanation": "Naive users invoke database operations by entering simple commands or choosing options from a menu, without needing knowledge of the database or DBMS."
   },
   {
     "id": 41,
     "type": "multiple_choice",
-    "question": "Which of the following media is used in wireless communication?",
+    "question": "The central repository for all data and data descriptions allows the DML to provide a:",
     "options": [
-      "Coaxial cable",
-      "Microwaves",
-      "Twisted pair cable",
-      "Fiber optic cable"
+      "Compiler",
+      "Query language",
+      "File system",
+      "Hardware interface"
     ],
     "correct_answer": 1,
-    "explanation": "Microwaves are electromagnetic waves used for wireless communication, including satellite, radar, and point-to-point links."
+    "explanation": "Having a central repository allows the DML to provide a general inquiry facility called a query language."
   },
   {
     "id": 42,
     "type": "multiple_choice",
-    "question": "What is the maximum distance for data transmission over unshielded twisted pair (UTP)?",
+    "question": "Data redundancy in file-based systems commonly leads to:",
     "options": [
-      "50 meters",
-      "100 meters",
-      "500 meters",
-      "1000 meters"
+      "Improved performance",
+      "Data inconsistency",
+      "Better security",
+      "Easier backups"
     ],
     "correct_answer": 1,
-    "explanation": "UTP cabling in Ethernet networks is typically limited to 100 meters before signal degradation requires repeaters or switches."
+    "explanation": "Data redundancy leads to data inconsistency because updates in one file are not reflected in others."
   },
   {
     "id": 43,
     "type": "multiple_choice",
-    "question": "What type of transmission is supported by multimode fiber?",
+    "question": "Poor data sharing in file-based systems means accessing files often requires:",
     "options": [
-      "Single light path",
-      "Multiple light paths",
-      "Electrical signals",
-      "Radio frequencies"
+      "Automatic synchronization",
+      "Manual coordination",
+      "SQL knowledge",
+      "Network upgrades"
     ],
     "correct_answer": 1,
-    "explanation": "Multimode fiber allows multiple light modes or paths to propagate simultaneously through the fiber core."
+    "explanation": "Files were often isolated, and accessing them required manual coordination."
   },
   {
     "id": 44,
     "type": "multiple_choice",
-    "question": "Which of the following is a disadvantage of wireless transmission?",
+    "question": "In a file-based system, if you need data from more than two files, the difficulty is:",
     "options": [
-      "Mobility",
-      "Flexibility",
-      "Susceptibility to interference and security risk",
-      "High speed"
+      "Reduced",
+      "Compounded",
+      "Eliminated",
+      "Handled automatically by the OS"
     ],
-    "correct_answer": 2,
-    "explanation": "Wireless transmission is vulnerable to interference from other devices, environmental factors, and security threats like eavesdropping."
+    "correct_answer": 1,
+    "explanation": "The difficulty is compounded if data is required from more than two files."
   },
   {
     "id": 45,
     "type": "multiple_choice",
-    "question": "Which of the following techniques is used for error detection?",
+    "question": "Which of the following is true about file-based systems?",
     "options": [
-      "Hamming code",
-      "Parity check",
-      "Cyclic redundancy check (CRC)",
-      "All of the above"
+      "They offered excellent security controls",
+      "They were an early attempt to computerize manual filing",
+      "They automatically avoid data duplication",
+      "They are still the standard for large organizations"
     ],
-    "correct_answer": 3,
-    "explanation": "All listed techniques are used for error detection, with Hamming code also capable of error correction."
+    "correct_answer": 1,
+    "explanation": "File-based systems were an early attempt to computerize manual filing systems, though they suffered from limitations like data redundancy and poor security."
   },
   {
     "id": 46,
     "type": "multiple_choice",
-    "question": "What is the primary purpose of error detection techniques?",
+    "question": "The database includes both operational data and its:",
     "options": [
-      "To prevent errors from occurring",
-      "To encode data",
-      "To correct errors automatically",
-      "To identify the presence of errors in data"
+      "Backup copy",
+      "Description",
+      "Encryption key",
+      "File path"
     ],
-    "correct_answer": 3,
-    "explanation": "Error detection techniques identify whether errors have occurred during transmission, not to prevent or automatically correct them."
+    "correct_answer": 1,
+    "explanation": "The database includes both operational data and its description (metadata)."
   },
   {
     "id": 47,
     "type": "multiple_choice",
-    "question": "Which error detection technique uses a single extra bit appended to the data?",
+    "question": "Which person is responsible for the physical realization of the database, including maintenance and performance?",
     "options": [
-      "CRC",
-      "Checksum",
-      "Hamming code",
-      "Parity check"
+      "Data Administrator",
+      "Database Administrator",
+      "Logical designer",
+      "End user"
     ],
-    "correct_answer": 3,
-    "explanation": "Parity check adds one parity bit to make the total number of 1s either even (even parity) or odd (odd parity)."
+    "correct_answer": 1,
+    "explanation": "The Database Administrator (DBA) is responsible for physical database design, implementation, maintenance, and ensuring satisfactory performance."
   },
   {
     "id": 48,
     "type": "multiple_choice",
-    "question": "The checksum method is typically used at which layer of the OSI model?",
+    "question": "Which person is responsible for the management of the data resource rather than the physical database?",
     "options": [
-      "Physical Layer",
-      "Data Link Layer",
-      "Network Layer",
-      "Transport Layer"
+      "Database Administrator",
+      "Data Administrator",
+      "Application Developer",
+      "Physical designer"
     ],
-    "correct_answer": 3,
-    "explanation": "Checksums are commonly used at the Transport Layer (TCP/UDP) and also at the Network Layer (IP header checksum)."
+    "correct_answer": 1,
+    "explanation": "The Data Administrator (DA) is responsible for management of the data resource, while the DBA handles physical implementation."
   },
   {
     "id": 49,
     "type": "multiple_choice",
-    "question": "In a parity check, what does odd parity mean?",
+    "question": "Procedures in the DBMS environment may include instructions on how to:",
     "options": [
-      "The number of 1s in the data is even",
-      "The number of 0s in the data is even",
-      "The number of 1s in the data is odd",
-      "The number of 0s in the data is odd"
+      "Only write SQL",
+      "Only design hardware",
+      "Log on, use facilities, start/stop, and make backups",
+      "Only compile programs"
     ],
     "correct_answer": 2,
-    "explanation": "Odd parity means the total number of 1-bits in the data including the parity bit must be odd."
+    "explanation": "Procedures include instructions on logging on, using DBMS facilities, starting/stopping the DBMS, and making backup copies."
   },
   {
     "id": 50,
     "type": "multiple_choice",
-    "question": "What does CRC stand for?",
+    "question": "Which of the following is a role in the DBMS environment according to the slides?",
     "options": [
-      "Code Redundancy Check",
-      "Critical Recovery Code",
-      "Cyclic Redundancy Check",
-      "Cyclic Resolution Check"
+      "Network engineer",
+      "Database designer",
+      "Power supply manager",
+      "Web designer"
     ],
-    "correct_answer": 2,
-    "explanation": "CRC (Cyclic Redundancy Check) is an error-detecting code using polynomial division to detect accidental changes in data."
+    "correct_answer": 1,
+    "explanation": "Database designer is explicitly listed as a role, along with data/database administrators, application developers, and end users."
   },
   {
     "id": 51,
     "type": "multiple_choice",
-    "question": "Which of the following is not an error detection technique?",
+    "question": "The physical database designer also designs:",
     "options": [
-      "Checksum",
-      "Hamming Code",
-      "Parity Check",
-      "CRC"
+      "Business rules",
+      "Security measures on the data",
+      "Conceptual models",
+      "End-user training manuals"
     ],
     "correct_answer": 1,
-    "explanation": "Hamming Code is primarily an error correction technique that can both detect and correct single-bit errors."
+    "explanation": "Physical database design includes designing any security measures required on the data."
   },
   {
     "id": 52,
     "type": "multiple_choice",
-    "question": "What is the purpose of redundancy bits in error detection and correction?",
+    "question": "A logical database designer must have a thorough understanding of:",
     "options": [
-      "To increase data rate",
-      "To detect and correct errors in the data",
-      "To reduce transmission power",
-      "To encrypt data"
+      "Storage hardware",
+      "The organization's data and constraints",
+      "Network protocols",
+      "Compiler design"
     ],
     "correct_answer": 1,
-    "explanation": "Redundancy bits add extra information to transmitted data, enabling the receiver to detect and possibly correct errors."
+    "explanation": "The logical database designer must have a thorough and complete understanding of the organization's data and any constraints (business rules)."
   },
   {
     "id": 53,
     "type": "multiple_choice",
-    "question": "Which of the following is used in network protocols like Ethernet for error detection?",
+    "question": "The quote 'A DBMS provides abstraction that hides complex storage details…' is attributed to:",
     "options": [
-      "Parity Check",
-      "CRC",
-      "Checksum",
-      "Hamming Code"
+      "The slide author only",
+      "Ullman & Widom (2022)",
+      "The Database Administrator",
+      "Microsoft"
     ],
     "correct_answer": 1,
-    "explanation": "Ethernet frames use CRC-32 in the frame check sequence to detect transmission errors in the data."
+    "explanation": "The quote is explicitly attributed to Ullman & Widom (2022) in the slides."
   },
   {
     "id": 54,
     "type": "multiple_choice",
-    "question": "The design of the Internet protocol suites adheres to the __________ principle.",
+    "question": "A DBMS requires a minimum amount of main memory and disk space, but this may not provide:",
     "options": [
-      "Connection-oriented",
-      "Data corruption",
-      "End-to-End",
-      "Reliability"
+      "Any functionality",
+      "Acceptable performance",
+      "Data storage capability",
+      "User access"
     ],
-    "correct_answer": 2,
-    "explanation": "The end-to-end principle places application-specific functions at the endpoints rather than intermediate network nodes."
+    "correct_answer": 1,
+    "explanation": "A DBMS requires minimum memory and disk space, but meeting only the minimum may not provide acceptable performance."
   },
   {
     "id": 55,
     "type": "multiple_choice",
-    "question": "Which of the following is not applicable for IP?",
+    "question": "Which of the following is a responsibility of application developers?",
     "options": [
-      "Datagram format",
-      "Error reporting",
-      "Handle addressing conventions",
-      "Packet handling conventions"
+      "Physical database design",
+      "Implementing application programs for end users",
+      "Defining business rules",
+      "Managing hardware"
     ],
     "correct_answer": 1,
-    "explanation": "IP is responsible for addressing and routing but not error reporting; ICMP handles error reporting for IP."
+    "explanation": "Application developers implement the application programs that provide required functionality for end users."
   },
   {
     "id": 56,
     "type": "multiple_choice",
-    "question": "__________ codes are special linear block codes with one extra property. If a codeword is rotated, the result is another codeword.",
+    "question": "Application programs may be written in a third-generation or fourth-generation programming language. This suggests they are NOT typically written in:",
     "options": [
-      "Cyclic",
-      "Burst",
-      "Convolution",
-      "None of the above"
+      "Java",
+      "C++",
+      "Machine code only",
+      "Python"
     ],
-    "correct_answer": 0,
-    "explanation": "Cyclic codes have the property that any cyclic shift of a codeword produces another valid codeword, simplifying implementation."
+    "correct_answer": 2,
+    "explanation": "Third-generation (e.g., C, Java) and fourth-generation languages are used, not low-level machine code."
   },
   {
     "id": 57,
     "type": "multiple_choice",
-    "question": "What is the standard IANA port number used for requesting web pages?",
+    "question": "Which type of user does NOT need to know anything about the database or DBMS?",
     "options": [
-      "80",
-      "53",
-      "21",
-      "25"
+      "Database Administrator",
+      "Logical designer",
+      "Naive user",
+      "Sophisticated user"
     ],
-    "correct_answer": 0,
-    "explanation": "Port 80 is the default port for HTTP (Hypertext Transfer Protocol) used for web page requests."
+    "correct_answer": 2,
+    "explanation": "Naive users do not need to know anything about the database or DBMS; they access it through simple commands or menus."
   },
   {
     "id": 58,
     "type": "multiple_choice",
-    "question": "One way to limit hostile sniffing on a Local Area Network is by installing:",
+    "question": "The slides state that the database is a common company resource rather than belonging to:",
     "options": [
-      "A channel service unit/Data service unit",
-      "A firewall",
-      "An Ethernet hub",
-      "An Ethernet switch"
+      "The IT department",
+      "A single department",
+      "External auditors",
+      "The government"
     ],
-    "correct_answer": 3,
-    "explanation": "Switches isolate traffic by sending frames only to the destination port, unlike hubs that broadcast to all ports."
+    "correct_answer": 1,
+    "explanation": "The database is a common company resource rather than belonging to a single department."
   },
   {
     "id": 59,
     "type": "multiple_choice",
-    "question": "In a network with 25 computers, which topology would require the most extensive cabling?",
+    "question": "Which of the following is true about the DBMS environment?",
     "options": [
-      "Mesh topology",
-      "Bus topology",
-      "Ring topology",
-      "Star topology"
+      "Hardware is irrelevant",
+      "Data is the least important component",
+      "Procedures include rules for database design and use",
+      "People are optional"
     ],
-    "correct_answer": 0,
-    "explanation": "Full mesh topology requires n(n-1)/2 connections, making it cable-intensive with 300 connections for 25 devices."
+    "correct_answer": 2,
+    "explanation": "Procedures refer to the instructions and rules that govern the design and use of the database."
   },
   {
     "id": 60,
     "type": "multiple_choice",
-    "question": "Forward Error Correction (FEC) is a technique that:",
+    "question": "Which of these is NOT a type of end user classified in the slides?",
     "options": [
-      "Detects errors and retransmits data",
-      "Detects and corrects errors without retransmission",
-      "Prevents errors from occurring",
-      "Encodes data for security"
-    ],
-    "correct_answer": 1,
-    "explanation": "FEC adds redundant information enabling receivers to correct errors without requesting retransmission."
-  },
-  {
-    "id": 61,
-    "type": "multiple_choice",
-    "question": "In CRC, the divisor is represented as a:",
-    "options": [
-      "Decimal number",
-      "Polynomial",
-      "Binary string",
-      "ASCII code"
-    ],
-    "correct_answer": 1,
-    "explanation": "CRC divisors are represented as polynomials with binary coefficients corresponding to bits."
-  },
-  {
-    "id": 62,
-    "type": "multiple_choice",
-    "question": "Which error correction technique is commonly used in modern digital communication systems like satellite communication?",
-    "options": [
-      "Checksum",
-      "Parity Check",
-      "Reed-Solomon Code",
-      "Hamming Code"
+      "Naive users",
+      "Sophisticated users",
+      "Power users",
+      "Both a and b are the only types mentioned"
     ],
     "correct_answer": 2,
-    "explanation": "Reed-Solomon codes are effective for burst error correction and widely used in satellite and space communications."
-  },
-  {
-    "id": 63,
-    "type": "multiple_choice",
-    "question": "What is a protocol in the context of computer networks?",
-    "options": [
-      "A type of hardware device",
-      "A set of rules governing data communication",
-      "A programming language for networks",
-      "A network security measure"
-    ],
-    "correct_answer": 1,
-    "explanation": "Protocols are formal standards and rules that determine how data is transmitted and received in networks."
-  },
-  {
-    "id": 64,
-    "type": "multiple_choice",
-    "question": "DNS stands for:",
-    "options": [
-      "Domain Network System",
-      "Data Name Service",
-      "Domain Name System",
-      "Direct Name Server"
-    ],
-    "correct_answer": 2,
-    "explanation": "DNS (Domain Name System) translates domain names to IP addresses, forming the phonebook of the internet."
-  },
-  {
-    "id": 65,
-    "type": "multiple_choice",
-    "question": "Which protocol is used to assign IP addresses dynamically to devices?",
-    "options": [
-      "ARP",
-      "ICMP",
-      "DHCP",
-      "DNS"
-    ],
-    "correct_answer": 2,
-    "explanation": "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses and network configuration to devices."
-  },
-  {
-    "id": 66,
-    "type": "multiple_choice",
-    "question": "Which layer of the OSI model does the IP protocol belong to?",
-    "options": [
-      "Application layer",
-      "Transport layer",
-      "Network layer",
-      "Data Link layer"
-    ],
-    "correct_answer": 2,
-    "explanation": "IP (Internet Protocol) operates at the Network layer (Layer 3), handling addressing and routing."
-  },
-  {
-    "id": 67,
-    "type": "multiple_choice",
-    "question": "What is the primary characteristic of link-state routing protocols?",
-    "options": [
-      "Distance-based metrics",
-      "Periodic updates to all routers",
-      "Knowledge of the entire network topology",
-      "Use of vector tables"
-    ],
-    "correct_answer": 2,
-    "explanation": "Link-state protocols maintain a complete map of network topology using link-state advertisements and SPF algorithm."
-  },
-  {
-    "id": 68,
-    "type": "multiple_choice",
-    "question": "Which of the following is true about link-state routing protocols compared to distance-vector protocols?",
-    "options": [
-      "They use less CPU and memory",
-      "They converge faster",
-      "They are simpler to configure",
-      "They rely on hop count as the sole metric"
-    ],
-    "correct_answer": 1,
-    "explanation": "Link-state protocols converge faster because routers have complete topology information and can calculate paths independently."
-  },
-  {
-    "id": 69,
-    "type": "multiple_choice",
-    "question": "Which layer of the OSI model does OSPF operate at?",
-    "options": [
-      "Data Link Layer",
-      "Network Layer",
-      "Transport Layer",
-      "Application Layer"
-    ],
-    "correct_answer": 1,
-    "explanation": "OSPF (Open Shortest Path First) is a routing protocol that operates at the Network Layer (Layer 3)."
-  },
-  {
-    "id": 70,
-    "type": "multiple_choice",
-    "question": "How does OSPF prevent routing loops?",
-    "options": [
-      "By using split horizon",
-      "By maintaining a complete map of the network topology",
-      "By limiting the number of hops",
-      "By using hold-down timers"
-    ],
-    "correct_answer": 1,
-    "explanation": "OSPF's link-state database provides a complete topology view, allowing routers to compute loop-free paths using SPF algorithm."
-  },
-  {
-    "id": 71,
-    "type": "multiple_choice",
-    "question": "In simplex communication, which device can transmit data?",
-    "options": [
-      "Both devices",
-      "Only the receiver",
-      "Only the sender",
-      "Neither device"
-    ],
-    "correct_answer": 2,
-    "explanation": "Simplex communication is unidirectional, with only one designated sender and only receivers at the other end."
-  },
-  {
-    "id": 72,
-    "type": "multiple_choice",
-    "question": "Simplex communication is best suited for:",
-    "options": [
-      "Interactive communication",
-      "Two-way communication",
-      "Broadcasting information",
-      "Secure communication"
-    ],
-    "correct_answer": 2,
-    "explanation": "Simplex is ideal for broadcasting applications like radio, TV, and paging systems where information flows one way."
-  },
-  {
-    "id": 73,
-    "type": "multiple_choice",
-    "question": "Which communication mode allows two-way communication but alternately?",
-    "options": [
-      "Simplex",
-      "Half-duplex",
-      "Full-duplex",
-      "Multiplex"
-    ],
-    "correct_answer": 1,
-    "explanation": "Half-duplex allows bidirectional communication but only one direction at a time, like walkie-talkies."
-  },
-  {
-    "id": 74,
-    "type": "multiple_choice",
-    "question": "Which of the following is a common example of full-duplex communication?",
-    "options": [
-      "Telephone conversation",
-      "Radio broadcasting",
-      "Walkie-talkie",
-      "Keyboard and monitor"
-    ],
-    "correct_answer": 0,
-    "explanation": "Telephone systems allow both parties to speak and listen simultaneously, making them full-duplex."
-  },
-  {
-    "id": 75,
-    "type": "multiple_choice",
-    "question": "Which of the following is NOT a characteristic of full-duplex communication?",
-    "options": [
-      "Turn-by-turn communication",
-      "High bandwidth utilization",
-      "Simultaneous two-way data flow",
-      "Faster data transmission"
-    ],
-    "correct_answer": 0,
-    "explanation": "Turn-by-turn communication is characteristic of half-duplex, while full-duplex allows simultaneous bidirectional transmission."
-  },
-  {
-    "id": 76,
-    "type": "multiple_choice",
-    "question": "Which topology uses a closed-loop communication path?",
-    "options": [
-      "Ring",
-      "Bus",
-      "Star",
-      "Tree"
-    ],
-    "correct_answer": 0,
-    "explanation": "Ring topology connects devices in a circular closed loop where each device connects to two neighbors."
-  },
-  {
-    "id": 77,
-    "type": "multiple_choice",
-    "question": "Which device is used to extend the length of a network by regenerating signals?",
-    "options": [
-      "Router",
-      "Switch",
-      "Repeater",
-      "Modem"
-    ],
-    "correct_answer": 2,
-    "explanation": "Repeaters regenerate and amplify signals to extend network distance, operating at the Physical Layer."
-  },
-  {
-    "id": 78,
-    "type": "multiple_choice",
-    "question": "Which device allows a computer to be connected to a network?",
-    "options": [
-      "Router",
-      "Switch",
-      "Network Interface Card (NIC)",
-      "Hub"
-    ],
-    "correct_answer": 2,
-    "explanation": "NIC provides the physical interface between a computer and network medium, with unique MAC address."
-  },
-  {
-    "id": 79,
-    "type": "multiple_choice",
-    "question": "Which of the following is NOT a network or Internet device?",
-    "options": [
-      "Router",
-      "Switch",
-      "Modem",
-      "Scanner"
-    ],
-    "correct_answer": 3,
-    "explanation": "A scanner is a peripheral input device for digitizing documents, not a networking device."
-  },
-  {
-    "id": 80,
-    "type": "multiple_choice",
-    "question": "An antenna used for both transmitting and receiving is called:",
-    "options": [
-      "Passive antenna",
-      "Active antenna",
-      "Duplex antenna",
-      "Transceiver antenna"
-    ],
-    "correct_answer": 3,
-    "explanation": "A transceiver antenna combines transmitter and receiver functions, enabling bidirectional communication through one antenna."
+    "explanation": "The slides classify end users into only two categories: naive users and sophisticated users. 'Power users' is not mentioned."
   }
+]
 
 
 
