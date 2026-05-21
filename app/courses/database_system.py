@@ -7,1567 +7,1307 @@ database_system_quiz = {
   
   
   
-  {
-    "id": 1,
-    "type": "multiple_choice",
-    "question": "Raw facts such as numbers, characters, or symbols without context are called:",
-    "options": [
-      "Information",
-      "Metadata",
-      "Data",
-      "Queries"
-    ],
-    "correct_answer": 2,
-    "explanation": "Data is defined as raw, unprocessed facts without intrinsic meaning. Information is processed data, metadata is data about data, and queries are requests for data."
-  },
-  {
-    "id": 2,
-    "type": "multiple_choice",
-    "question": "When data is organized, contextualized, and made meaningful, it becomes:",
-    "options": [
-      "A file",
-      "Information",
-      "A primary key",
-      "Redundancy"
-    ],
-    "correct_answer": 1,
-    "explanation": "Information is processed data that is organized, contextualized, and presented in a meaningful way, such as 'Student ID 45020 belongs to James Owusu'."
-  },
-  {
-    "id": 3,
-    "type": "multiple_choice",
-    "question": "Which of the following best describes the transformation process from data to information?",
-    "options": [
-      "Deleting duplicate entries",
-      "Processing and adding context",
-      "Storing in multiple files",
-      "Encrypting the data"
-    ],
-    "correct_answer": 1,
-    "explanation": "Data becomes information when it is processed, organized, and given context, making it meaningful and useful for decision-making."
-  },
-  {
-    "id": 4,
-    "type": "multiple_choice",
-    "question": "A student ID number alone is considered data, but 'Student ID 45020 belongs to James Owusu' is an example of:",
-    "options": [
-      "A database constraint",
-      "Information",
-      "A flat file",
-      "A secondary key"
-    ],
-    "correct_answer": 1,
-    "explanation": "The statement provides context and meaning to the raw number, transforming it from data into information."
-  },
-  {
-    "id": 5,
-    "type": "multiple_choice",
-    "question": "File-based systems stored data primarily in:",
-    "options": [
-      "Relational tables",
-      "Flat files like .txt, .csv, or .dat",
-      "XML documents only",
-      "Object-oriented databases"
-    ],
-    "correct_answer": 1,
-    "explanation": "File-based systems stored data in flat files, typically in formats such as .txt, .csv, or .dat, not in relational or object-oriented structures."
-  },
-  {
-    "id": 6,
-    "type": "multiple_choice",
-    "question": "In a file-based system, if the same customer address appears in both a billing file and a shipping file, this is an example of:",
-    "options": [
-      "Data independence",
-      "Data redundancy",
-      "Referential integrity",
-      "Concurrency"
-    ],
-    "correct_answer": 1,
-    "explanation": "Data redundancy means duplicate data entries are stored in multiple files, which was common in file-based systems."
-  },
-  {
-    "id": 7,
-    "type": "multiple_choice",
-    "question": "Data inconsistency in file-based systems often results directly from:",
-    "options": [
-      "Too many indexes",
-      "Lack of encryption",
-      "Redundant data that is updated in one file but not others",
-      "Excessive use of SQL"
-    ],
-    "correct_answer": 2,
-    "explanation": "When the same data is stored redundantly across multiple files and an update occurs in only one file, inconsistency arises because other files still contain the old value."
-  },
-  {
-    "id": 8,
-    "type": "multiple_choice",
-    "question": "Which of the following is a limitation of file-based systems mentioned in the slides?",
-    "options": [
-      "High scalability",
-      "Excellent data sharing",
-      "Limited security",
-      "Built-in concurrency control"
-    ],
-    "correct_answer": 2,
-    "explanation": "Limited security is explicitly listed as a critical limitation of file-based systems, which offered minimal access control mechanisms."
-  },
-  {
-    "id": 9,
-    "type": "multiple_choice",
-    "question": "In file-based systems, accessing data from multiple files is difficult because:",
-    "options": [
-      "Files are always encrypted",
-      "The application developer must manually synchronize processing",
-      "SQL is not available",
-      "There is no storage space"
-    ],
-    "correct_answer": 1,
-    "explanation": "The application developer must synchronize processing of multiple files manually, and this difficulty compounds when more than two files are involved."
-  },
-  {
-    "id": 10,
-    "type": "multiple_choice",
-    "question": "File-based systems were an early attempt to computerize:",
-    "options": [
-      "Network databases",
-      "Manual filing systems",
-      "Object-oriented storage",
-      "Cloud storage"
-    ],
-    "correct_answer": 1,
-    "explanation": "File-based systems were an early attempt to computerize the manual filing systems that organizations traditionally used to store correspondence and records."
-  },
-  {
-    "id": 11,
-    "type": "multiple_choice",
-    "question": "A major problem with file-based systems is that updates in one file are not automatically reflected in other files, leading to:",
-    "options": [
-      "Faster access",
-      "Data inconsistency",
-      "Better security",
-      "Less redundancy"
-    ],
-    "correct_answer": 1,
-    "explanation": "When an update occurs in only one file but the same data exists elsewhere, the files become inconsistent with each other."
-  },
-  {
-    "id": 12,
-    "type": "multiple_choice",
-    "question": "Which of the following is NOT a characteristic of a database according to the slides?",
-    "options": [
-      "Multiple departments may access it concurrently",
-      "Data items are combined with little duplication",
-      "It belongs to a single department only",
-      "It includes operational data and its description"
-    ],
-    "correct_answer": 2,
-    "explanation": "The slides state that the database is a common company resource rather than belonging to a single department."
-  },
-  {
-    "id": 13,
-    "type": "multiple_choice",
-    "question": "A database is defined as a collection of interconnected records that:",
-    "options": [
-      "Require no maintenance",
-      "Describe themselves",
-      "Cannot be shared",
-      "Are stored in flat files"
-    ],
-    "correct_answer": 1,
-    "explanation": "The slides define a database as a collection of interconnected records that describe themselves, separating data definitions from application code."
-  },
-  {
-    "id": 14,
-    "type": "multiple_choice",
-    "question": "The separation of data definitions from application code in a database is comparable to:",
-    "options": [
-      "File-based system indexing",
-      "Current software development providing internal and external definitions for objects",
-      "Manual filing cabinets",
-      "Hard-coded data in programs"
-    ],
-    "correct_answer": 1,
-    "explanation": "Database systems separate data definitions from application code, similar to how modern software development provides both internal and external definitions for objects."
-  },
-  {
-    "id": 15,
-    "type": "multiple_choice",
-    "question": "Which language allows users to specify data types, structures, and constraints on data?",
-    "options": [
-      "DML",
-      "DDL",
-      "SQL (only for queries)",
-      "Python"
-    ],
-    "correct_answer": 1,
-    "explanation": "Data Definition Language (DDL) allows users to specify data types, structures, and constraints on the data to be stored in the database."
-  },
-  {
-    "id": 16,
-    "type": "multiple_choice",
-    "question": "The DML (Data Manipulation Language) is primarily used for:",
-    "options": [
-      "Defining tables",
-      "Inserting, updating, deleting, and retrieving data",
-      "Setting hardware requirements",
-      "Managing user logins"
-    ],
-    "correct_answer": 1,
-    "explanation": "DML allows users to insert, update, delete, and retrieve data from the database."
-  },
-  {
-    "id": 17,
-    "type": "multiple_choice",
-    "question": "The general inquiry facility provided by DML is called a:",
-    "options": [
-      "Data dictionary",
-      "Query language",
-      "Compiler",
-      "Transaction manager"
-    ],
-    "correct_answer": 1,
-    "explanation": "Having a central repository allows the DML to provide a general inquiry facility called a query language, with SQL being the most common example."
-  },
-  {
-    "id": 18,
-    "type": "multiple_choice",
-    "question": "Which language is both the formal and de facto standard for relational DBMSs?",
-    "options": [
-      "Java",
-      "C++",
-      "SQL",
-      "HTML"
-    ],
-    "correct_answer": 2,
-    "explanation": "SQL (Structured Query Language) is both the formal and de facto standard language for relational DBMSs."
-  },
-  {
-    "id": 19,
-    "type": "multiple_choice",
-    "question": "The DBMS advantage that ensures accuracy and consistency across the system is:",
-    "options": [
-      "Scalability",
-      "Concurrency",
-      "Data integrity",
-      "Data redundancy"
-    ],
-    "correct_answer": 2,
-    "explanation": "Data integrity ensures accuracy and consistency of data across the entire database system."
-  },
-  {
-    "id": 20,
-    "type": "multiple_choice",
-    "question": "Role-based access control and authentication are features of which DBMS advantage?",
-    "options": [
-      "Scalability",
-      "Security",
-      "Data independence",
-      "Concurrency"
-    ],
-    "correct_answer": 1,
-    "explanation": "Security in DBMS includes role-based access control and authentication mechanisms."
-  },
-  {
-    "id": 21,
-    "type": "multiple_choice",
-    "question": "The ability of a DBMS to allow simultaneous access without conflict is called:",
-    "options": [
-      "Data integrity",
-      "Concurrency",
-      "Security",
-      "Scalability"
-    ],
-    "correct_answer": 1,
-    "explanation": "Concurrency allows multiple users to access the database simultaneously without interfering with each other."
-  },
-  {
-    "id": 22,
-    "type": "multiple_choice",
-    "question": "The DBMS advantage that supports large volumes of data and many users is:",
-    "options": [
-      "Data independence",
-      "Concurrency",
-      "Scalability",
-      "Integrity"
-    ],
-    "correct_answer": 2,
-    "explanation": "Scalability refers to the DBMS's ability to handle growing amounts of data and increasing numbers of users."
-  },
-  {
-    "id": 23,
-    "type": "multiple_choice",
-    "question": "Insulation between application programs and data is known as:",
-    "options": [
-      "Data redundancy",
-      "Data independence",
-      "Concurrency",
-      "Security"
-    ],
-    "correct_answer": 1,
-    "explanation": "Data independence provides insulation between application programs and the data, allowing changes to data storage without affecting applications."
-  },
-  {
-    "id": 24,
-    "type": "multiple_choice",
-    "question": "Which of the following is NOT one of the five major components in a DBMS environment?",
-    "options": [
-      "Hardware",
-      "Software",
-      "Compiler",
-      "Procedures"
-    ],
-    "correct_answer": 2,
-    "explanation": "The five major components are hardware, software, data, procedures, and people. Compiler is not listed as a separate component."
-  },
-  {
-    "id": 25,
-    "type": "multiple_choice",
-    "question": "In the DBMS environment, hardware can range from:",
-    "options": [
-      "Only mainframes",
-      "Personal computers to mainframes or networks",
-      "Only personal computers",
-      "Only mobile devices"
-    ],
-    "correct_answer": 1,
-    "explanation": "Hardware requirements depend on the organization and DBMS used, ranging from personal computers to mainframes or networks."
-  },
-  {
-    "id": 26,
-    "type": "multiple_choice",
-    "question": "Which component of the DBMS environment includes instructions on how to log on, start/stop the DBMS, and make backups?",
-    "options": [
-      "Hardware",
-      "Software",
-      "Data",
-      "Procedures"
-    ],
-    "correct_answer": 3,
-    "explanation": "Procedures refer to the instructions and rules governing database design and use, including login, startup/shutdown, and backup procedures."
-  },
-  {
-    "id": 27,
-    "type": "multiple_choice",
-    "question": "Who is responsible for database planning, standards, policies, and conceptual/logical database design?",
-    "options": [
-      "Database Administrator (DBA)",
-      "Data Administrator (DA)",
-      "Application Developer",
-      "End User"
-    ],
-    "correct_answer": 1,
-    "explanation": "The Data Administrator (DA) is responsible for management of the data resource, including database planning, standards, policies, and conceptual/logical design."
-  },
-  {
-    "id": 28,
-    "type": "multiple_choice",
-    "question": "The Database Administrator (DBA) is primarily responsible for:",
-    "options": [
-      "Writing application programs",
-      "Physical database design, security, and performance",
-      "Only logical design",
-      "Using the database via menus"
-    ],
-    "correct_answer": 1,
-    "explanation": "The DBA is responsible for physical database design and implementation, security, integrity control, maintenance, and ensuring satisfactory performance."
-  },
-  {
-    "id": 29,
-    "type": "multiple_choice",
-    "question": "Which role is concerned with identifying entities, attributes, relationships, and business rules?",
-    "options": [
-      "Physical database designer",
-      "Logical database designer",
-      "Systems analyst",
-      "Naive user"
-    ],
-    "correct_answer": 1,
-    "explanation": "The logical database designer identifies entities, attributes, relationships, and constraints (business rules) on the data to be stored."
-  },
-  {
-    "id": 30,
-    "type": "multiple_choice",
-    "question": "Constraints on data in logical database design are sometimes called:",
-    "options": [
-      "Storage rules",
-      "Access paths",
-      "Business rules",
-      "Index definitions"
-    ],
-    "correct_answer": 2,
-    "explanation": "Constraints on data in logical database design are sometimes called business rules."
-  },
-  {
-    "id": 31,
-    "type": "multiple_choice",
-    "question": "Conceptual database design is:",
-    "options": [
-      "Dependent on the target DBMS",
-      "Independent of implementation details",
-      "Concerned with storage structures only",
-      "The same as physical design"
-    ],
-    "correct_answer": 1,
-    "explanation": "Conceptual database design is independent of implementation details such as the target DBMS, application programs, or programming languages."
-  },
-  {
-    "id": 32,
-    "type": "multiple_choice",
-    "question": "Logical database design targets a specific data model such as:",
-    "options": [
-      "Only relational",
-      "Relational, network, hierarchical, or object-oriented",
-      "Only object-oriented",
-      "Only flat files"
-    ],
-    "correct_answer": 1,
-    "explanation": "Logical database design targets a specific data model, including relational, network, hierarchical, or object-oriented."
-  },
-  {
-    "id": 33,
-    "type": "multiple_choice",
-    "question": "The physical database designer maps the logical design into:",
-    "options": [
-      "User interfaces",
-      "A set of tables and integrity constraints",
-      "Application source code",
-      "Backup scripts"
-    ],
-    "correct_answer": 1,
-    "explanation": "Physical database design involves mapping the logical database design into a set of tables and integrity constraints."
-  },
-  {
-    "id": 34,
-    "type": "multiple_choice",
-    "question": "Selecting specific storage structures and access methods to achieve good performance is the job of:",
-    "options": [
-      "Logical database designer",
-      "Physical database designer",
-      "End user",
-      "Data Administrator"
-    ],
-    "correct_answer": 1,
-    "explanation": "The physical database designer selects specific storage structures and access methods for the data to achieve good performance."
-  },
-  {
-    "id": 35,
-    "type": "multiple_choice",
-    "question": "Application developers typically work from a specification produced by:",
-    "options": [
-      "End users",
-      "Systems analysts",
-      "Database Administrator",
-      "Hardware engineers"
-    ],
-    "correct_answer": 1,
-    "explanation": "Application developers typically work from a specification produced by systems analysts."
-  },
-  {
-    "id": 36,
-    "type": "multiple_choice",
-    "question": "Application programs contain statements that request the DBMS to perform operations including:",
-    "options": [
-      "Only data retrieval",
-      "Only data insertion",
-      "Retrieval, insertion, updating, and deletion",
-      "Only data deletion"
-    ],
-    "correct_answer": 2,
-    "explanation": "Each program contains statements requesting the DBMS to retrieve, insert, update, and delete data."
-  },
-  {
-    "id": 37,
-    "type": "multiple_choice",
-    "question": "End users who are unaware of the DBMS and use simple commands or menus are called:",
-    "options": [
-      "Sophisticated users",
-      "Naive users",
-      "Database designers",
-      "Systems analysts"
-    ],
-    "correct_answer": 1,
-    "explanation": "Naive users are typically unaware of the DBMS and access the database through specially written application programs with simple commands or menus."
-  },
-  {
-    "id": 38,
-    "type": "multiple_choice",
-    "question": "Which type of end user is familiar with the database structure and may write SQL queries?",
-    "options": [
-      "Naive user",
-      "Sophisticated user",
-      "Application developer",
-      "Data Administrator"
-    ],
-    "correct_answer": 1,
-    "explanation": "Sophisticated end users are familiar with the database structure and DBMS facilities, and may use high-level query languages like SQL."
-  },
-  {
-    "id": 39,
-    "type": "multiple_choice",
-    "question": "Sophisticated end users may even write:",
-    "options": [
-      "Operating systems",
-      "Application programs for their own use",
-      "Database backup software",
-      "Hardware drivers"
-    ],
-    "correct_answer": 1,
-    "explanation": "Some sophisticated end users may write application programs for their own use."
-  },
-  {
-    "id": 40,
-    "type": "multiple_choice",
-    "question": "Naive users invoke database operations by:",
-    "options": [
-      "Writing complex joins",
-      "Entering simple commands or choosing menu options",
-      "Designing table schemas",
-      "Managing transactions"
-    ],
-    "correct_answer": 1,
-    "explanation": "Naive users invoke database operations by entering simple commands or choosing options from a menu, without needing knowledge of the database or DBMS."
-  },
-  {
-    "id": 41,
-    "type": "multiple_choice",
-    "question": "The central repository for all data and data descriptions allows the DML to provide a:",
-    "options": [
-      "Compiler",
-      "Query language",
-      "File system",
-      "Hardware interface"
-    ],
-    "correct_answer": 1,
-    "explanation": "Having a central repository allows the DML to provide a general inquiry facility called a query language."
-  },
-  {
-    "id": 42,
-    "type": "multiple_choice",
-    "question": "Data redundancy in file-based systems commonly leads to:",
-    "options": [
-      "Improved performance",
-      "Data inconsistency",
-      "Better security",
-      "Easier backups"
-    ],
-    "correct_answer": 1,
-    "explanation": "Data redundancy leads to data inconsistency because updates in one file are not reflected in others."
-  },
-  {
-    "id": 43,
-    "type": "multiple_choice",
-    "question": "Poor data sharing in file-based systems means accessing files often requires:",
-    "options": [
-      "Automatic synchronization",
-      "Manual coordination",
-      "SQL knowledge",
-      "Network upgrades"
-    ],
-    "correct_answer": 1,
-    "explanation": "Files were often isolated, and accessing them required manual coordination."
-  },
-  {
-    "id": 44,
-    "type": "multiple_choice",
-    "question": "In a file-based system, if you need data from more than two files, the difficulty is:",
-    "options": [
-      "Reduced",
-      "Compounded",
-      "Eliminated",
-      "Handled automatically by the OS"
-    ],
-    "correct_answer": 1,
-    "explanation": "The difficulty is compounded if data is required from more than two files."
-  },
-  {
-    "id": 45,
-    "type": "multiple_choice",
-    "question": "Which of the following is true about file-based systems?",
-    "options": [
-      "They offered excellent security controls",
-      "They were an early attempt to computerize manual filing",
-      "They automatically avoid data duplication",
-      "They are still the standard for large organizations"
-    ],
-    "correct_answer": 1,
-    "explanation": "File-based systems were an early attempt to computerize manual filing systems, though they suffered from limitations like data redundancy and poor security."
-  },
-  {
-    "id": 46,
-    "type": "multiple_choice",
-    "question": "The database includes both operational data and its:",
-    "options": [
-      "Backup copy",
-      "Description",
-      "Encryption key",
-      "File path"
-    ],
-    "correct_answer": 1,
-    "explanation": "The database includes both operational data and its description (metadata)."
-  },
-  {
-    "id": 47,
-    "type": "multiple_choice",
-    "question": "Which person is responsible for the physical realization of the database, including maintenance and performance?",
-    "options": [
-      "Data Administrator",
-      "Database Administrator",
-      "Logical designer",
-      "End user"
-    ],
-    "correct_answer": 1,
-    "explanation": "The Database Administrator (DBA) is responsible for physical database design, implementation, maintenance, and ensuring satisfactory performance."
-  },
-  {
-    "id": 48,
-    "type": "multiple_choice",
-    "question": "Which person is responsible for the management of the data resource rather than the physical database?",
-    "options": [
-      "Database Administrator",
-      "Data Administrator",
-      "Application Developer",
-      "Physical designer"
-    ],
-    "correct_answer": 1,
-    "explanation": "The Data Administrator (DA) is responsible for management of the data resource, while the DBA handles physical implementation."
-  },
-  {
-    "id": 49,
-    "type": "multiple_choice",
-    "question": "Procedures in the DBMS environment may include instructions on how to:",
-    "options": [
-      "Only write SQL",
-      "Only design hardware",
-      "Log on, use facilities, start/stop, and make backups",
-      "Only compile programs"
-    ],
-    "correct_answer": 2,
-    "explanation": "Procedures include instructions on logging on, using DBMS facilities, starting/stopping the DBMS, and making backup copies."
-  },
-  {
-    "id": 50,
-    "type": "multiple_choice",
-    "question": "Which of the following is a role in the DBMS environment according to the slides?",
-    "options": [
-      "Network engineer",
-      "Database designer",
-      "Power supply manager",
-      "Web designer"
-    ],
-    "correct_answer": 1,
-    "explanation": "Database designer is explicitly listed as a role, along with data/database administrators, application developers, and end users."
-  },
-  {
-    "id": 51,
-    "type": "multiple_choice",
-    "question": "The physical database designer also designs:",
-    "options": [
-      "Business rules",
-      "Security measures on the data",
-      "Conceptual models",
-      "End-user training manuals"
-    ],
-    "correct_answer": 1,
-    "explanation": "Physical database design includes designing any security measures required on the data."
-  },
-  {
-    "id": 52,
-    "type": "multiple_choice",
-    "question": "A logical database designer must have a thorough understanding of:",
-    "options": [
-      "Storage hardware",
-      "The organization's data and constraints",
-      "Network protocols",
-      "Compiler design"
-    ],
-    "correct_answer": 1,
-    "explanation": "The logical database designer must have a thorough and complete understanding of the organization's data and any constraints (business rules)."
-  },
-  {
-    "id": 53,
-    "type": "multiple_choice",
-    "question": "The quote 'A DBMS provides abstraction that hides complex storage details…' is attributed to:",
-    "options": [
-      "The slide author only",
-      "Ullman & Widom (2022)",
-      "The Database Administrator",
-      "Microsoft"
-    ],
-    "correct_answer": 1,
-    "explanation": "The quote is explicitly attributed to Ullman & Widom (2022) in the slides."
-  },
-  {
-    "id": 54,
-    "type": "multiple_choice",
-    "question": "A DBMS requires a minimum amount of main memory and disk space, but this may not provide:",
-    "options": [
-      "Any functionality",
-      "Acceptable performance",
-      "Data storage capability",
-      "User access"
-    ],
-    "correct_answer": 1,
-    "explanation": "A DBMS requires minimum memory and disk space, but meeting only the minimum may not provide acceptable performance."
-  },
-  {
-    "id": 55,
-    "type": "multiple_choice",
-    "question": "Which of the following is a responsibility of application developers?",
-    "options": [
-      "Physical database design",
-      "Implementing application programs for end users",
-      "Defining business rules",
-      "Managing hardware"
-    ],
-    "correct_answer": 1,
-    "explanation": "Application developers implement the application programs that provide required functionality for end users."
-  },
-  {
-    "id": 56,
-    "type": "multiple_choice",
-    "question": "Application programs may be written in a third-generation or fourth-generation programming language. This suggests they are NOT typically written in:",
-    "options": [
-      "Java",
-      "C++",
-      "Machine code only",
-      "Python"
-    ],
-    "correct_answer": 2,
-    "explanation": "Third-generation (e.g., C, Java) and fourth-generation languages are used, not low-level machine code."
-  },
-  {
-    "id": 57,
-    "type": "multiple_choice",
-    "question": "Which type of user does NOT need to know anything about the database or DBMS?",
-    "options": [
-      "Database Administrator",
-      "Logical designer",
-      "Naive user",
-      "Sophisticated user"
-    ],
-    "correct_answer": 2,
-    "explanation": "Naive users do not need to know anything about the database or DBMS; they access it through simple commands or menus."
-  },
-  {
-    "id": 58,
-    "type": "multiple_choice",
-    "question": "The slides state that the database is a common company resource rather than belonging to:",
-    "options": [
-      "The IT department",
-      "A single department",
-      "External auditors",
-      "The government"
-    ],
-    "correct_answer": 1,
-    "explanation": "The database is a common company resource rather than belonging to a single department."
-  },
-  {
-    "id": 59,
-    "type": "multiple_choice",
-    "question": "Which of the following is true about the DBMS environment?",
-    "options": [
-      "Hardware is irrelevant",
-      "Data is the least important component",
-      "Procedures include rules for database design and use",
-      "People are optional"
-    ],
-    "correct_answer": 2,
-    "explanation": "Procedures refer to the instructions and rules that govern the design and use of the database."
-  },
-  {
-    "id": 60,
-    "type": "multiple_choice",
-    "question": "Which of these is NOT a type of end user classified in the slides?",
-    "options": [
-      "Naive users",
-      "Sophisticated users",
-      "Power users",
-      "Both a and b are the only types mentioned"
-    ],
-    "correct_answer": 2,
-    "explanation": "The slides classify end users into only two categories: naive users and sophisticated users. 'Power users' is not mentioned."
-  },
   
-  
+    {
+        "id": 1,
+        "type": "multiple_choice",
+        "question": "What does INT represent in MySQL?",
+        "options": [
+            "Text",
+            "Decimal number",
+            "Whole number",
+            "Date"
+        ],
+        "correct_answer": 2,
+        "explanation": "INT stores whole numbers (integers) without decimal places."
+    },
+    {
+        "id": 2,
+        "type": "multiple_choice",
+        "question": "Which data type stores text?",
+        "options": [
+            "DATE",
+            "VARCHAR",
+            "INT",
+            "FLOAT"
+        ],
+        "correct_answer": 1,
+        "explanation": "VARCHAR (Variable Character) stores text/string values."
+    },
+    {
+        "id": 3,
+        "type": "multiple_choice",
+        "question": "AUTO_INCREMENT is used to:",
+        "options": [
+            "Delete data",
+            "Automatically increase numbers",
+            "Encrypt data",
+            "Store text"
+        ],
+        "correct_answer": 1,
+        "explanation": "AUTO_INCREMENT automatically generates a unique sequential number for each new row."
+    },
+    {
+        "id": 4,
+        "type": "multiple_choice",
+        "question": "PRIMARY KEY must be:",
+        "options": [
+            "Duplicate",
+            "Empty",
+            "Unique",
+            "Text only"
+        ],
+        "correct_answer": 2,
+        "explanation": "A primary key uniquely identifies each row, so duplicate values are not allowed."
+    },
+    {
+        "id": 5,
+        "type": "multiple_choice",
+        "question": "Which data type stores dates?",
+        "options": [
+            "DATE",
+            "TEXT",
+            "INT",
+            "CHAR"
+        ],
+        "correct_answer": 0,
+        "explanation": "The DATE data type stores calendar dates in YYYY-MM-DD format."
+    },
+    {
+        "id": 6,
+        "type": "multiple_choice",
+        "question": "VARCHAR(50) means:",
+        "options": [
+            "50 numbers only",
+            "50 characters max",
+            "50 tables",
+            "50 rows"
+        ],
+        "correct_answer": 1,
+        "explanation": "The number in VARCHAR(50) is the maximum character length allowed."
+    },
+    {
+        "id": 7,
+        "type": "multiple_choice",
+        "question": "NOT NULL means:",
+        "options": [
+            "Can be empty",
+            "Must have value",
+            "Must be number",
+            "Must be duplicate"
+        ],
+        "correct_answer": 1,
+        "explanation": "NOT NULL enforces that a column cannot contain NULL (empty/unknown) values."
+    },
+    {
+        "id": 8,
+        "type": "multiple_choice",
+        "question": "Which command is used to view data?",
+        "options": [
+            "INSERT",
+            "UPDATE",
+            "SELECT",
+            "DELETE"
+        ],
+        "correct_answer": 2,
+        "explanation": "SELECT is the query command used to retrieve data from tables."
+    },
+    {
+        "id": 9,
+        "type": "multiple_choice",
+        "question": "Which command adds new data?",
+        "options": [
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DROP"
+        ],
+        "correct_answer": 1,
+        "explanation": "INSERT adds new rows/records to a table."
+    },
+    {
+        "id": 10,
+        "type": "multiple_choice",
+        "question": "Which command modifies existing data?",
+        "options": [
+            "INSERT",
+            "SELECT",
+            "UPDATE",
+            "CREATE"
+        ],
+        "correct_answer": 2,
+        "explanation": "UPDATE changes existing values in one or more rows."
+    },
+    {
+        "id": 11,
+        "type": "multiple_choice",
+        "question": "Which command removes data?",
+        "options": [
+            "DELETE",
+            "INSERT",
+            "SELECT",
+            "ALTER"
+        ],
+        "correct_answer": 0,
+        "explanation": "DELETE removes rows from a table, but keeps the table structure."
+    },
+    {
+        "id": 12,
+        "type": "multiple_choice",
+        "question": "FLOAT is used for:",
+        "options": [
+            "Text",
+            "Whole numbers",
+            "Decimal numbers",
+            "Dates"
+        ],
+        "correct_answer": 2,
+        "explanation": "FLOAT stores approximate numeric values with decimal points."
+    },
+    {
+        "id": 13,
+        "type": "multiple_choice",
+        "question": "ENUM is used to:",
+        "options": [
+            "Store only fixed values",
+            "Store images",
+            "Store tables",
+            "Store numbers only"
+        ],
+        "correct_answer": 0,
+        "explanation": "ENUM restricts a column to a predefined list of allowed values."
+    },
+    {
+        "id": 14,
+        "type": "multiple_choice",
+        "question": "DEFAULT CURRENT_DATE means:",
+        "options": [
+            "Random date",
+            "Today's date automatically",
+            "Future date",
+            "Empty value"
+        ],
+        "correct_answer": 1,
+        "explanation": "DEFAULT CURRENT_DATE automatically inserts the current date if no value is provided."
+    },
+    {
+        "id": 15,
+        "type": "multiple_choice",
+        "question": "PRIMARY KEY allows:",
+        "options": [
+            "Duplicate values",
+            "Null values",
+            "Unique values only",
+            "Text only"
+        ],
+        "correct_answer": 2,
+        "explanation": "Primary keys enforce uniqueness and also cannot be NULL."
+    },
+    {
+        "id": 16,
+        "type": "multiple_choice",
+        "question": "Which is NOT a SQL command?",
+        "options": [
+            "SELECT",
+            "INSERT",
+            "LOOP",
+            "UPDATE"
+        ],
+        "correct_answer": 2,
+        "explanation": "LOOP is a procedural programming concept, not a standard SQL command."
+    },
+    {
+        "id": 17,
+        "type": "multiple_choice",
+        "question": "DECIMAL(5,2) means:",
+        "options": [
+            "5 total digits, 2 decimals",
+            "2 total digits",
+            "5 rows",
+            "2 tables"
+        ],
+        "correct_answer": 0,
+        "explanation": "DECIMAL(5,2) = 5 digits total, with 2 digits after the decimal point (e.g., 123.45)."
+    },
+    {
+        "id": 18,
+        "type": "multiple_choice",
+        "question": "FOREIGN KEY is used to:",
+        "options": [
+            "Encrypt data",
+            "Connect tables",
+            "Delete tables",
+            "Sort data"
+        ],
+        "correct_answer": 1,
+        "explanation": "A foreign key links two tables by referencing the primary key of another table."
+    },
+    {
+        "id": 19,
+        "type": "multiple_choice",
+        "question": "Which stores single character?",
+        "options": [
+            "CHAR",
+            "TEXT",
+            "INT",
+            "DATE"
+        ],
+        "correct_answer": 0,
+        "explanation": "CHAR(1) stores exactly one fixed-length character."
+    },
+    {
+        "id": 20,
+        "type": "multiple_choice",
+        "question": "SQL stands for:",
+        "options": [
+            "Simple Query Language",
+            "Structured Query Language",
+            "Strong Question Language",
+            "System Query Logic"
+        ],
+        "correct_answer": 1,
+        "explanation": "SQL stands for Structured Query Language, used for managing relational databases."
+    },
+    {
+        "id": 21,
+        "type": "multiple_choice",
+        "question": "SELECT * means:",
+        "options": [
+            "Select one column",
+            "Select all columns",
+            "Delete all data",
+            "Insert all data"
+        ],
+        "correct_answer": 1,
+        "explanation": "The asterisk (*) is shorthand for 'all columns' in the table."
+    },
+    {
+        "id": 22,
+        "type": "multiple_choice",
+        "question": "WHERE is used to:",
+        "options": [
+            "Insert data",
+            "Filter data",
+            "Create table",
+            "Drop table"
+        ],
+        "correct_answer": 1,
+        "explanation": "WHERE filters rows based on specified conditions."
+    },
+    {
+        "id": 23,
+        "type": "multiple_choice",
+        "question": "ORDER BY is used to:",
+        "options": [
+            "Delete data",
+            "Sort data",
+            "Insert data",
+            "Connect tables"
+        ],
+        "correct_answer": 1,
+        "explanation": "ORDER BY sorts query results in ascending or descending order."
+    },
+    {
+        "id": 24,
+        "type": "multiple_choice",
+        "question": "LIMIT is used to:",
+        "options": [
+            "Increase rows",
+            "Limit number of rows",
+            "Delete rows",
+            "Update rows"
+        ],
+        "correct_answer": 1,
+        "explanation": "LIMIT restricts how many rows a query returns."
+    },
+    {
+        "id": 25,
+        "type": "multiple_choice",
+        "question": "PRIMARY KEY cannot be:",
+        "options": [
+            "Unique",
+            "Null",
+            "Indexed",
+            "Integer"
+        ],
+        "correct_answer": 1,
+        "explanation": "Primary keys cannot contain NULL values — each row must have a value."
+    },
+    {
+        "id": 26,
+        "type": "multiple_choice",
+        "question": "VARCHAR is better than CHAR when:",
+        "options": [
+            "Fixed length text",
+            "Variable length text",
+            "Numbers only",
+            "Dates"
+        ],
+        "correct_answer": 1,
+        "explanation": "VARCHAR saves space by using only the needed storage for variable-length strings."
+    },
+    {
+        "id": 27,
+        "type": "multiple_choice",
+        "question": "INT stores:",
+        "options": [
+            "Decimal numbers",
+            "Whole numbers",
+            "Text",
+            "Boolean only"
+        ],
+        "correct_answer": 1,
+        "explanation": "INT stores whole numbers (no fractional part)."
+    },
+    {
+        "id": 28,
+        "type": "multiple_choice",
+        "question": "A table is made up of:",
+        "options": [
+            "Columns only",
+            "Rows and columns",
+            "Files",
+            "Folders"
+        ],
+        "correct_answer": 1,
+        "explanation": "Tables are structured in rows (records) and columns (fields)."
+    },
+    {
+        "id": 29,
+        "type": "multiple_choice",
+        "question": "A row in a table is also called:",
+        "options": [
+            "Column",
+            "Record",
+            "Database",
+            "Field"
+        ],
+        "correct_answer": 1,
+        "explanation": "In database terms, a row is often called a record or tuple."
+    },
+    {
+        "id": 30,
+        "type": "multiple_choice",
+        "question": "A column is also called:",
+        "options": [
+            "Field",
+            "Row",
+            "Table",
+            "Record"
+        ],
+        "correct_answer": 0,
+        "explanation": "A column represents a field or attribute of an entity."
+    },
+    {
+        "id": 31,
+        "type": "multiple_choice",
+        "question": "FOREIGN KEY connects:",
+        "options": [
+            "Same table only",
+            "Two tables",
+            "Three databases",
+            "Two rows"
+        ],
+        "correct_answer": 1,
+        "explanation": "Foreign keys create relationships between two tables (child and parent)."
+    },
+    {
+        "id": 32,
+        "type": "multiple_choice",
+        "question": "UPDATE needs:",
+        "options": [
+            "WHERE clause",
+            "SELECT clause",
+            "DROP clause",
+            "CREATE clause"
+        ],
+        "correct_answer": 0,
+        "explanation": "Without WHERE, UPDATE changes all rows — WHERE limits which rows are updated."
+    },
+    {
+        "id": 33,
+        "type": "multiple_choice",
+        "question": "If you forget WHERE in UPDATE:",
+        "options": [
+            "Only one row changes",
+            "All rows may change",
+            "Nothing happens",
+            "Table is deleted"
+        ],
+        "correct_answer": 1,
+        "explanation": "Omitting WHERE causes the update to apply to every row in the table."
+    },
+    {
+        "id": 34,
+        "type": "multiple_choice",
+        "question": "DECIMAL is used for:",
+        "options": [
+            "Text",
+            "Exact numbers",
+            "Dates",
+            "Tables"
+        ],
+        "correct_answer": 1,
+        "explanation": "DECIMAL stores exact numeric values (e.g., money, precise decimals)."
+    },
+    {
+        "id": 35,
+        "type": "multiple_choice",
+        "question": "AUTO_INCREMENT starts from:",
+        "options": [
+            "Random number",
+            "1 by default",
+            "1000 always",
+            "0 only"
+        ],
+        "correct_answer": 1,
+        "explanation": "By default, AUTO_INCREMENT starts at 1 and increments by 1 each time."
+    },
+    {
+        "id": 36,
+        "type": "multiple_choice",
+        "question": "Which is NOT a data type?",
+        "options": [
+            "INT",
+            "VARCHAR",
+            "SELECT",
+            "DATE"
+        ],
+        "correct_answer": 2,
+        "explanation": "SELECT is a command/statement, not a data type."
+    },
+    {
+        "id": 37,
+        "type": "multiple_choice",
+        "question": "Database is:",
+        "options": [
+            "A file",
+            "A collection of tables",
+            "A row",
+            "A column"
+        ],
+        "correct_answer": 1,
+        "explanation": "A database contains tables, views, indexes, etc., organized for data management."
+    },
+    {
+        "id": 38,
+        "type": "multiple_choice",
+        "question": "SQL is mainly used for:",
+        "options": [
+            "Designing UI",
+            "Managing databases",
+            "Editing videos",
+            "Programming games"
+        ],
+        "correct_answer": 1,
+        "explanation": "SQL is the standard language for relational database management systems."
+    },
+    {
+        "id": 39,
+        "type": "multiple_choice",
+        "question": "A NULL value means:",
+        "options": [
+            "Zero",
+            "Empty/unknown",
+            "False",
+            "True"
+        ],
+        "correct_answer": 1,
+        "explanation": "NULL represents missing or unknown data — not the same as 0 or empty string."
+    },
+    {
+        "id": 40,
+        "type": "multiple_choice",
+        "question": "PRIMARY KEY is used to:",
+        "options": [
+            "Duplicate rows",
+            "Identify rows uniquely",
+            "Delete rows",
+            "Sort rows"
+        ],
+        "correct_answer": 1,
+        "explanation": "The primary key uniquely identifies each row in a table."
+    },
+    {
+        "id": 41,
+        "type": "multiple_choice",
+        "question": "INSERT INTO is followed by:",
+        "options": [
+            "Columns and values",
+            "Only values",
+            "Only tables",
+            "Only WHERE"
+        ],
+        "correct_answer": 0,
+        "explanation": "Full syntax: INSERT INTO table (columns) VALUES (values). Columns optional if inserting all columns in order."
+    },
+    {
+        "id": 42,
+        "type": "multiple_choice",
+        "question": "DELETE removes:",
+        "options": [
+            "Table structure",
+            "Data rows",
+            "Database",
+            "Columns"
+        ],
+        "correct_answer": 1,
+        "explanation": "DELETE removes rows; table structure remains. Use DROP to remove structure."
+    },
+    {
+        "id": 43,
+        "type": "multiple_choice",
+        "question": "ALTER is used to:",
+        "options": [
+            "Change table structure",
+            "Insert data",
+            "Delete data",
+            "Query data"
+        ],
+        "correct_answer": 0,
+        "explanation": "ALTER modifies table definition (add/remove columns, change data types, etc.)."
+    },
+    {
+        "id": 44,
+        "type": "multiple_choice",
+        "question": "A database table looks like:",
+        "options": [
+            "Excel sheet",
+            "Video file",
+            "Image",
+            "Folder"
+        ],
+        "correct_answer": 0,
+        "explanation": "Tables are structured in rows and columns, similar to an Excel spreadsheet."
+    },
+    {
+        "id": 45,
+        "type": "multiple_choice",
+        "question": "ENUM allows:",
+        "options": [
+            "Any value",
+            "Fixed set of values",
+            "Random numbers",
+            "Only text"
+        ],
+        "correct_answer": 1,
+        "explanation": "ENUM defines a list of permissible values for a column."
+    },
+    {
+        "id": 46,
+        "type": "multiple_choice",
+        "question": "SQL is:",
+        "options": [
+            "Programming language for databases",
+            "Game engine",
+            "Operating system",
+            "Browser"
+        ],
+        "correct_answer": 0,
+        "explanation": "SQL is a domain-specific language for managing relational databases."
+    },
+    {
+        "id": 47,
+        "type": "multiple_choice",
+        "question": "CHAR differs from VARCHAR because:",
+        "options": [
+            "CHAR is fixed length",
+            "VARCHAR is fixed",
+            "Both are same",
+            "CHAR is only numbers"
+        ],
+        "correct_answer": 0,
+        "explanation": "CHAR allocates fixed storage; VARCHAR allocates only needed storage + 1 byte."
+    },
+    {
+        "id": 48,
+        "type": "multiple_choice",
+        "question": "FOREIGN KEY must match:",
+        "options": [
+            "Any column",
+            "Primary key in another table",
+            "Random value",
+            "NULL only"
+        ],
+        "correct_answer": 1,
+        "explanation": "Foreign key references the primary key (or unique key) of another table."
+    },
+    {
+        "id": 49,
+        "type": "multiple_choice",
+        "question": "SELECT * FROM students returns:",
+        "options": [
+            "Only names",
+            "All columns and rows",
+            "Only emails",
+            "Only IDs"
+        ],
+        "correct_answer": 1,
+        "explanation": "* means all columns; without WHERE, all rows are returned."
+    },
+    {
+        "id": 50,
+        "type": "multiple_choice",
+        "question": "DROP TABLE means:",
+        "options": [
+            "Delete rows only",
+            "Delete entire table",
+            "Update table",
+            "Insert table"
+        ],
+        "correct_answer": 1,
+        "explanation": "DROP TABLE removes the table structure and all data permanently."
+    },
+    {
+        "id": 51,
+        "type": "multiple_choice",
+        "question": "Which is used for sorting?",
+        "options": [
+            "ORDER BY",
+            "WHERE",
+            "INSERT",
+            "CREATE"
+        ],
+        "correct_answer": 0,
+        "explanation": "ORDER BY sorts results — ASC (default) or DESC."
+    },
+    {
+        "id": 52,
+        "type": "multiple_choice",
+        "question": "Which keyword filters data?",
+        "options": [
+            "WHERE",
+            "SELECT",
+            "INSERT",
+            "DROP"
+        ],
+        "correct_answer": 0,
+        "explanation": "WHERE sets conditions that rows must meet to be included."
+    },
+    {
+        "id": 53,
+        "type": "multiple_choice",
+        "question": "Database primary goal:",
+        "options": [
+            "Store structured data",
+            "Show images",
+            "Edit videos",
+            "Run games"
+        ],
+        "correct_answer": 0,
+        "explanation": "Databases store and retrieve structured data efficiently."
+    },
+    {
+        "id": 54,
+        "type": "multiple_choice",
+        "question": "TEXT is used for:",
+        "options": [
+            "Long text",
+            "Numbers",
+            "Dates",
+            "Boolean"
+        ],
+        "correct_answer": 0,
+        "explanation": "TEXT is for long strings (e.g., paragraphs, articles) beyond VARCHAR limits."
+    },
+    {
+        "id": 55,
+        "type": "multiple_choice",
+        "question": "A relationship between tables uses:",
+        "options": [
+            "PRIMARY KEY only",
+            "FOREIGN KEY",
+            "VARCHAR",
+            "SELECT"
+        ],
+        "correct_answer": 1,
+        "explanation": "Foreign keys define and enforce relationships between tables."
+    },
+    {
+        "id": 56,
+        "type": "multiple_choice",
+        "question": "DEFAULT means:",
+        "options": [
+            "Required value",
+            "Automatic value if not given",
+            "Random value",
+            "Empty only"
+        ],
+        "correct_answer": 1,
+        "explanation": "DEFAULT supplies a value when no explicit value is provided in INSERT."
+    },
+    {
+        "id": 57,
+        "type": "multiple_choice",
+        "question": "Which is faster for fixed size text?",
+        "options": [
+            "VARCHAR",
+            "CHAR",
+            "TEXT",
+            "DATE"
+        ],
+        "correct_answer": 1,
+        "explanation": "CHAR is faster for fixed-length data because storage is predictable."
+    },
+    {
+        "id": 58,
+        "type": "multiple_choice",
+        "question": "SQL queries end with:",
+        "options": [
+            ";",
+            ":",
+            ".",
+            ","
+        ],
+        "correct_answer": 0,
+        "explanation": "The semicolon (;) is the standard statement terminator in SQL."
+    },
+    {
+        "id": 59,
+        "type": "multiple_choice",
+        "question": "A database schema is:",
+        "options": [
+            "Table structure design",
+            "Data values",
+            "Output screen",
+            "Query result"
+        ],
+        "correct_answer": 0,
+        "explanation": "Schema defines tables, columns, data types, constraints, and relationships."
+    },
+    {
+        "id": 60,
+        "type": "multiple_choice",
+        "question": "A good primary key should be:",
+        "options": [
+            "Duplicate",
+            "Unique and stable",
+            "Empty",
+            "Text only"
+        ],
+        "correct_answer": 1,
+        "explanation": "Primary keys should be unique, non-NULL, and rarely change (e.g., auto-increment ID)."
+    },
+    
     {
         "id": 61,
         "type": "multiple_choice",
-        "question": "The three-schema architecture separates the database system into which three schemas?",
+        "question": "What happens if you run this? SELECT * FROM students WHERE 1 = 1;",
         "options": [
-            "Physical, logical, view",
-            "External, conceptual, internal",
-            "Primary, secondary, tertiary",
-            "User, program, system"
+            "Returns no rows",
+            "Returns all rows",
+            "Deletes all data",
+            "Causes error"
         ],
         "correct_answer": 1,
-        "explanation": "The three-schema architecture consists of the external level (user views), conceptual level (logical structure), and internal level (physical storage)."
+        "explanation": "1=1 is always true, so all rows are returned. This is sometimes used to bypass dynamic WHERE conditions."
     },
     {
         "id": 62,
         "type": "multiple_choice",
-        "question": "According to the slides, which level shows only the data relevant to each user and hides the rest?",
+        "question": "What is the output of this? SELECT COUNT(*) FROM students;",
         "options": [
-            "Internal level",
-            "Conceptual level",
-            "Physical level",
-            "External level"
+            "Total columns",
+            "Total rows",
+            "Student names",
+            "Error"
         ],
-        "correct_answer": 3,
-        "explanation": "The external level provides user-specific views of the database, showing only the data relevant to each user and hiding the rest."
+        "correct_answer": 1,
+        "explanation": "COUNT(*) returns the number of rows in the table (including rows with NULLs in any column)."
     },
     {
         "id": 63,
         "type": "multiple_choice",
-        "question": "The way the DBMS and the operating system perceive the data is called:",
+        "question": "What happens if PRIMARY KEY is NOT defined?",
         "options": [
-            "External level",
-            "User level",
-            "Conceptual level",
-            "Internal level"
+            "Table cannot be created",
+            "Table works but no uniqueness rule",
+            "Data is encrypted",
+            "Only one row allowed"
         ],
-        "correct_answer": 3,
-        "explanation": "The internal level is how the DBMS and operating system perceive the data, dealing with physical storage structures."
+        "correct_answer": 1,
+        "explanation": "A table can exist without a primary key, but you lose the uniqueness constraint and faster lookups."
     },
     {
         "id": 64,
         "type": "multiple_choice",
-        "question": "The conceptual level provides both mapping and the desired independence between which two levels?",
+        "question": "Which is TRUE about AUTO_INCREMENT?",
         "options": [
-            "Logical and physical",
-            "User and system",
-            "External and internal",
-            "Program and data"
+            "It resets every insert",
+            "It generates duplicate values",
+            "It generates unique numbers automatically",
+            "It works only on VARCHAR"
         ],
         "correct_answer": 2,
-        "explanation": "The conceptual level provides mapping and independence between the external level (user views) and the internal level (physical storage)."
+        "explanation": "AUTO_INCREMENT generates a unique sequential number for each new row, typically starting from 1."
     },
     {
         "id": 65,
         "type": "multiple_choice",
-        "question": "At the external level, some views may include calculated data that isn't stored in the database. This is created:",
+        "question": "What happens if you forget WHERE in UPDATE? UPDATE students SET gender = 'Male';",
         "options": [
-            "During backup",
-            "When needed",
-            "Only at system startup",
-            "By the operating system"
+            "Only first row updates",
+            "All rows update",
+            "Error occurs",
+            "Nothing happens"
         ],
         "correct_answer": 1,
-        "explanation": "Calculated data not stored in the database (like a student seeing their grades) is created when needed, not permanently stored."
+        "explanation": "Without WHERE, every row in the table gets updated — this is a common and dangerous mistake."
     },
     {
         "id": 66,
         "type": "multiple_choice",
-        "question": "The conceptual level is also known as the:",
+        "question": "Which query is correct?",
         "options": [
-            "Physical storage view",
-            "User view",
-            "Community view of the database",
-            "Operating system view"
+            "SELECT name FROM students WHERE;",
+            "SELECT * students;",
+            "SELECT * FROM students;",
+            "GET * FROM students;"
         ],
         "correct_answer": 2,
-        "explanation": "The conceptual level is described as the 'community view' of the database, showing the entire logical structure as seen by DBAs and designers."
+        "explanation": "The correct syntax is SELECT column(s) FROM table_name; Options 1, 2, and 4 have syntax errors."
     },
     {
         "id": 67,
         "type": "multiple_choice",
-        "question": "Which level defines all entities, attributes, relationships, constraints, and security rules?",
+        "question": "What is wrong here? INSERT INTO students VALUES ('John', 'Smith');",
         "options": [
-            "External level",
-            "File level",
-            "Internal level",
-            "Conceptual level"
+            "Missing SELECT",
+            "Missing column list",
+            "Nothing wrong",
+            "Missing WHERE"
         ],
-        "correct_answer": 3,
-        "explanation": "The conceptual level defines all entities, attributes, relationships, constraints, and security rules, independent of storage details."
+        "correct_answer": 1,
+        "explanation": "Technically this works if the table has exactly 2 columns and order matches. But best practice is to specify column names for clarity and safety."
     },
     {
         "id": 68,
         "type": "multiple_choice",
-        "question": "The internal level deals with all of the following EXCEPT:",
+        "question": "What does this return? SELECT * FROM students LIMIT 1,3;",
         "options": [
-            "Indexing",
-            "File structures",
-            "User login credentials",
-            "Space optimization for performance"
+            "First row only",
+            "3 rows starting from second row",
+            "1 row only",
+            "All rows"
         ],
-        "correct_answer": 2,
-        "explanation": "User login credentials are related to security and authentication, not physical storage structures like file structures, indexing, or space optimization."
+        "correct_answer": 1,
+        "explanation": "LIMIT 1,3 means offset=1 (skip first row), then return up to 3 rows — so rows 2, 3, and 4."
     },
     {
         "id": 69,
         "type": "multiple_choice",
-        "question": "Below the internal level, the physical level is often handled by:",
+        "question": "FOREIGN KEY mainly ensures:",
         "options": [
-            "The DBMS",
-            "The operating system",
-            "The application program",
-            "The end user"
+            "Speed",
+            "Data integrity",
+            "Encryption",
+            "Sorting"
         ],
         "correct_answer": 1,
-        "explanation": "Below the internal level, the physical level is often handled by the operating system, though the boundary between DBMS and OS varies across systems."
+        "explanation": "Foreign keys enforce referential integrity — you cannot insert a value that doesn't exist in the parent table."
     },
     {
         "id": 70,
         "type": "multiple_choice",
-        "question": "The overall description of the database divided into three levels is called the:",
+        "question": "If a foreign key value does not exist in parent table:",
         "options": [
-            "Database instance",
-            "Data dictionary",
-            "Database schema",
-            "Data model"
+            "It is accepted",
+            "Error occurs",
+            "Auto-created",
+            "Ignored silently"
         ],
-        "correct_answer": 2,
-        "explanation": "The database schema is the overall description of the database, divided into external, conceptual, and internal schemas."
+        "correct_answer": 1,
+        "explanation": "The database will reject the insert/update with a foreign key constraint violation error."
     },
     {
         "id": 71,
         "type": "multiple_choice",
-        "question": "Which mapping connects the logical view with physical storage, allowing differences in names, order, or data types?",
+        "question": "Which is NOT a valid data type?",
         "options": [
-            "External/internal mapping",
-            "External/conceptual mapping",
-            "Conceptual/internal mapping",
-            "Logical/physical mapping"
+            "INT",
+            "VARCHAR",
+            "SELECT",
+            "DATE"
         ],
         "correct_answer": 2,
-        "explanation": "The conceptual/internal mapping connects the logical view with physical storage, allowing differences in names, order, or data types."
+        "explanation": "SELECT is a SQL command/keyword, not a data type. The others are valid data types."
     },
     {
         "id": 72,
         "type": "multiple_choice",
-        "question": "The data in the database at any particular point in time is called a:",
+        "question": "What does NULL mean?",
         "options": [
-            "Database schema",
-            "Data model",
-            "Database instance",
-            "Data dictionary"
+            "Zero",
+            "Empty/unknown",
+            "False",
+            "Deleted"
         ],
-        "correct_answer": 2,
-        "explanation": "The data in the database at any particular point in time is called a database instance. Many instances can correspond to the same schema."
+        "correct_answer": 1,
+        "explanation": "NULL means 'no value' or 'unknown' — it is not the same as 0, empty string, or false."
     },
     {
         "id": 73,
         "type": "multiple_choice",
-        "question": "The schema is sometimes called the intension of the database, while an instance is called the:",
+        "question": "What happens if you insert NULL into NOT NULL column?",
         "options": [
-            "Snapshot",
-            "Backup",
-            "Extension or state",
-            "Transaction log"
+            "Accepted",
+            "Ignored",
+            "Error",
+            "Converted to zero"
         ],
         "correct_answer": 2,
-        "explanation": "The schema is called the intension; an instance is called the extension (or state) of the database."
+        "explanation": "The NOT NULL constraint rejects any INSERT or UPDATE that attempts to set the column to NULL."
     },
     {
         "id": 74,
         "type": "multiple_choice",
-        "question": "Which type of data independence allows changes to the internal schema without affecting the conceptual schema?",
+        "question": "Which is correct primary key rule?",
         "options": [
-            "Logical data independence",
-            "External data independence",
-            "Structural data independence",
-            "Physical data independence"
+            "Can repeat",
+            "Must be unique",
+            "Can be NULL",
+            "Can be text only"
         ],
-        "correct_answer": 3,
-        "explanation": "Physical data independence is the ability to change the internal schema (e.g., file structures, indexing) without affecting the conceptual schema."
+        "correct_answer": 1,
+        "explanation": "Primary keys must contain unique values and cannot be NULL. They can be text, numbers, or other types."
     },
     {
         "id": 75,
         "type": "multiple_choice",
-        "question": "Physical data independence changes are usually made to:",
+        "question": "What does this do? SELECT * FROM students ORDER BY first_name DESC;",
         "options": [
-            "Add new users",
-            "Change business rules",
-            "Improve performance or efficiency",
-            "Modify external views"
+            "Ascending order",
+            "Random order",
+            "Descending order",
+            "Deletes rows"
         ],
         "correct_answer": 2,
-        "explanation": "Changes under physical data independence (e.g., new file structures, indexing methods) are usually made to improve performance or efficiency."
+        "explanation": "ORDER BY ... DESC sorts results from highest to lowest (Z to A for text, largest to smallest for numbers)."
     },
     {
         "id": 76,
         "type": "multiple_choice",
-        "question": "Which of the following is an example of a change possible under physical data independence?",
+        "question": "Which keyword filters records?",
         "options": [
-            "Adding a new entity",
-            "Using a new indexing method",
-            "Changing a user's view",
-            "Modifying a relationship"
+            "WHERE",
+            "SELECT",
+            "ORDER BY",
+            "INSERT"
         ],
-        "correct_answer": 1,
-        "explanation": "Using a new indexing method is a physical change that does not affect the conceptual schema, demonstrating physical data independence."
+        "correct_answer": 0,
+        "explanation": "WHERE applies conditions to filter which rows are returned or affected."
     },
     {
         "id": 77,
         "type": "multiple_choice",
-        "question": "A data sublanguage includes DDL and DML. Why are they called sublanguages?",
+        "question": "What is output of COUNT(*) when table is empty?",
         "options": [
-            "They are spoken languages",
-            "They lack full programming features like loops or conditionals",
-            "They can only be used by administrators",
-            "They are not stored in the database"
+            "NULL",
+            "1",
+            "0",
+            "Error"
         ],
-        "correct_answer": 1,
-        "explanation": "DDL and DML are called sublanguages because they lack full programming features like loops or conditionals."
+        "correct_answer": 2,
+        "explanation": "COUNT(*) returns 0 for an empty table — it never returns NULL."
     },
     {
         "id": 78,
         "type": "multiple_choice",
-        "question": "When DDL statements are compiled, they generate metadata stored in the:",
+        "question": "Which is correct?",
         "options": [
-            "User directory",
-            "Transaction log",
-            "System catalog (data dictionary)",
-            "Buffer pool"
+            "SELECT * FROM students WHERE age = NULL;",
+            "SELECT * FROM students WHERE age IS NULL;",
+            "SELECT * FROM students WHERE age = 0;",
+            "SELECT NULL FROM students;"
         ],
-        "correct_answer": 2,
-        "explanation": "DDL compilation generates metadata stored in the system catalog (also called data dictionary or data director), which describes all database objects."
+        "correct_answer": 1,
+        "explanation": "NULL cannot be compared with = or !=. You must use IS NULL or IS NOT NULL."
     },
     {
         "id": 79,
         "type": "multiple_choice",
-        "question": "Which language can create or modify the database schema but cannot manipulate data?",
+        "question": "VARCHAR differs from CHAR because:",
         "options": [
-            "DML",
-            "4GL",
-            "DDL",
-            "SQL (all forms)"
+            "CHAR is variable",
+            "VARCHAR is fixed",
+            "VARCHAR is variable length",
+            "Both same"
         ],
         "correct_answer": 2,
-        "explanation": "DDL (Data Definition Language) is used to define and modify the database schema but cannot manipulate data. DML handles data manipulation."
+        "explanation": "VARCHAR uses only the space needed (plus 1-2 bytes overhead); CHAR uses fixed space regardless of actual content."
     },
     {
         "id": 80,
         "type": "multiple_choice",
-        "question": "Procedural DML tells the system:",
+        "question": "What happens if you run DROP TABLE students?",
         "options": [
-            "What data is needed",
-            "How to get the data step by step",
-            "Only to insert data",
-            "Only to delete data"
+            "Deletes rows only",
+            "Deletes structure and data",
+            "Clears columns only",
+            "Updates table"
         ],
         "correct_answer": 1,
-        "explanation": "Procedural DML tells the system how to get the data step by step, often embedded in host languages like C or Java."
+        "explanation": "DROP TABLE permanently removes both the table structure and all its data. Cannot be rolled back in most databases."
     },
     {
         "id": 81,
         "type": "multiple_choice",
-        "question": "Nonprocedural DML tells the system:",
+        "question": "Which is DDL?",
         "options": [
-            "How to get the data step by step",
-            "What data is needed, not how to get it",
-            "To ignore performance",
-            "To use only indexes"
+            "SELECT",
+            "INSERT",
+            "CREATE",
+            "UPDATE"
         ],
-        "correct_answer": 1,
-        "explanation": "Nonprocedural DML tells the system what data is needed, not how to get it. SQL and QBE are examples."
+        "correct_answer": 2,
+        "explanation": "DDL (Data Definition Language) includes CREATE, ALTER, DROP, TRUNCATE. SELECT/INSERT/UPDATE are DML."
     },
     {
         "id": 82,
         "type": "multiple_choice",
-        "question": "Which type of DML offers better data independence and is easier to learn?",
+        "question": "Which is DML?",
         "options": [
-            "Procedural DML",
-            "Embedded DML",
-            "Nonprocedural DML",
-            "Host language DML"
+            "CREATE",
+            "ALTER",
+            "SELECT",
+            "DROP"
         ],
         "correct_answer": 2,
-        "explanation": "Nonprocedural DMLs are easier to learn and offer better data independence compared to procedural DML."
+        "explanation": "DML (Data Manipulation Language) includes SELECT, INSERT, UPDATE, DELETE. CREATE/ALTER/DROP are DDL."
     },
     {
         "id": 83,
         "type": "multiple_choice",
-        "question": "Fourth-Generation Languages (4GLs) are:",
+        "question": "What does this return? SELECT 2 + 3;",
         "options": [
-            "Procedural languages like C",
-            "Machine languages",
-            "Nonprocedural languages designed for quick application development",
-            "Assembly languages"
+            "Error",
+            "23",
+            "5",
+            "NULL"
         ],
         "correct_answer": 2,
-        "explanation": "4GLs are high-level, nonprocedural languages designed to help users develop applications more quickly and easily than 3GLs like C or COBOL."
+        "explanation": "Many SQL dialects allow expressions without a FROM clause, returning the computed result (5)."
     },
     {
         "id": 84,
         "type": "multiple_choice",
-        "question": "4GLs aim to boost productivity especially for:",
+        "question": "What is wrong here? SELECT * FROM students WHERE email = gmail.com;",
         "options": [
-            "Operating system development",
-            "Compiler design",
-            "Database and business applications",
-            "Device drivers"
+            "Missing quotes",
+            "Wrong column",
+            "Nothing wrong",
+            "Missing SELECT"
         ],
-        "correct_answer": 2,
-        "explanation": "4GLs aim to boost productivity especially for database and business applications, not low-level systems programming."
+        "correct_answer": 0,
+        "explanation": "String values must be enclosed in quotes. gmail.com is interpreted as a column or variable name, not a string."
     },
     {
         "id": 85,
         "type": "multiple_choice",
-        "question": "Which of the following is listed as a type of 4GL tool?",
+        "question": "Correct version of question 84:",
         "options": [
-            "Debugger",
-            "Query & Report Generators",
-            "Assembler",
-            "Linker"
+            "email = \"gmail.com\"",
+            "email = gmail.com",
+            "email = 'gmail.com'",
+            "email == gmail.com"
         ],
-        "correct_answer": 1,
-        "explanation": "Query and Report Generators are listed as a type of 4GL tool, allowing users to ask questions and format output from data."
+        "correct_answer": 2,
+        "explanation": "Single quotes are standard SQL for string literals. Double quotes work in some databases but single is safest."
     },
     {
         "id": 86,
         "type": "multiple_choice",
-        "question": "According to the slides, which of these is NOT listed as a 4GL tool?",
+        "question": "What does BETWEEN do?",
         "options": [
-            "Forms Generators",
-            "Graphics Generators",
-            "Compiler Generators",
-            "Application Generators"
+            "Deletes range",
+            "Filters range",
+            "Sorts data",
+            "Joins tables"
         ],
-        "correct_answer": 2,
-        "explanation": "Forms Generators, Graphics Generators, and Application Generators are listed. Compiler Generators are not mentioned as a 4GL tool."
+        "correct_answer": 1,
+        "explanation": "BETWEEN filters rows where a column's value falls within a specified inclusive range (e.g., WHERE age BETWEEN 18 AND 25)."
     },
     {
         "id": 87,
         "type": "multiple_choice",
-        "question": "A data model is described as a high-level abstract description that acts like a:",
+        "question": "What happens if PRIMARY KEY is duplicated?",
         "options": [
-            "Compiler",
-            "Blueprint",
-            "Operating system",
-            "File system"
+            "Allowed",
+            "Ignored",
+            "Error",
+            "Converted"
         ],
-        "correct_answer": 1,
-        "explanation": "A data model is like a blueprint that helps people understand and communicate the structure and rules of the data."
+        "correct_answer": 2,
+        "explanation": "A duplicate primary key violates the uniqueness constraint and causes an error."
     },
     {
         "id": 88,
         "type": "multiple_choice",
-        "question": "Which of the following is a main component of a data model according to the slides?",
+        "question": "Which is correct JOIN purpose?",
         "options": [
-            "Compilation rules",
-            "Integrity constraints",
-            "Memory allocation",
-            "Network protocols"
+            "Delete tables",
+            "Combine tables",
+            "Encrypt tables",
+            "Rename tables"
         ],
         "correct_answer": 1,
-        "explanation": "The main components of a data model are Structure, Manipulation, and Integrity Constraints."
+        "explanation": "JOINs combine rows from two or more tables based on a related column (often foreign key to primary key)."
     },
     {
         "id": 89,
         "type": "multiple_choice",
-        "question": "The three broad categories of data models mentioned are:",
+        "question": "What does this return? SELECT * FROM students WHERE 1=0;",
         "options": [
-            "Physical, logical, abstract",
-            "Object-based, record-based, and physical",
-            "Hierarchical, network, relational",
-            "Conceptual, logical, internal"
+            "All rows",
+            "No rows",
+            "Error",
+            "First row"
         ],
         "correct_answer": 1,
-        "explanation": "The three broad categories of data models are object-based, record-based, and physical data models."
+        "explanation": "1=0 is always false, so no rows are returned. This is sometimes used to create an empty result set with column structure."
     },
     {
         "id": 90,
         "type": "multiple_choice",
-        "question": "In object-based data models, a real-world object like a person or product is called an:",
+        "question": "Which one is correct syntax?",
         "options": [
-            "Attribute",
-            "Relationship",
-            "Entity",
-            "Record"
+            "SELECT FROM students *;",
+            "SELECT * FROM students;",
+            "GET * FROM students;",
+            "SHOW students *;"
         ],
-        "correct_answer": 2,
-        "explanation": "An entity is a real-world object (e.g., a person, product, or place) that you want to store data about."
+        "correct_answer": 1,
+        "explanation": "The standard SELECT syntax is SELECT column_list FROM table_name;"
     },
     {
         "id": 91,
         "type": "multiple_choice",
-        "question": "A property of an entity, such as a person's name or age, is called an:",
+        "question": "What does DISTINCT do?",
         "options": [
-            "Entity",
-            "Relationship",
-            "Instance",
-            "Attribute"
+            "Duplicates data",
+            "Removes duplicates",
+            "Deletes table",
+            "Sorts data"
         ],
-        "correct_answer": 3,
-        "explanation": "An attribute is a property of an entity, such as a person's name, age, or ID."
+        "correct_answer": 1,
+        "explanation": "SELECT DISTINCT returns only unique rows, eliminating duplicate values from the result set."
     },
     {
         "id": 92,
         "type": "multiple_choice",
-        "question": "Which of the following is a type of object-based data model listed in the slides?",
+        "question": "Which is true about PRIMARY KEY?",
         "options": [
-            "Relational",
-            "Network",
-            "Entity-Relationship (ER)",
-            "Hierarchical"
+            "Can be multiple columns",
+            "Always NULL",
+            "Can duplicate",
+            "Only text"
         ],
-        "correct_answer": 2,
-        "explanation": "Entity-Relationship (ER) is listed as a type of object-based data model, along with Semantic, Functional, and Object-oriented."
+        "correct_answer": 0,
+        "explanation": "A composite primary key uses two or more columns together to uniquely identify a row."
     },
     {
         "id": 93,
         "type": "multiple_choice",
-        "question": "Record-based data models organize data as:",
+        "question": "What happens if you INSERT wrong data type?",
         "options": [
-            "Objects with methods",
-            "Fixed-format structures with fields",
-            "Free text",
-            "Unstructured files"
+            "Auto convert",
+            "Error",
+            "Ignore",
+            "Delete row"
         ],
         "correct_answer": 1,
-        "explanation": "Record-based data models organize data as records — fixed-format structures with fields. Each record type defines what fields exist and their format."
+        "explanation": "Most databases will throw an error if you try to insert a value that doesn't match the column's data type."
     },
     {
         "id": 94,
         "type": "multiple_choice",
-        "question": "Which of the following is a type of record-based data model?",
+        "question": "What does LIKE do?",
         "options": [
-            "Object-oriented",
-            "Functional",
-            "Relational",
-            "Semantic"
+            "Exact match only",
+            "Pattern matching",
+            "Deletes data",
+            "Joins tables"
         ],
-        "correct_answer": 2,
-        "explanation": "The Relational data model is a type of record-based model, along with Network and Hierarchical models."
+        "correct_answer": 1,
+        "explanation": "LIKE allows wildcard pattern matching: % (any characters) and _ (single character)."
     },
     {
         "id": 95,
         "type": "multiple_choice",
-        "question": "Physical data models focus on:",
+        "question": "What does % mean in LIKE?",
         "options": [
-            "What data looks like",
-            "Business rules",
-            "How data is stored and accessed for performance",
-            "User views only"
+            "Single character",
+            "Any number of characters",
+            "NULL",
+            "One digit only"
         ],
-        "correct_answer": 2,
-        "explanation": "Physical data models describe how data is actually stored, structured, organized, and accessed for performance and storage efficiency."
+        "correct_answer": 1,
+        "explanation": "% matches zero or more characters. '_' matches exactly one character."
     },
     {
         "id": 96,
         "type": "multiple_choice",
-        "question": "Which of the following is a key aspect of physical data models?",
+        "question": "Which is correct?",
         "options": [
-            "Entity definitions",
-            "Access paths like indexes and pointers",
-            "User permissions",
-            "Forms and reports"
+            "SELECT * FROM students WHERE name LIKE 'A%';",
+            "SELECT * FROM students WHERE name = A%;",
+            "SELECT * FROM students LIKE A%;",
+            "SELECT LIKE name FROM students;"
         ],
-        "correct_answer": 1,
-        "explanation": "Access paths such as indexes, pointers, and links are key aspects of physical data models used to find and retrieve data quickly."
+        "correct_answer": 0,
+        "explanation": "LIKE is used in the WHERE clause with quoted pattern strings. 'A%' means names starting with 'A'."
     },
     {
         "id": 97,
         "type": "multiple_choice",
-        "question": "Conceptual modeling is the process of creating a model:",
+        "question": "What is result of: SELECT 10/2;",
         "options": [
-            "Dependent on a specific DBMS",
-            "Without worrying about how data is stored or processed by a specific system",
-            "Focused only on indexes",
-            "That includes all programming details"
+            "5",
+            "2",
+            "20",
+            "Error"
         ],
-        "correct_answer": 1,
-        "explanation": "Conceptual modeling creates a high-level abstract model without worrying about storage or processing by a specific system."
+        "correct_answer": 0,
+        "explanation": "Basic arithmetic works in SQL SELECT statements. 10/2 equals 5."
     },
     {
         "id": 98,
         "type": "multiple_choice",
-        "question": "The conceptual schema connects:",
+        "question": "What does ALTER TABLE do?",
         "options": [
-            "Two external schemas",
-            "User views (external schemas) to physical storage (internal schema)",
-            "Two internal schemas",
-            "Only the DDL and DML"
+            "Deletes table",
+            "Changes structure",
+            "Inserts data",
+            "Selects data"
         ],
         "correct_answer": 1,
-        "explanation": "The conceptual schema is the core that connects user views (external schemas) to physical storage (internal schema)."
+        "explanation": "ALTER TABLE modifies the table structure: add/drop columns, change data types, add constraints, etc."
     },
     {
         "id": 99,
         "type": "multiple_choice",
-        "question": "According to the conceptual vs. logical model table, the conceptual model focuses on:",
+        "question": "Which is safest key to use?",
         "options": [
-            "Tables and keys",
-            "Normalization rules",
-            "Business data requirements",
-            "DBMS-specific features"
+            "Name",
+            "Email",
+            "Auto-increment ID",
+            "Gender"
         ],
         "correct_answer": 2,
-        "explanation": "The conceptual model focuses on business data requirements, while the logical model focuses on data structure in a specific DBMS."
+        "explanation": "Auto-increment ID is safest because it never changes, is always unique, and has no business meaning that could become invalid."
     },
     {
         "id": 100,
         "type": "multiple_choice",
-        "question": "In the conceptual vs. logical model table, which model depends on a specific DBMS (e.g., relational model)?",
+        "question": "What happens if you run: SELECT * FROM students;",
         "options": [
-            "Conceptual model",
-            "Physical model",
-            "Logical model",
-            "External model"
-        ],
-        "correct_answer": 2,
-        "explanation": "The logical model depends on a specific DBMS (e.g., relational model), while the conceptual model is independent of any system."
-    },
-    {
-        "id": 101,
-        "type": "multiple_choice",
-        "question": "The logical model is described as having a level of abstraction that is:",
-        "options": [
-            "Highest-level",
-            "Independent of any system",
-            "Intermediate (between conceptual and physical)",
-            "Lowest-level"
-        ],
-        "correct_answer": 2,
-        "explanation": "The logical model has an intermediate level of abstraction, sitting between the conceptual and physical models."
-    },
-    {
-        "id": 102,
-        "type": "multiple_choice",
-        "question": "Which of the following is included in a conceptual model but NOT typically in a logical model according to the table?",
-        "options": [
-            "Tables",
-            "Entities and relationships",
-            "Normalization rules",
-            "Keys"
+            "Deletes data",
+            "Shows all data",
+            "Updates table",
+            "Creates table"
         ],
         "correct_answer": 1,
-        "explanation": "Entities and relationships are included in the conceptual model. Tables, keys, and normalization rules are features of the logical model."
-    },
-    {
-        "id": 103,
-        "type": "multiple_choice",
-        "question": "A good conceptual model ensures:",
-        "options": [
-            "Fast query performance",
-            "Nothing is left out or wrongly defined",
-            "Storage is minimized",
-            "Indexes are created"
-        ],
-        "correct_answer": 1,
-        "explanation": "A good conceptual model ensures nothing is left out or wrongly defined, accurately representing the enterprise's data requirements."
-    },
-    {
-        "id": 104,
-        "type": "multiple_choice",
-        "question": "The internal schema details include all of the following EXCEPT:",
-        "options": [
-            "Record structures",
-            "Indexes",
-            "User passwords",
-            "Storage methods"
-        ],
-        "correct_answer": 2,
-        "explanation": "User passwords are security-related and belong to external or conceptual level concerns, not physical storage details like record structures, indexes, or storage methods."
-    },
-    {
-        "id": 105,
-        "type": "multiple_choice",
-        "question": "The slide titled 'Three-level architecture Diagram' appears between which two topics?",
-        "options": [
-            "Introduction and External Level",
-            "Conceptual Level and Internal Level",
-            "External Level and Conceptual Level",
-            "Schemas and Data Independence"
-        ],
-        "correct_answer": 0,
-        "explanation": "The three-level architecture diagram appears between the introduction of the three-schema architecture and the detailed explanation of the External Level."
-    },
-    {
-        "id": 106,
-        "type": "multiple_choice",
-        "question": "According to the slides, many database instances can correspond to:",
-        "options": [
-            "Many different schemas",
-            "Only one external schema",
-            "The same database schema",
-            "No schema"
-        ],
-        "correct_answer": 2,
-        "explanation": "Many database instances can correspond to the same database schema. The schema is the intension; instances are extensions."
-    },
-    {
-        "id": 107,
-        "type": "multiple_choice",
-        "question": "The boundary between DBMS and OS responsibilities at the physical level can:",
-        "options": [
-            "Never change",
-            "Only be set by the user",
-            "Vary across systems",
-            "Be ignored"
-        ],
-        "correct_answer": 2,
-        "explanation": "The boundary between DBMS and OS responsibilities at the physical level can vary across different systems."
-    },
-    {
-        "id": 108,
-        "type": "multiple_choice",
-        "question": "DML operates at all schema levels but focuses on ease of use at:",
-        "options": [
-            "Internal level",
-            "Lower levels",
-            "Higher levels",
-            "Physical level"
-        ],
-        "correct_answer": 2,
-        "explanation": "DML operates at all schema levels but focuses on ease of use at higher levels (external and conceptual)."
-    },
-    {
-        "id": 109,
-        "type": "multiple_choice",
-        "question": "The query language is the part of DML used for:",
-        "options": [
-            "Defining tables",
-            "Inserting data",
-            "Retrieving data",
-            "Deleting data"
-        ],
-        "correct_answer": 2,
-        "explanation": "The query language is the part of DML used specifically for retrieving data from the database."
-    },
-    {
-        "id": 110,
-        "type": "multiple_choice",
-        "question": "Which of the following is an example of a nonprocedural DML mentioned in the slides?",
-        "options": [
-            "C with embedded SQL",
-            "COBOL",
-            "QBE (Query by Example)",
-            "Assembly"
-        ],
-        "correct_answer": 2,
-        "explanation": "QBE (Query by Example) is explicitly mentioned as an example of a nonprocedural DML alongside SQL."
-    },
-    {
-        "id": 111,
-        "type": "multiple_choice",
-        "question": "4GLs are much shorter and faster to use than:",
-        "options": [
-            "SQL",
-            "3GLs like COBOL",
-            "Query generators",
-            "Spreadsheets"
-        ],
-        "correct_answer": 1,
-        "explanation": "4GLs are much shorter and faster to use than 3GLs like COBOL, aiming to boost productivity for database and business applications."
-    },
-    {
-        "id": 112,
-        "type": "multiple_choice",
-        "question": "Which of the following is listed as a 'Very High-Level Language' under 4GL tools?",
-        "options": [
-            "C++",
-            "Java",
-            "Abstract tools for generating applications",
-            "Assembly"
-        ],
-        "correct_answer": 2,
-        "explanation": "Under 4GL tools, 'Very High-Level Languages' are described as abstract tools for generating applications with minimal input."
-    },
-    {
-        "id": 113,
-        "type": "multiple_choice",
-        "question": "According to the slides, which data model category includes the Relational, Network, and Hierarchical models?",
-        "options": [
-            "Object-based",
-            "Physical",
-            "Record-based",
-            "Conceptual"
-        ],
-        "correct_answer": 2,
-        "explanation": "The Relational, Network, and Hierarchical models are all types of record-based data models."
-    },
-    {
-        "id": 114,
-        "type": "multiple_choice",
-        "question": "In the three-schema architecture, which level avoids storage details like memory size or file format?",
-        "options": [
-            "Internal level",
-            "External level",
-            "Conceptual level",
-            "Physical level"
-        ],
-        "correct_answer": 2,
-        "explanation": "The conceptual level avoids any storage details like memory size or file format, focusing only on logical structure."
-    },
-    {
-        "id": 115,
-        "type": "multiple_choice",
-        "question": "The slide 'Differences between the three levels' appears immediately before which topic?",
-        "options": [
-            "Schemas, Mappings, and Instances",
-            "Data Independence",
-            "Physical data independence",
-            "Conceptual Modeling"
-        ],
-        "correct_answer": 1,
-        "explanation": "The slide 'Differences between the three levels' appears immediately before the topic 'Data Independence'."
-    },
-    {
-        "id": 116,
-        "type": "multiple_choice",
-        "question": "Which mapping connects user views to the conceptual schema?",
-        "options": [
-            "Conceptual/internal mapping",
-            "External/internal mapping",
-            "External/conceptual mapping",
-            "Logical/physical mapping"
-        ],
-        "correct_answer": 2,
-        "explanation": "The external/conceptual mapping connects user views (external schemas) to the conceptual schema."
-    },
-    {
-        "id": 117,
-        "type": "multiple_choice",
-        "question": "When DDL statements are compiled, the resulting metadata is sometimes called a:",
-        "options": [
-            "Transaction log",
-            "Data dictionary or data director",
-            "Query plan",
-            "Buffer manager"
-        ],
-        "correct_answer": 1,
-        "explanation": "The metadata generated by DDL compilation is stored in the system catalog, sometimes called a data dictionary or data director."
-    },
-    {
-        "id": 118,
-        "type": "multiple_choice",
-        "question": "Procedural DML is often embedded in which types of languages?",
-        "options": [
-            "4GLs only",
-            "SQL only",
-            "High-level host languages like C or Java",
-            "HTML"
-        ],
-        "correct_answer": 2,
-        "explanation": "Procedural DML is often embedded in high-level programming languages (like C, C++, Java, or Python) which act as host languages."
-    },
-    {
-        "id": 119,
-        "type": "multiple_choice",
-        "question": "The conceptual model is independent of:",
-        "options": [
-            "Business rules",
-            "Entities and relationships",
-            "DBMS and physical storage details",
-            "Integrity constraints"
-        ],
-        "correct_answer": 2,
-        "explanation": "The conceptual model is independent of DBMS, programming languages, and any physical storage details."
-    },
-    {
-        "id": 120,
-        "type": "multiple_choice",
-        "question": "The slide 'Data independence Diagram' comes after the explanation of:",
-        "options": [
-            "Logical data independence",
-            "Both logical and physical data independence",
-            "Physical data independence",
-            "Schemas and mappings"
-        ],
-        "correct_answer": 1,
-        "explanation": "The 'Data independence Diagram' appears after the explanation of both logical and physical data independence."
+        "explanation": "SELECT * FROM students displays all rows and columns from the students table — a read-only operation."
     }
 
 
