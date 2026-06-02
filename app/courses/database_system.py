@@ -20,7 +20,7 @@ database_system_quiz = {
       "A collection of application programs that perform services for end-users."
     ],
     "correct_answer": 1,
-    "explanation": "A database is a shared collection of logically related data (and a description of itself). Option 0 describes a DBMS; option 2 describes data; option 3 describes a file-based system."
+    "explanation": "A database is a shared collection of related data. The first option describes a DBMS, the third describes data, and the fourth describes a file-based system."
   },
   {
     "id": 2,
@@ -33,7 +33,7 @@ database_system_quiz = {
       "Information used for decision-making."
     ],
     "correct_answer": 2,
-    "explanation": "Data = raw facts. Option 0 describes information; option 1 describes a file; option 3 describes information again."
+    "explanation": "Data means raw, unprocessed facts. The first and last options describe information, and the second describes a file or record collection."
   },
   {
     "id": 3,
@@ -46,7 +46,7 @@ database_system_quiz = {
       "Duplicate copies of data."
     ],
     "correct_answer": 0,
-    "explanation": "Information = data + meaning/processing. Option 1 describes a file-based system; option 2 describes SQL; option 3 describes redundancy."
+    "explanation": "Information is data that has been processed to become meaningful. The second option describes a file-based system, the third is SQL, and the fourth is data redundancy."
   },
   {
     "id": 4,
@@ -59,7 +59,7 @@ database_system_quiz = {
       "A procedure used to log into a system."
     ],
     "correct_answer": 1,
-    "explanation": "DBMS is software. Option 0 describes a database; option 2 describes a file-based system; option 3 describes a procedure."
+    "explanation": "A DBMS is the software that manages databases. The first option describes a database itself, the third describes file-based data, and the fourth is a login procedure."
   },
   {
     "id": 5,
@@ -72,7 +72,7 @@ database_system_quiz = {
       "Concurrency"
     ],
     "correct_answer": 2,
-    "explanation": "File-based systems suffer from uncontrolled data redundancy. Data integrity, data independence, and concurrency are DBMS advantages, not file-system advantages."
+    "explanation": "File-based systems suffer from uncontrolled duplicate data. The other three are actually advantages of DBMS, not limitations of file systems."
   },
   {
     "id": 6,
@@ -85,7 +85,7 @@ database_system_quiz = {
       "Users can access data simultaneously."
     ],
     "correct_answer": 0,
-    "explanation": "Redundancy = duplication. Option 1 describes security; option 2 describes information processing; option 3 describes concurrency."
+    "explanation": "Redundancy means the same data is stored in multiple places. The second is security, the third is data processing, and the fourth is concurrency."
   },
   {
     "id": 7,
@@ -98,7 +98,7 @@ database_system_quiz = {
       "Data is backed up regularly."
     ],
     "correct_answer": 1,
-    "explanation": "Inconsistency = different versions of same data. Option 0 describes a relational structure; option 2 describes security; option 3 describes backup."
+    "explanation": "Inconsistency happens when you update one file but not another copy. Storing in tables is good, security and backup prevent problems, not cause them."
   },
   {
     "id": 8,
@@ -106,7 +106,7 @@ database_system_quiz = {
     "question": "Which language is used to define data structures and constraints?",
     "options": ["SQL", "DML", "DDL", "DBMS"],
     "correct_answer": 2,
-    "explanation": "DDL (Data Definition Language). SQL is a query language; DML manipulates data; DBMS is the system itself."
+    "explanation": "DDL (Data Definition Language) defines the structure. SQL is a query language, DML manipulates data, and DBMS is the system itself."
   },
   {
     "id": 9,
@@ -119,7 +119,7 @@ database_system_quiz = {
       "Create security policies."
     ],
     "correct_answer": 1,
-    "explanation": "DML = Data Manipulation Language. Option 0 is DDL; option 2 is hardware design; option 3 is administration."
+    "explanation": "DML (Data Manipulation Language) works with the actual data. Defining structures is DDL, hardware design and security policies are different roles."
   },
   {
     "id": 10,
@@ -132,7 +132,7 @@ database_system_quiz = {
       "A type of database administrator."
     ],
     "correct_answer": 2,
-    "explanation": "SQL = Structured Query Language. Option 0 is hardware; option 1 is file-based system; option 4 is DBA."
+    "explanation": "SQL is the standard language for relational databases. It is not hardware, not a file system, and not a person (DBA)."
   },
   {
     "id": 11,
@@ -145,7 +145,7 @@ database_system_quiz = {
       "Data Redundancy"
     ],
     "correct_answer": 2,
-    "explanation": "Data integrity (accuracy/consistency) is a DBMS advantage. Inconsistency, poor sharing, and uncontrolled redundancy are file-system problems."
+    "explanation": "Data integrity (accuracy and consistency) is a DBMS advantage. The other three are problems that DBMS fixes."
   },
   {
     "id": 12,
@@ -158,7 +158,7 @@ database_system_quiz = {
       "Data is hidden from users."
     ],
     "correct_answer": 1,
-    "explanation": "Integrity = accuracy + consistency. Option 0 is redundancy; option 2 is file-based approach; option 3 is security, not integrity."
+    "explanation": "Data integrity means your data is accurate and consistent. Duplicates are bad, separate files are old-fashioned, hiding data is security."
   },
   {
     "id": 13,
@@ -171,7 +171,7 @@ database_system_quiz = {
       "Data is converted into information."
     ],
     "correct_answer": 0,
-    "explanation": "Concurrency = simultaneous access with control. Option 1 is redundancy; option 2 is storage; option 3 is processing."
+    "explanation": "Concurrency allows many users at the same time without messing up each other's work. Duplication is redundancy, storage is physical, conversion is processing."
   },
   {
     "id": 14,
@@ -184,7 +184,7 @@ database_system_quiz = {
       "Data does not need security."
     ],
     "correct_answer": 2,
-    "explanation": "Data independence = changes to storage/structures don't affect applications. Option 1 is nonsense; option 2 is sharing; option 4 is false."
+    "explanation": "Data independence means changing how data is stored doesn't break your applications. Sharing is different, and data always needs security."
   },
   {
     "id": 15,
@@ -192,7 +192,7 @@ database_system_quiz = {
     "question": "Which is NOT one of the five DBMS environment components?",
     "options": ["Hardware", "Software", "Procedures", "Internet"],
     "correct_answer": 3,
-    "explanation": "The five components are Hardware, Software, Data, Procedures, People. Internet is not one of them."
+    "explanation": "The five components are Hardware, Software, Data, Procedures, and People. The Internet is not one of them."
   },
   {
     "id": 16,
@@ -205,7 +205,7 @@ database_system_quiz = {
       "Hardware, Tables, Data, SQL, Users"
     ],
     "correct_answer": 0,
-    "explanation": "Correct five: Hardware, Software, Data, Procedures, People. Security, SQL, files, tables are subcomponents or tools."
+    "explanation": "The correct five are Hardware, Software, Data, Procedures, and People. Security, SQL, files, and tables are parts of those components, not separate ones."
   },
   {
     "id": 17,
@@ -213,7 +213,7 @@ database_system_quiz = {
     "question": "The component that contains the DBMS, operating system, and application programs is:",
     "options": ["Data", "Software", "Procedures", "Hardware"],
     "correct_answer": 1,
-    "explanation": "Software component includes DBMS, OS, and apps. Data is the database itself; procedures are rules; hardware is physical devices."
+    "explanation": "The Software component includes the DBMS, operating system, and applications. Data is the stored information, procedures are rules, hardware is physical devices."
   },
   {
     "id": 18,
@@ -226,7 +226,7 @@ database_system_quiz = {
       "Hardware devices used by the DBMS."
     ],
     "correct_answer": 1,
-    "explanation": "Procedures = instructions/rules (login, backup, etc.). Option 0 is data; option 2 is software; option 3 is hardware."
+    "explanation": "Procedures are the instructions and rules like how to log in or make backups. Raw facts are data, programs are software, devices are hardware."
   },
   {
     "id": 19,
@@ -239,7 +239,7 @@ database_system_quiz = {
       "Designing storage structures."
     ],
     "correct_answer": 0,
-    "explanation": "DA = strategic/planning role. Option 1 is application developer; option 2 is sophisticated user; option 3 is physical DBA."
+    "explanation": "The DA handles the big-picture planning, policies, and standards. Writing programs is for developers, SQL is for users, storage design is for the DBA."
   },
   {
     "id": 20,
@@ -252,7 +252,7 @@ database_system_quiz = {
       "Developing operating systems."
     ],
     "correct_answer": 0,
-    "explanation": "DBA = technical/operational role. Option 1 is logical designer; option 2 is end-user or developer; option 3 is OS developer."
+    "explanation": "The DBA handles the technical side: implementing, securing, and tuning the database. Business rules are for designers, reports for users, OS for system developers."
   },
   {
     "id": 21,
@@ -265,7 +265,7 @@ database_system_quiz = {
       "Hardware installation."
     ],
     "correct_answer": 1,
-    "explanation": "Logical design = what (entities, attributes, relationships). Option 0 is physical design; option 2 is DBA; option 3 is hardware."
+    "explanation": "Logical design is about 'what' – entities, attributes, relationships. Storage and access are physical design, security and hardware are other roles."
   },
   {
     "id": 22,
@@ -278,7 +278,7 @@ database_system_quiz = {
       "Training end-users."
     ],
     "correct_answer": 2,
-    "explanation": "Physical design = how (storage, indexing). Option 0 is logical design; option 1 is DA; option 3 is procedures/training."
+    "explanation": "Physical design is about 'how' – storage, indexing, etc. Identifying entities is logical design, policies are for DA, training is for procedures."
   },
   {
     "id": 23,
@@ -291,7 +291,7 @@ database_system_quiz = {
       "Installing a DBMS."
     ],
     "correct_answer": 2,
-    "explanation": "Conceptual design = independent of physical/implementation details. Options 0,1 are physical; option 3 is installation."
+    "explanation": "Conceptual design ignores implementation details. Storage devices and indexing are physical design, installation is a DBA task."
   },
   {
     "id": 24,
@@ -304,7 +304,7 @@ database_system_quiz = {
       "Maintaining physical storage."
     ],
     "correct_answer": 0,
-    "explanation": "Application developers = write application programs. Option 1 is DA; option 2 is hardware engineer; option 3 is DBA."
+    "explanation": "Application developers write the programs that use the database. Policies are for DA, hardware and storage are for engineers and DBA."
   },
   {
     "id": 25,
@@ -317,7 +317,7 @@ database_system_quiz = {
       "Maintains database security."
     ],
     "correct_answer": 1,
-    "explanation": "Naïve user = no DBMS knowledge, uses menus/forms. Option 0 is sophisticated user; option 2 is designer; option 3 is DBA."
+    "explanation": "A naïve user has no DBMS knowledge and uses menus/forms. Understanding SQL is a sophisticated user, design and security are professional roles."
   },
   {
     "id": 26,
@@ -330,7 +330,7 @@ database_system_quiz = {
       "Is responsible for hardware maintenance."
     ],
     "correct_answer": 2,
-    "explanation": "Sophisticated user = understands structure, may use SQL. Option 0/1 describe naïve user; option 3 is hardware role."
+    "explanation": "A sophisticated user understands database structure and can use SQL. Menus only is for naïve users, hardware maintenance is for IT staff."
   },
   {
     "id": 27,
@@ -343,7 +343,7 @@ database_system_quiz = {
       "It is a collection of operating systems."
     ],
     "correct_answer": 1,
-    "explanation": "Database = shared, minimal redundancy. Option 0 is file-based; option 2 is false (stores raw data too); option 3 is OS."
+    "explanation": "A database minimizes duplication and is shared. Belonging to one department is a file-based system, it stores raw and processed data, not operating systems."
   },
   {
     "id": 28,
@@ -356,7 +356,7 @@ database_system_quiz = {
       "Scalability"
     ],
     "correct_answer": 0,
-    "explanation": "File-based systems literally have 'poor data sharing' as a limitation. Integrity, concurrency, scalability are also problems but not the direct answer to 'makes sharing difficult'."
+    "explanation": "File-based systems literally have 'poor data sharing' as a problem. Integrity, concurrency, and scalability are also issues, but sharing difficulty is directly poor data sharing."
   },
   {
     "id": 29,
@@ -364,7 +364,7 @@ database_system_quiz = {
     "question": "Which DBMS advantage allows the system to support large numbers of users and data?",
     "options": ["Security", "Scalability", "Data Integrity", "Procedures"],
     "correct_answer": 1,
-    "explanation": "Scalability = growth in users/data. Security is protection; integrity is accuracy; procedures are rules."
+    "explanation": "Scalability means growing to handle more users and data. Security protects data, integrity ensures accuracy, procedures are rules."
   },
   {
     "id": 30,
@@ -377,7 +377,7 @@ database_system_quiz = {
       "Eliminate users."
     ],
     "correct_answer": 0,
-    "explanation": "DBMS's purpose = turn data into information. Option 1 is opposite; option 2 is false; option 3 is false."
+    "explanation": "A DBMS turns raw data into useful information. It reduces redundancy, works with operating systems, and serves users."
   },
   {
     "id": 31,
@@ -390,7 +390,7 @@ database_system_quiz = {
       "A central repository of organizational data."
     ],
     "correct_answer": 1,
-    "explanation": "File-based system = collection of application programs for end-users. Option 0 is DBMS; option 2 is database; option 3 is database."
+    "explanation": "A file-based system is a collection of application programs for end-users. The first option is a DBMS, the third and fourth describe a database."
   },
   {
     "id": 32,
@@ -403,7 +403,7 @@ database_system_quiz = {
       "They are used in all modern organizations."
     ],
     "correct_answer": 1,
-    "explanation": "Studying file-based systems reveals the problems (redundancy, inconsistency, poor sharing) that DBMSs solve. They are not faster, don't eliminate redundancy, and are not widely used today."
+    "explanation": "Studying file-based systems shows us the problems (redundancy, inconsistency) that databases were created to fix. They are not faster, don't eliminate redundancy, and are not widely used today."
   },
   {
     "id": 33,
@@ -416,7 +416,7 @@ database_system_quiz = {
       "Separate duplicate files maintained by departments."
     ],
     "correct_answer": 3,
-    "explanation": "Separate duplicate files = file-based system, not a database. Database is shared, minimal redundancy, concurrent access."
+    "explanation": "Separate duplicate files is a file-based system. A database is shared, has minimal duplication, and supports concurrent access."
   },
   {
     "id": 34,
@@ -424,7 +424,7 @@ database_system_quiz = {
     "question": "Which DBMS facility allows users to specify data types and constraints?",
     "options": ["DML", "SQL", "DDL", "DBA"],
     "correct_answer": 2,
-    "explanation": "DDL defines data types/constraints. DML manipulates data; SQL includes both but DDL is the specific facility; DBA is a role."
+    "explanation": "DDL (Data Definition Language) specifies data types and constraints. DML manipulates data, SQL includes both but DDL is the specific facility, DBA is a person."
   },
   {
     "id": 35,
@@ -432,7 +432,7 @@ database_system_quiz = {
     "question": "Which operation is performed using DML?",
     "options": ["CREATE", "ALTER", "SELECT", "DEFINE"],
     "correct_answer": 2,
-    "explanation": "SELECT is DML (retrieval). CREATE, ALTER, DEFINE are DDL operations."
+    "explanation": "SELECT is a DML operation (retrieving data). CREATE, ALTER, and DEFINE are DDL operations for defining structure."
   },
   {
     "id": 36,
@@ -440,7 +440,7 @@ database_system_quiz = {
     "question": "The most common query language used in relational databases is:",
     "options": ["Java", "SQL", "COBOL", "Pascal"],
     "correct_answer": 1,
-    "explanation": "SQL is the standard query language for relational DBMSs. Java/COBOL/Pascal are programming languages."
+    "explanation": "SQL is the standard query language for relational databases. Java, COBOL, and Pascal are general programming languages."
   },
   {
     "id": 37,
@@ -448,7 +448,7 @@ database_system_quiz = {
     "question": "Which DBMS advantage hides complex storage details from users?",
     "options": ["Data Redundancy", "Abstraction", "Poor Data Sharing", "File Synchronization"],
     "correct_answer": 1,
-    "explanation": "Abstraction = hiding storage complexity. Data redundancy is a problem; poor data sharing is a file-system problem; file synchronization is not a DBMS advantage."
+    "explanation": "Abstraction hides storage complexity. Data redundancy is a problem, poor data sharing is a file-system problem, file synchronization is not a DBMS advantage."
   },
   {
     "id": 38,
@@ -456,7 +456,7 @@ database_system_quiz = {
     "question": "Which component serves as the bridge between machine and human components in a DBMS environment?",
     "options": ["Hardware", "Data", "Procedures", "Software"],
     "correct_answer": 3,
-    "explanation": "Software (DBMS, OS, apps) bridges hardware (machine) and people/procedures (human). Data is passive; procedures are human-side."
+    "explanation": "Software (DBMS, OS, apps) bridges hardware (machines) and people/procedures (humans). Data is passive, procedures are on the human side."
   },
   {
     "id": 39,
@@ -464,7 +464,7 @@ database_system_quiz = {
     "question": "Which component contains instructions such as how to log on, make backups, and start or stop the DBMS?",
     "options": ["Data", "Procedures", "Hardware", "Security"],
     "correct_answer": 1,
-    "explanation": "Procedures = instructions/rules. Data is raw facts; hardware is physical; security is an attribute, not a component."
+    "explanation": "Procedures contain the instructions and rules. Data is facts, hardware is physical devices, security is a feature not a component."
   },
   {
     "id": 40,
@@ -472,7 +472,7 @@ database_system_quiz = {
     "question": "Which of the following is considered hardware in a DBMS environment?",
     "options": ["SQL", "Database tables", "Servers and storage devices", "User manuals"],
     "correct_answer": 2,
-    "explanation": "Hardware = physical devices (servers, storage). SQL is language; tables are data structures; manuals are procedures/people."
+    "explanation": "Hardware includes physical devices like servers and storage. SQL is a language, tables are data structures, user manuals are procedures."
   },
   {
     "id": 41,
@@ -485,7 +485,7 @@ database_system_quiz = {
       "Writing application programs."
     ],
     "correct_answer": 2,
-    "explanation": "DA = strategic (planning, policies). Physical implementation and performance tuning = DBA; writing apps = developer."
+    "explanation": "The DA handles planning, standards, and policies. Physical implementation and tuning are the DBA's job, writing programs is for developers."
   },
   {
     "id": 42,
@@ -498,7 +498,7 @@ database_system_quiz = {
       "Writing reports."
     ],
     "correct_answer": 1,
-    "explanation": "DBA = physical realization (implementation, security, performance). Conceptual design = logical designer; requirements = analyst; reports = end-user."
+    "explanation": "The DBA handles the physical implementation. Conceptual design is for logical designers, requirements are for analysts, reports are for users."
   },
   {
     "id": 43,
@@ -506,7 +506,7 @@ database_system_quiz = {
     "question": "Which professional identifies entities, attributes, and relationships?",
     "options": ["DBA", "Application Developer", "Logical Database Designer", "End User"],
     "correct_answer": 2,
-    "explanation": "Logical designer identifies entities/attributes/relationships. DBA does physical; developer writes code; end user uses system."
+    "explanation": "The logical database designer identifies entities, attributes, and relationships. DBA does physical work, developers write code, end users use the system."
   },
   {
     "id": 44,
@@ -514,7 +514,7 @@ database_system_quiz = {
     "question": "Business rules are another name for:",
     "options": ["Constraints", "Queries", "Procedures", "Transactions"],
     "correct_answer": 0,
-    "explanation": "Business rules = constraints on data. Queries retrieve data; procedures are instructions; transactions are units of work."
+    "explanation": "Business rules are constraints on the data. Queries retrieve data, procedures are instructions, transactions are units of work."
   },
   {
     "id": 45,
@@ -527,7 +527,7 @@ database_system_quiz = {
       "Security Design"
     ],
     "correct_answer": 2,
-    "explanation": "Conceptual design is independent of implementation (physical). Physical design depends on storage; application design depends on both; security design is cross-cutting."
+    "explanation": "Conceptual design ignores how the database will be physically built. Physical design depends on implementation, application design depends on both."
   },
   {
     "id": 46,
@@ -540,7 +540,7 @@ database_system_quiz = {
       "Writing SQL reports for users."
     ],
     "correct_answer": 1,
-    "explanation": "Physical designer = storage structures/access methods. Identifying entities = logical designer; policies = DA; reports = user/developer."
+    "explanation": "Physical design means deciding storage structures and access methods. Identifying entities is logical design, policies are for DA, reports are for users."
   },
   {
     "id": 47,
@@ -548,7 +548,7 @@ database_system_quiz = {
     "question": "Application developers usually work from specifications produced by:",
     "options": ["End Users", "Database Designers", "Systems Analysts", "Data Administrators"],
     "correct_answer": 2,
-    "explanation": "Systems analysts produce specifications. End users provide requirements; designers design schema; DA does policies."
+    "explanation": "Systems analysts produce specifications. End users give requirements, designers design the schema, DA handles policies."
   },
   {
     "id": 48,
@@ -556,7 +556,7 @@ database_system_quiz = {
     "question": "Which database operation may be requested by an application program?",
     "options": ["Retrieve data", "Insert data", "Update data", "All of the above"],
     "correct_answer": 3,
-    "explanation": "Application programs can retrieve, insert, update, and delete data (all DML operations)."
+    "explanation": "Application programs can do everything: retrieve, insert, update, and delete data."
   },
   {
     "id": 49,
@@ -564,7 +564,7 @@ database_system_quiz = {
     "question": "Which user category typically accesses databases through menus and forms without knowing anything about the DBMS?",
     "options": ["DBA", "Sophisticated User", "Naïve User", "Logical Designer"],
     "correct_answer": 2,
-    "explanation": "Naïve user uses menus/forms, no DBMS knowledge. DBA/sophisticated user/designer all have DBMS knowledge."
+    "explanation": "Naïve users use menus and forms and know nothing about the DBMS. Everyone else listed has DBMS knowledge."
   },
   {
     "id": 50,
@@ -577,7 +577,7 @@ database_system_quiz = {
       "They are responsible for hardware maintenance."
     ],
     "correct_answer": 1,
-    "explanation": "Sophisticated users understand structure and may use SQL. Unaware/only menus = naïve user; hardware maintenance = DBA/IT staff."
+    "explanation": "Sophisticated users understand the structure and can use SQL. Being unaware or using only menus describes naïve users, hardware maintenance is for IT staff."
   },
   {
     "id": 51,
@@ -590,7 +590,7 @@ database_system_quiz = {
       "Physical Database Designer"
     ],
     "correct_answer": 1,
-    "explanation": "DBMS processes raw data into meaningful information. File-based systems don't do this well; hardware is physical; designer is a role."
+    "explanation": "A DBMS processes raw data into meaningful information. File-based systems do this poorly, hardware is physical, a designer is a person."
   },
   {
     "id": 52,
@@ -598,7 +598,7 @@ database_system_quiz = {
     "question": "Which term refers to raw facts?",
     "options": ["Database", "Information", "Data", "SQL"],
     "correct_answer": 2,
-    "explanation": "Data = raw facts. Database = collection of data; information = processed data; SQL = language."
+    "explanation": "Data is raw facts. A database stores data, information is processed data, SQL is a language."
   },
   {
     "id": 53,
@@ -606,7 +606,7 @@ database_system_quiz = {
     "question": "Which term refers to processed and meaningful data?",
     "options": ["Information", "Data", "Database", "DDL"],
     "correct_answer": 0,
-    "explanation": "Information = processed/meaningful data. Data is raw; database is storage; DDL is definition language."
+    "explanation": "Information is data that has been processed to be meaningful. Data is raw, a database stores both, DDL defines structure."
   },
   {
     "id": 54,
@@ -614,7 +614,7 @@ database_system_quiz = {
     "question": "Which role would most likely be responsible for ensuring satisfactory application performance?",
     "options": ["End User", "DBA", "Application Developer", "Data Administrator"],
     "correct_answer": 2,
-    "explanation": "Application developer ensures application performance (code efficiency). DBA ensures database performance; end user uses; DA does policy."
+    "explanation": "Application developers ensure their code performs well. DBA handles database performance, users just use it, DA handles policies."
   },
   {
     "id": 55,
@@ -627,7 +627,7 @@ database_system_quiz = {
       "Duplicate Files"
     ],
     "correct_answer": 2,
-    "explanation": "Data integrity is a DBMS advantage. Inconsistency, redundancy, duplicate files are problems of file-based systems."
+    "explanation": "Data integrity (accuracy and consistency) is a DBMS advantage. The other three are problems that file-based systems have and DBMS fixes."
   }
 
 
