@@ -8,1309 +8,627 @@ database_system_quiz = {
   
   
   
-    {
-        "id": 1,
-        "type": "multiple_choice",
-        "question": "What does INT represent in MySQL?",
-        "options": [
-            "Text",
-            "Decimal number",
-            "Whole number",
-            "Date"
-        ],
-        "correct_answer": 2,
-        "explanation": "INT stores whole numbers (integers) without decimal places."
-    },
-    {
-        "id": 2,
-        "type": "multiple_choice",
-        "question": "Which data type stores text?",
-        "options": [
-            "DATE",
-            "VARCHAR",
-            "INT",
-            "FLOAT"
-        ],
-        "correct_answer": 1,
-        "explanation": "VARCHAR (Variable Character) stores text/string values."
-    },
-    {
-        "id": 3,
-        "type": "multiple_choice",
-        "question": "AUTO_INCREMENT is used to:",
-        "options": [
-            "Delete data",
-            "Automatically increase numbers",
-            "Encrypt data",
-            "Store text"
-        ],
-        "correct_answer": 1,
-        "explanation": "AUTO_INCREMENT automatically generates a unique sequential number for each new row."
-    },
-    {
-        "id": 4,
-        "type": "multiple_choice",
-        "question": "PRIMARY KEY must be:",
-        "options": [
-            "Duplicate",
-            "Empty",
-            "Unique",
-            "Text only"
-        ],
-        "correct_answer": 2,
-        "explanation": "A primary key uniquely identifies each row, so duplicate values are not allowed."
-    },
-    {
-        "id": 5,
-        "type": "multiple_choice",
-        "question": "Which data type stores dates?",
-        "options": [
-            "DATE",
-            "TEXT",
-            "INT",
-            "CHAR"
-        ],
-        "correct_answer": 0,
-        "explanation": "The DATE data type stores calendar dates in YYYY-MM-DD format."
-    },
-    {
-        "id": 6,
-        "type": "multiple_choice",
-        "question": "VARCHAR(50) means:",
-        "options": [
-            "50 numbers only",
-            "50 characters max",
-            "50 tables",
-            "50 rows"
-        ],
-        "correct_answer": 1,
-        "explanation": "The number in VARCHAR(50) is the maximum character length allowed."
-    },
-    {
-        "id": 7,
-        "type": "multiple_choice",
-        "question": "NOT NULL means:",
-        "options": [
-            "Can be empty",
-            "Must have value",
-            "Must be number",
-            "Must be duplicate"
-        ],
-        "correct_answer": 1,
-        "explanation": "NOT NULL enforces that a column cannot contain NULL (empty/unknown) values."
-    },
-    {
-        "id": 8,
-        "type": "multiple_choice",
-        "question": "Which command is used to view data?",
-        "options": [
-            "INSERT",
-            "UPDATE",
-            "SELECT",
-            "DELETE"
-        ],
-        "correct_answer": 2,
-        "explanation": "SELECT is the query command used to retrieve data from tables."
-    },
-    {
-        "id": 9,
-        "type": "multiple_choice",
-        "question": "Which command adds new data?",
-        "options": [
-            "SELECT",
-            "INSERT",
-            "UPDATE",
-            "DROP"
-        ],
-        "correct_answer": 1,
-        "explanation": "INSERT adds new rows/records to a table."
-    },
-    {
-        "id": 10,
-        "type": "multiple_choice",
-        "question": "Which command modifies existing data?",
-        "options": [
-            "INSERT",
-            "SELECT",
-            "UPDATE",
-            "CREATE"
-        ],
-        "correct_answer": 2,
-        "explanation": "UPDATE changes existing values in one or more rows."
-    },
-    {
-        "id": 11,
-        "type": "multiple_choice",
-        "question": "Which command removes data?",
-        "options": [
-            "DELETE",
-            "INSERT",
-            "SELECT",
-            "ALTER"
-        ],
-        "correct_answer": 0,
-        "explanation": "DELETE removes rows from a table, but keeps the table structure."
-    },
-    {
-        "id": 12,
-        "type": "multiple_choice",
-        "question": "FLOAT is used for:",
-        "options": [
-            "Text",
-            "Whole numbers",
-            "Decimal numbers",
-            "Dates"
-        ],
-        "correct_answer": 2,
-        "explanation": "FLOAT stores approximate numeric values with decimal points."
-    },
-    {
-        "id": 13,
-        "type": "multiple_choice",
-        "question": "ENUM is used to:",
-        "options": [
-            "Store only fixed values",
-            "Store images",
-            "Store tables",
-            "Store numbers only"
-        ],
-        "correct_answer": 0,
-        "explanation": "ENUM restricts a column to a predefined list of allowed values."
-    },
-    {
-        "id": 14,
-        "type": "multiple_choice",
-        "question": "DEFAULT CURRENT_DATE means:",
-        "options": [
-            "Random date",
-            "Today's date automatically",
-            "Future date",
-            "Empty value"
-        ],
-        "correct_answer": 1,
-        "explanation": "DEFAULT CURRENT_DATE automatically inserts the current date if no value is provided."
-    },
-    {
-        "id": 15,
-        "type": "multiple_choice",
-        "question": "PRIMARY KEY allows:",
-        "options": [
-            "Duplicate values",
-            "Null values",
-            "Unique values only",
-            "Text only"
-        ],
-        "correct_answer": 2,
-        "explanation": "Primary keys enforce uniqueness and also cannot be NULL."
-    },
-    {
-        "id": 16,
-        "type": "multiple_choice",
-        "question": "Which is NOT a SQL command?",
-        "options": [
-            "SELECT",
-            "INSERT",
-            "LOOP",
-            "UPDATE"
-        ],
-        "correct_answer": 2,
-        "explanation": "LOOP is a procedural programming concept, not a standard SQL command."
-    },
-    {
-        "id": 17,
-        "type": "multiple_choice",
-        "question": "DECIMAL(5,2) means:",
-        "options": [
-            "5 total digits, 2 decimals",
-            "2 total digits",
-            "5 rows",
-            "2 tables"
-        ],
-        "correct_answer": 0,
-        "explanation": "DECIMAL(5,2) = 5 digits total, with 2 digits after the decimal point (e.g., 123.45)."
-    },
-    {
-        "id": 18,
-        "type": "multiple_choice",
-        "question": "FOREIGN KEY is used to:",
-        "options": [
-            "Encrypt data",
-            "Connect tables",
-            "Delete tables",
-            "Sort data"
-        ],
-        "correct_answer": 1,
-        "explanation": "A foreign key links two tables by referencing the primary key of another table."
-    },
-    {
-        "id": 19,
-        "type": "multiple_choice",
-        "question": "Which stores single character?",
-        "options": [
-            "CHAR",
-            "TEXT",
-            "INT",
-            "DATE"
-        ],
-        "correct_answer": 0,
-        "explanation": "CHAR(1) stores exactly one fixed-length character."
-    },
-    {
-        "id": 20,
-        "type": "multiple_choice",
-        "question": "SQL stands for:",
-        "options": [
-            "Simple Query Language",
-            "Structured Query Language",
-            "Strong Question Language",
-            "System Query Logic"
-        ],
-        "correct_answer": 1,
-        "explanation": "SQL stands for Structured Query Language, used for managing relational databases."
-    },
-    {
-        "id": 21,
-        "type": "multiple_choice",
-        "question": "SELECT * means:",
-        "options": [
-            "Select one column",
-            "Select all columns",
-            "Delete all data",
-            "Insert all data"
-        ],
-        "correct_answer": 1,
-        "explanation": "The asterisk (*) is shorthand for 'all columns' in the table."
-    },
-    {
-        "id": 22,
-        "type": "multiple_choice",
-        "question": "WHERE is used to:",
-        "options": [
-            "Insert data",
-            "Filter data",
-            "Create table",
-            "Drop table"
-        ],
-        "correct_answer": 1,
-        "explanation": "WHERE filters rows based on specified conditions."
-    },
-    {
-        "id": 23,
-        "type": "multiple_choice",
-        "question": "ORDER BY is used to:",
-        "options": [
-            "Delete data",
-            "Sort data",
-            "Insert data",
-            "Connect tables"
-        ],
-        "correct_answer": 1,
-        "explanation": "ORDER BY sorts query results in ascending or descending order."
-    },
-    {
-        "id": 24,
-        "type": "multiple_choice",
-        "question": "LIMIT is used to:",
-        "options": [
-            "Increase rows",
-            "Limit number of rows",
-            "Delete rows",
-            "Update rows"
-        ],
-        "correct_answer": 1,
-        "explanation": "LIMIT restricts how many rows a query returns."
-    },
-    {
-        "id": 25,
-        "type": "multiple_choice",
-        "question": "PRIMARY KEY cannot be:",
-        "options": [
-            "Unique",
-            "Null",
-            "Indexed",
-            "Integer"
-        ],
-        "correct_answer": 1,
-        "explanation": "Primary keys cannot contain NULL values — each row must have a value."
-    },
-    {
-        "id": 26,
-        "type": "multiple_choice",
-        "question": "VARCHAR is better than CHAR when:",
-        "options": [
-            "Fixed length text",
-            "Variable length text",
-            "Numbers only",
-            "Dates"
-        ],
-        "correct_answer": 1,
-        "explanation": "VARCHAR saves space by using only the needed storage for variable-length strings."
-    },
-    {
-        "id": 27,
-        "type": "multiple_choice",
-        "question": "INT stores:",
-        "options": [
-            "Decimal numbers",
-            "Whole numbers",
-            "Text",
-            "Boolean only"
-        ],
-        "correct_answer": 1,
-        "explanation": "INT stores whole numbers (no fractional part)."
-    },
-    {
-        "id": 28,
-        "type": "multiple_choice",
-        "question": "A table is made up of:",
-        "options": [
-            "Columns only",
-            "Rows and columns",
-            "Files",
-            "Folders"
-        ],
-        "correct_answer": 1,
-        "explanation": "Tables are structured in rows (records) and columns (fields)."
-    },
-    {
-        "id": 29,
-        "type": "multiple_choice",
-        "question": "A row in a table is also called:",
-        "options": [
-            "Column",
-            "Record",
-            "Database",
-            "Field"
-        ],
-        "correct_answer": 1,
-        "explanation": "In database terms, a row is often called a record or tuple."
-    },
-    {
-        "id": 30,
-        "type": "multiple_choice",
-        "question": "A column is also called:",
-        "options": [
-            "Field",
-            "Row",
-            "Table",
-            "Record"
-        ],
-        "correct_answer": 0,
-        "explanation": "A column represents a field or attribute of an entity."
-    },
-    {
-        "id": 31,
-        "type": "multiple_choice",
-        "question": "FOREIGN KEY connects:",
-        "options": [
-            "Same table only",
-            "Two tables",
-            "Three databases",
-            "Two rows"
-        ],
-        "correct_answer": 1,
-        "explanation": "Foreign keys create relationships between two tables (child and parent)."
-    },
-    {
-        "id": 32,
-        "type": "multiple_choice",
-        "question": "UPDATE needs:",
-        "options": [
-            "WHERE clause",
-            "SELECT clause",
-            "DROP clause",
-            "CREATE clause"
-        ],
-        "correct_answer": 0,
-        "explanation": "Without WHERE, UPDATE changes all rows — WHERE limits which rows are updated."
-    },
-    {
-        "id": 33,
-        "type": "multiple_choice",
-        "question": "If you forget WHERE in UPDATE:",
-        "options": [
-            "Only one row changes",
-            "All rows may change",
-            "Nothing happens",
-            "Table is deleted"
-        ],
-        "correct_answer": 1,
-        "explanation": "Omitting WHERE causes the update to apply to every row in the table."
-    },
-    {
-        "id": 34,
-        "type": "multiple_choice",
-        "question": "DECIMAL is used for:",
-        "options": [
-            "Text",
-            "Exact numbers",
-            "Dates",
-            "Tables"
-        ],
-        "correct_answer": 1,
-        "explanation": "DECIMAL stores exact numeric values (e.g., money, precise decimals)."
-    },
-    {
-        "id": 35,
-        "type": "multiple_choice",
-        "question": "AUTO_INCREMENT starts from:",
-        "options": [
-            "Random number",
-            "1 by default",
-            "1000 always",
-            "0 only"
-        ],
-        "correct_answer": 1,
-        "explanation": "By default, AUTO_INCREMENT starts at 1 and increments by 1 each time."
-    },
-    {
-        "id": 36,
-        "type": "multiple_choice",
-        "question": "Which is NOT a data type?",
-        "options": [
-            "INT",
-            "VARCHAR",
-            "SELECT",
-            "DATE"
-        ],
-        "correct_answer": 2,
-        "explanation": "SELECT is a command/statement, not a data type."
-    },
-    {
-        "id": 37,
-        "type": "multiple_choice",
-        "question": "Database is:",
-        "options": [
-            "A file",
-            "A collection of tables",
-            "A row",
-            "A column"
-        ],
-        "correct_answer": 1,
-        "explanation": "A database contains tables, views, indexes, etc., organized for data management."
-    },
-    {
-        "id": 38,
-        "type": "multiple_choice",
-        "question": "SQL is mainly used for:",
-        "options": [
-            "Designing UI",
-            "Managing databases",
-            "Editing videos",
-            "Programming games"
-        ],
-        "correct_answer": 1,
-        "explanation": "SQL is the standard language for relational database management systems."
-    },
-    {
-        "id": 39,
-        "type": "multiple_choice",
-        "question": "A NULL value means:",
-        "options": [
-            "Zero",
-            "Empty/unknown",
-            "False",
-            "True"
-        ],
-        "correct_answer": 1,
-        "explanation": "NULL represents missing or unknown data — not the same as 0 or empty string."
-    },
-    {
-        "id": 40,
-        "type": "multiple_choice",
-        "question": "PRIMARY KEY is used to:",
-        "options": [
-            "Duplicate rows",
-            "Identify rows uniquely",
-            "Delete rows",
-            "Sort rows"
-        ],
-        "correct_answer": 1,
-        "explanation": "The primary key uniquely identifies each row in a table."
-    },
-    {
-        "id": 41,
-        "type": "multiple_choice",
-        "question": "INSERT INTO is followed by:",
-        "options": [
-            "Columns and values",
-            "Only values",
-            "Only tables",
-            "Only WHERE"
-        ],
-        "correct_answer": 0,
-        "explanation": "Full syntax: INSERT INTO table (columns) VALUES (values). Columns optional if inserting all columns in order."
-    },
-    {
-        "id": 42,
-        "type": "multiple_choice",
-        "question": "DELETE removes:",
-        "options": [
-            "Table structure",
-            "Data rows",
-            "Database",
-            "Columns"
-        ],
-        "correct_answer": 1,
-        "explanation": "DELETE removes rows; table structure remains. Use DROP to remove structure."
-    },
-    {
-        "id": 43,
-        "type": "multiple_choice",
-        "question": "ALTER is used to:",
-        "options": [
-            "Change table structure",
-            "Insert data",
-            "Delete data",
-            "Query data"
-        ],
-        "correct_answer": 0,
-        "explanation": "ALTER modifies table definition (add/remove columns, change data types, etc.)."
-    },
-    {
-        "id": 44,
-        "type": "multiple_choice",
-        "question": "A database table looks like:",
-        "options": [
-            "Excel sheet",
-            "Video file",
-            "Image",
-            "Folder"
-        ],
-        "correct_answer": 0,
-        "explanation": "Tables are structured in rows and columns, similar to an Excel spreadsheet."
-    },
-    {
-        "id": 45,
-        "type": "multiple_choice",
-        "question": "ENUM allows:",
-        "options": [
-            "Any value",
-            "Fixed set of values",
-            "Random numbers",
-            "Only text"
-        ],
-        "correct_answer": 1,
-        "explanation": "ENUM defines a list of permissible values for a column."
-    },
-    {
-        "id": 46,
-        "type": "multiple_choice",
-        "question": "SQL is:",
-        "options": [
-            "Programming language for databases",
-            "Game engine",
-            "Operating system",
-            "Browser"
-        ],
-        "correct_answer": 0,
-        "explanation": "SQL is a domain-specific language for managing relational databases."
-    },
-    {
-        "id": 47,
-        "type": "multiple_choice",
-        "question": "CHAR differs from VARCHAR because:",
-        "options": [
-            "CHAR is fixed length",
-            "VARCHAR is fixed",
-            "Both are same",
-            "CHAR is only numbers"
-        ],
-        "correct_answer": 0,
-        "explanation": "CHAR allocates fixed storage; VARCHAR allocates only needed storage + 1 byte."
-    },
-    {
-        "id": 48,
-        "type": "multiple_choice",
-        "question": "FOREIGN KEY must match:",
-        "options": [
-            "Any column",
-            "Primary key in another table",
-            "Random value",
-            "NULL only"
-        ],
-        "correct_answer": 1,
-        "explanation": "Foreign key references the primary key (or unique key) of another table."
-    },
-    {
-        "id": 49,
-        "type": "multiple_choice",
-        "question": "SELECT * FROM students returns:",
-        "options": [
-            "Only names",
-            "All columns and rows",
-            "Only emails",
-            "Only IDs"
-        ],
-        "correct_answer": 1,
-        "explanation": "* means all columns; without WHERE, all rows are returned."
-    },
-    {
-        "id": 50,
-        "type": "multiple_choice",
-        "question": "DROP TABLE means:",
-        "options": [
-            "Delete rows only",
-            "Delete entire table",
-            "Update table",
-            "Insert table"
-        ],
-        "correct_answer": 1,
-        "explanation": "DROP TABLE removes the table structure and all data permanently."
-    },
-    {
-        "id": 51,
-        "type": "multiple_choice",
-        "question": "Which is used for sorting?",
-        "options": [
-            "ORDER BY",
-            "WHERE",
-            "INSERT",
-            "CREATE"
-        ],
-        "correct_answer": 0,
-        "explanation": "ORDER BY sorts results — ASC (default) or DESC."
-    },
-    {
-        "id": 52,
-        "type": "multiple_choice",
-        "question": "Which keyword filters data?",
-        "options": [
-            "WHERE",
-            "SELECT",
-            "INSERT",
-            "DROP"
-        ],
-        "correct_answer": 0,
-        "explanation": "WHERE sets conditions that rows must meet to be included."
-    },
-    {
-        "id": 53,
-        "type": "multiple_choice",
-        "question": "Database primary goal:",
-        "options": [
-            "Store structured data",
-            "Show images",
-            "Edit videos",
-            "Run games"
-        ],
-        "correct_answer": 0,
-        "explanation": "Databases store and retrieve structured data efficiently."
-    },
-    {
-        "id": 54,
-        "type": "multiple_choice",
-        "question": "TEXT is used for:",
-        "options": [
-            "Long text",
-            "Numbers",
-            "Dates",
-            "Boolean"
-        ],
-        "correct_answer": 0,
-        "explanation": "TEXT is for long strings (e.g., paragraphs, articles) beyond VARCHAR limits."
-    },
-    {
-        "id": 55,
-        "type": "multiple_choice",
-        "question": "A relationship between tables uses:",
-        "options": [
-            "PRIMARY KEY only",
-            "FOREIGN KEY",
-            "VARCHAR",
-            "SELECT"
-        ],
-        "correct_answer": 1,
-        "explanation": "Foreign keys define and enforce relationships between tables."
-    },
-    {
-        "id": 56,
-        "type": "multiple_choice",
-        "question": "DEFAULT means:",
-        "options": [
-            "Required value",
-            "Automatic value if not given",
-            "Random value",
-            "Empty only"
-        ],
-        "correct_answer": 1,
-        "explanation": "DEFAULT supplies a value when no explicit value is provided in INSERT."
-    },
-    {
-        "id": 57,
-        "type": "multiple_choice",
-        "question": "Which is faster for fixed size text?",
-        "options": [
-            "VARCHAR",
-            "CHAR",
-            "TEXT",
-            "DATE"
-        ],
-        "correct_answer": 1,
-        "explanation": "CHAR is faster for fixed-length data because storage is predictable."
-    },
-    {
-        "id": 58,
-        "type": "multiple_choice",
-        "question": "SQL queries end with:",
-        "options": [
-            ";",
-            ":",
-            ".",
-            ","
-        ],
-        "correct_answer": 0,
-        "explanation": "The semicolon (;) is the standard statement terminator in SQL."
-    },
-    {
-        "id": 59,
-        "type": "multiple_choice",
-        "question": "A database schema is:",
-        "options": [
-            "Table structure design",
-            "Data values",
-            "Output screen",
-            "Query result"
-        ],
-        "correct_answer": 0,
-        "explanation": "Schema defines tables, columns, data types, constraints, and relationships."
-    },
-    {
-        "id": 60,
-        "type": "multiple_choice",
-        "question": "A good primary key should be:",
-        "options": [
-            "Duplicate",
-            "Unique and stable",
-            "Empty",
-            "Text only"
-        ],
-        "correct_answer": 1,
-        "explanation": "Primary keys should be unique, non-NULL, and rarely change (e.g., auto-increment ID)."
-    },
-    
-    {
-        "id": 61,
-        "type": "multiple_choice",
-        "question": "What happens if you run this? SELECT * FROM students WHERE 1 = 1;",
-        "options": [
-            "Returns no rows",
-            "Returns all rows",
-            "Deletes all data",
-            "Causes error"
-        ],
-        "correct_answer": 1,
-        "explanation": "1=1 is always true, so all rows are returned. This is sometimes used to bypass dynamic WHERE conditions."
-    },
-    {
-        "id": 62,
-        "type": "multiple_choice",
-        "question": "What is the output of this? SELECT COUNT(*) FROM students;",
-        "options": [
-            "Total columns",
-            "Total rows",
-            "Student names",
-            "Error"
-        ],
-        "correct_answer": 1,
-        "explanation": "COUNT(*) returns the number of rows in the table (including rows with NULLs in any column)."
-    },
-    {
-        "id": 63,
-        "type": "multiple_choice",
-        "question": "What happens if PRIMARY KEY is NOT defined?",
-        "options": [
-            "Table cannot be created",
-            "Table works but no uniqueness rule",
-            "Data is encrypted",
-            "Only one row allowed"
-        ],
-        "correct_answer": 1,
-        "explanation": "A table can exist without a primary key, but you lose the uniqueness constraint and faster lookups."
-    },
-    {
-        "id": 64,
-        "type": "multiple_choice",
-        "question": "Which is TRUE about AUTO_INCREMENT?",
-        "options": [
-            "It resets every insert",
-            "It generates duplicate values",
-            "It generates unique numbers automatically",
-            "It works only on VARCHAR"
-        ],
-        "correct_answer": 2,
-        "explanation": "AUTO_INCREMENT generates a unique sequential number for each new row, typically starting from 1."
-    },
-    {
-        "id": 65,
-        "type": "multiple_choice",
-        "question": "What happens if you forget WHERE in UPDATE? UPDATE students SET gender = 'Male';",
-        "options": [
-            "Only first row updates",
-            "All rows update",
-            "Error occurs",
-            "Nothing happens"
-        ],
-        "correct_answer": 1,
-        "explanation": "Without WHERE, every row in the table gets updated — this is a common and dangerous mistake."
-    },
-    {
-        "id": 66,
-        "type": "multiple_choice",
-        "question": "Which query is correct?",
-        "options": [
-            "SELECT name FROM students WHERE;",
-            "SELECT * students;",
-            "SELECT * FROM students;",
-            "GET * FROM students;"
-        ],
-        "correct_answer": 2,
-        "explanation": "The correct syntax is SELECT column(s) FROM table_name; Options 1, 2, and 4 have syntax errors."
-    },
-    {
-        "id": 67,
-        "type": "multiple_choice",
-        "question": "What is wrong here? INSERT INTO students VALUES ('John', 'Smith');",
-        "options": [
-            "Missing SELECT",
-            "Missing column list",
-            "Nothing wrong",
-            "Missing WHERE"
-        ],
-        "correct_answer": 1,
-        "explanation": "Technically this works if the table has exactly 2 columns and order matches. But best practice is to specify column names for clarity and safety."
-    },
-    {
-        "id": 68,
-        "type": "multiple_choice",
-        "question": "What does this return? SELECT * FROM students LIMIT 1,3;",
-        "options": [
-            "First row only",
-            "3 rows starting from second row",
-            "1 row only",
-            "All rows"
-        ],
-        "correct_answer": 1,
-        "explanation": "LIMIT 1,3 means offset=1 (skip first row), then return up to 3 rows — so rows 2, 3, and 4."
-    },
-    {
-        "id": 69,
-        "type": "multiple_choice",
-        "question": "FOREIGN KEY mainly ensures:",
-        "options": [
-            "Speed",
-            "Data integrity",
-            "Encryption",
-            "Sorting"
-        ],
-        "correct_answer": 1,
-        "explanation": "Foreign keys enforce referential integrity — you cannot insert a value that doesn't exist in the parent table."
-    },
-    {
-        "id": 70,
-        "type": "multiple_choice",
-        "question": "If a foreign key value does not exist in parent table:",
-        "options": [
-            "It is accepted",
-            "Error occurs",
-            "Auto-created",
-            "Ignored silently"
-        ],
-        "correct_answer": 1,
-        "explanation": "The database will reject the insert/update with a foreign key constraint violation error."
-    },
-    {
-        "id": 71,
-        "type": "multiple_choice",
-        "question": "Which is NOT a valid data type?",
-        "options": [
-            "INT",
-            "VARCHAR",
-            "SELECT",
-            "DATE"
-        ],
-        "correct_answer": 2,
-        "explanation": "SELECT is a SQL command/keyword, not a data type. The others are valid data types."
-    },
-    {
-        "id": 72,
-        "type": "multiple_choice",
-        "question": "What does NULL mean?",
-        "options": [
-            "Zero",
-            "Empty/unknown",
-            "False",
-            "Deleted"
-        ],
-        "correct_answer": 1,
-        "explanation": "NULL means 'no value' or 'unknown' — it is not the same as 0, empty string, or false."
-    },
-    {
-        "id": 73,
-        "type": "multiple_choice",
-        "question": "What happens if you insert NULL into NOT NULL column?",
-        "options": [
-            "Accepted",
-            "Ignored",
-            "Error",
-            "Converted to zero"
-        ],
-        "correct_answer": 2,
-        "explanation": "The NOT NULL constraint rejects any INSERT or UPDATE that attempts to set the column to NULL."
-    },
-    {
-        "id": 74,
-        "type": "multiple_choice",
-        "question": "Which is correct primary key rule?",
-        "options": [
-            "Can repeat",
-            "Must be unique",
-            "Can be NULL",
-            "Can be text only"
-        ],
-        "correct_answer": 1,
-        "explanation": "Primary keys must contain unique values and cannot be NULL. They can be text, numbers, or other types."
-    },
-    {
-        "id": 75,
-        "type": "multiple_choice",
-        "question": "What does this do? SELECT * FROM students ORDER BY first_name DESC;",
-        "options": [
-            "Ascending order",
-            "Random order",
-            "Descending order",
-            "Deletes rows"
-        ],
-        "correct_answer": 2,
-        "explanation": "ORDER BY ... DESC sorts results from highest to lowest (Z to A for text, largest to smallest for numbers)."
-    },
-    {
-        "id": 76,
-        "type": "multiple_choice",
-        "question": "Which keyword filters records?",
-        "options": [
-            "WHERE",
-            "SELECT",
-            "ORDER BY",
-            "INSERT"
-        ],
-        "correct_answer": 0,
-        "explanation": "WHERE applies conditions to filter which rows are returned or affected."
-    },
-    {
-        "id": 77,
-        "type": "multiple_choice",
-        "question": "What is output of COUNT(*) when table is empty?",
-        "options": [
-            "NULL",
-            "1",
-            "0",
-            "Error"
-        ],
-        "correct_answer": 2,
-        "explanation": "COUNT(*) returns 0 for an empty table — it never returns NULL."
-    },
-    {
-        "id": 78,
-        "type": "multiple_choice",
-        "question": "Which is correct?",
-        "options": [
-            "SELECT * FROM students WHERE age = NULL;",
-            "SELECT * FROM students WHERE age IS NULL;",
-            "SELECT * FROM students WHERE age = 0;",
-            "SELECT NULL FROM students;"
-        ],
-        "correct_answer": 1,
-        "explanation": "NULL cannot be compared with = or !=. You must use IS NULL or IS NOT NULL."
-    },
-    {
-        "id": 79,
-        "type": "multiple_choice",
-        "question": "VARCHAR differs from CHAR because:",
-        "options": [
-            "CHAR is variable",
-            "VARCHAR is fixed",
-            "VARCHAR is variable length",
-            "Both same"
-        ],
-        "correct_answer": 2,
-        "explanation": "VARCHAR uses only the space needed (plus 1-2 bytes overhead); CHAR uses fixed space regardless of actual content."
-    },
-    {
-        "id": 80,
-        "type": "multiple_choice",
-        "question": "What happens if you run DROP TABLE students?",
-        "options": [
-            "Deletes rows only",
-            "Deletes structure and data",
-            "Clears columns only",
-            "Updates table"
-        ],
-        "correct_answer": 1,
-        "explanation": "DROP TABLE permanently removes both the table structure and all its data. Cannot be rolled back in most databases."
-    },
-    {
-        "id": 81,
-        "type": "multiple_choice",
-        "question": "Which is DDL?",
-        "options": [
-            "SELECT",
-            "INSERT",
-            "CREATE",
-            "UPDATE"
-        ],
-        "correct_answer": 2,
-        "explanation": "DDL (Data Definition Language) includes CREATE, ALTER, DROP, TRUNCATE. SELECT/INSERT/UPDATE are DML."
-    },
-    {
-        "id": 82,
-        "type": "multiple_choice",
-        "question": "Which is DML?",
-        "options": [
-            "CREATE",
-            "ALTER",
-            "SELECT",
-            "DROP"
-        ],
-        "correct_answer": 2,
-        "explanation": "DML (Data Manipulation Language) includes SELECT, INSERT, UPDATE, DELETE. CREATE/ALTER/DROP are DDL."
-    },
-    {
-        "id": 83,
-        "type": "multiple_choice",
-        "question": "What does this return? SELECT 2 + 3;",
-        "options": [
-            "Error",
-            "23",
-            "5",
-            "NULL"
-        ],
-        "correct_answer": 2,
-        "explanation": "Many SQL dialects allow expressions without a FROM clause, returning the computed result (5)."
-    },
-    {
-        "id": 84,
-        "type": "multiple_choice",
-        "question": "What is wrong here? SELECT * FROM students WHERE email = gmail.com;",
-        "options": [
-            "Missing quotes",
-            "Wrong column",
-            "Nothing wrong",
-            "Missing SELECT"
-        ],
-        "correct_answer": 0,
-        "explanation": "String values must be enclosed in quotes. gmail.com is interpreted as a column or variable name, not a string."
-    },
-    {
-        "id": 85,
-        "type": "multiple_choice",
-        "question": "Correct version of question 84:",
-        "options": [
-            "email = \"gmail.com\"",
-            "email = gmail.com",
-            "email = 'gmail.com'",
-            "email == gmail.com"
-        ],
-        "correct_answer": 2,
-        "explanation": "Single quotes are standard SQL for string literals. Double quotes work in some databases but single is safest."
-    },
-    {
-        "id": 86,
-        "type": "multiple_choice",
-        "question": "What does BETWEEN do?",
-        "options": [
-            "Deletes range",
-            "Filters range",
-            "Sorts data",
-            "Joins tables"
-        ],
-        "correct_answer": 1,
-        "explanation": "BETWEEN filters rows where a column's value falls within a specified inclusive range (e.g., WHERE age BETWEEN 18 AND 25)."
-    },
-    {
-        "id": 87,
-        "type": "multiple_choice",
-        "question": "What happens if PRIMARY KEY is duplicated?",
-        "options": [
-            "Allowed",
-            "Ignored",
-            "Error",
-            "Converted"
-        ],
-        "correct_answer": 2,
-        "explanation": "A duplicate primary key violates the uniqueness constraint and causes an error."
-    },
-    {
-        "id": 88,
-        "type": "multiple_choice",
-        "question": "Which is correct JOIN purpose?",
-        "options": [
-            "Delete tables",
-            "Combine tables",
-            "Encrypt tables",
-            "Rename tables"
-        ],
-        "correct_answer": 1,
-        "explanation": "JOINs combine rows from two or more tables based on a related column (often foreign key to primary key)."
-    },
-    {
-        "id": 89,
-        "type": "multiple_choice",
-        "question": "What does this return? SELECT * FROM students WHERE 1=0;",
-        "options": [
-            "All rows",
-            "No rows",
-            "Error",
-            "First row"
-        ],
-        "correct_answer": 1,
-        "explanation": "1=0 is always false, so no rows are returned. This is sometimes used to create an empty result set with column structure."
-    },
-    {
-        "id": 90,
-        "type": "multiple_choice",
-        "question": "Which one is correct syntax?",
-        "options": [
-            "SELECT FROM students *;",
-            "SELECT * FROM students;",
-            "GET * FROM students;",
-            "SHOW students *;"
-        ],
-        "correct_answer": 1,
-        "explanation": "The standard SELECT syntax is SELECT column_list FROM table_name;"
-    },
-    {
-        "id": 91,
-        "type": "multiple_choice",
-        "question": "What does DISTINCT do?",
-        "options": [
-            "Duplicates data",
-            "Removes duplicates",
-            "Deletes table",
-            "Sorts data"
-        ],
-        "correct_answer": 1,
-        "explanation": "SELECT DISTINCT returns only unique rows, eliminating duplicate values from the result set."
-    },
-    {
-        "id": 92,
-        "type": "multiple_choice",
-        "question": "Which is true about PRIMARY KEY?",
-        "options": [
-            "Can be multiple columns",
-            "Always NULL",
-            "Can duplicate",
-            "Only text"
-        ],
-        "correct_answer": 0,
-        "explanation": "A composite primary key uses two or more columns together to uniquely identify a row."
-    },
-    {
-        "id": 93,
-        "type": "multiple_choice",
-        "question": "What happens if you INSERT wrong data type?",
-        "options": [
-            "Auto convert",
-            "Error",
-            "Ignore",
-            "Delete row"
-        ],
-        "correct_answer": 1,
-        "explanation": "Most databases will throw an error if you try to insert a value that doesn't match the column's data type."
-    },
-    {
-        "id": 94,
-        "type": "multiple_choice",
-        "question": "What does LIKE do?",
-        "options": [
-            "Exact match only",
-            "Pattern matching",
-            "Deletes data",
-            "Joins tables"
-        ],
-        "correct_answer": 1,
-        "explanation": "LIKE allows wildcard pattern matching: % (any characters) and _ (single character)."
-    },
-    {
-        "id": 95,
-        "type": "multiple_choice",
-        "question": "What does % mean in LIKE?",
-        "options": [
-            "Single character",
-            "Any number of characters",
-            "NULL",
-            "One digit only"
-        ],
-        "correct_answer": 1,
-        "explanation": "% matches zero or more characters. '_' matches exactly one character."
-    },
-    {
-        "id": 96,
-        "type": "multiple_choice",
-        "question": "Which is correct?",
-        "options": [
-            "SELECT * FROM students WHERE name LIKE 'A%';",
-            "SELECT * FROM students WHERE name = A%;",
-            "SELECT * FROM students LIKE A%;",
-            "SELECT LIKE name FROM students;"
-        ],
-        "correct_answer": 0,
-        "explanation": "LIKE is used in the WHERE clause with quoted pattern strings. 'A%' means names starting with 'A'."
-    },
-    {
-        "id": 97,
-        "type": "multiple_choice",
-        "question": "What is result of: SELECT 10/2;",
-        "options": [
-            "5",
-            "2",
-            "20",
-            "Error"
-        ],
-        "correct_answer": 0,
-        "explanation": "Basic arithmetic works in SQL SELECT statements. 10/2 equals 5."
-    },
-    {
-        "id": 98,
-        "type": "multiple_choice",
-        "question": "What does ALTER TABLE do?",
-        "options": [
-            "Deletes table",
-            "Changes structure",
-            "Inserts data",
-            "Selects data"
-        ],
-        "correct_answer": 1,
-        "explanation": "ALTER TABLE modifies the table structure: add/drop columns, change data types, add constraints, etc."
-    },
-    {
-        "id": 99,
-        "type": "multiple_choice",
-        "question": "Which is safest key to use?",
-        "options": [
-            "Name",
-            "Email",
-            "Auto-increment ID",
-            "Gender"
-        ],
-        "correct_answer": 2,
-        "explanation": "Auto-increment ID is safest because it never changes, is always unique, and has no business meaning that could become invalid."
-    },
-    {
-        "id": 100,
-        "type": "multiple_choice",
-        "question": "What happens if you run: SELECT * FROM students;",
-        "options": [
-            "Deletes data",
-            "Shows all data",
-            "Updates table",
-            "Creates table"
-        ],
-        "correct_answer": 1,
-        "explanation": "SELECT * FROM students displays all rows and columns from the students table — a read-only operation."
-    }
-
-
+   
+  {
+    "id": 1,
+    "type": "multiple_choice",
+    "question": "A database is:",
+    "options": [
+      "Software designed to define, create, maintain, and control access to databases.",
+      "A collection of interconnected records that describe themselves.",
+      "Raw, unprocessed facts such as numbers and symbols.",
+      "A collection of application programs that perform services for end-users."
+    ],
+    "correct_answer": 1,
+    "explanation": "A database is a shared collection of logically related data (and a description of itself). Option 0 describes a DBMS; option 2 describes data; option 3 describes a file-based system."
+  },
+  {
+    "id": 2,
+    "type": "multiple_choice",
+    "question": "Data refers to:",
+    "options": [
+      "Processed data organized into meaningful information.",
+      "A collection of related records.",
+      "Raw, unprocessed facts that have no intrinsic meaning.",
+      "Information used for decision-making."
+    ],
+    "correct_answer": 2,
+    "explanation": "Data = raw facts. Option 0 describes information; option 1 describes a file; option 3 describes information again."
+  },
+  {
+    "id": 3,
+    "type": "multiple_choice",
+    "question": "Information is:",
+    "options": [
+      "Processed data that is organized and meaningful.",
+      "A collection of application programs.",
+      "A language used to query databases.",
+      "Duplicate copies of data."
+    ],
+    "correct_answer": 0,
+    "explanation": "Information = data + meaning/processing. Option 1 describes a file-based system; option 2 describes SQL; option 3 describes redundancy."
+  },
+  {
+    "id": 4,
+    "type": "multiple_choice",
+    "question": "A Database Management System (DBMS) is:",
+    "options": [
+      "A collection of interconnected records.",
+      "Software designed to define, create, maintain, and control access to databases.",
+      "Raw data stored in files.",
+      "A procedure used to log into a system."
+    ],
+    "correct_answer": 1,
+    "explanation": "DBMS is software. Option 0 describes a database; option 2 describes a file-based system; option 3 describes a procedure."
+  },
+  {
+    "id": 5,
+    "type": "multiple_choice",
+    "question": "Which of the following is a major limitation of file-based systems?",
+    "options": [
+      "Data Integrity",
+      "Data Independence",
+      "Data Redundancy",
+      "Concurrency"
+    ],
+    "correct_answer": 2,
+    "explanation": "File-based systems suffer from uncontrolled data redundancy. Data integrity, data independence, and concurrency are DBMS advantages, not file-system advantages."
+  },
+  {
+    "id": 6,
+    "type": "multiple_choice",
+    "question": "Data redundancy means:",
+    "options": [
+      "Duplicate data entries exist in multiple locations.",
+      "Data is protected from unauthorized access.",
+      "Data is processed into information.",
+      "Users can access data simultaneously."
+    ],
+    "correct_answer": 0,
+    "explanation": "Redundancy = duplication. Option 1 describes security; option 2 describes information processing; option 3 describes concurrency."
+  },
+  {
+    "id": 7,
+    "type": "multiple_choice",
+    "question": "Data inconsistency occurs when:",
+    "options": [
+      "Data is stored in tables.",
+      "Updates in one file are not reflected in others.",
+      "Security controls are applied.",
+      "Data is backed up regularly."
+    ],
+    "correct_answer": 1,
+    "explanation": "Inconsistency = different versions of same data. Option 0 describes a relational structure; option 2 describes security; option 3 describes backup."
+  },
+  {
+    "id": 8,
+    "type": "multiple_choice",
+    "question": "Which language is used to define data structures and constraints?",
+    "options": ["SQL", "DML", "DDL", "DBMS"],
+    "correct_answer": 2,
+    "explanation": "DDL (Data Definition Language). SQL is a query language; DML manipulates data; DBMS is the system itself."
+  },
+  {
+    "id": 9,
+    "type": "multiple_choice",
+    "question": "DML is mainly used to:",
+    "options": [
+      "Define database structures.",
+      "Insert, update, delete, and retrieve data.",
+      "Design hardware.",
+      "Create security policies."
+    ],
+    "correct_answer": 1,
+    "explanation": "DML = Data Manipulation Language. Option 0 is DDL; option 2 is hardware design; option 3 is administration."
+  },
+  {
+    "id": 10,
+    "type": "multiple_choice",
+    "question": "SQL is:",
+    "options": [
+      "A hardware component.",
+      "A file-based system.",
+      "The most common query language used in relational DBMSs.",
+      "A type of database administrator."
+    ],
+    "correct_answer": 2,
+    "explanation": "SQL = Structured Query Language. Option 0 is hardware; option 1 is file-based system; option 4 is DBA."
+  },
+  {
+    "id": 11,
+    "type": "multiple_choice",
+    "question": "Which of the following is an advantage of a DBMS?",
+    "options": [
+      "Data Inconsistency",
+      "Poor Data Sharing",
+      "Data Integrity",
+      "Data Redundancy"
+    ],
+    "correct_answer": 2,
+    "explanation": "Data integrity (accuracy/consistency) is a DBMS advantage. Inconsistency, poor sharing, and uncontrolled redundancy are file-system problems."
+  },
+  {
+    "id": 12,
+    "type": "multiple_choice",
+    "question": "Data Integrity ensures:",
+    "options": [
+      "Duplicate records are created.",
+      "Accuracy and consistency of data.",
+      "Data is stored in separate files.",
+      "Data is hidden from users."
+    ],
+    "correct_answer": 1,
+    "explanation": "Integrity = accuracy + consistency. Option 0 is redundancy; option 2 is file-based approach; option 3 is security, not integrity."
+  },
+  {
+    "id": 13,
+    "type": "multiple_choice",
+    "question": "Concurrency means:",
+    "options": [
+      "Multiple users can access data simultaneously without conflict.",
+      "Data is duplicated in many files.",
+      "Data is stored physically on disks.",
+      "Data is converted into information."
+    ],
+    "correct_answer": 0,
+    "explanation": "Concurrency = simultaneous access with control. Option 1 is redundancy; option 2 is storage; option 3 is processing."
+  },
+  {
+    "id": 14,
+    "type": "multiple_choice",
+    "question": "Data Independence means:",
+    "options": [
+      "Data is independent of electricity.",
+      "Data can be shared between departments.",
+      "Application programs are insulated from changes in data.",
+      "Data does not need security."
+    ],
+    "correct_answer": 2,
+    "explanation": "Data independence = changes to storage/structures don't affect applications. Option 1 is nonsense; option 2 is sharing; option 4 is false."
+  },
+  {
+    "id": 15,
+    "type": "multiple_choice",
+    "question": "Which is NOT one of the five DBMS environment components?",
+    "options": ["Hardware", "Software", "Procedures", "Internet"],
+    "correct_answer": 3,
+    "explanation": "The five components are Hardware, Software, Data, Procedures, People. Internet is not one of them."
+  },
+  {
+    "id": 16,
+    "type": "multiple_choice",
+    "question": "The five major DBMS environment components are:",
+    "options": [
+      "Hardware, Software, Data, Procedures, People",
+      "Hardware, Security, SQL, Data, People",
+      "Software, Queries, Files, Data, People",
+      "Hardware, Tables, Data, SQL, Users"
+    ],
+    "correct_answer": 0,
+    "explanation": "Correct five: Hardware, Software, Data, Procedures, People. Security, SQL, files, tables are subcomponents or tools."
+  },
+  {
+    "id": 17,
+    "type": "multiple_choice",
+    "question": "The component that contains the DBMS, operating system, and application programs is:",
+    "options": ["Data", "Software", "Procedures", "Hardware"],
+    "correct_answer": 1,
+    "explanation": "Software component includes DBMS, OS, and apps. Data is the database itself; procedures are rules; hardware is physical devices."
+  },
+  {
+    "id": 18,
+    "type": "multiple_choice",
+    "question": "Procedures refer to:",
+    "options": [
+      "Raw facts stored in the database.",
+      "Instructions and rules governing the use of the database.",
+      "Application programs written by developers.",
+      "Hardware devices used by the DBMS."
+    ],
+    "correct_answer": 1,
+    "explanation": "Procedures = instructions/rules (login, backup, etc.). Option 0 is data; option 2 is software; option 3 is hardware."
+  },
+  {
+    "id": 19,
+    "type": "multiple_choice",
+    "question": "The Data Administrator (DA) is responsible for:",
+    "options": [
+      "Database planning, policies, standards, and procedures.",
+      "Writing application programs.",
+      "Running SQL queries.",
+      "Designing storage structures."
+    ],
+    "correct_answer": 0,
+    "explanation": "DA = strategic/planning role. Option 1 is application developer; option 2 is sophisticated user; option 3 is physical DBA."
+  },
+  {
+    "id": 20,
+    "type": "multiple_choice",
+    "question": "The Database Administrator (DBA) is responsible for:",
+    "options": [
+      "Physical database implementation, security, and performance.",
+      "Defining business rules only.",
+      "Writing reports for end-users.",
+      "Developing operating systems."
+    ],
+    "correct_answer": 0,
+    "explanation": "DBA = technical/operational role. Option 1 is logical designer; option 2 is end-user or developer; option 3 is OS developer."
+  },
+  {
+    "id": 21,
+    "type": "multiple_choice",
+    "question": "The logical database designer focuses on:",
+    "options": [
+      "Storage structures and access methods.",
+      "Entities, attributes, relationships, and constraints.",
+      "Security implementation.",
+      "Hardware installation."
+    ],
+    "correct_answer": 1,
+    "explanation": "Logical design = what (entities, attributes, relationships). Option 0 is physical design; option 2 is DBA; option 3 is hardware."
+  },
+  {
+    "id": 22,
+    "type": "multiple_choice",
+    "question": "The physical database designer is responsible for:",
+    "options": [
+      "Identifying entities and attributes.",
+      "Developing policies.",
+      "Determining how the database is physically stored.",
+      "Training end-users."
+    ],
+    "correct_answer": 2,
+    "explanation": "Physical design = how (storage, indexing). Option 0 is logical design; option 1 is DA; option 3 is procedures/training."
+  },
+  {
+    "id": 23,
+    "type": "multiple_choice",
+    "question": "Which of the following is part of conceptual database design?",
+    "options": [
+      "Selecting storage devices.",
+      "Choosing indexing methods.",
+      "Designing independently of implementation details.",
+      "Installing a DBMS."
+    ],
+    "correct_answer": 2,
+    "explanation": "Conceptual design = independent of physical/implementation details. Options 0,1 are physical; option 3 is installation."
+  },
+  {
+    "id": 24,
+    "type": "multiple_choice",
+    "question": "Application developers are responsible for:",
+    "options": [
+      "Writing programs that interact with the database.",
+      "Managing database policies.",
+      "Designing hardware.",
+      "Maintaining physical storage."
+    ],
+    "correct_answer": 0,
+    "explanation": "Application developers = write application programs. Option 1 is DA; option 2 is hardware engineer; option 3 is DBA."
+  },
+  {
+    "id": 25,
+    "type": "multiple_choice",
+    "question": "A naïve user is someone who:",
+    "options": [
+      "Understands SQL and database structures.",
+      "Uses specially written programs and menus without DBMS knowledge.",
+      "Designs databases.",
+      "Maintains database security."
+    ],
+    "correct_answer": 1,
+    "explanation": "Naïve user = no DBMS knowledge, uses menus/forms. Option 0 is sophisticated user; option 2 is designer; option 3 is DBA."
+  },
+  {
+    "id": 26,
+    "type": "multiple_choice",
+    "question": "A sophisticated user:",
+    "options": [
+      "Uses only menus.",
+      "Has no knowledge of databases.",
+      "Understands database structures and may use SQL.",
+      "Is responsible for hardware maintenance."
+    ],
+    "correct_answer": 2,
+    "explanation": "Sophisticated user = understands structure, may use SQL. Option 0/1 describe naïve user; option 3 is hardware role."
+  },
+  {
+    "id": 27,
+    "type": "multiple_choice",
+    "question": "Which statement best describes a database?",
+    "options": [
+      "It belongs to one department only.",
+      "It minimizes duplication and can be shared by many users.",
+      "It stores only processed information.",
+      "It is a collection of operating systems."
+    ],
+    "correct_answer": 1,
+    "explanation": "Database = shared, minimal redundancy. Option 0 is file-based; option 2 is false (stores raw data too); option 3 is OS."
+  },
+  {
+    "id": 28,
+    "type": "multiple_choice",
+    "question": "Which problem of file-based systems makes data sharing difficult?",
+    "options": [
+      "Poor Data Sharing",
+      "Data Integrity",
+      "Concurrency",
+      "Scalability"
+    ],
+    "correct_answer": 0,
+    "explanation": "File-based systems literally have 'poor data sharing' as a limitation. Integrity, concurrency, scalability are also problems but not the direct answer to 'makes sharing difficult'."
+  },
+  {
+    "id": 29,
+    "type": "multiple_choice",
+    "question": "Which DBMS advantage allows the system to support large numbers of users and data?",
+    "options": ["Security", "Scalability", "Data Integrity", "Procedures"],
+    "correct_answer": 1,
+    "explanation": "Scalability = growth in users/data. Security is protection; integrity is accuracy; procedures are rules."
+  },
+  {
+    "id": 30,
+    "type": "multiple_choice",
+    "question": "The ultimate purpose of a DBMS is to:",
+    "options": [
+      "Transform data into meaningful information.",
+      "Increase data redundancy.",
+      "Replace operating systems.",
+      "Eliminate users."
+    ],
+    "correct_answer": 0,
+    "explanation": "DBMS's purpose = turn data into information. Option 1 is opposite; option 2 is false; option 3 is false."
+  },
+  {
+    "id": 31,
+    "type": "multiple_choice",
+    "question": "Which statement best defines a file-based system?",
+    "options": [
+      "Software designed to define and control access to databases.",
+      "A collection of application programs that perform services for end-users.",
+      "A collection of interconnected records that describe themselves.",
+      "A central repository of organizational data."
+    ],
+    "correct_answer": 1,
+    "explanation": "File-based system = collection of application programs for end-users. Option 0 is DBMS; option 2 is database; option 3 is database."
+  },
+  {
+    "id": 32,
+    "type": "multiple_choice",
+    "question": "Why is it useful to study file-based systems even though they are largely obsolete?",
+    "options": [
+      "They are faster than DBMSs.",
+      "They help us understand problems that database systems were designed to solve.",
+      "They eliminate redundancy.",
+      "They are used in all modern organizations."
+    ],
+    "correct_answer": 1,
+    "explanation": "Studying file-based systems reveals the problems (redundancy, inconsistency, poor sharing) that DBMSs solve. They are not faster, don't eliminate redundancy, and are not widely used today."
+  },
+  {
+    "id": 33,
+    "type": "multiple_choice",
+    "question": "Which of the following is NOT a characteristic of a database?",
+    "options": [
+      "Shared organizational resource.",
+      "Minimal duplication of data.",
+      "Accessible by several users concurrently.",
+      "Separate duplicate files maintained by departments."
+    ],
+    "correct_answer": 3,
+    "explanation": "Separate duplicate files = file-based system, not a database. Database is shared, minimal redundancy, concurrent access."
+  },
+  {
+    "id": 34,
+    "type": "multiple_choice",
+    "question": "Which DBMS facility allows users to specify data types and constraints?",
+    "options": ["DML", "SQL", "DDL", "DBA"],
+    "correct_answer": 2,
+    "explanation": "DDL defines data types/constraints. DML manipulates data; SQL includes both but DDL is the specific facility; DBA is a role."
+  },
+  {
+    "id": 35,
+    "type": "multiple_choice",
+    "question": "Which operation is performed using DML?",
+    "options": ["CREATE", "ALTER", "SELECT", "DEFINE"],
+    "correct_answer": 2,
+    "explanation": "SELECT is DML (retrieval). CREATE, ALTER, DEFINE are DDL operations."
+  },
+  {
+    "id": 36,
+    "type": "multiple_choice",
+    "question": "The most common query language used in relational databases is:",
+    "options": ["Java", "SQL", "COBOL", "Pascal"],
+    "correct_answer": 1,
+    "explanation": "SQL is the standard query language for relational DBMSs. Java/COBOL/Pascal are programming languages."
+  },
+  {
+    "id": 37,
+    "type": "multiple_choice",
+    "question": "Which DBMS advantage hides complex storage details from users?",
+    "options": ["Data Redundancy", "Abstraction", "Poor Data Sharing", "File Synchronization"],
+    "correct_answer": 1,
+    "explanation": "Abstraction = hiding storage complexity. Data redundancy is a problem; poor data sharing is a file-system problem; file synchronization is not a DBMS advantage."
+  },
+  {
+    "id": 38,
+    "type": "multiple_choice",
+    "question": "Which component serves as the bridge between machine and human components in a DBMS environment?",
+    "options": ["Hardware", "Data", "Procedures", "Software"],
+    "correct_answer": 3,
+    "explanation": "Software (DBMS, OS, apps) bridges hardware (machine) and people/procedures (human). Data is passive; procedures are human-side."
+  },
+  {
+    "id": 39,
+    "type": "multiple_choice",
+    "question": "Which component contains instructions such as how to log on, make backups, and start or stop the DBMS?",
+    "options": ["Data", "Procedures", "Hardware", "Security"],
+    "correct_answer": 1,
+    "explanation": "Procedures = instructions/rules. Data is raw facts; hardware is physical; security is an attribute, not a component."
+  },
+  {
+    "id": 40,
+    "type": "multiple_choice",
+    "question": "Which of the following is considered hardware in a DBMS environment?",
+    "options": ["SQL", "Database tables", "Servers and storage devices", "User manuals"],
+    "correct_answer": 2,
+    "explanation": "Hardware = physical devices (servers, storage). SQL is language; tables are data structures; manuals are procedures/people."
+  },
+  {
+    "id": 41,
+    "type": "multiple_choice",
+    "question": "The Data Administrator is mainly concerned with:",
+    "options": [
+      "Physical implementation of databases.",
+      "Security and performance tuning.",
+      "Database planning, standards, and policies.",
+      "Writing application programs."
+    ],
+    "correct_answer": 2,
+    "explanation": "DA = strategic (planning, policies). Physical implementation and performance tuning = DBA; writing apps = developer."
+  },
+  {
+    "id": 42,
+    "type": "multiple_choice",
+    "question": "The Database Administrator is mainly concerned with:",
+    "options": [
+      "Conceptual database design.",
+      "Physical realization of the database.",
+      "Collecting business requirements.",
+      "Writing reports."
+    ],
+    "correct_answer": 1,
+    "explanation": "DBA = physical realization (implementation, security, performance). Conceptual design = logical designer; requirements = analyst; reports = end-user."
+  },
+  {
+    "id": 43,
+    "type": "multiple_choice",
+    "question": "Which professional identifies entities, attributes, and relationships?",
+    "options": ["DBA", "Application Developer", "Logical Database Designer", "End User"],
+    "correct_answer": 2,
+    "explanation": "Logical designer identifies entities/attributes/relationships. DBA does physical; developer writes code; end user uses system."
+  },
+  {
+    "id": 44,
+    "type": "multiple_choice",
+    "question": "Business rules are another name for:",
+    "options": ["Constraints", "Queries", "Procedures", "Transactions"],
+    "correct_answer": 0,
+    "explanation": "Business rules = constraints on data. Queries retrieve data; procedures are instructions; transactions are units of work."
+  },
+  {
+    "id": 45,
+    "type": "multiple_choice",
+    "question": "Which stage of database design is independent of implementation details?",
+    "options": [
+      "Physical Database Design",
+      "Application Design",
+      "Conceptual Database Design",
+      "Security Design"
+    ],
+    "correct_answer": 2,
+    "explanation": "Conceptual design is independent of implementation (physical). Physical design depends on storage; application design depends on both; security design is cross-cutting."
+  },
+  {
+    "id": 46,
+    "type": "multiple_choice",
+    "question": "The physical database designer is responsible for:",
+    "options": [
+      "Identifying entities.",
+      "Determining storage structures and access methods.",
+      "Defining organizational policies.",
+      "Writing SQL reports for users."
+    ],
+    "correct_answer": 1,
+    "explanation": "Physical designer = storage structures/access methods. Identifying entities = logical designer; policies = DA; reports = user/developer."
+  },
+  {
+    "id": 47,
+    "type": "multiple_choice",
+    "question": "Application developers usually work from specifications produced by:",
+    "options": ["End Users", "Database Designers", "Systems Analysts", "Data Administrators"],
+    "correct_answer": 2,
+    "explanation": "Systems analysts produce specifications. End users provide requirements; designers design schema; DA does policies."
+  },
+  {
+    "id": 48,
+    "type": "multiple_choice",
+    "question": "Which database operation may be requested by an application program?",
+    "options": ["Retrieve data", "Insert data", "Update data", "All of the above"],
+    "correct_answer": 3,
+    "explanation": "Application programs can retrieve, insert, update, and delete data (all DML operations)."
+  },
+  {
+    "id": 49,
+    "type": "multiple_choice",
+    "question": "Which user category typically accesses databases through menus and forms without knowing anything about the DBMS?",
+    "options": ["DBA", "Sophisticated User", "Naïve User", "Logical Designer"],
+    "correct_answer": 2,
+    "explanation": "Naïve user uses menus/forms, no DBMS knowledge. DBA/sophisticated user/designer all have DBMS knowledge."
+  },
+  {
+    "id": 50,
+    "type": "multiple_choice",
+    "question": "Which statement about sophisticated users is TRUE?",
+    "options": [
+      "They are unaware of the database structure.",
+      "They can use SQL to perform operations on the database.",
+      "They only use menus and forms.",
+      "They are responsible for hardware maintenance."
+    ],
+    "correct_answer": 1,
+    "explanation": "Sophisticated users understand structure and may use SQL. Unaware/only menus = naïve user; hardware maintenance = DBA/IT staff."
+  },
+  {
+    "id": 51,
+    "type": "multiple_choice",
+    "question": "Which of the following converts data into information?",
+    "options": [
+      "File-Based System",
+      "Database Management System",
+      "Hardware",
+      "Physical Database Designer"
+    ],
+    "correct_answer": 1,
+    "explanation": "DBMS processes raw data into meaningful information. File-based systems don't do this well; hardware is physical; designer is a role."
+  },
+  {
+    "id": 52,
+    "type": "multiple_choice",
+    "question": "Which term refers to raw facts?",
+    "options": ["Database", "Information", "Data", "SQL"],
+    "correct_answer": 2,
+    "explanation": "Data = raw facts. Database = collection of data; information = processed data; SQL = language."
+  },
+  {
+    "id": 53,
+    "type": "multiple_choice",
+    "question": "Which term refers to processed and meaningful data?",
+    "options": ["Information", "Data", "Database", "DDL"],
+    "correct_answer": 0,
+    "explanation": "Information = processed/meaningful data. Data is raw; database is storage; DDL is definition language."
+  },
+  {
+    "id": 54,
+    "type": "multiple_choice",
+    "question": "Which role would most likely be responsible for ensuring satisfactory application performance?",
+    "options": ["End User", "DBA", "Application Developer", "Data Administrator"],
+    "correct_answer": 2,
+    "explanation": "Application developer ensures application performance (code efficiency). DBA ensures database performance; end user uses; DA does policy."
+  },
+  {
+    "id": 55,
+    "type": "multiple_choice",
+    "question": "Which of these is both a DBMS advantage and a major improvement over file-based systems?",
+    "options": [
+      "Data Inconsistency",
+      "Data Redundancy",
+      "Data Integrity",
+      "Duplicate Files"
+    ],
+    "correct_answer": 2,
+    "explanation": "Data integrity is a DBMS advantage. Inconsistency, redundancy, duplicate files are problems of file-based systems."
+  }
 
 
 
