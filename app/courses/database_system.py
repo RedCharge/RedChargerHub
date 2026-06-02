@@ -628,11 +628,10 @@ database_system_quiz = {
     ],
     "correct_answer": 2,
     "explanation": "Data integrity (accuracy and consistency) is a DBMS advantage. The other three are problems that file-based systems have and DBMS fixes."
-  }
+  },
   
   
-  
-    {
+  {
         "id": 56,
         "type": "multiple_choice",
         "question": "Which level shows only the data relevant to each user and hides the rest?",
