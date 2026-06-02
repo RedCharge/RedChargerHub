@@ -629,6 +629,660 @@ database_system_quiz = {
     "correct_answer": 2,
     "explanation": "Data integrity (accuracy and consistency) is a DBMS advantage. The other three are problems that file-based systems have and DBMS fixes."
   }
+  
+  
+  
+    {
+        "id": 56,
+        "type": "multiple_choice",
+        "question": "Which level shows only the data relevant to each user and hides the rest?",
+        "options": [
+            "Internal Level",
+            "Conceptual Level",
+            "External Level",
+            "Physical Level"
+        ],
+        "correct_answer": 2,
+        "explanation": "The External Level is the user's view of the database, showing only relevant data and hiding the rest."
+    },
+    {
+        "id": 57,
+        "type": "multiple_choice",
+        "question": "Which level defines all entities, attributes, relationships, constraints, and security rules?",
+        "options": [
+            "External Level",
+            "Conceptual Level",
+            "Internal Level",
+            "View Level"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Conceptual Level describes the entire logical structure of the database, including entities, attributes, relationships, constraints, and security rules."
+    },
+    {
+        "id": 58,
+        "type": "multiple_choice",
+        "question": "Which level deals with file structures, indexing, and space optimization for performance?",
+        "options": [
+            "External Level",
+            "Conceptual Level",
+            "Internal Level",
+            "Logical Level"
+        ],
+        "correct_answer": 2,
+        "explanation": "The Internal Level shows how data is physically stored, including file structures, indexing, and space optimization."
+    },
+    {
+        "id": 59,
+        "type": "multiple_choice",
+        "question": "Which level provides both the mapping and the desired independence between the external and internal levels?",
+        "options": [
+            "External Level",
+            "Conceptual Level",
+            "Internal Level",
+            "Physical Level"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Conceptual Level provides the mapping and independence between the external and internal levels."
+    },
+    {
+        "id": 60,
+        "type": "multiple_choice",
+        "question": "The way users perceive the data is called the:",
+        "options": [
+            "Internal level",
+            "External level",
+            "Conceptual level",
+            "Physical level"
+        ],
+        "correct_answer": 1,
+        "explanation": "The external level is how users perceive the data."
+    },
+    {
+        "id": 61,
+        "type": "multiple_choice",
+        "question": "The way the DBMS and operating system perceive the data is the:",
+        "options": [
+            "External level",
+            "View level",
+            "Internal level",
+            "Logical level"
+        ],
+        "correct_answer": 2,
+        "explanation": "The internal level is how the DBMS and operating system perceive the data."
+    },
+    {
+        "id": 62,
+        "type": "multiple_choice",
+        "question": "Which schema provides user-specific views of the database?",
+        "options": [
+            "Internal schema",
+            "Conceptual schema",
+            "External schema",
+            "Physical schema"
+        ],
+        "correct_answer": 2,
+        "explanation": "The External Schema provides user-specific views of the database."
+    },
+    {
+        "id": 63,
+        "type": "multiple_choice",
+        "question": "The Conceptual/Internal mapping connects:",
+        "options": [
+            "User views to the conceptual schema",
+            "Logical view with physical storage",
+            "External schemas to each other",
+            "Internal schema to the operating system"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Conceptual/Internal mapping connects the logical view with physical storage."
+    },
+    {
+        "id": 64,
+        "type": "multiple_choice",
+        "question": "A database schema is the ______ while a database instance is the ______.",
+        "options": [
+            "Actual data, blueprint",
+            "Blueprint, actual data at a particular time",
+            "User view, storage structure",
+            "Metadata, schema"
+        ],
+        "correct_answer": 1,
+        "explanation": "The schema is the blueprint (intension), while the instance is the actual data at a particular time (extension/state)."
+    },
+    {
+        "id": 65,
+        "type": "multiple_choice",
+        "question": "The schema is also called the intension; an instance is called the:",
+        "options": [
+            "Extension (or state)",
+            "Catalog",
+            "Metadata",
+            "Dictionary"
+        ],
+        "correct_answer": 0,
+        "explanation": "The schema is the intension; an instance is the extension or state of the database."
+    },
+    {
+        "id": 66,
+        "type": "multiple_choice",
+        "question": "Physical Data Independence allows you to:",
+        "options": [
+            "Change user views without affecting storage",
+            "Change the internal schema without affecting the conceptual schema",
+            "Add new entities without changing external views",
+            "Modify relationships without affecting users"
+        ],
+        "correct_answer": 1,
+        "explanation": "Physical Data Independence means changing the internal schema without affecting the conceptual schema."
+    },
+    {
+        "id": 67,
+        "type": "multiple_choice",
+        "question": "Changing from one indexing method to another for performance is an example of:",
+        "options": [
+            "Logical data independence",
+            "External data independence",
+            "Physical data independence",
+            "Conceptual data independence"
+        ],
+        "correct_answer": 2,
+        "explanation": "Changing indexing methods is a physical change that does not affect the conceptual schema, demonstrating Physical Data Independence."
+    },
+    {
+        "id": 68,
+        "type": "multiple_choice",
+        "question": "Logical Data Independence allows:",
+        "options": [
+            "Changing internal storage without affecting conceptual schema",
+            "Changing conceptual schema without affecting external schemas",
+            "Changing file structures without affecting queries",
+            "Changing compression methods without affecting users"
+        ],
+        "correct_answer": 1,
+        "explanation": "Logical Data Independence allows changing the conceptual schema without affecting external schemas."
+    },
+    {
+        "id": 69,
+        "type": "multiple_choice",
+        "question": "A data sublanguage consists of:",
+        "options": [
+            "3GL and 4GL",
+            "DDL and DML",
+            "Procedural and nonprocedural",
+            "Query language and report generator"
+        ],
+        "correct_answer": 1,
+        "explanation": "A data sublanguage includes Data Definition Language (DDL) and Data Manipulation Language (DML)."
+    },
+    {
+        "id": 70,
+        "type": "multiple_choice",
+        "question": "Data Definition Language (DDL) is used to:",
+        "options": [
+            "Insert, update, and delete data",
+            "Define entities, attributes, relationships, and constraints",
+            "Generate reports and forms",
+            "Write application programs"
+        ],
+        "correct_answer": 1,
+        "explanation": "DDL defines and names entities, attributes, relationships, and applies integrity and security constraints."
+    },
+    {
+        "id": 71,
+        "type": "multiple_choice",
+        "question": "When DDL statements are compiled, they generate:",
+        "options": [
+            "Database instances",
+            "Query results",
+            "Metadata stored in the system catalog",
+            "User views"
+        ],
+        "correct_answer": 2,
+        "explanation": "DDL compilation generates metadata stored in the system catalog (also called data dictionary)."
+    },
+    {
+        "id": 72,
+        "type": "multiple_choice",
+        "question": "The system catalog is also known as:",
+        "options": [
+            "Data dictionary or data director",
+            "Internal schema",
+            "Transaction log",
+            "Storage manager"
+        ],
+        "correct_answer": 0,
+        "explanation": "The system catalog is also called a data dictionary or data director."
+    },
+    {
+        "id": 73,
+        "type": "multiple_choice",
+        "question": "Data Manipulation Language (DML) is used to:",
+        "options": [
+            "Define database schema",
+            "Create indexes and file structures",
+            "Insert, modify, retrieve, and delete data",
+            "Manage user access rights"
+        ],
+        "correct_answer": 2,
+        "explanation": "DML is used to insert, modify, retrieve, and delete data in a database."
+    },
+    {
+        "id": 74,
+        "type": "multiple_choice",
+        "question": "Procedural DML requires the user to specify:",
+        "options": [
+            "Only what data is needed",
+            "How to get the data step by step",
+            "The output format only",
+            "The integrity constraints"
+        ],
+        "correct_answer": 1,
+        "explanation": "Procedural DML tells the system how to get the data step by step."
+    },
+    {
+        "id": 75,
+        "type": "multiple_choice",
+        "question": "Nonprocedural DML (like SQL) requires the user to specify:",
+        "options": [
+            "The exact storage path",
+            "The indexing method to use",
+            "What data is needed, not how to get it",
+            "The file structure"
+        ],
+        "correct_answer": 2,
+        "explanation": "Nonprocedural DML specifies what data is needed, not how to retrieve it."
+    },
+    {
+        "id": 76,
+        "type": "multiple_choice",
+        "question": "Fourth-Generation Languages (4GLs) are:",
+        "options": [
+            "Procedural and low-level like assembly",
+            "Nonprocedural and high-level for faster development",
+            "Another name for C++ and Java",
+            "Used only for operating system programming"
+        ],
+        "correct_answer": 1,
+        "explanation": "4GLs are high-level, nonprocedural languages designed for faster application development."
+    },
+    {
+        "id": 77,
+        "type": "multiple_choice",
+        "question": "Which of the following is a 4GL tool?",
+        "options": [
+            "C compiler",
+            "Assembler",
+            "Report generator",
+            "Linker"
+        ],
+        "correct_answer": 2,
+        "explanation": "Report generators are examples of 4GL tools, along with query generators, spreadsheets, and application generators."
+    },
+    {
+        "id": 78,
+        "type": "multiple_choice",
+        "question": "Query and Report Generators in 4GL are used to:",
+        "options": [
+            "Compile DDL statements",
+            "Ask questions and format output from data",
+            "Manage storage allocation",
+            "Define internal schemas"
+        ],
+        "correct_answer": 1,
+        "explanation": "Query and Report Generators allow users to ask questions and format output from data."
+    },
+    {
+        "id": 79,
+        "type": "multiple_choice",
+        "question": "Application Generators in 4GL:",
+        "options": [
+            "Require full manual coding",
+            "Auto-generate app code with minimal input",
+            "Only generate forms, not code",
+            "Cannot be used for databases"
+        ],
+        "correct_answer": 1,
+        "explanation": "Application Generators auto-generate application code with minimal user input."
+    },
+    {
+        "id": 80,
+        "type": "multiple_choice",
+        "question": "A data model is a:",
+        "options": [
+            "Physical storage device",
+            "High-level abstract description of how data is organized",
+            "Programming language compiler",
+            "User interface design"
+        ],
+        "correct_answer": 1,
+        "explanation": "A data model is a high-level, abstract description of how data is organized, related, and constrained within an organization."
+    },
+    {
+        "id": 81,
+        "type": "multiple_choice",
+        "question": "The three broad categories of data models are:",
+        "options": [
+            "External, conceptual, internal",
+            "Object-based, record-based, physical",
+            "Relational, network, hierarchical",
+            "DDL, DML, 4GL"
+        ],
+        "correct_answer": 1,
+        "explanation": "The three broad categories are object-based, record-based, and physical data models."
+    },
+    {
+        "id": 82,
+        "type": "multiple_choice",
+        "question": "In an object-based data model, an entity is:",
+        "options": [
+            "A field within a record",
+            "A real-world object you want to store data about",
+            "An indexing method",
+            "A storage structure"
+        ],
+        "correct_answer": 1,
+        "explanation": "An entity is a real-world object (e.g., person, product, place) you want to store data about."
+    },
+    {
+        "id": 83,
+        "type": "multiple_choice",
+        "question": "In an object-based data model, a relationship shows:",
+        "options": [
+            "How fields are physically arranged",
+            "How two or more entities are connected",
+            "The sequence of record storage",
+            "The compression algorithm"
+        ],
+        "correct_answer": 1,
+        "explanation": "A relationship shows how two or more entities are connected (e.g., a student enrolled in a course)."
+    },
+    {
+        "id": 84,
+        "type": "multiple_choice",
+        "question": "Which is a type of object-based data model?",
+        "options": [
+            "Relational",
+            "Hierarchical",
+            "Entity-Relationship (ER)",
+            "Network"
+        ],
+        "correct_answer": 2,
+        "explanation": "Entity-Relationship (ER) is an object-based data model, along with Semantic, Functional, and Object-oriented models."
+    },
+    {
+        "id": 85,
+        "type": "multiple_choice",
+        "question": "Record-based data models organize data as:",
+        "options": [
+            "Objects with methods",
+            "Fixed-format structures with fields (records)",
+            "Entity-relationship diagrams",
+            "Physical access paths only"
+        ],
+        "correct_answer": 1,
+        "explanation": "Record-based data models organize data as fixed-format structures with fields, called records."
+    },
+    {
+        "id": 86,
+        "type": "multiple_choice",
+        "question": "Which is a type of record-based data model?",
+        "options": [
+            "Functional",
+            "Semantic",
+            "Relational",
+            "Object-oriented"
+        ],
+        "correct_answer": 2,
+        "explanation": "Relational, Network, and Hierarchical are record-based data models."
+    },
+    {
+        "id": 87,
+        "type": "multiple_choice",
+        "question": "The Relational data model belongs to which category?",
+        "options": [
+            "Object-based",
+            "Record-based",
+            "Physical",
+            "Hierarchical"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Relational data model is a record-based data model."
+    },
+    {
+        "id": 88,
+        "type": "multiple_choice",
+        "question": "Physical data models describe:",
+        "options": [
+            "Business data requirements",
+            "Entities, attributes, and relationships",
+            "How data is actually stored on a computer system",
+            "User views and formatting"
+        ],
+        "correct_answer": 2,
+        "explanation": "Physical data models describe how data is actually stored on a computer system, including record structures, ordering, and access paths."
+    },
+    {
+        "id": 89,
+        "type": "multiple_choice",
+        "question": "Access paths in physical data models include:",
+        "options": [
+            "Tables and foreign keys",
+            "Indexes, pointers, and links",
+            "Entity classes",
+            "User privileges"
+        ],
+        "correct_answer": 1,
+        "explanation": "Access paths include indexes, pointers, and links used to find and retrieve data quickly."
+    },
+    {
+        "id": 90,
+        "type": "multiple_choice",
+        "question": "Conceptual modeling is the process of creating:",
+        "options": [
+            "A physical storage layout",
+            "A high-level abstract model of data requirements",
+            "User-specific external views",
+            "Compilation of DDL statements"
+        ],
+        "correct_answer": 1,
+        "explanation": "Conceptual modeling creates a high-level, abstract model of how data is used in an organization, independent of storage or system details."
+    },
+    {
+        "id": 91,
+        "type": "multiple_choice",
+        "question": "A conceptual model is independent of:",
+        "options": [
+            "Business requirements",
+            "Entities and relationships",
+            "DBMS, programming languages, and physical storage details",
+            "Integrity constraints"
+        ],
+        "correct_answer": 2,
+        "explanation": "A conceptual model does not consider the DBMS, programming languages, or any physical storage details."
+    },
+    {
+        "id": 92,
+        "type": "multiple_choice",
+        "question": "The Conceptual Model focuses on:",
+        "options": [
+            "DBMS-specific table structures",
+            "Business data requirements",
+            "Record ordering and indexing",
+            "File organization and encryption"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Conceptual Model focuses on business data requirements, not technology-specific details."
+    },
+    {
+        "id": 93,
+        "type": "multiple_choice",
+        "question": "The Logical Model depends on:",
+        "options": [
+            "No technology at all",
+            "A specific DBMS (e.g., relational model)",
+            "Physical storage only",
+            "The operating system"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Logical Model depends on a specific DBMS model, such as the relational model."
+    },
+    {
+        "id": 94,
+        "type": "multiple_choice",
+        "question": "Which model includes tables, keys, and normalization rules?",
+        "options": [
+            "Conceptual Model",
+            "Physical Model",
+            "Logical Model",
+            "External Model"
+        ],
+        "correct_answer": 2,
+        "explanation": "The Logical Model includes tables, keys, and normalization rules."
+    },
+    {
+        "id": 95,
+        "type": "multiple_choice",
+        "question": "The Conceptual Model includes:",
+        "options": [
+            "Storage paths and indexes",
+            "Entities, relationships, and constraints",
+            "Record formats and compression",
+            "File structures and hashing"
+        ],
+        "correct_answer": 1,
+        "explanation": "The Conceptual Model includes entities, relationships, and constraints."
+    },
+    {
+        "id": 96,
+        "type": "multiple_choice",
+        "question": "Which of the following is a function of a DBMS?",
+        "options": [
+            "Web server management",
+            "Concurrency control services",
+            "HTML page generation",
+            "Operating system scheduling"
+        ],
+        "correct_answer": 1,
+        "explanation": "Concurrency control services are a standard DBMS function, along with transaction support, recovery, integrity, and utility services."
+    },
+    {
+        "id": 97,
+        "type": "multiple_choice",
+        "question": "Transaction support in a DBMS provides:",
+        "options": [
+            "Faster indexing",
+            "Grouping of operations into atomic units",
+            "Report generation",
+            "User interface design"
+        ],
+        "correct_answer": 1,
+        "explanation": "Transaction support groups operations into atomic units that either全部 complete or全部 fail."
+    },
+    {
+        "id": 98,
+        "type": "multiple_choice",
+        "question": "Recovery services in a DBMS are responsible for:",
+        "options": [
+            "User authentication",
+            "Restoring the database after a failure",
+            "Generating forms",
+            "Compiling DML into machine code"
+        ],
+        "correct_answer": 1,
+        "explanation": "Recovery services restore the database after a failure."
+    },
+    {
+        "id": 99,
+        "type": "multiple_choice",
+        "question": "Concurrency control services ensure:",
+        "options": [
+            "Data is encrypted",
+            "Multiple users can access data without conflicts",
+            "Queries run faster",
+            "Storage is compressed"
+        ],
+        "correct_answer": 1,
+        "explanation": "Concurrency control services allow multiple users to access data without conflicts."
+    },
+    {
+        "id": 100,
+        "type": "multiple_choice",
+        "question": "Integrity services in a DBMS ensure:",
+        "options": [
+            "Fast query response times",
+            "Data is accurate and consistent with constraints",
+            "Storage devices are optimized",
+            "Users have different views"
+        ],
+        "correct_answer": 1,
+        "explanation": "Integrity services ensure data is accurate and consistent with defined constraints."
+    },
+    {
+        "id": 101,
+        "type": "multiple_choice",
+        "question": "A user-accessible catalog in a DBMS contains:",
+        "options": [
+            "Only user passwords",
+            "Metadata about all database objects",
+            "Actual data records",
+            "Index structures only"
+        ],
+        "correct_answer": 1,
+        "explanation": "The user-accessible catalog contains metadata describing all database objects."
+    },
+    {
+        "id": 102,
+        "type": "multiple_choice",
+        "question": "Utility services of a DBMS include:",
+        "options": [
+            "Query optimization only",
+            "Backup, recovery, and database maintenance",
+            "User view definition",
+            "Constraint checking"
+        ],
+        "correct_answer": 1,
+        "explanation": "Utility services include backup, recovery, and general database maintenance."
+    },
+    {
+        "id": 103,
+        "type": "multiple_choice",
+        "question": "Support for data communication in a DBMS allows:",
+        "options": [
+            "Faster local processing",
+            "Data sharing over networks",
+            "Better compression algorithms",
+            "User-defined functions in C++"
+        ],
+        "correct_answer": 1,
+        "explanation": "Support for data communication allows data sharing over networks."
+    },
+    {
+        "id": 104,
+        "type": "multiple_choice",
+        "question": "Services to promote data independence in a DBMS allow:",
+        "options": [
+            "Data duplication",
+            "Changes at lower levels without affecting higher levels",
+            "Unlimited data storage",
+            "Automatic indexing"
+        ],
+        "correct_answer": 1,
+        "explanation": "Data independence services ensure changes at lower levels do not affect higher levels."
+    },
+    {
+        "id": 105,
+        "type": "multiple_choice",
+        "question": "Which of the following is NOT a typical function of a DBMS?",
+        "options": [
+            "Transaction support",
+            "Concurrency control services",
+            "Web browser rendering",
+            "Recovery services"
+        ],
+        "correct_answer": 2,
+        "explanation": "Web browser rendering is not a DBMS function; DBMS functions include transaction support, concurrency control, recovery, integrity, and utility services."
+    }
+
 
 
 
