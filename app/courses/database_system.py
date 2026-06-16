@@ -399,7 +399,400 @@ database_system_quiz = {
     ],
     "correct_answer": 1,
     "explanation": "Sophisticated users understand the database structure and use SQL directly. Naïve users interact through applications, casual users access occasionally, and temporary users are not a standard category."
+  },
+  
+  
+  {
+    "id": 31,
+    "type": "multiple_choice",
+    "question": "The ability to change the conceptual schema without affecting the external schemas is known as ______ data independence.",
+    "options": [
+      "Physical",
+      "Logical",
+      "External",
+      "Internal"
+    ],
+    "correct_answer": 1,
+    "explanation": "Logical data independence allows changes to the conceptual schema without affecting external views. Physical independence deals with internal schema changes."
+  },
+  {
+    "id": 32,
+    "type": "multiple_choice",
+    "question": "A ______ is a collection of related data that is stored in a structured format and can be accessed electronically.",
+    "options": [
+      "File",
+      "Database",
+      "Table",
+      "Record"
+    ],
+    "correct_answer": 1,
+    "explanation": "A database is an organized collection of related data. Files, tables, and records are components within a database."
+  },
+  {
+    "id": 33,
+    "type": "multiple_choice",
+    "question": "In a database, a ______ represents a single row in a table.",
+    "options": [
+      "Field",
+      "Column",
+      "Tuple",
+      "Attribute"
+    ],
+    "correct_answer": 2,
+    "explanation": "A tuple (or record) is a single row in a table. Fields/columns are attributes, and rows contain complete records."
+  },
+  {
+    "id": 34,
+    "type": "multiple_choice",
+    "question": "The property that ensures a transaction is executed as a single unit (all or nothing) is called ______.",
+    "options": [
+      "Consistency",
+      "Isolation",
+      "Durability",
+      "Atomicity"
+    ],
+    "correct_answer": 3,
+    "explanation": "Atomicity ensures transactions are all-or-nothing. Consistency maintains integrity, isolation prevents interference, and durability ensures persistence."
+  },
+  {
+    "id": 35,
+    "type": "multiple_choice",
+    "question": "The ACID property that ensures that a transaction leaves the database in a valid state is ______.",
+    "options": [
+      "Atomicity",
+      "Consistency",
+      "Isolation",
+      "Durability"
+    ],
+    "correct_answer": 1,
+    "explanation": "Consistency ensures the database remains in a valid state after each transaction. Atomicity handles all-or-nothing execution."
+  },
+  {
+    "id": 36,
+    "type": "multiple_choice",
+    "question": "The ACID property that ensures that once a transaction is committed, its changes are permanent is ______.",
+    "options": [
+      "Atomicity",
+      "Consistency",
+      "Isolation",
+      "Durability"
+    ],
+    "correct_answer": 3,
+    "explanation": "Durability guarantees committed transactions persist even after system failures. Atomicity, consistency, and isolation address other aspects."
+  },
+  {
+    "id": 37,
+    "type": "multiple_choice",
+    "question": "The ACID property that ensures that concurrent transactions do not interfere with each other is ______.",
+    "options": [
+      "Atomicity",
+      "Consistency",
+      "Isolation",
+      "Durability"
+    ],
+    "correct_answer": 2,
+    "explanation": "Isolation prevents interference between concurrent transactions. Each transaction appears to execute in isolation from others."
+  },
+  {
+    "id": 38,
+    "type": "multiple_choice",
+    "question": "A ______ is a logical unit of work that accesses and possibly modifies the contents of a database.",
+    "options": [
+      "Query",
+      "Transaction",
+      "Program",
+      "Procedure"
+    ],
+    "correct_answer": 1,
+    "explanation": "A transaction is a logical unit of work that may include multiple operations. Queries, programs, and procedures are related but broader terms."
+  },
+  {
+    "id": 39,
+    "type": "multiple_choice",
+    "question": "The process of identifying and correcting errors in a database is called data ______.",
+    "options": [
+      "Cleaning",
+      "Validation",
+      "Verification",
+      "Purification"
+    ],
+    "correct_answer": 0,
+    "explanation": "Data cleaning (or cleansing) identifies and corrects errors. Validation checks data rules, verification confirms accuracy."
+  },
+  {
+    "id": 40,
+    "type": "multiple_choice",
+    "question": "A ______ is a request for data or information from a database.",
+    "options": [
+      "Report",
+      "Query",
+      "Form",
+      "View"
+    ],
+    "correct_answer": 1,
+    "explanation": "A query is a request for data retrieval or manipulation. Reports are formatted outputs, forms are input interfaces, and views are virtual tables."
+  },
+  {
+    "id": 41,
+    "type": "multiple_choice",
+    "question": "The SQL command used to create a new table is ______.",
+    "options": [
+      "CREATE TABLE",
+      "NEW TABLE",
+      "MAKE TABLE",
+      "ADD TABLE"
+    ],
+    "correct_answer": 0,
+    "explanation": "CREATE TABLE is the SQL command for creating new tables. The other options are not valid SQL syntax."
+  },
+  {
+    "id": 42,
+    "type": "multiple_choice",
+    "question": "The SQL command used to add a new column to an existing table is ______.",
+    "options": [
+      "ALTER TABLE ... ADD COLUMN",
+      "ALTER TABLE ... INSERT COLUMN",
+      "MODIFY TABLE ... ADD COLUMN",
+      "UPDATE TABLE ... ADD COLUMN"
+    ],
+    "correct_answer": 0,
+    "explanation": "ALTER TABLE ... ADD COLUMN is the correct syntax. INSERT and UPDATE are for data manipulation, not schema changes."
+  },
+  {
+    "id": 43,
+    "type": "multiple_choice",
+    "question": "The SQL command used to permanently remove a table from the database is ______.",
+    "options": [
+      "DELETE TABLE",
+      "REMOVE TABLE",
+      "DROP TABLE",
+      "TRUNCATE TABLE"
+    ],
+    "correct_answer": 2,
+    "explanation": "DROP TABLE permanently removes the table and its structure. DELETE removes rows, TRUNCATE removes all rows but keeps the structure."
+  },
+  {
+    "id": 44,
+    "type": "multiple_choice",
+    "question": "An SQL ______ is a virtual table based on the result-set of a SELECT statement.",
+    "options": [
+      "Index",
+      "View",
+      "Sequence",
+      "Synonym"
+    ],
+    "correct_answer": 1,
+    "explanation": "A view is a virtual table that doesn't store data physically. Indexes improve performance, sequences generate numbers, and synonyms are aliases."
+  },
+  {
+    "id": 45,
+    "type": "multiple_choice",
+    "question": "The SQL keyword used to join two tables and return all rows from the left table, even if there are no matches in the right table, is ______.",
+    "options": [
+      "INNER JOIN",
+      "RIGHT JOIN",
+      "LEFT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    "correct_answer": 2,
+    "explanation": "LEFT JOIN returns all rows from the left table with matching rows from the right. RIGHT JOIN does the opposite, INNER JOIN returns only matches."
+  },
+  {
+    "id": 46,
+    "type": "multiple_choice",
+    "question": "The SQL keyword used to combine the results of two or more SELECT statements is ______.",
+    "options": [
+      "COMBINE",
+      "MERGE",
+      "UNION",
+      "JOIN"
+    ],
+    "correct_answer": 2,
+    "explanation": "UNION combines results of multiple SELECT statements. JOIN combines columns, while COMBINE and MERGE are not SQL keywords."
+  },
+  {
+    "id": 47,
+    "type": "multiple_choice",
+    "question": "The SQL aggregate function used to find the average value of a numeric column is ______.",
+    "options": [
+      "SUM",
+      "AVG",
+      "COUNT",
+      "MAX"
+    ],
+    "correct_answer": 1,
+    "explanation": "AVG calculates the average. SUM adds values, COUNT counts rows, and MAX finds the maximum value."
+  },
+  {
+    "id": 48,
+    "type": "multiple_choice",
+    "question": "The SQL aggregate function used to find the number of rows in a result set is ______.",
+    "options": [
+      "COUNT",
+      "SUM",
+      "AVG",
+      "TOTAL"
+    ],
+    "correct_answer": 0,
+    "explanation": "COUNT returns the number of rows. SUM adds values, AVG calculates averages, and TOTAL is not a standard SQL aggregate function."
+  },
+  {
+    "id": 49,
+    "type": "multiple_choice",
+    "question": "A ______ constraint ensures that a column cannot contain a null value.",
+    "options": [
+      "UNIQUE",
+      "CHECK",
+      "NOT NULL",
+      "PRIMARY KEY"
+    ],
+    "correct_answer": 2,
+    "explanation": "NOT NULL prevents null values. UNIQUE ensures all values are distinct, CHECK validates conditions, and PRIMARY KEY combines uniqueness and not null."
+  },
+  {
+    "id": 50,
+    "type": "multiple_choice",
+    "question": "A ______ constraint ensures that all values in a column are distinct (no duplicates).",
+    "options": [
+      "UNIQUE",
+      "NOT NULL",
+      "CHECK",
+      "DISTINCT"
+    ],
+    "correct_answer": 0,
+    "explanation": "UNIQUE enforces distinct values. NOT NULL prevents nulls, CHECK validates conditions, and DISTINCT is a keyword, not a constraint."
+  },
+  {
+    "id": 51,
+    "type": "multiple_choice",
+    "question": "A ______ is a database object that improves the speed of data retrieval operations.",
+    "options": [
+      "View",
+      "Trigger",
+      "Index",
+      "Sequence"
+    ],
+    "correct_answer": 2,
+    "explanation": "Indexes improve query performance. Views are virtual tables, triggers execute automatically, and sequences generate numbers."
+  },
+  {
+    "id": 52,
+    "type": "multiple_choice",
+    "question": "A ______ is a program that automatically executes in response to certain events on a table.",
+    "options": [
+      "View",
+      "Trigger",
+      "Index",
+      "Stored Procedure"
+    ],
+    "correct_answer": 1,
+    "explanation": "A trigger executes automatically when specified events occur. Views are virtual tables, indexes improve performance, and stored procedures are called explicitly."
+  },
+  {
+    "id": 53,
+    "type": "multiple_choice",
+    "question": "A ______ is a pre-compiled collection of SQL statements that can be executed as a single unit.",
+    "options": [
+      "Trigger",
+      "View",
+      "Stored Procedure",
+      "Function"
+    ],
+    "correct_answer": 2,
+    "explanation": "Stored procedures are pre-compiled SQL collections. Triggers are event-driven, views are virtual tables, and functions return single values."
+  },
+  {
+    "id": 54,
+    "type": "multiple_choice",
+    "question": "The highest level of normalization that ensures no non-key attribute depends on another non-key attribute is ______.",
+    "options": [
+      "1NF",
+      "2NF",
+      "3NF",
+      "BCNF"
+    ],
+    "correct_answer": 2,
+    "explanation": "3NF eliminates transitive dependencies. 1NF deals with atomicity, 2NF with partial dependencies, and BCNF is stricter than 3NF."
+  },
+  {
+    "id": 55,
+    "type": "multiple_choice",
+    "question": "The normalization level that requires all attributes to be atomic (single value) is ______.",
+    "options": [
+      "1NF",
+      "2NF",
+      "3NF",
+      "BCNF"
+    ],
+    "correct_answer": 0,
+    "explanation": "1NF (First Normal Form) requires atomic attributes. Higher normal forms build upon 1NF requirements."
+  },
+  {
+    "id": 56,
+    "type": "multiple_choice",
+    "question": "A relationship between two entities where one occurrence of entity A can relate to many of entity B is called a ______ relationship.",
+    "options": [
+      "One-to-One",
+      "One-to-Many",
+      "Many-to-Many",
+      "Recursive"
+    ],
+    "correct_answer": 1,
+    "explanation": "One-to-Many means one entity A relates to many entity B. One-to-One is single match, Many-to-Many is multiple on both sides."
+  },
+  {
+    "id": 57,
+    "type": "multiple_choice",
+    "question": "A relationship between two entities where many occurrences of entity A can relate to many of entity B is called a ______ relationship.",
+    "options": [
+      "One-to-One",
+      "One-to-Many",
+      "Many-to-Many",
+      "Complex"
+    ],
+    "correct_answer": 2,
+    "explanation": "Many-to-Many relationships require a junction table in relational databases. One-to-One and One-to-Many are simpler relationships."
+  },
+  {
+    "id": 58,
+    "type": "multiple_choice",
+    "question": "The process of denormalization involves intentionally introducing ______ to improve performance.",
+    "options": [
+      "Redundancy",
+      "Normalization",
+      "Complexity",
+      "Security"
+    ],
+    "correct_answer": 0,
+    "explanation": "Denormalization introduces redundancy to reduce joins and improve performance. Normalization reduces redundancy, and complexity/security are unrelated."
+  },
+  {
+    "id": 59,
+    "type": "multiple_choice",
+    "question": "A ______ attack involves injecting malicious SQL code into input fields to manipulate the database.",
+    "options": [
+      "Buffer Overflow",
+      "SQL Injection",
+      "Cross-Site Scripting",
+      "Man-in-the-Middle"
+    ],
+    "correct_answer": 1,
+    "explanation": "SQL Injection is the specific attack targeting databases. Buffer overflow, XSS, and MITM are different types of cyber attacks."
+  },
+  {
+    "id": 60,
+    "type": "multiple_choice",
+    "question": "The ______ is the central component of a DBMS that interprets queries, processes transactions, and manages the system.",
+    "options": [
+      "Query Processor",
+      "Transaction Manager",
+      "Database Engine",
+      "File Manager"
+    ],
+    "correct_answer": 2,
+    "explanation": "The Database Engine is the core component managing all DBMS functions. Query processor handles queries, transaction manager handles transactions, and file manager handles storage."
   }
+
 
 
 
