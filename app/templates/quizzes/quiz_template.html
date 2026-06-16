@@ -198,6 +198,46 @@
                 padding: 12px 16px;
             }
         }
+
+        /* Progress info styles */
+        .progress-info {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            border-left: 4px solid #DC2626;
+        }
+        .progress-info .stat {
+            display: inline-block;
+            margin-right: 16px;
+            font-size: 13px;
+        }
+        .progress-info .stat .label {
+            color: #64748b;
+        }
+        .progress-info .stat .value {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .progress-info .stat .value.text-green {
+            color: #10b981;
+        }
+        .progress-info .stat .value.text-red {
+            color: #ef4444;
+        }
+        .cycle-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .cycle-badge.complete {
+            background: #d1fae5;
+            color: #065f46;
+        }
     </style>
     <!-- Lucide icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -317,6 +357,55 @@
                         <span>Adaptive Learning</span>
                     </div>
                 </div>
+
+                <!-- Progress Info - NEW: Shows cycle and progress -->
+                {% if progress %}
+                <div class="progress-info">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="cycle-badge {% if progress.cycle_complete %}complete{% endif %}">
+                            {% if progress.cycle_complete %}
+                                ✅ Cycle Complete!
+                            {% else %}
+                                Cycle {{ progress.current_cycle }}
+                            {% endif %}
+                        </span>
+                        <span class="stat">
+                            <span class="label">Progress:</span>
+                            <span class="value">{{ progress.completed }}/{{ progress.total_questions }}</span>
+                        </span>
+                        {% if progress.incorrect > 0 %}
+                        <span class="stat">
+                            <span class="label">Need Review:</span>
+                            <span class="value text-red">{{ progress.incorrect }}</span>
+                        </span>
+                        {% endif %}
+                        {% if progress.unattempted > 0 %}
+                        <span class="stat">
+                            <span class="label">Not Started:</span>
+                            <span class="value">{{ progress.unattempted }}</span>
+                        </span>
+                        {% endif %}
+                        <span class="stat">
+                            <span class="label">Completed:</span>
+                            <span class="value text-green">{{ progress.percentage|round(1) }}%</span>
+                        </span>
+                    </div>
+                    <div class="progress-bar mt-2" style="height: 4px;">
+                        <div class="progress-fill {% if progress.cycle_complete %}" style="background: #10b981;{% endif %} width: {{ progress.percentage }}%;"></div>
+                    </div>
+                    {% if progress.cycle_complete %}
+                    <div class="mt-2 text-sm text-green-600">
+                        <i data-lucide="trophy" class="inline-block w-4 h-4 mr-1"></i>
+                        All questions completed! Starting new cycle with fresh questions.
+                    </div>
+                    {% elif progress.incorrect > 0 %}
+                    <div class="mt-2 text-sm text-red-600">
+                        <i data-lucide="info" class="inline-block w-4 h-4 mr-1"></i>
+                        {{ progress.incorrect }} question(s) need review. You'll see them again until answered correctly.
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
         </div>
 
@@ -349,6 +438,12 @@
                             <i data-lucide="bar-chart" class="w-4 h-4 text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
                             <span class="break-words">Track your progress and review results</span>
                         </li>
+                        {% if progress and progress.incorrect > 0 %}
+                        <li class="flex items-start">
+                            <i data-lucide="repeat" class="w-4 h-4 text-red-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span class="break-words text-red-600">You have <strong>{{ progress.incorrect }}</strong> question(s) to review</span>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <button id="start-btn" class="w-full sm:w-auto py-3 px-6 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition duration-300 shadow-md hover:shadow-lg text-base sm:text-lg">
@@ -539,7 +634,7 @@
         <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- JavaScript Section - ALL LOGIC PRESERVED -->
+    <!-- JavaScript Section - ALL LOGIC PRESERVED with minor updates -->
      <script>
         // Quiz state
 let currentQuestion = 0;
@@ -1458,6 +1553,8 @@ async function submitQuizResults(percentage, adaptiveReport = null) {
         if (data.success) {
             console.log('✅ Quiz results saved successfully to database');
             console.log('✅ Attempt ID:', data.attempt_id);
+            console.log('✅ Cycle Number:', data.cycle_number || 'N/A');
+            console.log('✅ Progress:', data.progress || 'N/A');
             showMessage('Quiz results saved successfully!', false);
             
             // Store attempt ID for later reference
@@ -1586,4 +1683,4 @@ function showMessage(message, isError = false) {
 }
 </script>
 </body>
-</html> 
+</html>

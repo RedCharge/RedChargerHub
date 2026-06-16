@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify, session, redirect, url_for
 from flask_login import login_required, current_user
-from app.models import QuizAttempt, db
+from app.models import QuizAttempt, UserQuestionProgress, db
 from difflib import SequenceMatcher
 import re
 from datetime import datetime
@@ -216,44 +216,154 @@ def load_quiz_data_from_module(quiz_slug):
         traceback.print_exc()
         return None
 
-def get_course_questions_api(quiz_slug, count=20):
-    """Get questions for a specific course"""
+def initialize_question_progress(user_id, quiz_type, questions):
+    """Initialize progress records for all questions in a quiz"""
     try:
-        # Load quiz data from module
+        print(f"Initializing question progress for user {user_id}, quiz {quiz_type}")
+        created_count = 0
+        
+        for question in questions:
+            question_id = str(question.get('id'))
+            
+            # Check if progress record already exists
+            existing = UserQuestionProgress.query.filter_by(
+                user_id=user_id,
+                quiz_type=quiz_type,
+                question_id=question_id
+            ).first()
+            
+            if not existing:
+                progress = UserQuestionProgress(
+                    user_id=user_id,
+                    quiz_type=quiz_type,
+                    question_id=question_id
+                )
+                db.session.add(progress)
+                created_count += 1
+        
+        if created_count > 0:
+            db.session.commit()
+            print(f"Created {created_count} progress records")
+        
+        return True
+    except Exception as e:
+        print(f"Error initializing question progress: {e}")
+        db.session.rollback()
+        return False
+
+def get_adaptive_questions(quiz_slug, user_id, batch_size=20):
+    """
+    Get adaptive questions based on user's progress.
+    Implements the cycling algorithm:
+    1. Questions answered incorrectly get highest priority
+    2. Unattempted questions get medium priority
+    3. Completed questions get lowest priority
+    4. Cycle resets when all questions are completed
+    """
+    try:
+        # Load all questions for the course
         quiz_data = load_quiz_data_from_module(quiz_slug)
-        
         if not quiz_data:
-            print(f"No quiz data returned for {quiz_slug}")
-            return {
-                'success': False,
-                'message': 'Could not load quiz data from module'
-            }
+            print(f"Could not load quiz data for {quiz_slug}")
+            return None
         
-        if 'questions' not in quiz_data:
-            print(f"No 'questions' key in quiz data for {quiz_slug}")
-            return {
-                'success': False,
-                'message': 'No questions found in quiz data'
-            }
+        all_questions = quiz_data.get('questions', [])
+        print(f"Loaded {len(all_questions)} total questions for {quiz_slug}")
         
-        all_questions = quiz_data['questions']
-        print(f"Found {len(all_questions)} total questions for {quiz_slug}")
+        # Initialize progress records if they don't exist
+        initialize_question_progress(user_id, quiz_slug, all_questions)
         
-        # Check if we have enough questions
-        if len(all_questions) < count:
-            print(f"Warning: Only {len(all_questions)} questions available, requested {count}")
-            count = len(all_questions)
+        # Get user's progress for this quiz
+        progress_records = UserQuestionProgress.query.filter_by(
+            user_id=user_id,
+            quiz_type=quiz_slug
+        ).all()
         
-        # Select random questions
-        if len(all_questions) > count:
-            quiz_questions = random.sample(all_questions, count)
-        else:
-            quiz_questions = all_questions.copy()
+        if not progress_records:
+            print(f"No progress records found for user {user_id}, quiz {quiz_slug}")
+            # Fallback to random selection
+            return get_random_questions(all_questions, batch_size)
         
-        print(f"Selected {len(quiz_questions)} questions for quiz")
+        # Create a mapping of question_id to progress record
+        progress_map = {p.question_id: p for p in progress_records}
+        
+        # Categorize questions
+        incorrect_questions = []
+        unattempted_questions = []
+        completed_questions = []
+        
+        for question in all_questions:
+            q_id = str(question.get('id'))
+            progress = progress_map.get(q_id)
+            
+            if not progress:
+                # No progress record - treat as unattempted
+                unattempted_questions.append(question)
+            elif progress.needs_review:
+                # Answered incorrectly, needs review
+                incorrect_questions.append({
+                    'question': question,
+                    'priority_score': progress.priority_score,
+                    'incorrect_attempts': progress.incorrect_attempts
+                })
+            elif progress.is_unattempted:
+                # Never attempted
+                unattempted_questions.append(question)
+            else:
+                # Completed correctly
+                completed_questions.append(question)
+        
+        print(f"Question breakdown: {len(incorrect_questions)} incorrect, {len(unattempted_questions)} unattempted, {len(completed_questions)} completed")
+        
+        # Check if all questions are completed (cycle complete)
+        if len(completed_questions) == len(all_questions):
+            print("🎯 CYCLE COMPLETE! All questions answered correctly!")
+            # Reset all progress for new cycle
+            for progress in progress_records:
+                progress.reset_for_new_cycle()
+            print("All progress reset for new cycle")
+            
+            # After reset, all questions become unattempted again
+            unattempted_questions = all_questions.copy()
+            incorrect_questions = []
+            completed_questions = []
+        
+        # Select questions based on priority
+        selected_questions = []
+        
+        # 1. First, include incorrect questions (highest priority)
+        # Sort by priority score (highest first)
+        incorrect_questions.sort(key=lambda x: x['priority_score'], reverse=True)
+        
+        for item in incorrect_questions[:batch_size]:
+            selected_questions.append(item['question'])
+        
+        print(f"Added {len(selected_questions)} incorrect questions")
+        
+        # 2. Then fill remaining slots with unattempted questions
+        remaining_slots = batch_size - len(selected_questions)
+        if remaining_slots > 0 and unattempted_questions:
+            # Shuffle unattempted questions for variety
+            random.shuffle(unattempted_questions)
+            selected_questions.extend(unattempted_questions[:remaining_slots])
+            print(f"Added {min(remaining_slots, len(unattempted_questions))} unattempted questions")
+        
+        # 3. If still need more questions, add completed ones (for review)
+        if len(selected_questions) < batch_size:
+            remaining = batch_size - len(selected_questions)
+            if completed_questions:
+                # Randomly select from completed questions
+                random.shuffle(completed_questions)
+                selected_questions.extend(completed_questions[:remaining])
+                print(f"Added {min(remaining, len(completed_questions))} completed questions for review")
+        
+        # 4. If still no questions, something went wrong - use random
+        if not selected_questions:
+            print("No questions selected - falling back to random")
+            return get_random_questions(all_questions, batch_size)
         
         # Randomize answer positions for multiple choice questions
-        for question in quiz_questions:
+        for question in selected_questions:
             if 'options' in question and 'correct_answer' in question:
                 try:
                     # Store the correct answer text
@@ -267,23 +377,140 @@ def get_course_questions_api(quiz_slug, count=20):
                 except Exception as e:
                     print(f"Error shuffling options for question {question.get('id')}: {e}")
         
+        # Calculate progress statistics
+        total = len(all_questions)
+        completed_count = len(completed_questions)
+        progress_percentage = (completed_count / total * 100) if total > 0 else 0
+        
         return {
             'success': True,
-            'questions': quiz_questions,
-            'total_questions': len(all_questions),
-            'quiz_count': len(quiz_questions),
+            'questions': selected_questions,
+            'total_questions': total,
+            'quiz_count': len(selected_questions),
             'course_code': quiz_data.get('course_code', QUIZ_COURSES.get(quiz_slug, {}).get('course_code', '')),
             'course_name': quiz_data.get('course_name', QUIZ_COURSES.get(quiz_slug, {}).get('name', '')),
-            'passing_score': quiz_data.get('passing_score', 60)
+            'passing_score': quiz_data.get('passing_score', 60),
+            'progress': {
+                'completed': completed_count,
+                'incorrect': len(incorrect_questions),
+                'unattempted': len(unattempted_questions),
+                'total': total,
+                'percentage': progress_percentage,
+                'cycle_complete': completed_count == total
+            }
         }
         
     except Exception as e:
-        print(f"Error getting questions for {quiz_slug}: {str(e)}")
+        print(f"Error getting adaptive questions for {quiz_slug}: {str(e)}")
         traceback.print_exc()
         return {
             'success': False,
             'message': f'Error retrieving questions: {str(e)}'
         }
+
+def get_random_questions(all_questions, batch_size=20):
+    """Fallback: Get random questions"""
+    try:
+        if len(all_questions) < batch_size:
+            batch_size = len(all_questions)
+        
+        quiz_questions = random.sample(all_questions, batch_size) if len(all_questions) > batch_size else all_questions.copy()
+        
+        # Randomize answer positions
+        for question in quiz_questions:
+            if 'options' in question and 'correct_answer' in question:
+                try:
+                    correct_index = question['correct_answer']
+                    if isinstance(correct_index, int) and 0 <= correct_index < len(question['options']):
+                        correct_answer_text = question['options'][correct_index]
+                        random.shuffle(question['options'])
+                        question['correct_answer'] = question['options'].index(correct_answer_text)
+                except Exception as e:
+                    print(f"Error shuffling options: {e}")
+        
+        return {
+            'success': True,
+            'questions': quiz_questions,
+            'total_questions': len(all_questions),
+            'quiz_count': len(quiz_questions),
+            'progress': {
+                'completed': 0,
+                'incorrect': 0,
+                'unattempted': len(all_questions),
+                'total': len(all_questions),
+                'percentage': 0,
+                'cycle_complete': False
+            }
+        }
+    except Exception as e:
+        print(f"Error in get_random_questions: {e}")
+        return None
+
+def update_question_progress(user_id, quiz_type, question_id, was_correct):
+    """Update or create progress record for a question"""
+    try:
+        progress = UserQuestionProgress.query.filter_by(
+            user_id=user_id,
+            quiz_type=quiz_type,
+            question_id=question_id
+        ).first()
+        
+        if not progress:
+            # Create new progress record if it doesn't exist
+            progress = UserQuestionProgress(
+                user_id=user_id,
+                quiz_type=quiz_type,
+                question_id=question_id
+            )
+            db.session.add(progress)
+        
+        # Record the attempt
+        progress.record_attempt(was_correct)
+        
+        print(f"Updated progress for user {user_id}, question {question_id}: {'Correct' if was_correct else 'Incorrect'}")
+        return True
+    except Exception as e:
+        print(f"Error updating question progress: {e}")
+        db.session.rollback()
+        return False
+
+def get_question_progress_summary(user_id, quiz_type):
+    """Get progress summary for a specific quiz"""
+    try:
+        progress_records = UserQuestionProgress.query.filter_by(
+            user_id=user_id,
+            quiz_type=quiz_type
+        ).all()
+        
+        if not progress_records:
+            return {
+                'total_questions': 0,
+                'completed': 0,
+                'incorrect': 0,
+                'unattempted': 0,
+                'percentage': 0,
+                'cycle_complete': False,
+                'current_cycle': 1
+            }
+        
+        total = len(progress_records)
+        completed = sum(1 for p in progress_records if p.is_completed)
+        incorrect = sum(1 for p in progress_records if p.needs_review)
+        unattempted = sum(1 for p in progress_records if p.is_unattempted)
+        current_cycle = max([p.current_cycle for p in progress_records]) if progress_records else 1
+        
+        return {
+            'total_questions': total,
+            'completed': completed,
+            'incorrect': incorrect,
+            'unattempted': unattempted,
+            'percentage': (completed / total * 100) if total > 0 else 0,
+            'cycle_complete': completed == total if total > 0 else False,
+            'current_cycle': current_cycle
+        }
+    except Exception as e:
+        print(f"Error getting progress summary: {e}")
+        return None
 
 # ==============================================
 # MAIN ROUTES
@@ -334,6 +561,11 @@ def quizzes():
         if slug in user_attempts:
             course_info.update(user_attempts[slug])
         
+        # Get progress data for this quiz
+        progress = get_question_progress_summary(current_user.id, slug)
+        if progress:
+            course_info['progress'] = progress
+        
         courses_data.append(course_info)
     
     # Calculate stats
@@ -348,7 +580,7 @@ def quizzes():
 @quizzes_bp.route('/take/<quiz_slug>')
 @login_required
 def take_quiz(quiz_slug):
-    """Take an interactive quiz"""
+    """Take an interactive quiz with adaptive questions"""
     print(f"take_quiz called with slug: {quiz_slug}")
     
     if quiz_slug not in QUIZ_COURSES:
@@ -358,30 +590,30 @@ def take_quiz(quiz_slug):
     quiz_info = QUIZ_COURSES[quiz_slug]
     print(f"Quiz info loaded: {quiz_info['name']}")
     
-    # Try to load quiz data from module
-    quiz_data = load_quiz_data_from_module(quiz_slug)
+    # Get adaptive questions
+    result = get_adaptive_questions(quiz_slug, current_user.id, 20)
     
-    if not quiz_data:
+    if not result or not result.get('success'):
         flash('Could not load quiz questions from course module. Please contact administrator.', 'error')
         return redirect(url_for('quizzes.quizzes'))
     
-    print(f"Quiz data loaded successfully. Questions found: {len(quiz_data.get('questions', []))}")
+    quiz_data = {
+        'questions': result['questions'],
+        'passing_score': result.get('passing_score', 60),
+        'course_code': result.get('course_code', quiz_info['course_code']),
+        'course_name': result.get('course_name', quiz_info['name'])
+    }
     
-    # Add defaults if not present
-    if 'passing_score' not in quiz_data:
-        quiz_data['passing_score'] = 60
-    
-    if 'course_code' not in quiz_data:
-        quiz_data['course_code'] = quiz_info['course_code']
-    
-    if 'course_name' not in quiz_data:
-        quiz_data['course_name'] = quiz_info['name']
+    print(f"Loaded {len(quiz_data['questions'])} adaptive questions")
     
     # Calculate question counts for template
     questions = quiz_data.get('questions', [])
     total_questions = len(questions)
     mc_questions = len([q for q in questions if q.get('type') == 'multiple_choice'])
     written_questions = len([q for q in questions if q.get('type') == 'written'])
+    
+    # Get progress summary
+    progress = get_question_progress_summary(current_user.id, quiz_slug)
     
     # Get the last attempt for this quiz
     last_attempt = QuizAttempt.query.filter_by(
@@ -400,7 +632,8 @@ def take_quiz(quiz_slug):
                          mc_questions=mc_questions,
                          written_questions=written_questions,
                          passing_score=quiz_data['passing_score'],
-                         last_attempt=last_attempt)
+                         last_attempt=last_attempt,
+                         progress=progress)
 
 # ==============================================
 # API ROUTES
@@ -409,7 +642,7 @@ def take_quiz(quiz_slug):
 @quizzes_bp.route('/api/submit', methods=['POST'])
 @login_required
 def submit_quiz():
-    """API endpoint to submit and grade quiz - SIMPLIFIED VERSION"""
+    """API endpoint to submit and grade quiz - WITH ADAPTIVE TRACKING"""
     try:
         data = request.json
         print(f"SUBMIT QUIZ: Received data for user {current_user.id}")
@@ -482,6 +715,7 @@ def submit_quiz():
         total_questions = len(questions_asked)
         correct_answers = 0
         incorrect_answers = 0
+        incorrect_question_ids = []  # Track which questions were wrong
         
         print(f"=== GRADING START ===")
         print(f"Total questions to grade: {total_questions}")
@@ -510,6 +744,7 @@ def submit_quiz():
             }
             
             question_type = question.get('type', 'multiple_choice')
+            was_correct = False
             
             if question_type == 'multiple_choice':
                 correct_answer = question.get('correct_answer')
@@ -522,6 +757,7 @@ def submit_quiz():
                     result['is_correct'] = False
                     result['points'] = 0
                     incorrect_answers += 1
+                    incorrect_question_ids.append(q_id)
                     print(f"  RESULT: ✗ INCORRECT (No correct answer in database)")
                 
                 else:
@@ -530,6 +766,7 @@ def submit_quiz():
                         result['is_correct'] = False
                         result['points'] = 0
                         incorrect_answers += 1
+                        incorrect_question_ids.append(q_id)
                         print(f"  EMPTY ANSWER - Marked as incorrect")
                         
                     else:
@@ -565,28 +802,28 @@ def submit_quiz():
                         # Now compare the normalized values
                         # First try direct string comparison
                         if user_normalized == correct_normalized:
-                            is_correct = True
+                            was_correct = True
                             print(f"  Direct match: '{user_normalized}' == '{correct_normalized}': True")
                         
                         # Handle letter answers (A, B, C, D) for multiple choice
                         elif user_normalized in ['A', 'B', 'C', 'D'] and correct_normalized in ['0', '1', '2', '3']:
                             letter_to_index = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
                             user_index = letter_to_index.get(user_normalized)
-                            is_correct = (user_index == int(correct_normalized))
-                            print(f"  Letter to index: '{user_normalized}' (index {user_index}) == '{correct_normalized}': {is_correct}")
+                            was_correct = (user_index == int(correct_normalized))
+                            print(f"  Letter to index: '{user_normalized}' (index {user_index}) == '{correct_normalized}': {was_correct}")
                         
                         # Handle numeric string comparison
                         elif user_normalized in ['0', '1', '2', '3'] and correct_normalized in ['0', '1', '2', '3']:
-                            is_correct = (user_normalized == correct_normalized)
-                            print(f"  Numeric comparison: '{user_normalized}' == '{correct_normalized}': {is_correct}")
+                            was_correct = (user_normalized == correct_normalized)
+                            print(f"  Numeric comparison: '{user_normalized}' == '{correct_normalized}': {was_correct}")
                         
                         # Last resort: case-insensitive string comparison
                         else:
-                            is_correct = (user_upper == correct_upper)
-                            print(f"  Case-insensitive: '{user_upper}' == '{correct_upper}': {is_correct}")
+                            was_correct = (user_upper == correct_upper)
+                            print(f"  Case-insensitive: '{user_upper}' == '{correct_upper}': {was_correct}")
                         
                         # Update counters
-                        if is_correct:
+                        if was_correct:
                             result['is_correct'] = True
                             result['points'] = 1
                             total_score += 1
@@ -596,6 +833,7 @@ def submit_quiz():
                             result['is_correct'] = False
                             result['points'] = 0
                             incorrect_answers += 1
+                            incorrect_question_ids.append(q_id)
                             print(f"  RESULT: ✗ INCORRECT")
                     
                     # Store correct answer text for display
@@ -631,7 +869,9 @@ def submit_quiz():
                     question.get('min_similarity', 0.6)
                 )
                 
-                if verification['is_correct']:
+                was_correct = verification['is_correct']
+                
+                if was_correct:
                     result['is_correct'] = True
                     result['points'] = 1
                     total_score += 1
@@ -641,12 +881,22 @@ def submit_quiz():
                     result['is_correct'] = False
                     result['points'] = 0
                     incorrect_answers += 1
+                    incorrect_question_ids.append(q_id)
                     print(f"  Written answer: ✗ INCORRECT! Similarity: {verification['similarity']:.2f}")
                 
                 result['similarity'] = verification['similarity']
                 result['found_keywords'] = verification['found_keywords']
                 result['correct_answer'] = question.get('correct_answer', '')
                 result['expected_keywords'] = question.get('keywords', [])
+            
+            # Update question progress
+            if was_correct is not None:
+                update_question_progress(
+                    user_id=current_user.id,
+                    quiz_type=quiz_type,
+                    question_id=q_id,
+                    was_correct=was_correct
+                )
             
             results.append(result)
         
@@ -656,6 +906,7 @@ def submit_quiz():
         print(f"Total Score: {total_score}")
         print(f"Correct Answers: {correct_answers}")
         print(f"Incorrect Answers: {incorrect_answers}")
+        print(f"Incorrect Question IDs: {incorrect_question_ids}")
         
         # Validate that totals match
         if (correct_answers + incorrect_answers) != total_questions:
@@ -678,6 +929,13 @@ def submit_quiz():
         print(f"Passing Score: {passing_score}%")
         print(f"Passed: {percentage >= passing_score}")
         
+        # Get current cycle number from progress
+        progress_records = UserQuestionProgress.query.filter_by(
+            user_id=current_user.id,
+            quiz_type=quiz_type
+        ).all()
+        current_cycle = max([p.current_cycle for p in progress_records]) if progress_records else 1
+        
         # Create metadata for JSON storage
         metadata = {
             'correct_answers': correct_answers,
@@ -689,7 +947,9 @@ def submit_quiz():
             'course_code': quiz_info['course_code'],
             'passed': percentage >= passing_score,
             'total_score': total_score,
-            'total_questions': total_questions
+            'total_questions': total_questions,
+            'cycle_number': current_cycle,
+            'incorrect_question_ids': incorrect_question_ids
         }
         
         # Combine all data for JSON storage
@@ -705,6 +965,9 @@ def submit_quiz():
             }
         }
         
+        # Get progress summary before saving
+        progress_summary = get_question_progress_summary(current_user.id, quiz_type)
+        
         # Save to database
         try:
             quiz_attempt = QuizAttempt(
@@ -717,7 +980,10 @@ def submit_quiz():
                 grade=grade_letter,
                 answers=json.dumps(combined_data),
                 results=json.dumps(results),
-                attempt_date=datetime.now()
+                attempt_date=datetime.now(),
+                cycle_number=current_cycle,
+                questions_asked=json.dumps(answered_ids),
+                incorrect_questions=json.dumps(incorrect_question_ids)
             )
             
             db.session.add(quiz_attempt)
@@ -727,6 +993,7 @@ def submit_quiz():
             print(f"  Correct answers: {correct_answers}")
             print(f"  Incorrect answers: {incorrect_answers}")
             print(f"  Total questions: {total_questions}")
+            print(f"  Cycle number: {current_cycle}")
             
         except Exception as db_error:
             print(f"DATABASE ERROR: {db_error}")
@@ -752,6 +1019,9 @@ def submit_quiz():
             'time_taken': time_taken,
             'adaptive_metrics': adaptive_metrics,
             'attempt_id': attempt_id,
+            'cycle_number': current_cycle,
+            'progress': progress_summary,
+            'incorrect_question_ids': incorrect_question_ids,
             'debug_info': {
                 'score_match': total_score == correct_answers,
                 'correct_plus_incorrect': f"{correct_answers} + {incorrect_answers} = {correct_answers + incorrect_answers}",
@@ -772,13 +1042,13 @@ def submit_quiz():
 @quizzes_bp.route('/api/<quiz_slug>/questions')
 @login_required
 def get_quiz_questions_api(quiz_slug):
-    """API endpoint to get questions for a specific quiz"""
+    """API endpoint to get adaptive questions for a specific quiz"""
     if quiz_slug not in QUIZ_COURSES:
         return jsonify({'success': False, 'error': 'Quiz not found'}), 404
     
     try:
         count = int(request.args.get('count', 20))
-        result = get_course_questions_api(quiz_slug, count)
+        result = get_adaptive_questions(quiz_slug, current_user.id, count)
         
         if result and result.get('success'):
             return jsonify(result)
@@ -794,6 +1064,82 @@ def get_quiz_questions_api(quiz_slug):
         return jsonify({
             'success': False,
             'message': f'Error retrieving questions: {str(e)}'
+        }), 500
+
+# ==============================================
+# PROGRESS API ENDPOINTS
+# ==============================================
+
+@quizzes_bp.route('/api/progress/<quiz_slug>')
+@login_required
+def get_progress(quiz_slug):
+    """Get user's progress for a specific quiz"""
+    if quiz_slug not in QUIZ_COURSES:
+        return jsonify({'success': False, 'error': 'Quiz not found'}), 404
+    
+    try:
+        progress = get_question_progress_summary(current_user.id, quiz_slug)
+        
+        if progress:
+            # Get detailed progress for each question
+            progress_records = UserQuestionProgress.query.filter_by(
+                user_id=current_user.id,
+                quiz_type=quiz_slug
+            ).all()
+            
+            detailed_progress = [p.to_dict() for p in progress_records]
+            
+            return jsonify({
+                'success': True,
+                'summary': progress,
+                'detailed': detailed_progress
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Could not retrieve progress'
+            }), 500
+            
+    except Exception as e:
+        print(f"Error in get_progress: {e}")
+        return jsonify({
+            'success': False,
+            'message': f'Error retrieving progress: {str(e)}'
+        }), 500
+
+@quizzes_bp.route('/api/progress/reset/<quiz_slug>')
+@login_required
+def reset_progress(quiz_slug):
+    """Reset progress for a specific quiz (start new cycle)"""
+    if quiz_slug not in QUIZ_COURSES:
+        return jsonify({'success': False, 'error': 'Quiz not found'}), 404
+    
+    try:
+        progress_records = UserQuestionProgress.query.filter_by(
+            user_id=current_user.id,
+            quiz_type=quiz_slug
+        ).all()
+        
+        if not progress_records:
+            return jsonify({
+                'success': False,
+                'message': 'No progress records found to reset'
+            }), 404
+        
+        for progress in progress_records:
+            progress.reset_for_new_cycle()
+        
+        return jsonify({
+            'success': True,
+            'message': 'Progress reset successfully. New cycle started.'
+        })
+        
+    except Exception as e:
+        print(f"Error resetting progress: {e}")
+        db.session.rollback()
+        return jsonify({
+            'success': False,
+            'message': f'Error resetting progress: {str(e)}'
         }), 500
 
 # ==============================================
@@ -828,6 +1174,9 @@ def get_all_results():
             course_name = attempt.quiz_name
             course_code = course_info.get('course_code', '')
             passed = attempt.percentage >= passing_score
+            cycle_number = attempt.cycle_number or 1
+            questions_asked = attempt.questions_asked_list if attempt.questions_asked else []
+            incorrect_questions = attempt.incorrect_questions_list if attempt.incorrect_questions else []
             
             # Try to extract from JSON answers
             try:
@@ -844,6 +1193,8 @@ def get_all_results():
                         course_name = quiz_metadata.get('course_name', attempt.quiz_name)
                         course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
                         passed = quiz_metadata.get('passed', attempt.percentage >= passing_score)
+                        cycle_number = quiz_metadata.get('cycle_number', attempt.cycle_number or 1)
+                        incorrect_questions = quiz_metadata.get('incorrect_question_ids', incorrect_questions)
             except Exception as e:
                 print(f"Error parsing JSON for attempt {attempt.id}: {e}")
             
@@ -863,7 +1214,10 @@ def get_all_results():
                 'time_taken': time_taken,
                 'correct_answers': correct_answers,
                 'incorrect_answers': incorrect_answers,
-                'adaptive_metrics': adaptive_metrics
+                'adaptive_metrics': adaptive_metrics,
+                'cycle_number': cycle_number,
+                'questions_asked_count': len(questions_asked),
+                'incorrect_questions_count': len(incorrect_questions)
             })
         
         print(f"DEBUG: Returning {len(results)} results")
@@ -909,6 +1263,7 @@ def get_quiz_attempt_details(attempt_id):
         course_name = attempt.quiz_name
         course_code = course_info.get('course_code', '')
         passed = attempt.percentage >= passing_score
+        cycle_number = attempt.cycle_number or 1
         
         # Try to extract from JSON
         try:
@@ -925,6 +1280,7 @@ def get_quiz_attempt_details(attempt_id):
                     course_name = quiz_metadata.get('course_name', attempt.quiz_name)
                     course_code = quiz_metadata.get('course_code', course_info.get('course_code', ''))
                     passed = quiz_metadata.get('passed', attempt.percentage >= passing_score)
+                    cycle_number = quiz_metadata.get('cycle_number', attempt.cycle_number or 1)
         except:
             pass
         
@@ -937,6 +1293,10 @@ def get_quiz_attempt_details(attempt_id):
                     questions_data = results_data
         except:
             pass
+        
+        # Get questions asked and incorrect
+        questions_asked = attempt.questions_asked_list if attempt.questions_asked else []
+        incorrect_questions = attempt.incorrect_questions_list if attempt.incorrect_questions else []
         
         result_data = {
             'id': attempt.id,
@@ -954,7 +1314,10 @@ def get_quiz_attempt_details(attempt_id):
             'passing_score': passing_score,
             'completed_at': attempt.attempt_date.isoformat() if attempt.attempt_date else None,
             'questions': questions_data,
-            'adaptive_metrics': adaptive_metrics
+            'adaptive_metrics': adaptive_metrics,
+            'cycle_number': cycle_number,
+            'questions_asked': questions_asked,
+            'incorrect_questions': incorrect_questions
         }
         
         return jsonify({
@@ -995,6 +1358,9 @@ def debug_latest_attempt():
             'total_questions': attempt.total_questions,
             'percentage': attempt.percentage,
             'grade': attempt.grade,
+            'cycle_number': attempt.cycle_number,
+            'questions_asked': attempt.questions_asked,
+            'incorrect_questions': attempt.incorrect_questions,
             'answers_raw': attempt.answers,
             'results_raw': attempt.results[:500] + '...' if attempt.results and len(attempt.results) > 500 else attempt.results
         }
@@ -1014,7 +1380,9 @@ def debug_latest_attempt():
                             'correct_answers': quiz_data.get('correct_answers', 'NOT FOUND'),
                             'incorrect_answers': quiz_data.get('incorrect_answers', 'NOT FOUND'),
                             'score_in_json': quiz_data.get('correct_answers', 'NOT FOUND'),
-                            'match_with_db_score': quiz_data.get('correct_answers', 0) == attempt.score
+                            'match_with_db_score': quiz_data.get('correct_answers', 0) == attempt.score,
+                            'cycle_number': quiz_data.get('cycle_number', 'NOT FOUND'),
+                            'incorrect_question_ids': quiz_data.get('incorrect_question_ids', 'NOT FOUND')
                         }
                     else:
                         parsed_data['warning'] = 'NO quiz_data key found!'
@@ -1023,10 +1391,14 @@ def debug_latest_attempt():
             except Exception as e:
                 parsed_data['parse_error'] = str(e)
         
+        # Get current progress
+        progress = get_question_progress_summary(current_user.id, attempt.quiz_type)
+        
         return jsonify({
             'success': True,
             'raw': raw_data,
-            'parsed': parsed_data
+            'parsed': parsed_data,
+            'current_progress': progress
         })
         
     except Exception as e:
@@ -1137,14 +1509,43 @@ def debug_db_state():
                 'grade': attempt.grade,
                 'attempt_date': attempt.attempt_date.isoformat() if attempt.attempt_date else None,
                 'has_answers': bool(attempt.answers),
-                'has_results': bool(attempt.results)
+                'has_results': bool(attempt.results),
+                'cycle_number': attempt.cycle_number,
+                'questions_asked_count': len(attempt.questions_asked_list) if attempt.questions_asked else 0,
+                'incorrect_questions_count': len(attempt.incorrect_questions_list) if attempt.incorrect_questions else 0
             })
+        
+        # Get progress records
+        progress_records = UserQuestionProgress.query.filter_by(user_id=current_user.id).all()
+        progress_summary = {}
+        for record in progress_records:
+            if record.quiz_type not in progress_summary:
+                progress_summary[record.quiz_type] = {
+                    'total': 0,
+                    'completed': 0,
+                    'incorrect': 0,
+                    'unattempted': 0,
+                    'cycle': 1
+                }
+            progress_summary[record.quiz_type]['total'] += 1
+            if record.is_completed:
+                progress_summary[record.quiz_type]['completed'] += 1
+            elif record.needs_review:
+                progress_summary[record.quiz_type]['incorrect'] += 1
+            elif record.is_unattempted:
+                progress_summary[record.quiz_type]['unattempted'] += 1
+            progress_summary[record.quiz_type]['cycle'] = max(
+                progress_summary[record.quiz_type]['cycle'],
+                record.current_cycle
+            )
         
         return jsonify({
             'success': True,
             'user_id': current_user.id,
             'total_attempts_in_db': total_attempts,
-            'attempts': attempts_data
+            'attempts': attempts_data,
+            'progress_summary': progress_summary,
+            'total_progress_records': len(progress_records)
         })
         
     except Exception as e:

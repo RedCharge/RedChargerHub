@@ -2,10 +2,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_cors import CORS
+from flask_migrate import Migrate  # <-- ADD THIS IMPORT
 import os
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+migrate = Migrate()  # <-- ADD THIS LINE
 
 def create_app():
     app = Flask(__name__)
@@ -22,6 +24,9 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
     CORS(app)  # Enable CORS if needed
+    
+    # Initialize Flask-Migrate - ADD THIS LINE
+    migrate.init_app(app, db)
     
     # Register blueprints
     from app.routes.auth import auth_bp
