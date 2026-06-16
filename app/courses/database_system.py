@@ -405,393 +405,653 @@ database_system_quiz = {
   {
     "id": 31,
     "type": "multiple_choice",
-    "question": "The ability to change the conceptual schema without affecting the external schemas is known as ______ data independence.",
+    "question": "A __________________________ architecture separates a database into external, conceptual, and internal levels.",
+    "options": [
+      "Two-schema",
+      "Three-schema",
+      "Physical-schema",
+      "Object-schema"
+    ],
+    "correct_answer": 1,
+    "explanation": "The Three-schema architecture divides the database into three levels: external (user views), conceptual (logical structure), and internal (physical storage)."
+},
+{
+    "id": 32,
+    "type": "multiple_choice",
+    "question": "The __________________________ level represents the user's view of the database.",
+    "options": [
+      "Internal",
+      "Logical",
+      "External",
+      "Physical"
+    ],
+    "correct_answer": 2,
+    "explanation": "The External level is the users' view, showing only the data relevant to specific users or applications."
+},
+{
+    "id": 33,
+    "type": "multiple_choice",
+    "question": "The __________________________ level describes how data is physically stored.",
+    "options": [
+      "External",
+      "Internal",
+      "Conceptual",
+      "Community"
+    ],
+    "correct_answer": 1,
+    "explanation": "The Internal level deals with physical storage structures, file organization, and indexing."
+},
+{
+    "id": 34,
+    "type": "multiple_choice",
+    "question": "The __________________________ level provides the overall logical view of the database.",
+    "options": [
+      "External",
+      "Internal",
+      "Conceptual",
+      "Physical"
+    ],
+    "correct_answer": 2,
+    "explanation": "The Conceptual level presents the logical structure of the entire database as seen by the DBA."
+},
+{
+    "id": 35,
+    "type": "multiple_choice",
+    "question": "The process of hiding storage details from users is called __________________________.",
+    "options": [
+      "Data abstraction",
+      "Data storage",
+      "Data manipulation",
+      "Data retrieval"
+    ],
+    "correct_answer": 0,
+    "explanation": "Data abstraction hides implementation details, allowing users to interact with data without knowing how it's stored."
+},
+{
+    "id": 36,
+    "type": "multiple_choice",
+    "question": "The ability to change the internal schema without affecting the conceptual schema is known as __________________________.",
+    "options": [
+      "Logical data independence",
+      "Data abstraction",
+      "Physical data independence",
+      "Data consistency"
+    ],
+    "correct_answer": 2,
+    "explanation": "Physical data independence allows modifications to internal storage without changing the conceptual schema."
+},
+{
+    "id": 37,
+    "type": "multiple_choice",
+    "question": "Changes at lower levels that do not affect higher levels demonstrate __________________________.",
+    "options": [
+      "Data integrity",
+      "Data independence",
+      "Data redundancy",
+      "Data security"
+    ],
+    "correct_answer": 1,
+    "explanation": "Data independence means changes at lower schema levels don't impact higher-level schemas."
+},
+{
+    "id": 38,
+    "type": "multiple_choice",
+    "question": "The overall description of a database is called a database __________________________.",
+    "options": [
+      "Instance",
+      "Schema",
+      "Attribute",
+      "Relation"
+    ],
+    "correct_answer": 1,
+    "explanation": "A schema is the overall logical description of the database structure."
+},
+{
+    "id": 39,
+    "type": "multiple_choice",
+    "question": "The actual contents of a database at a particular time are known as a database __________________________.",
+    "options": [
+      "Schema",
+      "Definition",
+      "Instance",
+      "Catalog"
+    ],
+    "correct_answer": 2,
+    "explanation": "An instance is the snapshot of data in the database at a specific moment in time."
+},
+{
+    "id": 40,
+    "type": "multiple_choice",
+    "question": "The mapping between the conceptual schema and internal schema is called __________________________ mapping.",
+    "options": [
+      "External/Internal",
+      "Internal/External",
+      "Conceptual/Internal",
+      "Logical/External"
+    ],
+    "correct_answer": 2,
+    "explanation": "Conceptual/Internal mapping defines how logical structures correspond to physical storage."
+},
+{
+    "id": 41,
+    "type": "multiple_choice",
+    "question": "The mapping between external views and the conceptual schema is called __________________________ mapping.",
+    "options": [
+      "Internal/Conceptual",
+      "Conceptual/Internal",
+      "External/Conceptual",
+      "Physical/Logical"
+    ],
+    "correct_answer": 2,
+    "explanation": "External/Conceptual mapping connects user views to the main logical schema."
+},
+{
+    "id": 42,
+    "type": "multiple_choice",
+    "question": "A database schema is sometimes referred to as the __________________________ of the database.",
+    "options": [
+      "Extension",
+      "Intension",
+      "State",
+      "Instance"
+    ],
+    "correct_answer": 1,
+    "explanation": "Intension refers to the schema or structure, while extension refers to the actual data instances."
+},
+{
+    "id": 43,
+    "type": "multiple_choice",
+    "question": "The state of a database at a particular time is also called its __________________________.",
+    "options": [
+      "Intension",
+      "Schema",
+      "Extension",
+      "Definition"
+    ],
+    "correct_answer": 2,
+    "explanation": "Extension is the set of actual data instances present in the database at any given time."
+},
+{
+    "id": 44,
+    "type": "multiple_choice",
+    "question": "The language used to define database structures is called __________________________.",
+    "options": [
+      "DML",
+      "SQL",
+      "DDL",
+      "DBL"
+    ],
+    "correct_answer": 2,
+    "explanation": "DDL (Data Definition Language) is used to create, modify, and delete database structures."
+},
+{
+    "id": 45,
+    "type": "multiple_choice",
+    "question": "The language used to insert, delete, retrieve, and update data is called __________________________.",
+    "options": [
+      "DDL",
+      "DML",
+      "DCL",
+      "DSL"
+    ],
+    "correct_answer": 1,
+    "explanation": "DML (Data Manipulation Language) handles data operations like INSERT, UPDATE, DELETE, and SELECT."
+},
+{
+    "id": 46,
+    "type": "multiple_choice",
+    "question": "DDL statements generate metadata stored in the __________________________.",
+    "options": [
+      "Data file",
+      "System catalog",
+      "Database instance",
+      "Data record"
+    ],
+    "correct_answer": 1,
+    "explanation": "The system catalog stores metadata about database objects like tables, columns, and constraints."
+},
+{
+    "id": 47,
+    "type": "multiple_choice",
+    "question": "Another name for the system catalog is the __________________________.",
+    "options": [
+      "Data model",
+      "Data dictionary",
+      "Database schema",
+      "Data structure"
+    ],
+    "correct_answer": 1,
+    "explanation": "Data dictionary is synonymous with system catalog - both store database metadata."
+},
+{
+    "id": 48,
+    "type": "multiple_choice",
+    "question": "The query language forms part of the __________________________ language.",
+    "options": [
+      "DDL",
+      "DML",
+      "DCL",
+      "DBL"
+    ],
+    "correct_answer": 1,
+    "explanation": "Query languages like SQL are part of DML as they retrieve data from databases."
+},
+{
+    "id": 49,
+    "type": "multiple_choice",
+    "question": "A DML that specifies how data should be retrieved is called __________________________ DML.",
+    "options": [
+      "Nonprocedural",
+      "Relational",
+      "Procedural",
+      "Structured"
+    ],
+    "correct_answer": 2,
+    "explanation": "Procedural DML requires the user to specify how to retrieve data, including step-by-step instructions."
+},
+{
+    "id": 50,
+    "type": "multiple_choice",
+    "question": "SQL is an example of a __________________________ DML.",
+    "options": [
+      "Procedural",
+      "Physical",
+      "Nonprocedural",
+      "Internal"
+    ],
+    "correct_answer": 2,
+    "explanation": "SQL is nonprocedural - users specify what data they want, not how to retrieve it."
+},
+{
+    "id": 51,
+    "type": "multiple_choice",
+    "question": "Fourth Generation Languages are commonly abbreviated as __________________________.",
+    "options": [
+      "3GL",
+      "4GL",
+      "DML",
+      "DDL"
+    ],
+    "correct_answer": 1,
+    "explanation": "4GL stands for Fourth Generation Languages, which are high-level nonprocedural languages."
+},
+{
+    "id": 52,
+    "type": "multiple_choice",
+    "question": "4GLs are generally __________________________ languages because users specify what to do rather than how to do it.",
+    "options": [
+      "Procedural",
+      "Sequential",
+      "Nonprocedural",
+      "Logical"
+    ],
+    "correct_answer": 2,
+    "explanation": "4GLs are nonprocedural, allowing users to focus on what needs to be accomplished."
+},
+{
+    "id": 53,
+    "type": "multiple_choice",
+    "question": "Languages such as C and COBOL are examples of __________________________ Generation Languages.",
+    "options": [
+      "First",
+      "Second",
+      "Third",
+      "Fourth"
+    ],
+    "correct_answer": 2,
+    "explanation": "C and COBOL are Third Generation Languages (3GLs), which are procedural programming languages."
+},
+{
+    "id": 54,
+    "type": "multiple_choice",
+    "question": "Tools that automatically create application code are called __________________________ generators.",
+    "options": [
+      "Form",
+      "Report",
+      "Application",
+      "Graphics"
+    ],
+    "correct_answer": 2,
+    "explanation": "Application generators automatically produce application code based on user specifications."
+},
+{
+    "id": 55,
+    "type": "multiple_choice",
+    "question": "Forms generators and report generators are examples of __________________________ tools.",
+    "options": [
+      "2GL",
+      "3GL",
+      "4GL",
+      "DML"
+    ],
+    "correct_answer": 2,
+    "explanation": "Forms and report generators are 4GL tools that simplify application development."
+},
+{
+    "id": 56,
+    "type": "multiple_choice",
+    "question": "A high-level description of how data is organized is called a __________________________ model.",
+    "options": [
+      "Logical",
+      "Data",
+      "Physical",
+      "Conceptual"
+    ],
+    "correct_answer": 1,
+    "explanation": "A data model describes the logical structure and organization of data in a database."
+},
+{
+    "id": 57,
+    "type": "multiple_choice",
+    "question": "The three main components of a data model are structure, manipulation, and __________________________ constraints.",
+    "options": [
+      "Entity",
+      "Relationship",
+      "Integrity",
+      "Security"
+    ],
+    "correct_answer": 2,
+    "explanation": "Integrity constraints ensure data accuracy and consistency in the database."
+},
+{
+    "id": 58,
+    "type": "multiple_choice",
+    "question": "The three broad categories of data models are object-based, record-based, and __________________________ data models.",
+    "options": [
+      "Relational",
+      "Hierarchical",
+      "Physical",
+      "Logical"
+    ],
+    "correct_answer": 2,
+    "explanation": "Physical data models describe how data is stored, complementing object-based and record-based models."
+},
+{
+    "id": 59,
+    "type": "multiple_choice",
+    "question": "Real-world objects represented in a database are called __________________________.",
+    "options": [
+      "Attributes",
+      "Entities",
+      "Relationships",
+      "Instances"
+    ],
+    "correct_answer": 1,
+    "explanation": "Entities are real-world objects or concepts that are stored in the database."
+},
+{
+    "id": 60,
+    "type": "multiple_choice",
+    "question": "A characteristic of an entity is known as an __________________________.",
+    "options": [
+      "Attribute",
+      "Entity",
+      "Instance",
+      "Relation"
+    ],
+    "correct_answer": 0,
+    "explanation": "An attribute is a property or characteristic of an entity, like name or age."
+},
+{
+    "id": 61,
+    "type": "multiple_choice",
+    "question": "The association between entities is called a __________________________.",
+    "options": [
+      "Structure",
+      "Constraint",
+      "Relationship",
+      "Schema"
+    ],
+    "correct_answer": 2,
+    "explanation": "A relationship represents the association between entities. Structure refers to organization, constraints are rules, and schema is the overall description."
+},
+{
+    "id": 62,
+    "type": "multiple_choice",
+    "question": "The ER model belongs to the __________________________ category of data models.",
+    "options": [
+      "Record-based",
+      "Object-based",
+      "Physical",
+      "Relational"
+    ],
+    "correct_answer": 1,
+    "explanation": "Entity-Relationship model is object-based as it uses entities and relationships to represent data."
+},
+{
+    "id": 63,
+    "type": "multiple_choice",
+    "question": "Semantic and object-oriented models are examples of __________________________ models.",
+    "options": [
+      "Object-based",
+      "Record-based",
+      "Physical",
+      "Relational"
+    ],
+    "correct_answer": 0,
+    "explanation": "Semantic and object-oriented models both fall under object-based data models."
+},
+{
+    "id": 64,
+    "type": "multiple_choice",
+    "question": "Record-based models organize data into fixed-format __________________________.",
+    "options": [
+      "Fields",
+      "Tables",
+      "Records",
+      "Entities"
+    ],
+    "correct_answer": 2,
+    "explanation": "Record-based models store data in records with fixed formats and fields."
+},
+{
+    "id": 65,
+    "type": "multiple_choice",
+    "question": "The relational, network, and hierarchical models are examples of __________________________ models.",
+    "options": [
+      "Object-based",
+      "Record-based",
+      "Conceptual",
+      "Physical"
+    ],
+    "correct_answer": 1,
+    "explanation": "Relational, network, and hierarchical models all organize data using record structures."
+},
+{
+    "id": 66,
+    "type": "multiple_choice",
+    "question": "The __________________________ model organizes data into tables.",
+    "options": [
+      "Hierarchical",
+      "Network",
+      "Relational",
+      "Physical"
+    ],
+    "correct_answer": 2,
+    "explanation": "The Relational model uses tables (relations) to store and organize data."
+},
+{
+    "id": 67,
+    "type": "multiple_choice",
+    "question": "Physical data models focus on how data is __________________________ on computer systems.",
+    "options": [
+      "Retrieved",
+      "Stored",
+      "Updated",
+      "Shared"
+    ],
+    "correct_answer": 1,
+    "explanation": "Physical data models describe storage structures, file organization, and access methods."
+},
+{
+    "id": 68,
+    "type": "multiple_choice",
+    "question": "Indexes and pointers are examples of __________________________ paths.",
+    "options": [
+      "Access",
+      "Logical",
+      "Storage",
+      "Record"
+    ],
+    "correct_answer": 0,
+    "explanation": "Access paths like indexes and pointers define how data can be retrieved efficiently."
+},
+{
+    "id": 69,
+    "type": "multiple_choice",
+    "question": "The sequence in which records are stored is known as record __________________________.",
+    "options": [
+      "Structure",
+      "Format",
+      "Ordering",
+      "Access"
+    ],
+    "correct_answer": 2,
+    "explanation": "Record ordering refers to the physical arrangement sequence of records in storage."
+},
+{
+    "id": 70,
+    "type": "multiple_choice",
+    "question": "Conceptual modeling is independent of __________________________ details.",
+    "options": [
+      "Logical",
+      "Business",
+      "Physical",
+      "User"
+    ],
+    "correct_answer": 2,
+    "explanation": "Conceptual models focus on business requirements and are independent of physical storage details."
+},
+{
+    "id": 71,
+    "type": "multiple_choice",
+    "question": "The conceptual schema acts as the __________________________ of the database.",
+    "options": [
+      "Center",
+      "Core",
+      "View",
+      "Layer"
+    ],
+    "correct_answer": 1,
+    "explanation": "The conceptual schema is the core logical design of the database, independent of implementation."
+},
+{
+    "id": 72,
+    "type": "multiple_choice",
+    "question": "A conceptual model focuses on business __________________________ requirements.",
+    "options": [
+      "Data",
+      "User",
+      "Storage",
+      "Logical"
+    ],
+    "correct_answer": 0,
+    "explanation": "Conceptual modeling identifies business data requirements, not storage or implementation details."
+},
+{
+    "id": 73,
+    "type": "multiple_choice",
+    "question": "A logical model depends on a specific __________________________ model.",
+    "options": [
+      "Physical",
+      "Network",
+      "DBMS",
+      "Internal"
+    ],
+    "correct_answer": 2,
+    "explanation": "Logical models are DBMS-specific (like relational or hierarchical) for implementation."
+},
+{
+    "id": 74,
+    "type": "multiple_choice",
+    "question": "Tables, keys, and normalization rules are included in the __________________________ model.",
+    "options": [
+      "Physical",
+      "Conceptual",
+      "Logical",
+      "External"
+    ],
+    "correct_answer": 2,
+    "explanation": "Logical models include table structures, keys, and normalization constraints."
+},
+{
+    "id": 75,
+    "type": "multiple_choice",
+    "question": "The highest level of abstraction in database design is the __________________________ model.",
     "options": [
       "Physical",
       "Logical",
-      "External",
-      "Internal"
-    ],
-    "correct_answer": 1,
-    "explanation": "Logical data independence allows changes to the conceptual schema without affecting external views. Physical independence deals with internal schema changes."
-  },
-  {
-    "id": 32,
-    "type": "multiple_choice",
-    "question": "A ______ is a collection of related data that is stored in a structured format and can be accessed electronically.",
-    "options": [
-      "File",
-      "Database",
-      "Table",
-      "Record"
-    ],
-    "correct_answer": 1,
-    "explanation": "A database is an organized collection of related data. Files, tables, and records are components within a database."
-  },
-  {
-    "id": 33,
-    "type": "multiple_choice",
-    "question": "In a database, a ______ represents a single row in a table.",
-    "options": [
-      "Field",
-      "Column",
-      "Tuple",
-      "Attribute"
+      "Conceptual",
+      "Relational"
     ],
     "correct_answer": 2,
-    "explanation": "A tuple (or record) is a single row in a table. Fields/columns are attributes, and rows contain complete records."
-  },
-  {
-    "id": 34,
+    "explanation": "Conceptual modeling is the highest level, representing business requirements abstractly."
+},
+{
+    "id": 76,
     "type": "multiple_choice",
-    "question": "The property that ensures a transaction is executed as a single unit (all or nothing) is called ______.",
+    "question": "A DBMS function that ensures multiple users can access data safely is called __________________________ control.",
     "options": [
-      "Consistency",
-      "Isolation",
-      "Durability",
-      "Atomicity"
-    ],
-    "correct_answer": 3,
-    "explanation": "Atomicity ensures transactions are all-or-nothing. Consistency maintains integrity, isolation prevents interference, and durability ensures persistence."
-  },
-  {
-    "id": 35,
-    "type": "multiple_choice",
-    "question": "The ACID property that ensures that a transaction leaves the database in a valid state is ______.",
-    "options": [
-      "Atomicity",
-      "Consistency",
-      "Isolation",
-      "Durability"
-    ],
-    "correct_answer": 1,
-    "explanation": "Consistency ensures the database remains in a valid state after each transaction. Atomicity handles all-or-nothing execution."
-  },
-  {
-    "id": 36,
-    "type": "multiple_choice",
-    "question": "The ACID property that ensures that once a transaction is committed, its changes are permanent is ______.",
-    "options": [
-      "Atomicity",
-      "Consistency",
-      "Isolation",
-      "Durability"
-    ],
-    "correct_answer": 3,
-    "explanation": "Durability guarantees committed transactions persist even after system failures. Atomicity, consistency, and isolation address other aspects."
-  },
-  {
-    "id": 37,
-    "type": "multiple_choice",
-    "question": "The ACID property that ensures that concurrent transactions do not interfere with each other is ______.",
-    "options": [
-      "Atomicity",
-      "Consistency",
-      "Isolation",
-      "Durability"
+      "Integrity",
+      "Recovery",
+      "Concurrency",
+      "Transaction"
     ],
     "correct_answer": 2,
-    "explanation": "Isolation prevents interference between concurrent transactions. Each transaction appears to execute in isolation from others."
-  },
-  {
-    "id": 38,
+    "explanation": "Concurrency control manages simultaneous user access to maintain database consistency."
+},
+{
+    "id": 77,
     "type": "multiple_choice",
-    "question": "A ______ is a logical unit of work that accesses and possibly modifies the contents of a database.",
+    "question": "A DBMS function responsible for restoring data after failure is known as __________________________ services.",
     "options": [
-      "Query",
-      "Transaction",
-      "Program",
-      "Procedure"
-    ],
-    "correct_answer": 1,
-    "explanation": "A transaction is a logical unit of work that may include multiple operations. Queries, programs, and procedures are related but broader terms."
-  },
-  {
-    "id": 39,
-    "type": "multiple_choice",
-    "question": "The process of identifying and correcting errors in a database is called data ______.",
-    "options": [
-      "Cleaning",
-      "Validation",
-      "Verification",
-      "Purification"
-    ],
-    "correct_answer": 0,
-    "explanation": "Data cleaning (or cleansing) identifies and corrects errors. Validation checks data rules, verification confirms accuracy."
-  },
-  {
-    "id": 40,
-    "type": "multiple_choice",
-    "question": "A ______ is a request for data or information from a database.",
-    "options": [
-      "Report",
-      "Query",
-      "Form",
-      "View"
-    ],
-    "correct_answer": 1,
-    "explanation": "A query is a request for data retrieval or manipulation. Reports are formatted outputs, forms are input interfaces, and views are virtual tables."
-  },
-  {
-    "id": 41,
-    "type": "multiple_choice",
-    "question": "The SQL command used to create a new table is ______.",
-    "options": [
-      "CREATE TABLE",
-      "NEW TABLE",
-      "MAKE TABLE",
-      "ADD TABLE"
-    ],
-    "correct_answer": 0,
-    "explanation": "CREATE TABLE is the SQL command for creating new tables. The other options are not valid SQL syntax."
-  },
-  {
-    "id": 42,
-    "type": "multiple_choice",
-    "question": "The SQL command used to add a new column to an existing table is ______.",
-    "options": [
-      "ALTER TABLE ... ADD COLUMN",
-      "ALTER TABLE ... INSERT COLUMN",
-      "MODIFY TABLE ... ADD COLUMN",
-      "UPDATE TABLE ... ADD COLUMN"
-    ],
-    "correct_answer": 0,
-    "explanation": "ALTER TABLE ... ADD COLUMN is the correct syntax. INSERT and UPDATE are for data manipulation, not schema changes."
-  },
-  {
-    "id": 43,
-    "type": "multiple_choice",
-    "question": "The SQL command used to permanently remove a table from the database is ______.",
-    "options": [
-      "DELETE TABLE",
-      "REMOVE TABLE",
-      "DROP TABLE",
-      "TRUNCATE TABLE"
+      "Integrity",
+      "Utility",
+      "Recovery",
+      "Communication"
     ],
     "correct_answer": 2,
-    "explanation": "DROP TABLE permanently removes the table and its structure. DELETE removes rows, TRUNCATE removes all rows but keeps the structure."
-  },
-  {
-    "id": 44,
+    "explanation": "Recovery services restore the database to a consistent state after failures."
+},
+{
+    "id": 78,
     "type": "multiple_choice",
-    "question": "An SQL ______ is a virtual table based on the result-set of a SELECT statement.",
+    "question": "Rules that ensure data accuracy and consistency are provided through __________________________ services.",
     "options": [
-      "Index",
-      "View",
-      "Sequence",
-      "Synonym"
-    ],
-    "correct_answer": 1,
-    "explanation": "A view is a virtual table that doesn't store data physically. Indexes improve performance, sequences generate numbers, and synonyms are aliases."
-  },
-  {
-    "id": 45,
-    "type": "multiple_choice",
-    "question": "The SQL keyword used to join two tables and return all rows from the left table, even if there are no matches in the right table, is ______.",
-    "options": [
-      "INNER JOIN",
-      "RIGHT JOIN",
-      "LEFT JOIN",
-      "FULL OUTER JOIN"
+      "Recovery",
+      "Concurrency",
+      "Integrity",
+      "Utility"
     ],
     "correct_answer": 2,
-    "explanation": "LEFT JOIN returns all rows from the left table with matching rows from the right. RIGHT JOIN does the opposite, INNER JOIN returns only matches."
-  },
-  {
-    "id": 46,
+    "explanation": "Integrity services enforce rules to maintain data accuracy and consistency."
+},
+{
+    "id": 79,
     "type": "multiple_choice",
-    "question": "The SQL keyword used to combine the results of two or more SELECT statements is ______.",
+    "question": "The DBMS component that stores descriptions of database objects is the user-accessible __________________________.",
     "options": [
-      "COMBINE",
-      "MERGE",
-      "UNION",
-      "JOIN"
+      "Instance",
+      "Schema",
+      "Catalog",
+      "Relation"
     ],
     "correct_answer": 2,
-    "explanation": "UNION combines results of multiple SELECT statements. JOIN combines columns, while COMBINE and MERGE are not SQL keywords."
-  },
-  {
-    "id": 47,
+    "explanation": "The catalog (data dictionary) stores and provides access to database metadata."
+},
+{
+    "id": 80,
     "type": "multiple_choice",
-    "question": "The SQL aggregate function used to find the average value of a numeric column is ______.",
+    "question": "Services that help isolate applications from storage changes promote data __________________________.",
     "options": [
-      "SUM",
-      "AVG",
-      "COUNT",
-      "MAX"
-    ],
-    "correct_answer": 1,
-    "explanation": "AVG calculates the average. SUM adds values, COUNT counts rows, and MAX finds the maximum value."
-  },
-  {
-    "id": 48,
-    "type": "multiple_choice",
-    "question": "The SQL aggregate function used to find the number of rows in a result set is ______.",
-    "options": [
-      "COUNT",
-      "SUM",
-      "AVG",
-      "TOTAL"
-    ],
-    "correct_answer": 0,
-    "explanation": "COUNT returns the number of rows. SUM adds values, AVG calculates averages, and TOTAL is not a standard SQL aggregate function."
-  },
-  {
-    "id": 49,
-    "type": "multiple_choice",
-    "question": "A ______ constraint ensures that a column cannot contain a null value.",
-    "options": [
-      "UNIQUE",
-      "CHECK",
-      "NOT NULL",
-      "PRIMARY KEY"
+      "Integrity",
+      "Security",
+      "Independence",
+      "Redundancy"
     ],
     "correct_answer": 2,
-    "explanation": "NOT NULL prevents null values. UNIQUE ensures all values are distinct, CHECK validates conditions, and PRIMARY KEY combines uniqueness and not null."
-  },
-  {
-    "id": 50,
-    "type": "multiple_choice",
-    "question": "A ______ constraint ensures that all values in a column are distinct (no duplicates).",
-    "options": [
-      "UNIQUE",
-      "NOT NULL",
-      "CHECK",
-      "DISTINCT"
-    ],
-    "correct_answer": 0,
-    "explanation": "UNIQUE enforces distinct values. NOT NULL prevents nulls, CHECK validates conditions, and DISTINCT is a keyword, not a constraint."
-  },
-  {
-    "id": 51,
-    "type": "multiple_choice",
-    "question": "A ______ is a database object that improves the speed of data retrieval operations.",
-    "options": [
-      "View",
-      "Trigger",
-      "Index",
-      "Sequence"
-    ],
-    "correct_answer": 2,
-    "explanation": "Indexes improve query performance. Views are virtual tables, triggers execute automatically, and sequences generate numbers."
-  },
-  {
-    "id": 52,
-    "type": "multiple_choice",
-    "question": "A ______ is a program that automatically executes in response to certain events on a table.",
-    "options": [
-      "View",
-      "Trigger",
-      "Index",
-      "Stored Procedure"
-    ],
-    "correct_answer": 1,
-    "explanation": "A trigger executes automatically when specified events occur. Views are virtual tables, indexes improve performance, and stored procedures are called explicitly."
-  },
-  {
-    "id": 53,
-    "type": "multiple_choice",
-    "question": "A ______ is a pre-compiled collection of SQL statements that can be executed as a single unit.",
-    "options": [
-      "Trigger",
-      "View",
-      "Stored Procedure",
-      "Function"
-    ],
-    "correct_answer": 2,
-    "explanation": "Stored procedures are pre-compiled SQL collections. Triggers are event-driven, views are virtual tables, and functions return single values."
-  },
-  {
-    "id": 54,
-    "type": "multiple_choice",
-    "question": "The highest level of normalization that ensures no non-key attribute depends on another non-key attribute is ______.",
-    "options": [
-      "1NF",
-      "2NF",
-      "3NF",
-      "BCNF"
-    ],
-    "correct_answer": 2,
-    "explanation": "3NF eliminates transitive dependencies. 1NF deals with atomicity, 2NF with partial dependencies, and BCNF is stricter than 3NF."
-  },
-  {
-    "id": 55,
-    "type": "multiple_choice",
-    "question": "The normalization level that requires all attributes to be atomic (single value) is ______.",
-    "options": [
-      "1NF",
-      "2NF",
-      "3NF",
-      "BCNF"
-    ],
-    "correct_answer": 0,
-    "explanation": "1NF (First Normal Form) requires atomic attributes. Higher normal forms build upon 1NF requirements."
-  },
-  {
-    "id": 56,
-    "type": "multiple_choice",
-    "question": "A relationship between two entities where one occurrence of entity A can relate to many of entity B is called a ______ relationship.",
-    "options": [
-      "One-to-One",
-      "One-to-Many",
-      "Many-to-Many",
-      "Recursive"
-    ],
-    "correct_answer": 1,
-    "explanation": "One-to-Many means one entity A relates to many entity B. One-to-One is single match, Many-to-Many is multiple on both sides."
-  },
-  {
-    "id": 57,
-    "type": "multiple_choice",
-    "question": "A relationship between two entities where many occurrences of entity A can relate to many of entity B is called a ______ relationship.",
-    "options": [
-      "One-to-One",
-      "One-to-Many",
-      "Many-to-Many",
-      "Complex"
-    ],
-    "correct_answer": 2,
-    "explanation": "Many-to-Many relationships require a junction table in relational databases. One-to-One and One-to-Many are simpler relationships."
-  },
-  {
-    "id": 58,
-    "type": "multiple_choice",
-    "question": "The process of denormalization involves intentionally introducing ______ to improve performance.",
-    "options": [
-      "Redundancy",
-      "Normalization",
-      "Complexity",
-      "Security"
-    ],
-    "correct_answer": 0,
-    "explanation": "Denormalization introduces redundancy to reduce joins and improve performance. Normalization reduces redundancy, and complexity/security are unrelated."
-  },
-  {
-    "id": 59,
-    "type": "multiple_choice",
-    "question": "A ______ attack involves injecting malicious SQL code into input fields to manipulate the database.",
-    "options": [
-      "Buffer Overflow",
-      "SQL Injection",
-      "Cross-Site Scripting",
-      "Man-in-the-Middle"
-    ],
-    "correct_answer": 1,
-    "explanation": "SQL Injection is the specific attack targeting databases. Buffer overflow, XSS, and MITM are different types of cyber attacks."
-  },
-  {
-    "id": 60,
-    "type": "multiple_choice",
-    "question": "The ______ is the central component of a DBMS that interprets queries, processes transactions, and manages the system.",
-    "options": [
-      "Query Processor",
-      "Transaction Manager",
-      "Database Engine",
-      "File Manager"
-    ],
-    "correct_answer": 2,
-    "explanation": "The Database Engine is the core component managing all DBMS functions. Query processor handles queries, transaction manager handles transactions, and file manager handles storage."
-  }
+    "explanation": "Data independence allows applications to work without being affected by storage changes."
+}
 
 
 
