@@ -1051,7 +1051,790 @@ database_system_quiz = {
     ],
     "correct_answer": 2,
     "explanation": "Data independence allows applications to work without being affected by storage changes."
-}
+},
+
+
+  {
+    "id": 81,
+    "type": "multiple_choice",
+    "question": "SQL stands for __________________________________________.",
+    "options": [
+      "Structured Query Language",
+      "Standard Query Logic",
+      "System Query Language",
+      "Structured Queue Language"
+    ],
+    "correct_answer": 0,
+    "explanation": "SQL stands for Structured Query Language, the standard language for relational database management."
+  },
+  {
+    "id": 82,
+    "type": "multiple_choice",
+    "question": "SQL is a __________________________ language designed to transform inputs into outputs.",
+    "options": [
+      "Object-oriented",
+      "Transform-oriented",
+      "Procedure-oriented",
+      "Data-oriented"
+    ],
+    "correct_answer": 1,
+    "explanation": "SQL is a transform-oriented language that transforms inputs (queries) into outputs (results)."
+  },
+  {
+    "id": 83,
+    "type": "multiple_choice",
+    "question": "The two major components of SQL are __________________________ and __________________________.",
+    "options": [
+      "DDL and DML",
+      "DBA and SQL",
+      "DML and XML",
+      "DDL and DBMS"
+    ],
+    "correct_answer": 0,
+    "explanation": "SQL has two major components: DDL (Data Definition Language) for defining structures and DML (Data Manipulation Language) for manipulating data."
+  },
+  {
+    "id": 84,
+    "type": "multiple_choice",
+    "question": "__________________________ is used for defining database structures.",
+    "options": [
+      "DML",
+      "DDL",
+      "SQL",
+      "SELECT"
+    ],
+    "correct_answer": 1,
+    "explanation": "DDL (Data Definition Language) is used for defining database structures like tables, schemas, and constraints."
+  },
+  {
+    "id": 85,
+    "type": "multiple_choice",
+    "question": "__________________________ is used for retrieving and updating data.",
+    "options": [
+      "DDL",
+      "DCL",
+      "DML",
+      "TCL"
+    ],
+    "correct_answer": 2,
+    "explanation": "DML (Data Manipulation Language) is used for retrieving, inserting, updating, and deleting data."
+  },
+  {
+    "id": 86,
+    "type": "multiple_choice",
+    "question": "The SQL command used to retrieve data from a database is __________________________.",
+    "options": [
+      "INSERT",
+      "UPDATE",
+      "SELECT",
+      "DELETE"
+    ],
+    "correct_answer": 2,
+    "explanation": "SELECT is the SQL command used to retrieve data from a database. INSERT adds data, UPDATE modifies, and DELETE removes."
+  },
+  {
+    "id": 87,
+    "type": "multiple_choice",
+    "question": "The SQL command used to add new records to a table is __________________________.",
+    "options": [
+      "CREATE",
+      "INSERT",
+      "UPDATE",
+      "ALTER"
+    ],
+    "correct_answer": 1,
+    "explanation": "INSERT adds new records to a table. CREATE makes new objects, UPDATE modifies existing data, and ALTER changes table structure."
+  },
+  {
+    "id": 88,
+    "type": "multiple_choice",
+    "question": "The SQL command used to modify existing records is __________________________.",
+    "options": [
+      "MODIFY",
+      "ALTER",
+      "UPDATE",
+      "CHANGE"
+    ],
+    "correct_answer": 2,
+    "explanation": "UPDATE modifies existing records. ALTER changes table structure, MODIFY and CHANGE are not standard SQL commands."
+  },
+  {
+    "id": 89,
+    "type": "multiple_choice",
+    "question": "The SQL command used to remove records from a table is __________________________.",
+    "options": [
+      "DROP",
+      "REMOVE",
+      "DELETE",
+      "CLEAR"
+    ],
+    "correct_answer": 2,
+    "explanation": "DELETE removes records (rows) from a table. DROP removes the entire table structure."
+  },
+  {
+    "id": 90,
+    "type": "multiple_choice",
+    "question": "In a SELECT statement, the __________________________ clause specifies the tables to use.",
+    "options": [
+      "WHERE",
+      "SELECT",
+      "FROM",
+      "HAVING"
+    ],
+    "correct_answer": 2,
+    "explanation": "FROM clause specifies the tables to query. SELECT specifies columns, WHERE filters rows, HAVING filters groups."
+  },
+  {
+    "id": 91,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause filters rows based on a condition.",
+    "options": [
+      "HAVING",
+      "ORDER BY",
+      "WHERE",
+      "GROUP BY"
+    ],
+    "correct_answer": 2,
+    "explanation": "WHERE filters rows before grouping. HAVING filters groups after GROUP BY. ORDER BY sorts results."
+  },
+  {
+    "id": 92,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause groups rows with similar values.",
+    "options": [
+      "HAVING",
+      "GROUP BY",
+      "ORDER BY",
+      "FROM"
+    ],
+    "correct_answer": 1,
+    "explanation": "GROUP BY groups rows with similar values for aggregation. ORDER BY sorts, HAVING filters groups."
+  },
+  {
+    "id": 93,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause filters grouped results.",
+    "options": [
+      "WHERE",
+      "SELECT",
+      "HAVING",
+      "FROM"
+    ],
+    "correct_answer": 2,
+    "explanation": "HAVING filters grouped results after GROUP BY. WHERE filters individual rows before grouping."
+  },
+  {
+    "id": 94,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause specifies the output columns.",
+    "options": [
+      "SELECT",
+      "WHERE",
+      "FROM",
+      "ORDER BY"
+    ],
+    "correct_answer": 0,
+    "explanation": "SELECT specifies which columns to display. FROM identifies tables, WHERE filters, ORDER BY sorts."
+  },
+  {
+    "id": 95,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause sorts query results.",
+    "options": [
+      "GROUP BY",
+      "HAVING",
+      "ORDER BY",
+      "FROM"
+    ],
+    "correct_answer": 2,
+    "explanation": "ORDER BY sorts results. GROUP BY groups for aggregation, HAVING filters groups."
+  },
+  {
+    "id": 96,
+    "type": "multiple_choice",
+    "question": "The ORDER BY clause can sort data in __________________________ or __________________________ order.",
+    "options": [
+      "True / False",
+      "Numeric / Character",
+      "Ascending / Descending",
+      "Primary / Secondary"
+    ],
+    "correct_answer": 2,
+    "explanation": "ORDER BY sorts data in ascending (ASC) or descending (DESC) order. Default is ascending."
+  },
+  {
+    "id": 97,
+    "type": "multiple_choice",
+    "question": "SQL query results have no guaranteed order unless __________________________ is used.",
+    "options": [
+      "GROUP BY",
+      "ORDER BY",
+      "HAVING",
+      "DISTINCT"
+    ],
+    "correct_answer": 1,
+    "explanation": "ORDER BY is required to guarantee sort order. Without it, results are returned in an unpredictable order."
+  },
+  {
+    "id": 98,
+    "type": "multiple_choice",
+    "question": "The aggregate function used to count rows is __________________________.",
+    "options": [
+      "SUM",
+      "AVG",
+      "COUNT",
+      "TOTAL"
+    ],
+    "correct_answer": 2,
+    "explanation": "COUNT counts rows. SUM adds values, AVG calculates averages, TOTAL is not a standard SQL function."
+  },
+  {
+    "id": 99,
+    "type": "multiple_choice",
+    "question": "The aggregate function used to calculate totals is __________________________.",
+    "options": [
+      "SUM",
+      "AVG",
+      "COUNT",
+      "MAX"
+    ],
+    "correct_answer": 0,
+    "explanation": "SUM calculates totals. AVG calculates averages, COUNT counts rows, MAX finds the maximum."
+  },
+  {
+    "id": 100,
+    "type": "multiple_choice",
+    "question": "The aggregate function used to calculate averages is __________________________.",
+    "options": [
+      "MEAN",
+      "SUM",
+      "AVG",
+      "COUNT"
+    ],
+    "correct_answer": 2,
+    "explanation": "AVG calculates the average. MEAN is a mathematical term, SUM adds, COUNT counts."
+  },
+  {
+    "id": 101,
+    "type": "multiple_choice",
+    "question": "The aggregate function used to find the smallest value is __________________________.",
+    "options": [
+      "LOW",
+      "MIN",
+      "SMALL",
+      "LEAST"
+    ],
+    "correct_answer": 1,
+    "explanation": "MIN finds the minimum/smallest value. MAX finds the largest, LOW/SMALL/LEAST are not SQL keywords."
+  },
+  {
+    "id": 102,
+    "type": "multiple_choice",
+    "question": "The aggregate function used to find the largest value is __________________________.",
+    "options": [
+      "BIG",
+      "HIGH",
+      "MAX",
+      "LARGE"
+    ],
+    "correct_answer": 2,
+    "explanation": "MAX finds the maximum/largest value. MIN finds the minimum, BIG/HIGH/LARGE are not SQL keywords."
+  },
+  {
+    "id": 103,
+    "type": "multiple_choice",
+    "question": "__________________________ removes duplicate values before aggregation.",
+    "options": [
+      "ALL",
+      "DISTINCT",
+      "UNIQUE",
+      "REMOVE"
+    ],
+    "correct_answer": 1,
+    "explanation": "DISTINCT removes duplicates before aggregation. ALL includes duplicates, UNIQUE is not used this way."
+  },
+  {
+    "id": 104,
+    "type": "multiple_choice",
+    "question": "Aggregate functions ignore __________________________ values except COUNT(*).",
+    "options": [
+      "Empty",
+      "Blank",
+      "NULL",
+      "Zero"
+    ],
+    "correct_answer": 2,
+    "explanation": "Aggregate functions ignore NULL values. COUNT(*) counts all rows including NULLs, but other aggregates exclude NULLs."
+  },
+  {
+    "id": 105,
+    "type": "multiple_choice",
+    "question": "COUNT(*) counts all __________________________ in a table.",
+    "options": [
+      "Columns",
+      "Attributes",
+      "Rows",
+      "Fields"
+    ],
+    "correct_answer": 2,
+    "explanation": "COUNT(*) counts all rows in a table, including those with NULL values. Columns/attributes/fields are not counted."
+  },
+  {
+    "id": 106,
+    "type": "multiple_choice",
+    "question": "GROUP BY is used to produce __________________________ for grouped data.",
+    "options": [
+      "Details",
+      "Summaries",
+      "Records",
+      "Tables"
+    ],
+    "correct_answer": 1,
+    "explanation": "GROUP BY produces summaries (aggregated results) for groups of data. Details are individual records."
+  },
+  {
+    "id": 107,
+    "type": "multiple_choice",
+    "question": "In grouped queries, columns in the SELECT list must either be in GROUP BY or be used in an __________________________ function.",
+    "options": [
+      "Aggregate",
+      "Logical",
+      "Arithmetic",
+      "Numeric"
+    ],
+    "correct_answer": 0,
+    "explanation": "Columns in SELECT must be either in GROUP BY or wrapped in aggregate functions (COUNT, SUM, AVG, etc.)."
+  },
+  {
+    "id": 108,
+    "type": "multiple_choice",
+    "question": "The keyword __________________________ means a condition must be true for every value returned by a subquery.",
+    "options": [
+      "ANY",
+      "SOME",
+      "ALL",
+      "EXISTS"
+    ],
+    "correct_answer": 2,
+    "explanation": "ALL means the condition must be true for every value returned. ANY/SOME require at least one match, EXISTS checks for existence."
+  },
+  {
+    "id": 109,
+    "type": "multiple_choice",
+    "question": "The keyword __________________________ means a condition must be true for at least one value returned by a subquery.",
+    "options": [
+      "ALL",
+      "ANY",
+      "EVERY",
+      "EXISTS"
+    ],
+    "correct_answer": 1,
+    "explanation": "ANY means at least one value satisfies the condition. ALL requires every value, EXISTS checks for existence."
+  },
+  {
+    "id": 110,
+    "type": "multiple_choice",
+    "question": "__________________________ is a synonym for ANY in SQL.",
+    "options": [
+      "ALL",
+      "EXISTS",
+      "SOME",
+      "UNION"
+    ],
+    "correct_answer": 2,
+    "explanation": "SOME is a synonym for ANY in SQL. ALL is the opposite, EXISTS checks for existence, UNION combines results."
+  },
+  {
+    "id": 111,
+    "type": "multiple_choice",
+    "question": "A __________________________ combines data from multiple tables.",
+    "options": [
+      "View",
+      "Alias",
+      "Join",
+      "Domain"
+    ],
+    "correct_answer": 2,
+    "explanation": "A JOIN combines data from multiple tables. Views are virtual tables, aliases are short names, domains define value sets."
+  },
+  {
+    "id": 112,
+    "type": "multiple_choice",
+    "question": "Multiple-table queries usually use __________________________ to match related rows.",
+    "options": [
+      "Constraints",
+      "Joins",
+      "Domains",
+      "Views"
+    ],
+    "correct_answer": 1,
+    "explanation": "JOINs match related rows across tables. Constraints enforce rules, domains define value sets, views are virtual tables."
+  },
+  {
+    "id": 113,
+    "type": "multiple_choice",
+    "question": "Short names assigned to tables are called __________________________.",
+    "options": [
+      "Labels",
+      "Identifiers",
+      "Aliases",
+      "Domains"
+    ],
+    "correct_answer": 2,
+    "explanation": "Aliases are short names assigned to tables or columns. Labels, identifiers, and domains are different concepts."
+  },
+  {
+    "id": 114,
+    "type": "multiple_choice",
+    "question": "The SQL operator that combines results and removes duplicates is __________________________.",
+    "options": [
+      "UNION",
+      "JOIN",
+      "EXCEPT",
+      "INTERSECT"
+    ],
+    "correct_answer": 0,
+    "explanation": "UNION combines results and removes duplicates. JOIN combines columns, EXCEPT returns differences, INTERSECT returns common rows."
+  },
+  {
+    "id": 115,
+    "type": "multiple_choice",
+    "question": "The SQL operator that returns only common rows is __________________________.",
+    "options": [
+      "UNION",
+      "EXCEPT",
+      "INTERSECT",
+      "JOIN"
+    ],
+    "correct_answer": 2,
+    "explanation": "INTERSECT returns only rows common to both queries. UNION combines all, EXCEPT returns differences."
+  },
+  {
+    "id": 116,
+    "type": "multiple_choice",
+    "question": "The SQL operator that returns rows in the first query but not the second is __________________________.",
+    "options": [
+      "INTERSECT",
+      "UNION",
+      "EXCEPT",
+      "JOIN"
+    ],
+    "correct_answer": 2,
+    "explanation": "EXCEPT returns rows from the first query that are not in the second. INTERSECT returns common rows, UNION combines all."
+  },
+  {
+    "id": 117,
+    "type": "multiple_choice",
+    "question": "The statement used to insert a single row into a table is __________________________.",
+    "options": [
+      "UPDATE",
+      "INSERT INTO",
+      "CREATE TABLE",
+      "ALTER TABLE"
+    ],
+    "correct_answer": 1,
+    "explanation": "INSERT INTO adds a single row to a table. UPDATE modifies existing data, CREATE TABLE makes new tables, ALTER modifies structure."
+  },
+  {
+    "id": 118,
+    "type": "multiple_choice",
+    "question": "The statement used to modify existing rows is __________________________.",
+    "options": [
+      "UPDATE",
+      "INSERT",
+      "DELETE",
+      "ALTER"
+    ],
+    "correct_answer": 0,
+    "explanation": "UPDATE modifies existing rows. INSERT adds new rows, DELETE removes rows, ALTER changes table structure."
+  },
+  {
+    "id": 119,
+    "type": "multiple_choice",
+    "question": "If the WHERE clause is omitted in UPDATE, __________________________ rows are affected.",
+    "options": [
+      "No",
+      "Selected",
+      "All",
+      "New"
+    ],
+    "correct_answer": 2,
+    "explanation": "Without WHERE, UPDATE affects ALL rows in the table. This is a common dangerous mistake."
+  },
+  {
+    "id": 120,
+    "type": "multiple_choice",
+    "question": "EXISTS returns TRUE if a subquery returns at least __________________________ row.",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "correct_answer": 0,
+    "explanation": "EXISTS returns TRUE when the subquery returns at least one row. It checks for existence, not the actual values."
+  },
+  {
+    "id": 121,
+    "type": "multiple_choice",
+    "question": "NOT EXISTS returns TRUE when the subquery returns __________________________ rows.",
+    "options": [
+      "Many",
+      "No",
+      "Some",
+      "One"
+    ],
+    "correct_answer": 1,
+    "explanation": "NOT EXISTS returns TRUE when the subquery returns NO rows. It checks for non-existence."
+  },
+  {
+    "id": 122,
+    "type": "multiple_choice",
+    "question": "SQL identifiers are used to identify database __________________________.",
+    "options": [
+      "Records",
+      "Objects",
+      "Queries",
+      "Users"
+    ],
+    "correct_answer": 1,
+    "explanation": "SQL identifiers identify database objects like tables, columns, constraints, indexes, etc."
+  },
+  {
+    "id": 123,
+    "type": "multiple_choice",
+    "question": "An SQL identifier must begin with a __________________________.",
+    "options": [
+      "Number",
+      "Symbol",
+      "Letter",
+      "Space"
+    ],
+    "correct_answer": 2,
+    "explanation": "SQL identifiers must begin with a letter (A-Z or a-z). They cannot start with numbers, symbols, or spaces."
+  },
+  {
+    "id": 124,
+    "type": "multiple_choice",
+    "question": "An SQL identifier cannot contain __________________________.",
+    "options": [
+      "Letters",
+      "Numbers",
+      "Underscores",
+      "Spaces"
+    ],
+    "correct_answer": 3,
+    "explanation": "SQL identifiers cannot contain spaces. Letters, numbers, and underscores are allowed (but cannot start with numbers)."
+  },
+  {
+    "id": 125,
+    "type": "multiple_choice",
+    "question": "The maximum length of an SQL identifier according to the ISO standard is __________________________ characters.",
+    "options": [
+      "64",
+      "100",
+      "128",
+      "256"
+    ],
+    "correct_answer": 2,
+    "explanation": "The ISO standard specifies a maximum of 128 characters for SQL identifiers. Some implementations may vary."
+  },
+  {
+    "id": 126,
+    "type": "multiple_choice",
+    "question": "__________________________ data type stores fixed-length character data.",
+    "options": [
+      "VARCHAR",
+      "CHAR",
+      "TEXT",
+      "STRING"
+    ],
+    "correct_answer": 1,
+    "explanation": "CHAR stores fixed-length character data. VARCHAR stores variable-length, TEXT stores large text, STRING is not standard."
+  },
+  {
+    "id": 127,
+    "type": "multiple_choice",
+    "question": "__________________________ data type stores variable-length character data.",
+    "options": [
+      "CHAR",
+      "VARCHAR",
+      "TEXT",
+      "BIT"
+    ],
+    "correct_answer": 1,
+    "explanation": "VARCHAR stores variable-length character data. CHAR is fixed-length, TEXT is for large text, BIT stores binary data."
+  },
+  {
+    "id": 128,
+    "type": "multiple_choice",
+    "question": "BIT(n) is used to store __________________________ data.",
+    "options": [
+      "Numeric",
+      "Character",
+      "Binary",
+      "Date"
+    ],
+    "correct_answer": 2,
+    "explanation": "BIT(n) stores binary data (bits). Numeric uses NUMBER/INT, character uses CHAR/VARCHAR, date uses DATE."
+  },
+  {
+    "id": 129,
+    "type": "multiple_choice",
+    "question": "Precision defines the total number of __________________________ in a numeric value.",
+    "options": [
+      "Bytes",
+      "Digits",
+      "Bits",
+      "Characters"
+    ],
+    "correct_answer": 1,
+    "explanation": "Precision is the total number of digits in a numeric value. Scale defines digits after the decimal point."
+  },
+  {
+    "id": 130,
+    "type": "multiple_choice",
+    "question": "Scale defines the number of __________________________ places.",
+    "options": [
+      "Binary",
+      "Integer",
+      "Decimal",
+      "Numeric"
+    ],
+    "correct_answer": 2,
+    "explanation": "Scale defines the number of decimal places (digits to the right of the decimal point)."
+  },
+  {
+    "id": 131,
+    "type": "multiple_choice",
+    "question": "The DATE data type stores __________________________, month, and day.",
+    "options": [
+      "Hour",
+      "Year",
+      "Minute",
+      "Second"
+    ],
+    "correct_answer": 1,
+    "explanation": "DATE stores year, month, and day. TIME stores hour, minute, second. TIMESTAMP stores both."
+  },
+  {
+    "id": 132,
+    "type": "multiple_choice",
+    "question": "The __________________________ data type stores both date and time.",
+    "options": [
+      "TIME",
+      "DATE",
+      "TIMESTAMP",
+      "DATETIME"
+    ],
+    "correct_answer": 2,
+    "explanation": "TIMESTAMP stores both date and time. TIME stores only time, DATE stores only date, DATETIME is implementation-specific."
+  },
+  {
+    "id": 133,
+    "type": "multiple_choice",
+    "question": "A BLOB is used to store large __________________________ data.",
+    "options": [
+      "Text",
+      "Numeric",
+      "Binary",
+      "Date"
+    ],
+    "correct_answer": 2,
+    "explanation": "BLOB (Binary Large Object) stores large binary data like images, audio, video. CLOB stores large text."
+  },
+  {
+    "id": 134,
+    "type": "multiple_choice",
+    "question": "The constraint that prevents NULL values is __________________________.",
+    "options": [
+      "UNIQUE",
+      "CHECK",
+      "NOT NULL",
+      "DEFAULT"
+    ],
+    "correct_answer": 2,
+    "explanation": "NOT NULL prevents NULL values. UNIQUE ensures distinct values, CHECK validates conditions, DEFAULT provides default values."
+  },
+  {
+    "id": 135,
+    "type": "multiple_choice",
+    "question": "A __________________________ defines the valid values that a column can store.",
+    "options": [
+      "Domain",
+      "Relation",
+      "Entity",
+      "Schema"
+    ],
+    "correct_answer": 0,
+    "explanation": "A domain defines the set of valid values for a column (e.g., data type and constraints)."
+  },
+  {
+    "id": 136,
+    "type": "multiple_choice",
+    "question": "The __________________________ clause is used to enforce domain constraints.",
+    "options": [
+      "PRIMARY KEY",
+      "FOREIGN KEY",
+      "CHECK",
+      "UNIQUE"
+    ],
+    "correct_answer": 2,
+    "explanation": "CHECK enforces domain constraints by validating column values against a condition."
+  },
+  {
+    "id": 137,
+    "type": "multiple_choice",
+    "question": "Entity integrity is enforced through the __________________________ key.",
+    "options": [
+      "Foreign",
+      "Candidate",
+      "Primary",
+      "Alternate"
+    ],
+    "correct_answer": 2,
+    "explanation": "Primary key enforces entity integrity by ensuring unique, non-null identification of each tuple."
+  },
+  {
+    "id": 138,
+    "type": "multiple_choice",
+    "question": "Referential integrity is enforced through the __________________________ key.",
+    "options": [
+      "Primary",
+      "Foreign",
+      "Unique",
+      "Composite"
+    ],
+    "correct_answer": 1,
+    "explanation": "Foreign key enforces referential integrity by ensuring values match a primary key in another table."
+  },
+  {
+    "id": 139,
+    "type": "multiple_choice",
+    "question": "The referential action that automatically updates or deletes child rows is __________________________.",
+    "options": [
+      "NO ACTION",
+      "SET NULL",
+      "SET DEFAULT",
+      "CASCADE"
+    ],
+    "correct_answer": 3,
+    "explanation": "CASCADE automatically propagates updates or deletes to child rows. NO ACTION prevents changes, SET NULL sets to NULL, SET DEFAULT sets to default."
+  },
+  {
+    "id": 140,
+    "type": "multiple_choice",
+    "question": "The SQL command used to create an index is __________________________.",
+    "options": [
+      "CREATE VIEW",
+      "CREATE DOMAIN",
+      "CREATE INDEX",
+      "CREATE TABLE"
+    ],
+    "correct_answer": 2,
+    "explanation": "CREATE INDEX creates an index to improve query performance. CREATE VIEW makes virtual tables, CREATE DOMAIN defines domains."
+  }
+
 
 
 
